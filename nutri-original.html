@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NutriSynth — Detailed Nutrition Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{--card-bg:rgba(255,255,255,0.94);--muted:#64748b}
+    [data-theme="dark"]{ --card-bg:rgba(15,23,42,0.85); background: linear-gradient(180deg,#070a0f,#0f172a); color:#e6eef8; --muted:#9fb0c8; }
+    [data-theme="dark"] .card { border-color: rgba(255,255,255,0.08); box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea { background-color: #1e293b; color: #f8fafc; border-color: #334155; }
+    [data-theme="dark"] .text-slate-900, [data-theme="dark"] .text-slate-800, [data-theme="dark"] .text-slate-700 { color: #f1f5f9; }
+    [data-theme="dark"] .text-slate-600, [data-theme="dark"] .text-slate-500 { color: #94a3b8; }
+    [data-theme="dark"] .bg-white { background-color: #111827; }
+    [data-theme="dark"] .bg-slate-50 { background-color: #1e293b; color: #f1f5f9; border-color: #334155; }
+    [data-theme="dark"] .chip { background: rgba(255,255,255,0.08); color: #cbd5e1; }
+    [data-theme="dark"] #exportMenu { background-color: #1e293b; border-color: #334155; }
+    [data-theme="dark"] #exportMenu button:hover { background-color: #334155; color: #ffffff; }
+    body { background: linear-gradient(180deg,#ffffff,#f7fbff); font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; transition: background 0.3s ease, color 0.3s ease; }
+    .card { background: var(--card-bg); border:1px solid rgba(15,23,42,0.04); border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(2,6,23,0.06); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; }
+    .chip { padding:6px 10px; border-radius:999px; font-size:12px; background:rgba(15,23,42,0.04);}
+    .small { font-size:13px; }
+    .hidden { display:none; }
+    .meal-card-grid { display: grid; grid-template-columns: 1fr auto; align-items: start; }
+    #themeToggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s ease; }
+    #themeToggle:hover { transform: scale(1.02); }
+  </style>
+</head>
+<body class="antialiased" data-theme="light">
+  <!-- Header: Made responsive with flex-col on small screens and flex-row on larger screens -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <div id="logo" class="w-14 h-14 rounded-xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">NS</div>
+      <div>
+        <!-- Adjusted font size for mobile -->
+        <h1 class="text-xl sm:text-2xl font-extrabold">NutriSynth <span class="text-sm font-medium text-slate-600">Detailed Nutrition Planner</span></h1>
+        <p class="text-slate-500 text-sm small">Serving Sizes • Nutritional Estimates • Dynamic Meals</p>
+      </div>
+    </div>
+    <!-- Button group now wraps on smaller screens for better visibility -->
+    <div class="flex items-center flex-wrap justify-center gap-2">
+      <button id="themeToggle" class="px-3 py-2 rounded-xl border small bg-white text-slate-700 shadow-sm hover:bg-slate-100" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span> <span id="themeLabel">Dark</span>
+      </button>
+      <button id="savePlan" class="px-3 py-2 rounded-xl bg-emerald-600 text-white small">Save Plan</button>
+      <button id="loadPlan" class="px-3 py-2 rounded-xl bg-slate-50 small">Load Plan</button>
+      <div class="relative">
+        <button id="exportBtn" class="px-3 py-2 rounded-xl bg-cyan-600 text-white small">Export ▼</button>
+        <div id="exportMenu" class="absolute right-0 mt-2 p-2 card hidden w-44 z-40">
+          <button id="exportTxt" class="block w-full text-left py-1 px-2 rounded hover:bg-slate-100">Export .txt</button>
+          <button id="exportCsv" class="block w-full text-left py-1 px-2 rounded hover:bg-slate-100">Export .csv</button>
+          <button id="printPdf" class="block w-full text-left py-1 px-2 rounded hover:bg-slate-100">Print / Save PDF</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content grid: Stacks to a single column on mobile, and expands on larger screens -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pb-16 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <section class="lg:col-span-1 card">
+      <h2 class="text-lg font-semibold mb-3">Your Details</h2>
+      <!-- Form grid stacks to single column on mobile -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-slate-500">Age (years)</label>
+          <input id="age" type="number" value="30" min="0" max="120" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-500">Gender</label>
+          <select id="gender" class="w-full mt-1 rounded-xl border px-3 py-2">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div id="femaleBlock" class="col-span-1 sm:col-span-2 hidden">
+          <label class="text-xs text-slate-500">Female State</label>
+          <select id="femaleState" class="w-full mt-1 rounded-xl border px-3 py-2">
+            <option value="none">None</option>
+            <option value="menstruation">Menstruation</option>
+            <option value="pregnancy">Pregnancy</option>
+            <option value="lactation">Lactation</option>
+          </select>
+
+          <div id="menstruationBlock" class="mt-2 hidden">
+            <label class="text-xs text-slate-500">Phase</label>
+            <select id="menstruationPhase" class="w-full mt-1 rounded-xl border px-3 py-2">
+              <option value="menstrual">Menstrual (Day 1-5)</option>
+              <option value="follicular">Follicular (Day 6-13)</option>
+              <option value="ovulatory">Ovulatory (Day 14-16)</option>
+              <option value="luteal">Luteal (Day 17-28)</option>
+            </select>
+            <label class="text-xs text-slate-500 mt-2">Day of Cycle</label>
+            <input id="menstruationDays" type="number" min="1" max="28" value="1" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+          </div>
+
+          <div id="pregnancyBlock" class="mt-2 hidden">
+            <label class="text-xs text-slate-500">Pregnancy Month (1-9)</label>
+            <input id="pregnancyMonth" type="number" min="1" max="9" value="1" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs text-slate-500">Height (cm)</label>
+          <input id="height" type="number" value="170" min="80" max="250" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-500">Weight (kg)</label>
+          <input id="weight" type="number" value="70" min="10" max="300" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+        </div>
+
+        <div>
+          <label class="text-xs text-slate-500">Activity</label>
+          <select id="activity" class="w-full mt-1 rounded-xl border px-3 py-2">
+            <option value="1.2">Sedentary</option>
+            <option value="1.375">Light</option>
+            <option value="1.55" selected>Moderate</option>
+            <option value="1.725">Very Active</option>
+            <option value="1.9">Extra Active</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-slate-500">Goal</label>
+          <select id="goal" class="w-full mt-1 rounded-xl border px-3 py-2">
+            <option value="maintain">Maintain</option>
+            <option value="lose">Lose</option>
+            <option value="gain">Gain</option>
+          </select>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2">
+          <label class="text-xs text-slate-500">Available ingredients (comma separated)</label>
+          <input id="ingredients" value="rice, dal, spinach, paneer, egg, chicken, potato, tomato, onion" class="w-full mt-1 rounded-xl border px-3 py-2"/>
+        </div>
+
+        <div class="col-span-1 sm:col-span-2 mt-2">
+          <button id="btnCompute" class="w-full rounded-xl bg-indigo-600 text-white py-2">Compute Plan</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:col-span-2 card">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="p-3 rounded-xl bg-slate-50" id="cardBmr">
+          <div class="text-xs text-slate-500">BMR</div>
+          <div id="bmr" class="text-lg font-semibold">— kcal</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50" id="cardTdee">
+          <div class="text-xs text-slate-500">TDEE</div>
+          <div id="tdee" class="text-lg font-semibold">— kcal</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50" id="cardProtein">
+          <div class="text-xs text-slate-500">Protein</div>
+          <div id="protein" class="text-lg font-semibold">— g</div>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="md:col-span-2">
+          <h3 class="text-sm font-medium">Suggested Meals (with Estimated Nutrition)</h3>
+          <div id="meals" class="mt-2 space-y-3 text-sm text-slate-700"></div>
+        </div>
+        <div>
+          <h3 class="text-sm font-medium">Micronutrient RDIs</h3>
+          <div id="micros" class="mt-2 grid grid-cols-2 gap-2 text-sm"></div>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="card p-3">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold small">Macros (kcal & g)</h4>
+            <button id="downloadMacroChart" title="Download Chart" class="p-1 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+            </button>
+          </div>
+          <canvas id="macroChart" height="160"></canvas>
+          <div id="macroLegend" class="text-xs mt-2 small"></div>
+        </div>
+        <div class="card p-3">
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="font-semibold small">Micronutrient snapshot</h4>
+            <button id="downloadMicroChart" title="Download Chart" class="p-1 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+            </button>
+          </div>
+          <canvas id="microChart" height="160"></canvas>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="text-sm font-medium">Recipes from your ingredients</h3>
+        <div id="recipes" class="mt-2 grid sm:grid-cols-2 gap-3"></div>
+      </div>
+    </section>
+
+    <section class="lg:col-span-3 card">
+      <h3 class="text-lg font-semibold mb-3">AI Nutrition Chat</h3>
+      <div id="chatBox" class="h-48 overflow-y-auto p-3 rounded-xl bg-slate-50 border text-sm space-y-2"></div>
+      <div class="flex gap-2 mt-3">
+        <input id="chatInput" placeholder="Ask for a meal swap..." class="flex-1 rounded-xl border px-3 py-2"/>
+        <button id="sendChat" class="px-4 py-2 rounded-xl bg-emerald-600 text-white">Send</button>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Chat posts to <code class="mono">/api/nutrition-assistant</code>. Deploy a server proxy for secure API key injection.</p>
+    </section>
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 sm:px-6 pb-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 gap-2 text-center sm:text-left">
+    <div class="small">Upgraded: detailed nutrition • serving sizes • dynamic meals</div>
+    <div class="small">Developed by Carvore ChEm • 2025</div>
+  </footer>
+
+<script>
+/* ---------- START: NUTRITION DATABASE (EXPANDED) ---------- */
+const foodNutritionData = {
+  // Breakfasts
+  poha: { name: "Poha", serving: "1 medium bowl", calories: 270, protein: 5, carbs: 45, fat: 8 },
+  upma: { name: "Upma", serving: "1 medium bowl", calories: 250, protein: 6, carbs: 40, fat: 7 },
+  idli_sambar: { name: "Idli with Sambar", serving: "2 pieces", calories: 200, protein: 8, carbs: 35, fat: 3 },
+  masala_dosa: { name: "Masala Dosa", serving: "1 medium", calories: 350, protein: 8, carbs: 55, fat: 12 },
+  egg_bhurji_2: { name: "Egg Bhurji", serving: "2 eggs", calories: 220, protein: 14, carbs: 5, fat: 16 },
+  oats_porridge: { name: "Oats Porridge", serving: "1 bowl", calories: 210, protein: 8, carbs: 35, fat: 5 },
+  paneer_paratha: { name: "Paneer Paratha", serving: "1 medium", calories: 300, protein: 12, carbs: 35, fat: 12 },
+  sprouts_salad: { name: "Sprouts Salad", serving: "1 bowl", calories: 150, protein: 10, carbs: 20, fat: 3 },
+  ragi_malt: { name: "Ragi Malt", serving: "1 glass", calories: 180, protein: 5, carbs: 30, fat: 4 },
+  methi_thepla: { name: "Methi Thepla", serving: "2 pieces", calories: 220, protein: 6, carbs: 30, fat: 8 },
+  fruit_yogurt: { name: "Fruit Bowl with Yogurt", serving: "1 bowl", calories: 180, protein: 8, carbs: 25, fat: 5 },
+
+  // Carbs (Roti, Rice, etc.)
+  roti: { name: "Roti/Chapati", serving: "1 piece", calories: 85, protein: 3, carbs: 18, fat: 0.5 },
+  rice: { name: "Cooked Rice", serving: "1 bowl (150g)", calories: 200, protein: 4, carbs: 45, fat: 0.5 },
+  khichdi: { name: "Khichdi", serving: "1 bowl", calories: 300, protein: 12, carbs: 55, fat: 4 },
+  bajra_roti: { name: "Bajra Roti", serving: "1 piece", calories: 110, protein: 3.5, carbs: 22, fat: 1.5 },
+  jowar_roti: { name: "Jowar Roti", serving: "1 piece", calories: 100, protein: 3, carbs: 21, fat: 1 },
+  naan: { name: "Naan", serving: "1 piece", calories: 260, protein: 8, carbs: 48, fat: 4 },
+  
+  // Proteins (Dals, Curries)
+  toor_dal_tadka: { name: "Toor Dal Tadka", serving: "1 bowl", calories: 180, protein: 9, carbs: 25, fat: 5 },
+  moong_dal: { name: "Moong Dal", serving: "1 bowl", calories: 160, protein: 10, carbs: 22, fat: 4 },
+  masoor_dal: { name: "Masoor Dal", serving: "1 bowl", calories: 170, protein: 11, carbs: 24, fat: 4 },
+  urad_dal: { name: "Urad Dal", serving: "1 bowl", calories: 190, protein: 12, carbs: 26, fat: 5 },
+  paneer_curry: { name: "Paneer Curry", serving: "1 bowl (100g paneer)", calories: 280, protein: 15, carbs: 8, fat: 20 },
+  chicken_curry: { name: "Chicken Curry", serving: "2 pieces", calories: 300, protein: 25, carbs: 6, fat: 18 },
+  fish_curry: { name: "Fish Curry", serving: "1 piece", calories: 250, protein: 22, carbs: 5, fat: 15 },
+  mutton_curry: { name: "Mutton Curry", serving: "2 pieces", calories: 350, protein: 28, carbs: 7, fat: 22 },
+  rajma_masala: { name: "Rajma Masala", serving: "1 bowl", calories: 220, protein: 10, carbs: 30, fat: 7 },
+  chana_masala: { name: "Chana Masala", serving: "1 bowl", calories: 240, protein: 9, carbs: 35, fat: 7 },
+  egg_curry_2: { name: "Egg Curry", serving: "2 eggs", calories: 250, protein: 14, carbs: 8, fat: 18 },
+  soya_curry: { name: "Soya Chunk Curry", serving: "1 bowl", calories: 200, protein: 18, carbs: 15, fat: 8 },
+
+  // Vegetables (Sabzi)
+  mixed_veg: { name: "Mixed Veg Sabzi", serving: "1 bowl", calories: 120, protein: 3, carbs: 15, fat: 6 },
+  palak_sabzi: { name: "Palak Sabzi", serving: "1 bowl", calories: 150, protein: 6, carbs: 10, fat: 10 },
+  aloo_gobi: { name: "Aloo Gobi", serving: "1 bowl", calories: 160, protein: 4, carbs: 20, fat: 7 },
+  baingan_bharta: { name: "Baingan Bharta", serving: "1 bowl", calories: 130, protein: 3, carbs: 15, fat: 7 },
+  bhindi_fry: { name: "Bhindi Fry", serving: "1 bowl", calories: 140, protein: 3, carbs: 12, fat: 9 },
+  lauki_sabzi: { name: "Lauki ki Sabzi", serving: "1 bowl", calories: 90, protein: 2, carbs: 10, fat: 5 },
+  karela_sabzi: { name: "Karela Sabzi", serving: "1 bowl", calories: 110, protein: 2, carbs: 12, fat: 6 },
+  sarson_ka_saag: { name: "Sarson ka Saag", serving: "1 bowl", calories: 180, protein: 7, carbs: 15, fat: 12 },
+
+  // Sides & Extras
+  salad: { name: "Green Salad", serving: "1 bowl", calories: 30, protein: 1, carbs: 5, fat: 0.5 },
+  curd: { name: "Curd/Raita", serving: "1 small bowl", calories: 60, protein: 4, carbs: 5, fat: 2.5 },
+  ghee: { name: "Ghee Topping", serving: "1 tsp", calories: 45, protein: 0, carbs: 0, fat: 5 },
+};
+/* ---------- END: NUTRITION DATABASE ---------- */
+
+/* ---------- START: INGREDIENT NORMALIZATION (EXPANDED) ---------- */
+const canonical = {
+  // Grains & Cereals
+  rice: "rice", basmati: "rice", sonamasuri: "rice", boiledrice: "rice",
+  wheat: "wheat", atta: "wheat",
+  roti: "chapati", chapati: "chapati", phulka: "chapati", naan: "wheat", paratha: "wheat",
+  millets: "millet", jowar: "jowar", bajra: "bajra", ragi: "ragi",
+  semolina: "suji", suji: "suji", rava: "suji",
+  puffedrice: "murmura", murmura: "murmura",
+  flattenedrice: "poha", poha: "poha",
+  oats: "oats",
+  
+  // Lentils & Pulses
+  dal: "dal", lentil: "dal",
+  redlentil: "masoor", masoor: "masoor",
+  yellowpigeonpeas: "toor", toor: "toor", arhar: "toor",
+  splitbengalgram: "chana", chana: "chana",
+  greengram: "moong", moong: "moong",
+  kidneybeans: "rajma", rajma: "rajma",
+  chickpeas: "chole", chole: "chole", kabulichana: "chole",
+  blackgram: "urad", urad: "urad",
+
+  // Vegetables
+  onion: "onion", tomato: "tomato", potato: "potato", aloo: "potato", garlic: "garlic", ginger: "ginger", chili: "chili",
+  spinach: "spinach", palak: "spinach",
+  fenugreek: "methi", methi: "methi",
+  mustardgreens: "sarson", sarson: "sarson",
+  cauliflower: "cauliflower", gobi: "cauliflower",
+  cabbage: "cabbage",
+  bottlegourd: "lauki", lauki: "lauki", doodhi: "lauki",
+  ridgegourd: "turai", turai: "turai",
+  bittergourd: "karela", karela: "karela",
+  eggplant: "baingan", baingan: "baingan", brinjal: "baingan",
+  okra: "bhindi", bhindi: "bhindi",
+  peas: "matar", matar: "matar",
+  bellpepper: "capsicum", capsicum: "capsicum", shimlamirch: "capsicum",
+  cucumber: "cucumber", carrot: "carrot", radish: "radish", pumpkin: "pumpkin", kaddu: "pumpkin",
+
+  // Fruits
+  mango: "mango", banana: "banana", guava: "guava", pomegranate: "pomegranate",
+  grapes: "grapes", jackfruit: "jackfruit", papaya: "papaya", watermelon: "watermelon",
+  lychee: "lychee", orange: "orange", lemon: "lemon", lime: "lime", apple: "apple", coconut: "coconut",
+  
+  // Dairy, Fats, Proteins
+  ghee: "ghee", yogurt: "curd", curd: "curd", dahi: "curd",
+  paneer: "paneer", cottagecheese: "paneer",
+  milk: "milk",
+  chicken: "chicken", mutton: "mutton", goat: "mutton", fish: "fish", egg: "egg", eggs: "egg",
+  soya: "soya", tofu: "soya",
+  sprouts: "sprouts", peanut: "peanut", peanuts: "peanut", nuts: "nuts",
+  
+  // Spices (less critical for matching, but good to have)
+  turmeric: "turmeric", haldi: "turmeric", cumin: "cumin", jeera: "cumin", coriander: "coriander", dhania: "coriander"
+};
+/* ---------- END: INGREDIENT NORMALIZATION ---------- */
+
+
+/* ---------- START: RECIPE SUGGESTIONS (EXPANDED) ---------- */
+const recipes = [
+  { name: "Dal Tadka + Rice", required: ["dal","rice"], desc: "Balanced carbs + plant protein" },
+  { name: "Palak Paneer + Chapati", required: ["spinach","paneer","chapati"], desc: "Iron & calcium rich" },
+  { name: "Egg Bhurji + Chapati", required: ["egg","chapati"], desc: "High-protein breakfast" },
+  { name: "Chicken Curry + Rice", required: ["chicken", "rice"], desc: "Classic protein meal" },
+  { name: "Mutton Rogan Josh", required: ["mutton", "yogurt"], desc: "Rich & flavorful curry" },
+  { name: "Sarson ka Saag + Roti", required: ["sarson", "chapati"], desc: "A Punjabi winter specialty" },
+  { name: "Rajma Chawal", required: ["rajma", "rice"], desc: "Comforting kidney bean curry with rice" },
+  { name: "Chole Bhature/Puri", required: ["chole", "wheat"], desc: "Popular chickpea curry meal" },
+  { name: "Aloo Gobi", required: ["potato", "cauliflower"], desc: "Simple potato & cauliflower stir-fry" },
+  { name: "Baingan Bharta", required: ["baingan", "tomato"], desc: "Smoky mashed eggplant curry" },
+  { name: "Bhindi Fry", required: ["bhindi"], desc: "Crispy fried okra" },
+  { name: "Khichdi (Rice + Dal)", required: ["rice","dal"], desc: "Comforting one-pot meal" },
+  { name: "Fish Curry + Rice", required: ["fish", "rice"], desc: "Coastal staple meal" },
+  { name: "Banana + Milk Smoothie", required: ["banana","milk"], desc: "Quick energy + calcium" },
+];
+/* ---------- END: RECIPE SUGGESTIONS ---------- */
+
+
+function $(id){ return document.getElementById(id); }
+function clamp(n,min,max){ return Math.min(Math.max(n,min),max); }
+
+/* ---------- Calculations ---------- */
+function calcBMR({age,gender,height,weight}){
+  if(gender==="male") return 10*weight + 6.25*height - 5*age + 5;
+  if(gender==="female") return 10*weight + 6.25*height - 5*age -161;
+  return 10*weight + 6.25*height - 5*age -78;
+}
+
+function recommendProteinPerKg(activity){
+  if(activity>=1.725) return 1.6;
+  if(activity>=1.55) return 1.4;
+  if(activity>=1.375) return 1.2;
+  return 1.0;
+}
+
+function rdiTable(age,gender){
+  const table = {
+    calcium:{male:{child:700,teen:1000,adult:1000,older:1200},female:{child:700,teen:1000,adult:1000,older:1200}},
+    iron:{male:{child:7,teen:11,adult:8,older:8},female:{child:7,teen:15,adult:18,older:8}},
+    vitaminC:{male:{child:40,teen:65,adult:90,older:90},female:{child:40,teen:65,adult:75,older:75}},
+    vitaminD:{male:{all:600},female:{all:600}},
+    folate:{male:{all:400},female:{all:400}},
+  };
+  const bucket = age<13? "child": age<18? "teen": age<51? "adult":"older";
+  const out = {};
+  for(const k in table){
+    const set = table[k][gender] || table[k]["male"];
+    out[k] = set[bucket] ?? set["all"] ?? set["adults"];
+  }
+  return out;
+}
+
+/* Life stage helper */
+function lifeStageBlock(ageYears, gender, weight, activity, goal, availableIngredients){
+  const months = Math.round(ageYears*12);
+  const rec = { stage:"Adult", calories:null, protein:null, note:"", meals:[] };
+  function adultTDEE(){
+    const age = Math.max(18, Math.round(ageYears));
+    const w = Math.max(35, weight||55);
+    const h = 165;
+    let BMR = gender==="male"? 10*w+6.25*h-5*age+5 : 10*w+6.25*h-5*age-161;
+    let TDEE = Math.round(BMR*activity);
+    if(goal==="lose") TDEE = Math.round(TDEE-300);
+    if(goal==="gain") TDEE = Math.round(TDEE+300);
+    return {TDEE,BMR};
+  }
+  if(months<=6){
+    rec.stage="Infant (0–6 months)";
+    rec.meals=[{name:"Feeds",food:"Exclusive breastmilk (on demand)", details:{calories:0}}];
+  } else if(months<=12){
+    rec.stage="Infant (6–12 months)";
+    rec.meals=[{name:"Breakfast",food:"Mashed banana / suji kheer", details:{calories:0}},{name:"Lunch",food:"Soft khichdi + dal water", details:{calories:0}}];
+  } else if(ageYears<=18){
+     rec.stage="Adolescent (13–18 yrs)";
+    rec.meals=[{name:"Breakfast",food:"2 eggs/upma/poha + milk + fruit", details:{calories:0}},{name:"Lunch",food:"2 chapati + rice + dal + chicken/paneer + veg", details:{calories:0}},{name:"Dinner",food:"Chapati + sabzi + dal + salad", details:{calories:0}}];
+  } else if(ageYears<=60){
+    const t = adultTDEE(); rec.calories=t.TDEE; let baseProtein = gender==="male"?60:55; if(activity>=1.55) baseProtein+=5; if(goal==="gain") baseProtein+=8; rec.protein=baseProtein;
+    rec.note="Meal suggestions are examples with estimated nutrition. Actual values vary with preparation.";
+    rec.meals = generateAdultMealPlan(rec.calories, availableIngredients, goal);
+  } else {
+    rec.stage="Elderly (60+ yrs)";
+    rec.meals=[{name:"Breakfast",food:"Soft idli/upma + milk", details:{calories:0}},{name:"Lunch",food:"Multigrain chapati + dal + veg", details:{calories:0}},{name:"Dinner",food:"Soft khichdi + sabzi", details:{calories:0}}];
+  }
+  return rec;
+}
+
+/* ---------- START: New dynamic meal generation logic (UPGRADED) ---------- */
+function generateAdultMealPlan(TDEE, availableIngredients, goal) {
+  const breakfastOptions = [
+    { name: "Poha", ingredients: ["poha", "peanut"], components: ['poha'] },
+    { name: "Upma", ingredients: ["suji", "upma"], components: ['upma'] },
+    { name: "Idli with Sambar", ingredients: ["idli", "dal"], components: ['idli_sambar'] },
+    { name: "Masala Dosa", ingredients: ["dosa", "potato"], components: ['masala_dosa'] },
+    { name: "Egg Bhurji with Roti", ingredients: ["egg", "chapati"], components: ['egg_bhurji_2', 'roti'] },
+    { name: "Oats Porridge", ingredients: ["oats", "milk"], components: ['oats_porridge'] },
+    { name: "Paneer Paratha with Curd", ingredients: ["paneer", "chapati", "curd"], components: ['paneer_paratha', 'curd'] },
+    { name: "Sprouts Salad", ingredients: ["sprouts"], components: ['sprouts_salad'] },
+    { name: "Methi Thepla with Curd", ingredients: ["methi", "chapati", "curd"], components: ['methi_thepla', 'curd'] },
+    { name: "Fruit Bowl with Yogurt", ingredients: ["banana", "apple", "mango", "curd"], components: ['fruit_yogurt'] },
+  ];
+  const carbSources = [
+    { name: "Roti/Chapati", ingredients: ["chapati", "wheat"], components: ['roti', 'roti'] }, // Default 2
+    { name: "Rice", ingredients: ["rice"], components: ['rice'] },
+    { name: "Khichdi", ingredients: ["rice", "dal"], components: ['khichdi'] },
+    { name: "Bajra Roti", ingredients: ["bajra"], components: ['bajra_roti', 'bajra_roti'] },
+    { name: "Jowar Roti", ingredients: ["jowar"], components: ['jowar_roti', 'jowar_roti'] },
+  ];
+  const proteinSources = [
+    { name: "Toor Dal Tadka", ingredients: ["toor", "dal"], components: ['toor_dal_tadka'] },
+    { name: "Moong Dal", ingredients: ["moong", "dal"], components: ['moong_dal'] },
+    { name: "Masoor Dal", ingredients: ["masoor", "dal"], components: ['masoor_dal'] },
+    { name: "Urad Dal", ingredients: ["urad", "dal"], components: ['urad_dal'] },
+    { name: "Paneer Curry", ingredients: ["paneer"], components: ['paneer_curry'] },
+    { name: "Chicken Curry", ingredients: ["chicken"], components: ['chicken_curry'] },
+    { name: "Fish Curry", ingredients: ["fish"], components: ['fish_curry'] },
+    { name: "Mutton Curry", ingredients: ["mutton"], components: ['mutton_curry'] },
+    { name: "Rajma Masala", ingredients: ["rajma"], components: ['rajma_masala'] },
+    { name: "Chana Masala", ingredients: ["chole", "chana"], components: ['chana_masala'] },
+    { name: "Egg Curry", ingredients: ["egg"], components: ['egg_curry_2'] },
+    { name: "Soya Chunk Curry", ingredients: ["soya"], components: ['soya_curry'] },
+  ];
+  const vegetableSides = [
+    { name: "Mixed Veg Sabzi", ingredients: ["carrot", "peas", "beans"], components: ['mixed_veg'] },
+    { name: "Palak Sabzi", ingredients: ["spinach"], components: ['palak_sabzi'] },
+    { name: "Aloo Gobi", ingredients: ["potato", "cauliflower"], components: ['aloo_gobi'] },
+    { name: "Baingan Bharta", ingredients: ["baingan"], components: ['baingan_bharta'] },
+    { name: "Bhindi Fry", ingredients: ["bhindi"], components: ['bhindi_fry'] },
+    { name: "Lauki Sabzi", ingredients: ["lauki"], components: ['lauki_sabzi'] },
+    { name: "Karela Sabzi", ingredients: ["karela"], components: ['karela_sabzi'] },
+    { name: "Sarson ka Saag", ingredients: ["sarson"], components: ['sarson_ka_saag'] },
+  ];
+  const accompaniments = [
+    { name: "Green Salad", ingredients: ["cucumber", "tomato", "onion"], components: ['salad'] },
+    { name: "Curd/Raita", ingredients: ["curd", "yogurt"], components: ['curd'] },
+  ];
+
+  const pickOne = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const filterByIngredients = (options) => {
+    const available = options.filter(opt =>
+      (opt.ingredients || []).some(ing => availableIngredients.has(ing))
+    );
+    return available.length > 0 ? available : options;
+  };
+  
+  const assembleMeal = (componentList) => {
+    let foodText = [];
+    let details = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    componentList.forEach(key => {
+        const item = foodNutritionData[key];
+        if(item) {
+            foodText.push(`${item.name} (${item.serving})`);
+            details.calories += item.calories;
+            details.protein += item.protein;
+            details.carbs += item.carbs;
+            details.fat += item.fat;
+        }
+    });
+    return { food: foodText.join(' + '), details };
+  };
+
+  const validBreakfasts = filterByIngredients(breakfastOptions);
+  const validCarbs = filterByIngredients(carbSources);
+  const validProteins = filterByIngredients(proteinSources);
+  const validVeggies = filterByIngredients(vegetableSides);
+  
+  let breakfastChoice = pickOne(validBreakfasts);
+  let lunchCarb = pickOne(validCarbs);
+  let lunchProtein = pickOne(validProteins);
+  let lunchVeg = pickOne(validVeggies);
+  let lunchAcc = pickOne(accompaniments);
+  let dinnerCarb = pickOne(validCarbs);
+  let dinnerProtein = pickOne(validProteins);
+
+  if (goal === 'lose') {
+    if(lunchCarb.name.includes("Roti")) lunchCarb.components = ['roti'];
+    if(dinnerCarb.name.includes("Roti")) dinnerCarb.components = ['roti'];
+    if(dinnerCarb.name.includes("Rice")) { dinnerCarb = { name: "Roti/Chapati", ingredients: ["chapati", "wheat"], components: ['roti'] }; }
+  } else if (goal === 'gain') {
+    if(!lunchCarb.components.includes('ghee')) lunchCarb.components.push('ghee');
+    if(!dinnerCarb.components.includes('ghee')) dinnerCarb.components.push('ghee');
+    if(breakfastChoice.name === 'Sprouts Salad') breakfastChoice = pickOne(validBreakfasts.filter(b => b.name !== 'Sprouts Salad')) || breakfastChoice;
+  }
+
+  if(lunchProtein.name === dinnerProtein.name) {
+    let newDinnerProtein = pickOne(validProteins.filter(p => p.name !== lunchProtein.name));
+    if(newDinnerProtein) dinnerProtein = newDinnerProtein;
+  }
+  if(lunchCarb.name === 'Khichdi') { // Khichdi is a full meal
+    lunchProtein = {components:[]}; lunchVeg = {components:[]};
+  }
+  if(dinnerCarb.name === 'Khichdi') {
+    dinnerProtein = {components:[]};
+  }
+
+  const breakfastMeal = assembleMeal(breakfastChoice.components);
+  const lunchMeal = assembleMeal([...lunchCarb.components, ...lunchProtein.components, ...lunchVeg.components, ...lunchAcc.components]);
+  const dinnerMeal = assembleMeal([...dinnerCarb.components, ...dinnerProtein.components, ...accompaniments[0].components]);
+
+  return [
+    { name: "Breakfast", food: breakfastMeal.food, details: breakfastMeal.details },
+    { name: "Lunch", food: lunchMeal.food, details: lunchMeal.details },
+    { name: "Dinner", food: dinnerMeal.food, details: dinnerMeal.details },
+  ];
+}
+/* ---------- END: New dynamic meal generation logic ---------- */
+
+
+/* ---------- Ingredient normalization ---------- */
+function normalizeIngredients(input){
+    const raw = (input || "").toLowerCase().trim();
+    if (!raw) return new Set();
+    let parts = raw.split(/[,;]/).map(s => s.trim()).filter(Boolean);
+    if (parts.length === 1 && parts[0].includes(" ")) {
+        parts = parts[0].split(/\s+/).map(s => s.trim()).filter(Boolean);
+    }
+    const set = new Set();
+    const addCanonical = (term) => {
+        if (canonical[term]) {
+            set.add(canonical[term]);
+            return true;
+        }
+        return false;
+    };
+    for (let p of parts) {
+        p = p.replace(/[^a-z0-9\s]/g, "").trim();
+        if (!p) continue;
+        if (addCanonical(p)) continue;
+        const words = p.split(/\s+/);
+        let found = false;
+        for (let i = words.length; i > 0; i--) {
+            for (let j = 0; j <= words.length - i; j++) {
+                const phrase = words.slice(j, j + i).join('');
+                if (addCanonical(phrase)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+        if (!found) set.add(words[words.length - 1]);
+    }
+    return set;
+}
+
+
+/* ---------- Deterministic macro allocation ---------- */
+function allocateMacros(TDEE, proteinPerKg, weight, femaleState){
+  const proteinG = Math.round(proteinPerKg * weight + ((femaleState==='lactation')?19:0));
+  const proteinCal = proteinG * 4;
+  const fatRatio = 0.25;
+  let fatCal = Math.round(TDEE * fatRatio);
+  let carbCal = TDEE - proteinCal - fatCal;
+  if(carbCal < 0){
+    const deficit = -carbCal;
+    fatCal = Math.max(0, fatCal - deficit);
+    carbCal = TDEE - proteinCal - fatCal;
+  }
+  let fatG = +(fatCal/9).toFixed(1);
+  let carbG = +(carbCal/4).toFixed(1);
+  const recalProteinCal = proteinG*4;
+  const recalFatCal = Math.round(fatG*9);
+  const recalCarbCal = Math.round(carbG*4);
+  let sum = recalProteinCal + recalFatCal + recalCarbCal;
+  let diff = TDEE - sum;
+  if(diff !== 0){
+    const adjCarbG = +(carbG + diff/4).toFixed(1);
+    carbG = Math.max(0, adjCarbG);
+  }
+  return { proteinG, proteinCal: proteinG*4, fatG: +(fatG.toFixed(1)), carbG: +(carbG.toFixed(1)) };
+}
+
+/* ---------- Chart setup ---------- */
+let macroChart=null, microChart=null;
+function drawMacroChart(proteinCal, carbCal, fatCal){
+  const ctx = $('macroChart').getContext('2d');
+  const data = {
+    labels: ['Protein (kcal)','Carbs (kcal)','Fat (kcal)'],
+    datasets: [{ data: [proteinCal, carbCal, fatCal], backgroundColor: ['rgba(6,95,70,0.85)','rgba(14,165,233,0.85)','rgba(249,115,22,0.85)'] }]
+  };
+  if(macroChart) macroChart.destroy();
+  macroChart = new Chart(ctx, { type:'doughnut', data, options:{ plugins:{legend:{display:false}}}});
+  $('macroLegend').innerHTML = `<div class="small">Protein ${proteinCal} kcal • Carbs ${carbCal} kcal • Fat ${fatCal} kcal</div>`;
+}
+function drawMicroChart(micros){
+  const ctx = $('microChart').getContext('2d');
+  const labels = Object.keys(micros).slice(0,6);
+  const data = { labels, datasets:[{ label:'RDI', data: labels.map(l=>micros[l]), borderWidth:1, fill:true }] };
+  if(microChart) microChart.destroy();
+  microChart = new Chart(ctx,{ type:'bar', data, options:{ plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true }}}});
+}
+
+/* ---------- Compute & render ---------- */
+window._nutrisynth_last_summary = '';
+function computeAndRender(){
+  const age = clamp(Number($('age').value)||0, 0, 120);
+  const gender = $('gender').value;
+  const height = clamp(Number($('height').value)||0, 80, 250);
+  const weight = clamp(Number($('weight').value)||0, 10, 300);
+  const activity = clamp(Number($('activity').value)||1.2,1.2,1.9);
+  const goal = $('goal').value;
+  const ingredients = $('ingredients').value;
+
+  const bmr = calcBMR({age,gender,height,weight});
+  let tdee = Math.round(bmr * activity);
+  const femaleState = $('femaleState') ? $('femaleState').value : 'none';
+  let conditionNote = '';
+  if(gender==='female'){
+    if(femaleState==='pregnancy'){
+      const m = clamp(Number($('pregnancyMonth').value)||1,1,9);
+      const extra = m<=3?150: m<=6?300:450;
+      tdee += extra;
+      conditionNote = 'Pregnancy month '+m+' — +'+extra+' kcal guidance.';
+    }
+    if(femaleState==='lactation'){
+      tdee += 600;
+      conditionNote = 'Lactation — ~+600 kcal & +19 g protein guidance.';
+    }
+  }
+  if(goal==='lose') tdee = Math.max(1200, tdee-300);
+  if(goal==='gain') tdee = tdee+300;
+
+  const proteinPerKg = recommendProteinPerKg(activity);
+  const macros = allocateMacros(tdee, proteinPerKg, weight, femaleState);
+  const ingSet = normalizeIngredients(ingredients);
+  const life = lifeStageBlock(age, gender, weight, activity, goal, ingSet);
+  const matched = recipes.map(r => ({...r, matched: r.required.filter(x=>ingSet.has(x)).length})).filter(x=>x.matched>0).sort((a,b)=>b.matched-a.matched);
+  const micros = rdiTable(age, gender);
+
+  $('bmr').textContent = Math.round(bmr) + ' kcal';
+  $('tdee').textContent = Math.round(tdee) + ' kcal';
+  $('protein').textContent = macros.proteinG + ' g';
+
+  const mealsDiv = $('meals'); mealsDiv.innerHTML='';
+  life.meals.forEach(m=>{
+    const d = m.details;
+    const nutritionHtml = d.calories > 0 ? `<div class="text-xs text-emerald-700 font-medium mt-1">Est. ~${Math.round(d.calories)} kcal | P:${Math.round(d.protein)}g C:${Math.round(d.carbs)}g F:${Math.round(d.fat)}g</div>` : '';
+    const el = document.createElement('div');
+    el.className='p-2.5 rounded-lg bg-white border';
+    el.innerHTML = `
+        <div class="meal-card-grid">
+            <div class="font-semibold text-indigo-800">${m.name}</div>
+            <div class="text-right font-bold text-lg">${d.calories > 0 ? `~${Math.round(d.calories)}` : ''}<span class="text-xs font-medium text-slate-500">${d.calories > 0 ? ' kcal' : ''}</span></div>
+        </div>
+        <div class="text-xs text-slate-600 mt-1">${m.food}</div>
+        ${nutritionHtml}
+    `;
+    mealsDiv.appendChild(el);
+  });
+
+  const microsDiv = $('micros'); microsDiv.innerHTML='';
+  Object.entries(micros).forEach(([k,v])=>{
+    const el = document.createElement('div'); el.className='p-2 rounded-lg bg-white border flex items-center justify-between';
+    el.innerHTML = `<div class="capitalize">${k}</div><div class="font-semibold">${v}</div>`;
+    microsDiv.appendChild(el);
+  });
+
+  const recDiv = $('recipes'); recDiv.innerHTML='';
+  if(matched.length===0){ recDiv.innerHTML='<div class="text-sm text-slate-600">No matches. Add staples like rice, dal, egg, paneer, chicken.</div>'; }
+  matched.forEach(r=>{
+    const missing = r.required.filter(x=>!ingSet.has(x));
+    const card = document.createElement('div'); card.className='p-3 rounded-xl border bg-white flex items-start gap-3';
+    card.innerHTML = `<div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center">🍽️</div>
+      <div class="flex-1">
+        <div class="font-semibold">${r.name} <span class="text-xs text-slate-500">• ${r.desc}</span></div>
+        <div class="text-xs text-slate-500">Matches: ${r.matched}/${r.required.length} ${missing.length? '• Missing: '+missing.join(', '):''}</div>
+      </div>`;
+    recDiv.appendChild(card);
+  });
+
+  const proteinCal = macros.proteinCal;
+  const fatCal = Math.round(macros.fatG*9);
+  const carbCal = Math.round(macros.carbG*4);
+  drawMacroChart(proteinCal, carbCal, fatCal);
+  drawMicroChart(micros);
+
+  window._nutrisynth_last_plan = { age,gender,height,weight,activity,goal,ingredients,bmr:Math.round(bmr),tdee:Math.round(tdee),proteinG:macros.proteinG,carbsG:macros.carbG,fatsG:macros.fatG,meals:life.meals,recipes:matched,micros };
+}
+
+/* ---------- Chat (client-side simulated) ---------- */
+async function sendChat(){
+  const text = $('chatInput').value.trim();
+  if(!text) return;
+  const box = $('chatBox');
+  const userDiv = document.createElement('div'); userDiv.className='text-sm text-blue-700'; userDiv.innerHTML = `<strong>You:</strong> ${text}`; box.appendChild(userDiv); box.scrollTop = box.scrollHeight;
+  $('chatInput').value = '';
+  const aiDiv = document.createElement('div'); aiDiv.className='text-sm text-emerald-700';
+  aiDiv.innerHTML = `<strong>AI:</strong> (Demo) I can suggest a 3-step recipe or swap.`;
+  box.appendChild(aiDiv); box.scrollTop = box.scrollHeight;
+}
+
+/* ---------- Export / Save / Load ---------- */
+function downloadTxt(){
+    const plan = window._nutrisynth_last_plan;
+    if (!plan) { alert('Run Compute Plan first.'); return; }
+    let lines = [];
+    lines.push(`NutriSynth Plan for: ${plan.age} yr old, ${plan.gender}`);
+    lines.push(`Weight: ${plan.weight}kg, Height: ${plan.height}cm, Goal: ${plan.goal}`);
+    lines.push(`TDEE: ~${plan.tdee} kcal, Protein: ${plan.proteinG}g`);
+    lines.push('\n--- Suggested Meals ---\n');
+    plan.meals.forEach(m => {
+        lines.push(`${m.name}: ${m.food}`);
+        if(m.details.calories > 0) {
+            lines.push(`  └ Est. Nutrition: ~${Math.round(m.details.calories)} kcal | P:${Math.round(m.details.protein)}g C:${Math.round(m.details.carbs)}g F:${Math.round(m.details.fat)}g`);
+        }
+    });
+    const txt = lines.join('\n');
+    const blob = new Blob([txt], { type:'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'NutriSynth_Plan.txt'; a.click(); URL.revokeObjectURL(url);
+}
+function downloadCsv(){
+  const plan = window._nutrisynth_last_plan;
+  if(!plan){ alert('Run Compute Plan first.'); return; }
+  let rows = [];
+  rows.push(['Field','Value']);
+  rows.push(['TDEE_kcal',plan.tdee]);
+  rows.push(['Protein_g',plan.proteinG]);
+  rows.push(['Carbs_g',plan.carbsG]);
+  rows.push(['Fats_g',plan.fatsG]);
+  plan.meals.forEach(m => {
+    rows.push([`${m.name}_Food`, `"${m.food}"`]);
+    rows.push([`${m.name}_Calories`, Math.round(m.details.calories)]);
+  });
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const blob = new Blob([csv], { type:'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = 'NutriSynth_Plan.csv'; a.click(); URL.revokeObjectURL(url);
+}
+
+function savePlanLocal(){
+  if(!window._nutrisynth_last_plan){ alert('Run Compute Plan first.'); return; }
+  localStorage.setItem('nutrisynth.saved', JSON.stringify(window._nutrisynth_last_plan));
+  alert('Plan saved locally.');
+}
+function loadPlanLocal(){
+  const raw = localStorage.getItem('nutrisynth.saved');
+  if(!raw){ alert('No saved plan found.'); return; }
+  try{
+    const p = JSON.parse(raw);
+    $('age').value = p.age; $('gender').value = p.gender; $('height').value = p.height; $('weight').value = p.weight;
+    $('activity').value = p.activity; $('goal').value = p.goal; $('ingredients').value = p.ingredients || '';
+    computeAndRender();
+    alert('Plan loaded.');
+  }catch(e){ alert('Error loading plan: '+e.message); }
+}
+
+/* ---------- Chart Download ---------- */
+function downloadChart(canvasId, filename) {
+  const canvas = $(canvasId);
+  if (!canvas) return;
+  const url = canvas.toDataURL('image/png');
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+/* ---------- Events ---------- */
+document.addEventListener('DOMContentLoaded', ()=>{
+  $('btnCompute').addEventListener('click', computeAndRender);
+  $('exportBtn').addEventListener('click', ()=>$('exportMenu').classList.toggle('hidden'));
+  $('exportTxt').addEventListener('click', downloadTxt);
+  $('exportCsv').addEventListener('click', downloadCsv);
+  $('printPdf').addEventListener('click', ()=>window.print());
+  $('savePlan').addEventListener('click', savePlanLocal);
+  $('loadPlan').addEventListener('click', loadPlanLocal);
+  $('sendChat').addEventListener('click', sendChat);
+  $('chatInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendChat(); });
+  $('gender').addEventListener('change', ()=>{
+    if($('gender').value==='female') $('femaleBlock').classList.remove('hidden'); else $('femaleBlock').classList.add('hidden');
+  });
+  $('femaleState').addEventListener('change', ()=>{
+    $('menstruationBlock').classList.add('hidden'); $('pregnancyBlock').classList.add('hidden');
+    if($('femaleState').value==='menstruation') $('menstruationBlock').classList.remove('hidden');
+    if($('femaleState').value==='pregnancy') $('pregnancyBlock').classList.remove('hidden');
+  });
+  const applyTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+    const isDark = theme === 'dark';
+    if ($('themeIcon')) $('themeIcon').textContent = isDark ? '☀️' : '🌙';
+    if ($('themeLabel')) $('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+    $('themeToggle').className = isDark
+      ? 'px-3 py-2 rounded-xl border small bg-slate-800 text-amber-300 border-slate-700 shadow-inner'
+      : 'px-3 py-2 rounded-xl border small bg-white text-slate-700 border-slate-200 shadow-sm hover:bg-slate-100';
+    localStorage.setItem('nutrisynth.theme', theme);
+  };
+  $('themeToggle').addEventListener('click', ()=>{
+    const current = document.body.getAttribute('data-theme') || 'light';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
+  const savedTheme = localStorage.getItem('nutrisynth.theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(savedTheme);
+  $('downloadMacroChart').addEventListener('click', () => downloadChart('macroChart', 'macros_chart.png'));
+  $('downloadMicroChart').addEventListener('click', () => downloadChart('microChart', 'micros_chart.png'));
+  document.addEventListener('click', (e)=>{ if(!e.target.closest('#exportBtn') && !e.target.closest('#exportMenu')) $('exportMenu').classList.add('hidden');});
+  computeAndRender();
+});
+</script>
+</body>
+</html>

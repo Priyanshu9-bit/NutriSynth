@@ -1,0 +1,12 @@
+# Edge Functions are called from the browser with the public anon key.
+# verify_jwt is off because NutriSynth has no user auth yet; the functions
+# hold the third-party API keys, so consider enabling JWT verification (and
+# rate limiting) once you add sign-in.
+[functions.analyze-food-image]
+verify_jwt = false
+
+[functions.search-food]
+verify_jwt = false
+
+[functions.get-food-nutrition]
+verify_jwt = false
