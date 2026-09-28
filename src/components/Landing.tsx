@@ -1,9 +1,13 @@
-import { ArrowRight, Sparkles, Heart, Activity, Dna, ChefHat, Beaker, BookOpen, Scale, TrendingDown, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Heart, Activity, Dna, ChefHat, Beaker, BookOpen, Scale, LogIn, LayoutDashboard } from 'lucide-react';
 import type { View } from '@/components/Layout';
+import type { AuthUser } from '@/lib/firebase';
 
 interface LandingProps {
   onStart: () => void;
   onNavigate: (view: View) => void;
+  onOpenAuth?: (mode?: 'signin' | 'signup') => void;
+  authUser?: AuthUser | null;
+  hasProfile?: boolean;
 }
 
 const howItWorksSteps = [
@@ -24,7 +28,7 @@ const features = [
   { icon: BookOpen, title: "Evidence-Based", desc: "See the reference basis behind major nutritional guidance.", color: "from-violet-500 to-indigo-600" },
 ];
 
-export function Landing({ onStart, onNavigate }: LandingProps) {
+export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile }: LandingProps) {
   return (
     <div className="animate-fade-in">
       {/* Hero */}
@@ -48,17 +52,35 @@ export function Landing({ onStart, onNavigate }: LandingProps) {
                 Understand your nutritional needs, discover personalized meals, identify potential dietary gaps, and improve your meals with evidence-based guidance.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                <button onClick={onStart} className="btn-primary text-base px-8 py-4">
-                  Start Your Nutrition Journey
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-                <button onClick={() => onNavigate('how-it-works')} className="btn-secondary text-base px-8 py-4">
+                {hasProfile ? (
+                  <button onClick={() => onNavigate('dashboard')} className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2">
+                    <LayoutDashboard className="w-5 h-5" />
+                    <span>Open My Nutrition Dashboard</span>
+                  </button>
+                ) : (
+                  <button onClick={onStart} className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2">
+                    <span>Start Your Nutrition Journey</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                )}
+
+                {!authUser && onOpenAuth && (
+                  <button
+                    onClick={() => onOpenAuth('signin')}
+                    className="btn-secondary text-base px-6 py-4 flex items-center justify-center gap-2"
+                  >
+                    <LogIn className="w-5 h-5" />
+                    <span>Sign In to Saved Plan</span>
+                  </button>
+                )}
+
+                <button onClick={() => onNavigate('how-it-works')} className="btn-secondary text-base px-6 py-4">
                   Explore NutriSynth
                 </button>
               </div>
               <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-sm text-stone-500">
-                <span className="flex items-center gap-1.5"><CheckIcon /> No login required</span>
-                <span className="flex items-center gap-1.5"><CheckIcon /> Works offline</span>
+                <span className="flex items-center gap-1.5"><CheckIcon /> Cloud sync enabled</span>
+                <span className="flex items-center gap-1.5"><CheckIcon /> Instant data recovery</span>
               </div>
             </div>
 

@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import {
   rdiTable, nutrientInfo, getDeficiencyStatus, getStatusLabel, getStatusColor,
-  deficiencyFoodSources, type DeficiencyStatus, type DeficiencyResult
+  deficiencyFoodSources, type DeficiencyStatus, type DeficiencyResult, type Gender
 } from '@/data/nutrients';
 import { evidenceSources } from '@/data/foods';
 import { estimateMicroIntake, type NutritionResult, type UserProfile, type MealItem } from '@/lib/calculations';
@@ -128,7 +128,7 @@ export function DeficiencyCheck({ result, profile, onBack, onStartOnboarding, on
                 <label className="block text-sm font-semibold text-stone-700 mb-1.5">Sex / Gender</label>
                 <select
                   value={localProfile.gender}
-                  onChange={e => setLocalProfile(p => ({ ...p, gender: e.target.value }))}
+                  onChange={e => setLocalProfile(p => ({ ...p, gender: e.target.value as Gender }))}
                   className="input-field"
                 >
                   <option value="male">Male</option>

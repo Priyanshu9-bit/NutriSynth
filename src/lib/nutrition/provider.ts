@@ -11,7 +11,6 @@
 // three entry points can never drift into separate calculation logic.
 
 import type { MealItem } from '@/lib/calculations';
-import { edgeFunctionProvider } from './edgeFunctionProvider';
 import { localProvider } from './localAdapter';
 import { normalizeFoodName } from './normalize';
 import type {
@@ -23,7 +22,6 @@ import type {
   ResolvedFoodItem,
 } from './types';
 import { computeMultiplier } from './units';
-import { isSupabaseConfigured } from '@/lib/supabaseClient';
 
 export function sourceLabel(source: NutritionSource): string {
   switch (source) {
@@ -36,68 +34,22 @@ export function sourceLabel(source: NutritionSource): string {
   }
 }
 
-// Session caches — identical searches / food lookups reuse earlier results
-// instead of spending another USDA / Edge Function request. Only successful
-// backend responses are cached, so a failed request is retried next time.
-const remoteSearchCache = new Map<string, FoodSearchHit[]>();
-const detailsCache = new Map<string, NormalizedFood>();
-
-/** Searches USDA + Edamam (via the backend) and merges in local matches, de-duped by name. */
+/** Searches the local food database, de-duped by name. */
 export async function searchFood(query: string): Promise<FoodSearchHit[]> {
   const q = query.trim();
   if (!q) return [];
-  const cacheKey = q.toLowerCase();
-
-  let remote: FoodSearchHit[] = [];
-  if (isSupabaseConfigured) {
-    const cached = remoteSearchCache.get(cacheKey);
-    if (cached) {
-      remote = cached;
-    } else {
-      try {
-        remote = await edgeFunctionProvider.searchFood(q);
-        remoteSearchCache.set(cacheKey, remote);
-      } catch (err) {
-        console.warn('[NutriSynth] Nutrition search backend unavailable, using local database.', err);
-      }
-    }
-  }
-
   const local = await localProvider.searchFood(q);
-  const seen = new Set(remote.map((r) => r.name.toLowerCase()));
-  const merged = [...remote, ...local.filter((l) => !seen.has(l.name.toLowerCase()))];
-  return merged.slice(0, 25);
+  return local.slice(0, 25);
 }
 
 /** Resolves a search hit to its full, normalized nutrition record. */
-export async function getFoodDetails(hit: FoodSearchHit, unit?: string): Promise<NormalizedFood | null> {
-  if (hit.source === 'local') return localProvider.getFoodDetails(hit);
-  const cacheKey = `${hit.id}|${unit ?? ''}`;
-  const cached = detailsCache.get(cacheKey);
-  if (cached) return cached;
-  try {
-    const food = await edgeFunctionProvider.getFoodDetails(hit, unit);
-    if (food) detailsCache.set(cacheKey, food);
-    return food;
-  } catch (err) {
-    console.warn('[NutriSynth] Nutrition details backend unavailable.', err);
-    return null;
-  }
+export async function getFoodDetails(hit: FoodSearchHit, _unit?: string): Promise<NormalizedFood | null> {
+  return localProvider.getFoodDetails(hit);
 }
 
 /** Same as getFoodDetails, but from a bare id string (e.g. from Recent Foods). */
 export async function getFoodDetailsById(id: string): Promise<NormalizedFood | null> {
-  if (id.startsWith('local:')) return localProvider.getFoodDetails(id);
-  const cached = detailsCache.get(id);
-  if (cached) return cached;
-  try {
-    const food = await edgeFunctionProvider.getFoodDetails(id);
-    if (food) detailsCache.set(id, food);
-    return food;
-  } catch (err) {
-    console.warn('[NutriSynth] Nutrition details backend unavailable.', err);
-    return null;
-  }
+  return localProvider.getFoodDetails(id);
 }
 
 /**

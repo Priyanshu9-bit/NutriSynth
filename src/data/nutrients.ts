@@ -5,6 +5,7 @@ export type LifeStage = "child" | "teen" | "adult" | "older";
 export type Gender = "male" | "female" | "other";
 
 export interface NutrientRDI {
+  [key: string]: number;
   calcium: number;
   iron: number;
   vitaminC: number;
@@ -58,15 +59,20 @@ export function getLifeStage(age: number): LifeStage {
 
 export function rdiTable(age: number, gender: Gender, femaleState: string = "none"): NutrientRDI {
   const bucket = getLifeStage(age);
-  const out = {} as NutrientRDI;
+  const out: Record<string, number> = {};
   for (const nutrient in table) {
-    const set = table[nutrient][gender] ?? table[nutrient]["male"];
+    const isFemale = gender === "female";
+    const set = isFemale ? table[nutrient].female : table[nutrient].male;
     let value = set[bucket] ?? set["all"] ?? set["adult"] ?? 0;
-    if (gender === "female" && femaleState === "pregnancy" && set.pregnancy !== undefined) value = set.pregnancy;
-    if (gender === "female" && femaleState === "lactation" && set.lactation !== undefined) value = set.lactation;
-    (out as Record<string, number>)[nutrient] = value;
+    if (isFemale && femaleState === "pregnancy" && table[nutrient].female.pregnancy !== undefined) {
+      value = table[nutrient].female.pregnancy!;
+    }
+    if (isFemale && femaleState === "lactation" && table[nutrient].female.lactation !== undefined) {
+      value = table[nutrient].female.lactation!;
+    }
+    out[nutrient] = value;
   }
-  return out;
+  return out as unknown as NutrientRDI;
 }
 
 export interface NutrientInfo {

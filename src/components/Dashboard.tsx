@@ -81,7 +81,7 @@ export function Dashboard({ result, profile, onRegenerate, onEditProfile, onGoTo
         if (shouldTick) {
           copy[item.uniqueId] = item.food;
         } else {
-          delete item.uniqueId ? delete copy[item.uniqueId] : null;
+          delete copy[item.uniqueId];
         }
       }
       return copy;

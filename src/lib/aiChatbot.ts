@@ -169,8 +169,8 @@ export function generateChatResponse(
         `• **Muscle Gain:** A modest surplus is added to fuel hypertrophy.\n` +
         `• **Maintenance:** Kept at full TDEE.${personalNote}`,
       actions: [
-        { label: '📖 Read "How It Works"', type: 'navigate', target: 'how-it-works' },
-        ...(profile ? [{ label: '✏️ Edit Profile', type: 'editProfile' }] : [{ label: '🚀 Calculate Mine', type: 'startOnboarding' }])
+        { label: '📖 Read "How It Works"', type: 'navigate' as const, target: 'how-it-works' },
+        ...(profile ? [{ label: '✏️ Edit Profile', type: 'editProfile' as const }] : [{ label: '🚀 Calculate Mine', type: 'startOnboarding' as const }])
       ],
       suggestedQuestions: [
         'How is my protein target calculated?',
@@ -472,13 +472,13 @@ export function generateChatResponse(
     actions: [
       ...(result
         ? [
-            { label: '📊 View Dashboard', type: 'navigate', target: 'dashboard' },
-            { label: '🧬 Deficiency Check', type: 'navigate', target: 'deficiency' },
-            { label: '✏️ Edit Profile', type: 'editProfile' }
+            { label: '📊 View Dashboard', type: 'navigate' as const, target: 'dashboard' },
+            { label: '🧬 Deficiency Check', type: 'navigate' as const, target: 'deficiency' },
+            { label: '✏️ Edit Profile', type: 'editProfile' as const }
           ]
         : [
-            { label: '🚀 Build My Plan', type: 'startOnboarding' },
-            { label: '📖 How It Works', type: 'navigate', target: 'how-it-works' }
+            { label: '🚀 Build My Plan', type: 'startOnboarding' as const },
+            { label: '📖 How It Works', type: 'navigate' as const, target: 'how-it-works' }
           ])
     ],
     suggestedQuestions: [
