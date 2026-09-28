@@ -446,15 +446,15 @@ export function Dashboard({ result, profile, onRegenerate, onEditProfile, onGoTo
         <div className="card p-6 animate-fade-in" style={{ animationDelay: '300ms' }}>
           <ExpandableSection
             title="Evidence Basis"
-            icon={<BookOpen className="w-4 h-4 text-stone-500" />}
+            icon={<BookOpen className="w-4 h-4 text-stone-500 dark:text-stone-400" />}
           >
             <div className="space-y-3 pt-2">
               {evidenceSources.bmr.concat(evidenceSources.protein, evidenceSources.rdi, evidenceSources.food).map((src, i) => (
                 <div key={i} className="flex gap-3 text-sm">
                   <div className="w-2 h-2 rounded-full bg-brand-500 mt-1.5 flex-shrink-0" />
                   <div>
-                    <div className="font-semibold text-stone-800">{src.source}</div>
-                    <div className="text-stone-500 text-xs mt-0.5">{src.purpose}</div>
+                    <div className="font-semibold text-stone-800 dark:text-stone-200">{src.source}</div>
+                    <div className="text-stone-500 dark:text-stone-400 text-xs mt-0.5">{src.purpose}</div>
                   </div>
                 </div>
               ))}
@@ -463,15 +463,15 @@ export function Dashboard({ result, profile, onRegenerate, onEditProfile, onGoTo
         </div>
 
         {/* Deficiency Check CTA */}
-        <div className="card-lg p-6 bg-gradient-to-br from-brand-50 to-emerald-50/40 border-brand-200/40 animate-fade-in" style={{ animationDelay: '360ms' }}>
+        <div className="card-lg p-6 bg-gradient-to-br from-brand-50/80 to-emerald-50/40 dark:from-[#22272a] dark:to-[#1c2220] border border-brand-200/40 dark:border-[#32353e] animate-fade-in" style={{ animationDelay: '360ms' }}>
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-600 flex items-center justify-center text-white flex-shrink-0">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-brand-500/20">
                 <Dna className="w-7 h-7" />
               </div>
               <div>
-                <h3 className="font-display font-semibold text-lg text-stone-900">Nutrient Status Check</h3>
-                <p className="text-sm text-stone-600">Screen your dietary pattern for potential nutrient inadequacies.</p>
+                <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-white">Nutrient Status Check</h3>
+                <p className="text-sm text-stone-600 dark:text-[#a0a5b2]">Screen your dietary pattern for potential nutrient inadequacies.</p>
               </div>
             </div>
             <button onClick={onGoToDeficiency} className="btn-primary">
@@ -858,19 +858,43 @@ function BeforeAfter({ before, after, modification }: { before: Record<string, n
 
 function DietAnalysisRow({ item }: { item: { label: string; status: string; message: string; detail: string } }) {
   const statusConfig = {
-    good: { icon: CheckCircle2, color: "text-brand-600", bg: "bg-brand-50" },
-    attention: { icon: AlertTriangle, color: "text-amber-600", bg: "bg-amber-50" },
-    caution: { icon: Info, color: "text-orange-600", bg: "bg-orange-50" },
+    good: {
+      icon: CheckCircle2,
+      color: "text-emerald-500 dark:text-emerald-400",
+      bg: "bg-emerald-50/80 dark:bg-[#1a2320] border border-emerald-200/80 dark:border-emerald-800/50",
+      labelColor: "text-emerald-700 dark:text-emerald-400",
+      titleColor: "text-stone-900 dark:text-white",
+      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+    },
+    attention: {
+      icon: AlertTriangle,
+      color: "text-amber-500 dark:text-amber-400",
+      bg: "bg-amber-50/80 dark:bg-[#25221b] border border-amber-200/80 dark:border-amber-800/50",
+      labelColor: "text-amber-700 dark:text-amber-400",
+      titleColor: "text-stone-900 dark:text-white",
+      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+    },
+    caution: {
+      icon: Info,
+      color: "text-orange-500 dark:text-orange-400",
+      bg: "bg-orange-50/80 dark:bg-[#261f1c] border border-orange-200/80 dark:border-orange-800/50",
+      labelColor: "text-orange-700 dark:text-orange-400",
+      titleColor: "text-stone-900 dark:text-white",
+      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+    },
   };
   const config = statusConfig[item.status as keyof typeof statusConfig] || statusConfig.attention;
   const Icon = config.icon;
 
   return (
-    <div className={`flex items-start gap-3 p-4 rounded-xl ${config.bg}`}>
+    <div className={`flex items-start gap-3.5 p-4 rounded-xl transition-colors ${config.bg}`}>
       <Icon className={`w-5 h-5 ${config.color} mt-0.5 flex-shrink-0`} />
-      <div>
-        <div className="font-semibold text-sm text-stone-800">{item.label}: {item.message}</div>
-        <div className="text-xs text-stone-500 mt-0.5">{item.detail}</div>
+      <div className="flex-1 min-w-0">
+        <div className={`font-semibold text-sm ${config.titleColor}`}>
+          <span className={`font-bold ${config.labelColor}`}>{item.label}:</span>{' '}
+          {item.message}
+        </div>
+        <div className={`text-xs ${config.detailColor} mt-1 leading-relaxed`}>{item.detail}</div>
       </div>
     </div>
   );

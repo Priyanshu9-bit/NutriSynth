@@ -124,7 +124,7 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm animate-fade-in">
       <div
-        className="relative w-full max-w-md bg-white dark:bg-[#121824] rounded-2xl border border-stone-200 dark:border-stone-800 shadow-2xl overflow-hidden animate-scale-up"
+        className="relative w-full max-w-md bg-white dark:bg-[#202227] rounded-2xl border border-stone-200 dark:border-[#32353e] shadow-2xl overflow-hidden animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Glow decoration */}
@@ -323,7 +323,7 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
               <div className="w-full border-t border-stone-200 dark:border-stone-800" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white dark:bg-[#121824] px-2 text-stone-400">or quick options</span>
+              <span className="bg-white dark:bg-[#202227] px-2 text-stone-400">or quick options</span>
             </div>
           </div>
 

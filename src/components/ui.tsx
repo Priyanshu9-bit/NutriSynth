@@ -125,20 +125,20 @@ export function StatCard({ label, value, unit, icon, accent = "brand" }: { label
 export function ExpandableSection({ title, icon, children, defaultOpen = false }: { title: string; icon?: ReactNode; children: ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-t border-stone-200/60">
+    <div className="border-t border-stone-200/60 dark:border-[#32353e]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-3 text-left hover:bg-stone-50/50 transition-colors rounded-lg px-2 -mx-2"
+        className="w-full flex items-center justify-between py-3 text-left hover:bg-stone-50/50 dark:hover:bg-[#282a32] transition-colors rounded-lg px-2 -mx-2"
         aria-expanded={open}
       >
-        <span className="flex items-center gap-2 text-sm font-semibold text-stone-700">
+        <span className="flex items-center gap-2 text-sm font-semibold text-stone-700 dark:text-[#f4f5f7]">
           {icon}
           {title}
         </span>
-        <ChevronDown className={`w-4 h-4 text-stone-400 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-stone-400 dark:text-[#9ca3af] transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="pb-3 pt-1 animate-fade-in">
+        <div className="pb-3 pt-1 animate-fade-in text-stone-700 dark:text-[#d1d5db]">
           {children}
         </div>
       )}

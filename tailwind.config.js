@@ -21,6 +21,21 @@ export default {
         cream: {
           50: '#fefcf9', 100: '#fdf8f0', 200: '#faf0e0', 300: '#f5e6cc',
         },
+        darkgrey: {
+          50: '#f4f5f7',
+          100: '#e5e7eb',
+          200: '#d1d5db',
+          300: '#9ca3af',
+          400: '#717684',
+          500: '#545866',
+          600: '#3e424e',
+          700: '#32353e', // normal grey border / divider
+          800: '#282a32', // normal grey surface
+          850: '#24262d', // elevated normal grey
+          900: '#202227', // dark grey card
+          925: '#1b1c20', // deep dark grey header
+          950: '#18191c', // main dark grey background
+        },
       },
       borderRadius: {
         'xl2': '1.25rem',

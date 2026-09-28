@@ -49,7 +49,7 @@ export function Header({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/85 dark:bg-[#0c1017]/90 backdrop-blur-lg border-b border-stone-200/60 dark:border-stone-800/80 transition-colors duration-200">
+    <header className="sticky top-0 z-50 bg-white/85 dark:bg-[#1b1c20]/90 backdrop-blur-lg border-b border-stone-200/60 dark:border-[#32353e] transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -215,7 +215,7 @@ export function Header({
 
 export function Footer() {
   return (
-    <footer className="border-t border-stone-200/60 dark:border-stone-800 bg-white dark:bg-[#0c1017] transition-colors duration-200">
+    <footer className="border-t border-stone-200/60 dark:border-[#32353e] bg-white dark:bg-[#18191c] transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-500 dark:text-stone-400">
           <div className="flex items-center gap-2">

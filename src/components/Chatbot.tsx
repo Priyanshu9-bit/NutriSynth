@@ -238,7 +238,7 @@ export function Chatbot({
       <aside aria-label="NutriSynth AI Chatbot" className="fixed bottom-5 right-5 z-50 flex flex-col items-end pointer-events-auto">
         {/* Floating Greeting Bubble (shows initially until opened or dismissed) */}
         {!isOpen && showTooltip && (
-          <div className="mb-3 max-w-xs bg-white dark:bg-[#121824] rounded-2xl p-3 shadow-xl border border-stone-200/80 dark:border-stone-800 animate-fade-in flex items-start gap-2.5">
+          <div className="mb-3 max-w-xs bg-white dark:bg-[#202227] rounded-2xl p-3 shadow-xl border border-stone-200/80 dark:border-[#32353e] animate-fade-in flex items-start gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-950/60 flex items-center justify-center text-brand-700 dark:text-brand-300 shrink-0">
               <Sparkles className="w-4 h-4 text-brand-600 dark:text-brand-400" />
             </div>
@@ -294,7 +294,7 @@ export function Chatbot({
         {/* CHAT WINDOW MODAL / POPUP */}
         {isOpen && (
           <div
-            className="fixed bottom-20 right-4 sm:right-6 w-[360px] sm:w-[410px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[calc(100vh-6.5rem)] rounded-2xl bg-white dark:bg-[#121824] shadow-2xl border border-stone-200/90 dark:border-stone-800 flex flex-col overflow-hidden z-50 animate-fade-in-scale"
+            className="fixed bottom-20 right-4 sm:right-6 w-[360px] sm:w-[410px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[calc(100vh-6.5rem)] rounded-2xl bg-white dark:bg-[#202227] shadow-2xl border border-stone-200/90 dark:border-[#32353e] flex flex-col overflow-hidden z-50 animate-fade-in-scale"
             role="dialog"
             aria-label="NutriSynth AI Chat Assistant"
           >
@@ -349,7 +349,7 @@ export function Chatbot({
             )}
 
             {/* Message History */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50 dark:bg-[#0c1017]">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50/50 dark:bg-[#18191c]">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -380,7 +380,7 @@ export function Chatbot({
                       className={`p-3 rounded-2xl shadow-sm text-sm relative group ${
                         msg.sender === 'user'
                           ? 'bg-brand-600 text-white rounded-tr-sm'
-                          : 'bg-white dark:bg-[#182030] border border-stone-200/80 dark:border-stone-700/70 text-stone-800 dark:text-stone-100 rounded-tl-sm'
+                          : 'bg-white dark:bg-[#282a32] border border-stone-200/80 dark:border-[#373a44] text-stone-800 dark:text-stone-100 rounded-tl-sm'
                       }`}
                     >
                       {msg.sender === 'assistant' ? (
@@ -429,7 +429,7 @@ export function Chatbot({
                         <button
                           key={qIdx}
                           onClick={() => handleSendMessage(q)}
-                          className="text-[11px] text-stone-600 dark:text-stone-300 bg-white dark:bg-[#182030] border border-stone-200 dark:border-stone-700 rounded-full px-2.5 py-1 hover:bg-stone-100 dark:hover:bg-stone-700 hover:text-brand-700 dark:hover:text-brand-300 hover:border-brand-200 dark:hover:border-brand-700 transition-colors text-left flex items-center gap-1 shadow-2xs"
+                          className="text-[11px] text-stone-600 dark:text-stone-300 bg-white dark:bg-[#282a32] border border-stone-200 dark:border-[#373a44] rounded-full px-2.5 py-1 hover:bg-stone-100 dark:hover:bg-[#32353e] hover:text-brand-700 dark:hover:text-brand-300 hover:border-brand-200 dark:hover:border-brand-700 transition-colors text-left flex items-center gap-1 shadow-2xs"
                         >
                           <Lightbulb className="w-2.5 h-2.5 text-amber-500 shrink-0" />
                           <span>{q}</span>
@@ -450,7 +450,7 @@ export function Chatbot({
                   <div className="w-6 h-6 rounded-lg bg-brand-600 text-white flex items-center justify-center">
                     <Bot className="w-3.5 h-3.5" />
                   </div>
-                  <div className="bg-white dark:bg-[#182030] border border-stone-200/80 dark:border-stone-700 rounded-2xl rounded-tl-sm px-3.5 py-2.5 shadow-sm flex items-center gap-1.5">
+                  <div className="bg-white dark:bg-[#282a32] border border-stone-200/80 dark:border-[#373a44] rounded-2xl rounded-tl-sm px-3.5 py-2.5 shadow-sm flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-bounce" />
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.2s]" />
                     <span className="w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.4s]" />
@@ -463,7 +463,7 @@ export function Chatbot({
             </div>
 
             {/* Quick Suggestion Pills above input */}
-            <div className="px-3 py-1.5 bg-white dark:bg-[#121824] border-t border-stone-100 dark:border-stone-800 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+            <div className="px-3 py-1.5 bg-white dark:bg-[#202227] border-t border-stone-100 dark:border-[#32353e] flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
               <button
                 onClick={() => handleSendMessage('How does NutriSynth calculate BMR and macros?')}
                 className="text-[11px] whitespace-nowrap px-2 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-brand-50 dark:hover:bg-brand-950/60 hover:text-brand-700 dark:hover:text-brand-300 transition-colors shrink-0"
@@ -496,7 +496,7 @@ export function Chatbot({
                 e.preventDefault();
                 handleSendMessage();
               }}
-              className="p-3 bg-white dark:bg-[#121824] border-t border-stone-200/80 dark:border-stone-800 flex items-center gap-2 shrink-0"
+              className="p-3 bg-white dark:bg-[#202227] border-t border-stone-200/80 dark:border-[#32353e] flex items-center gap-2 shrink-0"
             >
               <input
                 ref={inputRef}
@@ -504,7 +504,7 @@ export function Chatbot({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask any question about our website..."
-                className="flex-1 bg-stone-100 dark:bg-[#0c1017] text-stone-900 dark:text-stone-100 text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-[#0c1017] transition-all placeholder:text-stone-400 dark:placeholder:text-stone-500"
+                className="flex-1 bg-stone-100 dark:bg-[#18191d] text-stone-900 dark:text-stone-100 text-sm px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-[#373a44] focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-[#18191d] transition-all placeholder:text-stone-400 dark:placeholder:text-stone-500"
                 disabled={isTyping}
               />
               <button

@@ -203,7 +203,7 @@ function App() {
   const showChrome = !CHROME_HIDDEN.includes(phase);
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 dark:bg-[#090d14] text-stone-900 dark:text-stone-100 transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-stone-50 dark:bg-[#18191c] text-stone-900 dark:text-stone-100 transition-colors duration-200">
       {/* Sync / Notification Toast */}
       {syncNotice && (
         <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">
