@@ -18,6 +18,8 @@ import type { MealItem, NutritionResult, UserProfile } from '@/lib/calculations'
 import { firestore, getUserId, isFirebaseConfigured } from '@/lib/firebase';
 import type { FoodEntry } from '@/lib/recentFoods';
 
+import type { StreakData, ChallengeData } from '@/lib/streakService';
+
 export type FoodListKind = 'recentFoods' | 'favoriteFoods';
 
 export interface UserSavedData {
@@ -27,6 +29,8 @@ export interface UserSavedData {
   profile: UserProfile | null;
   result: NutritionResult | null;
   tickedFoods?: Record<string, any>;
+  streak?: StreakData;
+  challenge?: ChallengeData;
   updatedAt: number;
 }
 
@@ -50,7 +54,7 @@ async function ready() {
 
 const USER_DATA_STORAGE_PREFIX = 'nutrisynth_user_doc_';
 
-/** Saves the user's complete profile and generated nutrition plan */
+/** Saves the user's complete profile, generated nutrition plan, streak, and challenge progress */
 export async function saveUserData(
   uid: string,
   data: {
@@ -59,6 +63,8 @@ export async function saveUserData(
     profile: UserProfile | null;
     result: NutritionResult | null;
     tickedFoods?: Record<string, any>;
+    streak?: StreakData;
+    challenge?: ChallengeData;
   }
 ): Promise<void> {
   const cleanPayload: UserSavedData = {
@@ -68,6 +74,8 @@ export async function saveUserData(
     profile: data.profile ? JSON.parse(JSON.stringify(data.profile)) : null,
     result: data.result ? JSON.parse(JSON.stringify(data.result)) : null,
     tickedFoods: data.tickedFoods ? JSON.parse(JSON.stringify(data.tickedFoods)) : {},
+    streak: data.streak ? JSON.parse(JSON.stringify(data.streak)) : undefined,
+    challenge: data.challenge ? JSON.parse(JSON.stringify(data.challenge)) : undefined,
     updatedAt: Date.now(),
   };
 

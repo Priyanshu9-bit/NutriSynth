@@ -8,12 +8,13 @@ import {
   X,
   LogIn,
   LogOut,
+  Flame,
 } from 'lucide-react';
 import { useState } from 'react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import type { AuthUser } from '@/lib/firebase';
 
-export type View = 'landing' | 'how-it-works' | 'dashboard' | 'meals' | 'deficiency' | 'about';
+export type View = 'landing' | 'how-it-works' | 'dashboard' | 'meals' | 'challenge' | 'deficiency' | 'about';
 
 interface NavProps {
   currentView: View;
@@ -22,6 +23,7 @@ interface NavProps {
   authUser?: AuthUser | null;
   onOpenAuth?: (mode?: 'signin' | 'signup') => void;
   onSignOut?: () => void;
+  streakCount?: number;
 }
 
 const navItems: { view: View; label: string; icon: typeof Home }[] = [
@@ -29,6 +31,7 @@ const navItems: { view: View; label: string; icon: typeof Home }[] = [
   { view: 'how-it-works', label: 'How It Works', icon: Info },
   { view: 'dashboard', label: 'My Nutrition', icon: LayoutDashboard },
   { view: 'meals', label: 'Meals', icon: UtensilsCrossed },
+  { view: 'challenge', label: '30-Day Challenge', icon: Flame },
   { view: 'deficiency', label: 'Deficiency Check', icon: Dna },
   { view: 'about', label: 'About', icon: Info },
 ];
@@ -40,6 +43,7 @@ export function Header({
   authUser,
   onOpenAuth,
   onSignOut,
+  streakCount,
 }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -89,6 +93,21 @@ export function Header({
               })}
             </nav>
 
+            {typeof streakCount === 'number' && (
+              <button
+                onClick={() => handleNav('challenge')}
+                title="30-Day Challenge & Daily Streak"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-sm ${
+                  streakCount > 0
+                    ? 'bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30 hover:bg-amber-500/25 shadow-amber-500/10'
+                    : 'bg-stone-100 dark:bg-[#202227] text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-[#32353e] hover:border-amber-500/40'
+                }`}
+              >
+                <Flame className={`w-4 h-4 ${streakCount > 0 ? 'text-amber-500 fill-amber-500 animate-pulse' : 'text-stone-400'}`} />
+                <span>{streakCount} {streakCount === 1 ? 'Day' : 'Days'}</span>
+              </button>
+            )}
+
             <div className="h-5 w-px bg-stone-200 dark:bg-stone-800 mx-1" />
             <ThemeToggle />
 
@@ -128,6 +147,16 @@ export function Header({
 
           {/* Right Mobile Actions */}
           <div className="flex items-center gap-2 lg:hidden">
+            {typeof streakCount === 'number' && (
+              <button
+                onClick={() => handleNav('challenge')}
+                title="30-Day Challenge & Streak"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-500/15 text-amber-500 dark:text-amber-400 border border-amber-500/30"
+              >
+                <Flame className="w-3.5 h-3.5 fill-amber-500" />
+                <span>{streakCount}d</span>
+              </button>
+            )}
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
