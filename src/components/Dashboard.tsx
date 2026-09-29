@@ -3,7 +3,7 @@ import {
   Flame, Beef, Wheat, Droplet, Leaf, Sun, Moon, Soup, Sunrise,
   Lightbulb, Beaker, ArrowRight, ArrowLeft, RotateCw, Pencil, Scale,
   BookOpen, ChevronRight, AlertTriangle, CheckCircle2, Info, TrendingUp, TrendingDown, Dna, Camera,
-  Sparkles, Check, Trophy, PartyPopper, ArrowDownWideNarrow, Layers
+  Sparkles, Check, Trophy, PartyPopper, ArrowDownWideNarrow, Layers, Activity
 } from 'lucide-react';
 import type { NutritionResult, UserProfile, MealItem } from '@/lib/calculations';
 import { analyzeFood, analyzeDailyDiet, getMealReasoning, type FoodAnalysis } from '@/lib/calculations';

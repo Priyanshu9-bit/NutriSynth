@@ -519,7 +519,7 @@ function App() {
                 }}
                 onOpenAuth={handleOpenAuth}
                 onSignOut={handleSignOut}
-                streakCount={streak.count}
+                streakCount={streak?.currentStreak ?? 1}
               />
             </div>
           </SectionErrorBoundary>
