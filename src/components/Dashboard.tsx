@@ -735,34 +735,106 @@ export function Dashboard({
               isGoalAchieved={isGoalAchieved}
             />
           </div>
-          <div className="card p-6 space-y-4">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-white">Today's Progress</h3>
-              {isGoalAchieved ? (
-                <span className="badge badge-success text-xs font-bold flex items-center gap-1 animate-pulse">
-                  <Trophy className="w-3.5 h-3.5" /> Goal Achieved!
+          <div className="card-lg p-6 sm:p-7 flex flex-col justify-between space-y-4 bg-gradient-to-br from-[#0B0F0E] via-[#101D2D] to-[#07111F] border border-[#1E293B] shadow-[0_12px_36px_rgba(7,17,31,0.65)] relative overflow-hidden">
+            {/* Ambient tech glow */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#2DD4BF]/5 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Header */}
+            <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-[#1E293B] relative z-10">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] text-[#07111F] flex items-center justify-center font-bold shadow-md shadow-emerald-500/20">
+                  <Activity className="w-4 h-4 stroke-[2.5]" />
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-lg text-[#F8FAFC] flex items-center gap-2">
+                    <span>Today's Progress & Fuel Status</span>
+                  </h3>
+                  <p className="text-xs text-[#8492A6]">
+                    Live metabolic intake, target fulfillment & macro fuel balance.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {isGoalAchieved ? (
+                  <span className="badge badge-success text-xs font-bold flex items-center gap-1 animate-pulse">
+                    <Trophy className="w-3.5 h-3.5" /> Goal Achieved!
+                  </span>
+                ) : hasIntake ? (
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#101D2D] text-[#34D399] border border-emerald-500/30 flex items-center gap-1.5 shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-ping" />
+                    <span>{Math.round((eaten.calories / result.tdee) * 100)}% of target</span>
+                  </span>
+                ) : (
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#101D2D] text-[#8492A6] border border-[#1E293B]">
+                    0% • Standby
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Caloric Energy Fulfillment Hero Bar */}
+            <div className="p-4 rounded-2xl bg-[#07111F]/90 border border-[#1E293B] space-y-3 relative z-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[11px] font-bold text-[#8492A6] uppercase tracking-wider flex items-center gap-1.5">
+                    <Flame className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Total Energy Intake</span>
+                  </div>
+                  <div className="flex items-baseline gap-1.5 mt-0.5">
+                    <span className="font-display font-black text-2xl sm:text-3xl text-[#F8FAFC] tabular-nums">
+                      {Math.round(eaten.calories).toLocaleString()}
+                    </span>
+                    <span className="text-xs text-[#8492A6] font-semibold">
+                      / {result.tdee.toLocaleString()} kcal
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <div className="text-[11px] font-bold text-[#8492A6] uppercase tracking-wider">
+                    {eaten.calories > result.tdee ? 'Intake Exceeded' : 'Remaining Budget'}
+                  </div>
+                  <div className={`text-base font-extrabold tabular-nums mt-0.5 ${
+                    eaten.calories > result.tdee ? 'text-amber-400' : 'text-[#34D399]'
+                  }`}>
+                    {eaten.calories > result.tdee
+                      ? `+${Math.round(eaten.calories - result.tdee)} kcal`
+                      : `${Math.round(Math.max(0, result.tdee - eaten.calories))} kcal left`}
+                  </div>
+                </div>
+              </div>
+
+              {/* Glowing Calorie Fulfillment Progress Bar */}
+              <div className="w-full h-3 rounded-full bg-[#101D2D] overflow-hidden p-0.5 border border-[#1E293B]">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#22C55E] via-[#2DD4BF] to-[#60A5FA] transition-all duration-700 relative shadow-[0_0_12px_rgba(45,212,191,0.4)]"
+                  style={{ width: `${Math.min(100, Math.round((eaten.calories / result.tdee) * 100))}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] text-[#8492A6] pt-0.5">
+                <span>{loggedMeals.length} logged meal{loggedMeals.length === 1 ? '' : 's'}</span>
+                <span>{Object.keys(tickedFoods).length} ticked food{Object.keys(tickedFoods).length === 1 ? '' : 's'}</span>
+                <span className="font-semibold text-[#CBD5E1]">
+                  Pace: {Math.round((eaten.calories / result.tdee) * 100)}%
                 </span>
-              ) : hasIntake ? (
-                <span className="badge badge-warning text-xs font-semibold">
-                  {Math.round((eaten.calories / result.tdee) * 100)}% of target
-                </span>
-              ) : null}
+              </div>
             </div>
 
             {/* Empty State for Zero Logged Meals */}
             {loggedMeals.length === 0 && Object.keys(tickedFoods).length === 0 ? (
-              <div className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-500/30 text-emerald-900 dark:text-emerald-200 animate-fade-in">
+              <div className="p-4 rounded-2xl bg-[#101D2D]/70 border border-emerald-500/30 text-[#CBD5E1] animate-fade-in relative z-10">
                 <div className="flex items-start gap-3">
-                  <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <Sparkles className="w-5 h-5 text-[#34D399] mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-bold text-sm">Nothing logged yet today! That is completely normal.</div>
-                    <p className="text-xs text-stone-600 dark:text-stone-300 mt-1 leading-relaxed">
+                    <div className="font-bold text-sm text-[#F8FAFC]">Nothing logged yet today! That is completely normal.</div>
+                    <p className="text-xs text-[#CBD5E1] mt-1 leading-relaxed">
                       Logging food takes only 5 seconds. Tap <strong>'+ Log Food'</strong> to record what you had for breakfast, lunch, or a snack (like 2 eggs, an apple, or a cup of tea). Or check off items from your suggested meals below.
                     </p>
                     <button
                       type="button"
                       onClick={() => setScannerOpen(true)}
-                      className="mt-3 px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 shadow-sm flex items-center gap-1.5 active:scale-95 transition-all"
+                      className="mt-3 px-4 py-2 rounded-xl text-xs font-bold text-[#07111F] bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] shadow-sm flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer"
                     >
                       <Camera className="w-3.5 h-3.5" />
                       <span>+ Log Your First Food</span>
@@ -770,26 +842,22 @@ export function Dashboard({
                   </div>
                 </div>
               </div>
-            ) : (
-              <p className="text-xs text-stone-500 dark:text-stone-400 -mt-2">
-                Based on {loggedMeals.length} logged meal{loggedMeals.length === 1 ? '' : 's'} and {Object.keys(tickedFoods).length} ticked suggested food{Object.keys(tickedFoods).length === 1 ? '' : 's'}.
-              </p>
-            )}
+            ) : null}
 
             {/* Goal Achieved Celebration Card */}
             {isGoalAchieved && (
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/20 to-teal-500/15 border-2 border-emerald-500/60 dark:border-emerald-500/80 shadow-[0_0_20px_rgba(16,185,129,0.25)] animate-fade-in flex flex-col sm:flex-row items-center justify-between gap-3 text-emerald-950 dark:text-emerald-100">
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/20 via-[#101D2D] to-teal-500/20 border-2 border-emerald-500/60 shadow-[0_0_20px_rgba(45,212,191,0.25)] animate-fade-in flex flex-col sm:flex-row items-center justify-between gap-3 text-[#F8FAFC] relative z-10">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-emerald-500 flex items-center justify-center text-white shadow-md flex-shrink-0 animate-bounce">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] shadow-md flex-shrink-0 animate-bounce">
                     <Trophy className="w-6 h-6 stroke-[2.5]" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-display font-bold text-sm sm:text-base text-emerald-900 dark:text-emerald-100">
+                      <span className="font-display font-bold text-sm sm:text-base text-[#F8FAFC]">
                         🎉 Daily Nutrition Goal Achieved!
                       </span>
                     </div>
-                    <p className="text-xs text-emerald-800 dark:text-emerald-300 mt-0.5">
+                    <p className="text-xs text-[#34D399] mt-0.5">
                       Brilliant work! Your intake matches your {profile.goal} plan ({Math.round(eaten.calories)} / {result.tdee} kcal).
                     </p>
                   </div>
@@ -797,7 +865,7 @@ export function Dashboard({
                 <button
                   type="button"
                   onClick={() => setConfettiActive(true)}
-                  className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md hover:shadow-lg flex items-center gap-1.5 transition-all flex-shrink-0 cursor-pointer"
+                  className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-xs shadow-md hover:shadow-lg flex items-center gap-1.5 transition-all flex-shrink-0 cursor-pointer"
                 >
                   <PartyPopper className="w-4 h-4" /> Celebrate Again!
                 </button>
@@ -806,35 +874,35 @@ export function Dashboard({
 
             {/* Goal Guidance */}
             {hasIntake && !isGoalAchieved && (
-              <div className={`p-3.5 rounded-2xl border text-xs animate-fade-in ${
+              <div className={`p-3.5 rounded-2xl border text-xs animate-fade-in relative z-10 ${
                 isOverGoal
-                  ? 'bg-orange-50/80 dark:bg-orange-950/40 border-orange-300 dark:border-orange-800 text-orange-900 dark:text-orange-200'
-                  : 'bg-amber-50/80 dark:bg-amber-950/40 border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200'
+                  ? 'bg-orange-950/30 border-orange-500/40 text-orange-200'
+                  : 'bg-[#101D2D] border-[#1E293B] text-[#CBD5E1]'
               }`}>
                 <div className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                  <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
                   <div className="space-y-1.5 flex-1">
                     <div className="flex items-center justify-between flex-wrap gap-1">
-                      <span className="font-bold text-xs uppercase tracking-wide">
+                      <span className="font-bold text-xs uppercase tracking-wide text-[#F8FAFC]">
                         {isOverGoal ? '⚠️ Intake Exceeds Daily Target' : '🎯 Working Towards Daily Goal'}
                       </span>
-                      <span className="font-semibold tabular-nums text-[11px] opacity-80">
+                      <span className="font-semibold tabular-nums text-[11px] text-[#8492A6]">
                         {isOverGoal ? `+${Math.round(eaten.calories - result.tdee)} kcal over target` : `${Math.round(result.tdee - eaten.calories)} kcal remaining`}
                       </span>
                     </div>
-                    <p className="text-xs leading-relaxed opacity-90">
+                    <p className="text-xs leading-relaxed text-[#CBD5E1]">
                       {isOverGoal
                         ? `You have eaten slightly more than your daily target. For your next meal, enjoy light fresh vegetables or a cup of green tea.`
                         : `You have ${Math.round(result.tdee - eaten.calories)} calories remaining today! Check out your recommended dinner or snacks below.`}
                     </p>
                     <div className="flex flex-wrap gap-2 pt-0.5 text-[11px] font-semibold">
                       {eaten.fiber < result.fiberG && (
-                        <span className="px-2 py-0.5 rounded-md bg-amber-100/90 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+                        <span className="px-2 py-0.5 rounded-md bg-[#07111F] text-[#34D399] border border-emerald-500/30">
                           🌾 Fiber: {Math.max(0, result.fiberG - eaten.fiber)}g left
                         </span>
                       )}
                       {eaten.protein < result.proteinG && (
-                        <span className="px-2 py-0.5 rounded-md bg-amber-100/90 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+                        <span className="px-2 py-0.5 rounded-md bg-[#07111F] text-[#60A5FA] border border-[#60A5FA]/30">
                           🥩 Protein: {Math.max(0, result.proteinG - eaten.protein)}g left
                         </span>
                       )}
@@ -844,8 +912,8 @@ export function Dashboard({
               </div>
             )}
 
-            <div className="space-y-3 pt-2">
-              <ProgressBar label="Daily Energy (Calories)" value={eaten.calories} max={result.tdee} unit="kcal" color="orange" />
+            {/* Individual Macro Fuel Progress Bars */}
+            <div className="space-y-3 pt-1 relative z-10">
               <ProgressBar label="Muscles & Fullness (Protein)" value={eaten.protein} max={result.proteinG} unit="g" color="brand" />
               <ProgressBar label="Clean Fuel (Carbs)" value={eaten.carbs} max={result.carbG} unit="g" color="blue" />
               <ProgressBar label="Good Fats & Brain (Fats)" value={eaten.fat} max={result.fatG} unit="g" color="amber" />

@@ -40,39 +40,44 @@ export function ProgressBar({
 
   const colorMap: Record<string, string> = {
     brand: "bg-gradient-to-r from-[#22C55E] to-[#2DD4BF]",
-    blue: "bg-[#60A5FA]",
-    amber: "bg-amber-500",
-    orange: "bg-orange-500",
-    red: "bg-rose-500",
-    purple: "bg-violet-500",
+    blue: "bg-gradient-to-r from-[#60A5FA] to-cyan-400",
+    amber: "bg-gradient-to-r from-amber-400 to-orange-400",
+    orange: "bg-gradient-to-r from-[#22C55E] via-[#2DD4BF] to-[#60A5FA]",
+    red: "bg-gradient-to-r from-rose-500 to-red-500",
+    purple: "bg-gradient-to-r from-indigo-400 to-purple-400",
   };
 
   return (
     <div className="w-full">
       <div className="flex items-baseline justify-between mb-1.5 flex-wrap gap-1">
         <div className="flex items-center gap-1.5">
-          <span className="text-sm font-medium text-stone-700 dark:text-[#CBD5E1]">{label}</span>
+          <span className="text-xs sm:text-sm font-semibold text-[#CBD5E1]">{label}</span>
           {showGoalStatus && isGoalAchieved && (
-            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-[#34D399] border border-emerald-300/60 dark:border-emerald-500/40 animate-bounce">
+            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-[#34D399] border border-emerald-500/40 animate-bounce">
               🎯 Goal Met!
             </span>
           )}
           {showGoalStatus && !isGoalAchieved && !isOver && value > 0 && (
-            <span className="text-[11px] text-amber-600 dark:text-amber-400 font-medium">
+            <span className="text-[11px] text-[#8492A6] font-medium">
               ({remaining} {unit} left)
             </span>
           )}
           {showGoalStatus && isOver && (
-            <span className="text-[11px] text-orange-600 dark:text-orange-400 font-medium">
+            <span className="text-[11px] text-amber-400 font-medium">
               (+{Math.round(value - max)} {unit} over)
             </span>
           )}
         </div>
-        <span className="text-sm font-semibold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
-          {Math.round(value)}<span className="text-stone-400 dark:text-[#8492A6] font-normal"> / {Math.round(max)} {unit}</span>
-        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-xs sm:text-sm font-bold text-[#F8FAFC] tabular-nums">
+            {Math.round(value)}<span className="text-[#8492A6] font-normal text-xs"> / {Math.round(max)} {unit}</span>
+          </span>
+          <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-[#101D2D] text-[#34D399] border border-[#1E293B]">
+            {Math.round(pct)}%
+          </span>
+        </div>
       </div>
-      <div className={`h-2.5 rounded-full bg-stone-200/80 dark:bg-[#101D2D] overflow-hidden relative ${
+      <div className={`h-2.5 sm:h-3 rounded-full bg-[#07111F] p-0.5 border border-[#1E293B] overflow-hidden relative shadow-inner ${
         isGoalAchieved ? 'ring-2 ring-emerald-500/40 shadow-[0_0_12px_rgba(45,212,191,0.35)]' : ''
       }`}>
         <div

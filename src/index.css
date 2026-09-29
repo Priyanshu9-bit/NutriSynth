@@ -14,14 +14,14 @@
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
-  }
-  html.dark {
     color-scheme: dark;
+    background: #07111F;
+    color: #F8FAFC;
   }
   body {
     font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
-    background: #07111F;
-    color: #F8FAFC;
+    background: #07111F !important;
+    color: #F8FAFC !important;
     line-height: 1.6;
     overflow-x: hidden;
     max-width: 100%;
@@ -35,11 +35,6 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #07111F;
-    color: #F8FAFC;
-  }
-  /* NutriSynth Unified Color System - Deep Navy #07111F & Primary Text #F8FAFC */
-  html.dark body {
     background: #07111F;
     color: #F8FAFC;
   }
@@ -114,7 +109,7 @@
   }
   .text-balance { text-wrap: balance; }
   .grid-bg {
-    background-image: radial-gradient(circle at 1px 1px, rgba(34,197,94,0.06) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(45, 212, 191, 0.08) 1px, transparent 0);
     background-size: 32px 32px;
   }
   .animate-radar-sweep {
@@ -160,119 +155,93 @@
   50% { filter: drop-shadow(0 0 16px rgba(45, 212, 191, 0.38)); }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar in Deep Navy & Mint */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+::-webkit-scrollbar-track { background: #07111F; }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2DD4BF; }
 
-/* Dark mode utility enhancements - Deep Navy & Graphite Theme */
-html.dark .grid-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(45, 212, 191, 0.09) 1px, transparent 0);
-}
+/* =========================================================================
+   NutriSynth Global Color System Enforcement
+   Backgrounds: Deep Navy #07111F & Graphite #0B0F0E / #101D2D
+   Accents:     Emerald #22C55E & Mint #2DD4BF, #34D399 | Tech Blue #60A5FA
+   Text:        Primary #F8FAFC, Secondary #CBD5E1, Muted #8492A6
+   Borders:     Subtle #1E293B
+   ========================================================================= */
 
-html.dark ::-webkit-scrollbar-thumb { background: #1E293B; }
-html.dark ::-webkit-scrollbar-thumb:hover { background: #2A3A52; }
+/* Text hierarchy */
+.text-stone-900, html.dark .text-stone-900, .text-gray-900, html.dark .text-gray-900, .text-slate-900 { color: #F8FAFC !important; }
+.text-stone-800, html.dark .text-stone-800, .text-gray-800, html.dark .text-gray-800, .text-slate-800 { color: #F8FAFC !important; }
+.text-stone-700, html.dark .text-stone-700, .text-gray-700, html.dark .text-gray-700, .text-slate-700 { color: #CBD5E1 !important; }
+.text-stone-600, html.dark .text-stone-600, .text-gray-600, html.dark .text-gray-600, .text-slate-600 { color: #CBD5E1 !important; }
+.text-stone-500, html.dark .text-stone-500, .text-gray-500, html.dark .text-gray-500, .text-slate-500 { color: #8492A6 !important; }
+.text-stone-400, html.dark .text-stone-400, .text-gray-400, html.dark .text-gray-400, .text-slate-400 { color: #8492A6 !important; }
 
-/* Text colors in dark mode:
-   Primary:   #F8FAFC
-   Secondary: #CBD5E1
-   Muted:     #8492A6
-*/
-html.dark .text-stone-900 { color: #F8FAFC; }
-html.dark .text-stone-800 { color: #F8FAFC; }
-html.dark .text-stone-700 { color: #CBD5E1; }
-html.dark .text-stone-600 { color: #CBD5E1; }
-html.dark .text-stone-500 { color: #8492A6; }
-html.dark .text-stone-400 { color: #8492A6; }
+/* Surface backgrounds */
+.bg-white, html.dark .bg-white { background-color: #0B0F0E !important; }
+.bg-stone-50, html.dark .bg-stone-50, .bg-gray-50 { background-color: #07111F !important; }
+.bg-stone-100, html.dark .bg-stone-100, .bg-gray-100 { background-color: #101D2D !important; }
+.bg-stone-200, html.dark .bg-stone-200, .bg-gray-200,
+.bg-stone-200\/60, html.dark .bg-stone-200\/60,
+.bg-stone-200\/70, html.dark .bg-stone-200\/70,
+.bg-stone-200\/80, html.dark .bg-stone-200\/80 { background-color: #162436 !important; }
+.bg-stone-700, html.dark .bg-stone-700 { background-color: #1E293B !important; }
+.bg-stone-800, html.dark .bg-stone-800 { background-color: #101D2D !important; }
+.bg-stone-900, html.dark .bg-stone-900 { background-color: #07111F !important; }
 
-/* Background colors in dark mode:
-   Main background: #07111F (Deep Navy)
-   Surface/cards:   #0B0F0E (Graphite)
-   Elevated cards:  #101D2D (Navy-Graphite)
-*/
-html.dark .bg-white { background-color: #0B0F0E; }
-html.dark .bg-stone-50 { background-color: #07111F; }
-html.dark .bg-stone-100 { background-color: #101D2D; }
-html.dark .bg-stone-200,
-html.dark .bg-stone-200\/60,
-html.dark .bg-stone-200\/70,
-html.dark .bg-stone-200\/80 { background-color: #162436; }
-html.dark .bg-stone-700 { background-color: #1E293B; }
-html.dark .bg-stone-800 { background-color: #101D2D; }
-html.dark .bg-stone-900 { background-color: #07111F; }
-
-/* Border colors in dark mode: subtle #1E293B / rgba(255,255,255,0.08) */
-html.dark .border-stone-200,
-html.dark .border-stone-200\/40,
-html.dark .border-stone-200\/50,
-html.dark .border-stone-200\/60,
-html.dark .border-stone-200\/70,
-html.dark .border-stone-200\/80,
-html.dark .border-stone-200\/90,
-html.dark .border-stone-300,
-html.dark .border-stone-700,
-html.dark .border-stone-800 {
-  border-color: #1E293B;
+/* Border colors: subtle #1E293B */
+.border-stone-200, html.dark .border-stone-200,
+.border-stone-200\/40, html.dark .border-stone-200\/40,
+.border-stone-200\/50, html.dark .border-stone-200\/50,
+.border-stone-200\/60, html.dark .border-stone-200\/60,
+.border-stone-200\/70, html.dark .border-stone-200\/70,
+.border-stone-200\/80, html.dark .border-stone-200\/80,
+.border-stone-200\/90, html.dark .border-stone-200\/90,
+.border-stone-300, html.dark .border-stone-300,
+.border-stone-700, html.dark .border-stone-700,
+.border-stone-800, html.dark .border-stone-800,
+.border-gray-200, .border-gray-300 {
+  border-color: #1E293B !important;
 }
 
 /* Tinted alert/status card dark mode surfaces */
-html.dark .bg-brand-50,
-html.dark .bg-emerald-50,
-html.dark .bg-brand-50\/40,
-html.dark .bg-brand-50\/60,
-html.dark .bg-brand-50\/80 {
-  background-color: rgba(34, 197, 94, 0.08);
+.bg-brand-50, .bg-emerald-50,
+.bg-brand-50\/40, .bg-brand-50\/60, .bg-brand-50\/80,
+.bg-emerald-50\/70, .bg-emerald-950\/30 {
+  background-color: rgba(34, 197, 94, 0.08) !important;
 }
-html.dark .bg-amber-50,
-html.dark .bg-yellow-50,
-html.dark .bg-amber-50\/30,
-html.dark .bg-amber-50\/60,
-html.dark .bg-amber-50\/80 {
-  background-color: rgba(245, 158, 11, 0.08);
+.bg-amber-50, .bg-yellow-50,
+.bg-amber-50\/30, .bg-amber-50\/60, .bg-amber-50\/80,
+.bg-amber-100, .bg-amber-100\/90, .bg-amber-950\/40 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
 }
-html.dark .bg-orange-50,
-html.dark .bg-orange-50\/30,
-html.dark .bg-orange-50\/80 {
-  background-color: rgba(249, 115, 22, 0.08);
+.bg-orange-50, .bg-orange-50\/30, .bg-orange-50\/80, .bg-orange-950\/40 {
+  background-color: rgba(249, 115, 22, 0.08) !important;
 }
-html.dark .bg-red-50,
-html.dark .bg-rose-50,
-html.dark .bg-red-50\/40,
-html.dark .bg-red-50\/60,
-html.dark .bg-red-50\/80 {
-  background-color: rgba(239, 68, 68, 0.08);
+.bg-red-50, .bg-rose-50,
+.bg-red-50\/40, .bg-red-50\/60, .bg-red-50\/80, .bg-rose-950\/40 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
 }
-html.dark .bg-sky-50,
-html.dark .bg-blue-50,
-html.dark .bg-sky-50\/40,
-html.dark .bg-sky-50\/60 {
-  background-color: rgba(96, 165, 250, 0.08);
+.bg-sky-50, .bg-blue-50,
+.bg-sky-50\/40, .bg-sky-50\/60 {
+  background-color: rgba(96, 165, 250, 0.08) !important;
 }
 
-/* Tinted alert/status border colors in dark mode */
-html.dark .border-brand-200,
-html.dark .border-brand-200\/40,
-html.dark .border-brand-200\/50,
-html.dark .border-emerald-200 {
-  border-color: rgba(34, 197, 94, 0.25);
+/* Tinted status border colors */
+.border-brand-200, .border-brand-200\/40, .border-brand-200\/50, .border-emerald-200, .border-emerald-300\/60 {
+  border-color: rgba(34, 197, 94, 0.28) !important;
 }
-html.dark .border-amber-200,
-html.dark .border-amber-200\/40,
-html.dark .border-amber-200\/50 {
-  border-color: rgba(245, 158, 11, 0.25);
+.border-amber-200, .border-amber-200\/40, .border-amber-200\/50, .border-amber-300 {
+  border-color: rgba(245, 158, 11, 0.28) !important;
 }
-html.dark .border-orange-200,
-html.dark .border-orange-200\/40 {
-  border-color: rgba(249, 115, 22, 0.25);
+.border-orange-200, .border-orange-200\/40, .border-orange-300 {
+  border-color: rgba(249, 115, 22, 0.28) !important;
 }
-html.dark .border-red-200,
-html.dark .border-red-200\/40 {
-  border-color: rgba(239, 68, 68, 0.25);
+.border-red-200, .border-red-200\/40 {
+  border-color: rgba(239, 68, 68, 0.28) !important;
 }
-html.dark .border-sky-200,
-html.dark .border-sky-200\/50 {
-  border-color: rgba(96, 165, 250, 0.25);
+.border-sky-200, .border-sky-200\/50 {
+  border-color: rgba(96, 165, 250, 0.28) !important;
 }
 
 /* Reduced motion */
