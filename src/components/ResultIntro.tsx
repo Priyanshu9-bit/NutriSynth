@@ -1,6 +1,20 @@
-import { CheckCircle2, ArrowRight, Sparkles, Activity, ChefHat, Beaker, Dna } from 'lucide-react';
-import type { NutritionResult } from '@/lib/calculations';
-import type { UserProfile } from '@/lib/calculations';
+import { useState } from 'react';
+import {
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  Activity,
+  ChefHat,
+  Beaker,
+  Dna,
+  Droplet,
+  BookOpen,
+  HelpCircle,
+  Lightbulb,
+  Info,
+} from 'lucide-react';
+import type { NutritionResult, UserProfile } from '@/lib/calculations';
+import { NutritionGlossaryModal } from '@/components/beginner/NutritionGlossaryModal';
 
 interface ResultIntroProps {
   result: NutritionResult;
@@ -9,61 +23,206 @@ interface ResultIntroProps {
 }
 
 export function ResultIntro({ result, profile, onExplore }: ResultIntroProps) {
-  const greeting = profile.gender === "female" ? "Your" : "Your";
+  const [glossaryOpen, setGlossaryOpen] = useState(false);
+  const [glossaryTopic, setGlossaryTopic] = useState<string | undefined>(undefined);
+
+  const openGlossary = (topic?: string) => {
+    setGlossaryTopic(topic);
+    setGlossaryOpen(true);
+  };
+
+  const goalName =
+    profile.goal === 'fat_loss'
+      ? 'Gentle Fat Loss'
+      : profile.goal === 'muscle_gain'
+      ? 'Muscle Building & Strength'
+      : 'Healthy Weight & Vitality';
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-b from-brand-50/30 to-white px-4 py-12">
-      <div className="max-w-lg w-full text-center animate-fade-in-scale">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-600 flex items-center justify-center text-white shadow-glow">
-          <CheckCircle2 className="w-10 h-10" />
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-b from-emerald-50/40 via-stone-50 to-stone-50 dark:from-[#15171b] dark:via-[#18191c] dark:to-[#18191c] px-4 py-8 sm:py-12 transition-colors">
+      <div className="max-w-2xl w-full text-center animate-fade-in-scale">
+        {/* Celebration Icon */}
+        <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-5 rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xl shadow-emerald-500/30">
+          <CheckCircle2 className="w-9 h-9 sm:w-11 sm:h-11 stroke-[2.5]" />
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-sm font-medium mb-4">
-          <Sparkles className="w-4 h-4" />
-          Plan Ready
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25 text-xs sm:text-sm font-bold mb-3">
+          <Sparkles className="w-4 h-4 text-emerald-500" />
+          <span>Your Plan Is Ready • Zero Nutrition Experience Needed</span>
         </div>
 
-        <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 mb-3 text-balance">
-          {greeting} NutriSynth Plan Is Ready
+        <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-stone-900 dark:text-white mb-2 text-balance">
+          Your Personalized Blueprint Is Ready!
         </h1>
-        <p className="text-stone-600 mb-8 text-balance">
-          Based on your profile, here's what we've prepared for you.
+        <p className="text-stone-600 dark:text-stone-300 text-sm sm:text-base mb-6 text-balance max-w-lg mx-auto">
+          We calculated your daily energy target tailored to your body and goal (
+          <span className="font-bold text-emerald-700 dark:text-emerald-400">{goalName}</span>). Here is what each number means in plain English:
         </p>
 
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="card p-5 text-left">
-            <Activity className="w-6 h-6 text-brand-600 mb-2" />
-            <div className="text-xs text-stone-500 font-medium">Daily Calories</div>
-            <div className="metric-value text-2xl text-stone-900">{result.tdee.toLocaleString()}<span className="text-sm font-medium text-stone-400 ml-1">kcal</span></div>
+        {/* 3 Core Questions Clarifier for this screen */}
+        <div className="p-4 rounded-2xl bg-white/90 dark:bg-[#1f222a] border border-emerald-500/25 shadow-xs mb-6 text-left grid sm:grid-cols-3 gap-3 text-xs">
+          <div>
+            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">👁️ 1. What am I looking at?</div>
+            <div className="text-stone-600 dark:text-stone-300">Your personalized daily targets. No complicated charts or math!</div>
           </div>
-          <div className="card p-5 text-left">
-            <ChefHat className="w-6 h-6 text-sky-600 mb-2" />
-            <div className="text-xs text-stone-500 font-medium">Daily Protein</div>
-            <div className="metric-value text-2xl text-stone-900">{result.proteinG}<span className="text-sm font-medium text-stone-400 ml-1">g</span></div>
+          <div>
+            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">👉 2. What should I do?</div>
+            <div className="text-stone-600 dark:text-stone-300">Read your 4 daily numbers below, then tap 'Open My Daily Plan'.</div>
           </div>
-          <div className="card p-5 text-left">
-            <Beaker className="w-6 h-6 text-amber-600 mb-2" />
-            <div className="text-xs text-stone-500 font-medium">Meals Planned</div>
-            <div className="metric-value text-2xl text-stone-900">{result.meals.length}</div>
+          <div>
+            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">⚡ 3. What happens next?</div>
+            <div className="text-stone-600 dark:text-stone-300">Opens your daily dashboard where you can check off meals and see progress.</div>
           </div>
-          <div className="card p-5 text-left">
-            <Dna className="w-6 h-6 text-rose-600 mb-2" />
-            <div className="text-xs text-stone-500 font-medium">Nutrients Tracked</div>
-            <div className="metric-value text-2xl text-stone-900">{Object.keys(result.micros).length}</div>
+        </div>
+
+        {/* Four Key Metrics Explained In Plain Language */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 text-left">
+          {/* Daily Energy */}
+          <div className="card p-5 hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1e2027]">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center font-bold text-lg">
+                  ⚡
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400">Daily Fuel Target</div>
+                  <div className="text-base font-extrabold text-stone-900 dark:text-white">Calories / Energy</div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => openGlossary('calorie')}
+                className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                title="What is a calorie?"
+              >
+                What's this?
+              </button>
+            </div>
+            <div className="metric-value text-2xl sm:text-3xl text-emerald-600 dark:text-emerald-400 my-1">
+              {result.tdee.toLocaleString()}
+              <span className="text-sm font-medium text-stone-400 ml-1">calories/day</span>
+            </div>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+              The amount of food energy your body needs daily to achieve your goal without fatigue or hunger.
+            </p>
+          </div>
+
+          {/* Daily Protein */}
+          <div className="card p-5 hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1e2027]">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-teal-500/15 text-teal-600 flex items-center justify-center font-bold text-lg">
+                  🥩
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400">Muscle & Fullness</div>
+                  <div className="text-base font-extrabold text-stone-900 dark:text-white">Daily Protein</div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => openGlossary('protein')}
+                className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                title="What is protein?"
+              >
+                What's this?
+              </button>
+            </div>
+            <div className="metric-value text-2xl sm:text-3xl text-teal-600 dark:text-teal-400 my-1">
+              {result.proteinG}
+              <span className="text-sm font-medium text-stone-400 ml-1">grams/day</span>
+            </div>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+              Protects muscle tone and keeps you satisfied for hours so you don't get sudden sugar cravings.
+            </p>
+          </div>
+
+          {/* Planned Meals */}
+          <div className="card p-5 hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1e2027]">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center font-bold text-lg">
+                  🍽️
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400">Ready Meals</div>
+                  <div className="text-base font-extrabold text-stone-900 dark:text-white">Planned For Today</div>
+                </div>
+              </div>
+            </div>
+            <div className="metric-value text-2xl sm:text-3xl text-amber-600 dark:text-amber-400 my-1">
+              {result.meals.length}
+              <span className="text-sm font-medium text-stone-400 ml-1">wholesome meals</span>
+            </div>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+              Curated to match your diet and ingredients. You can eat these or easily search and log whatever you ate!
+            </p>
+          </div>
+
+          {/* Hydration */}
+          <div className="card p-5 hover:shadow-md transition-all border border-stone-200 dark:border-stone-800 bg-white dark:bg-[#1e2027]">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-sky-500/15 text-sky-600 flex items-center justify-center font-bold text-lg">
+                  💧
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-stone-500 dark:text-stone-400">Daily Water</div>
+                  <div className="text-base font-extrabold text-stone-900 dark:text-white">Hydration Target</div>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => openGlossary('water')}
+                className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
+                title="Why does water matter?"
+              >
+                What's this?
+              </button>
+            </div>
+            <div className="metric-value text-2xl sm:text-3xl text-sky-600 dark:text-sky-400 my-1">
+              2,500
+              <span className="text-sm font-medium text-stone-400 ml-1">ml (approx 10 glasses)</span>
+            </div>
+            <p className="text-xs text-stone-500 dark:text-stone-400 mt-2 leading-relaxed">
+              Keeps your digestion moving, stops fake hunger signals, and keeps your mental focus sharp.
+            </p>
           </div>
         </div>
 
         {result.conditionNote && (
-          <div className="mb-6 p-4 rounded-xl bg-sky-50 border border-sky-200/50 text-left">
-            <p className="text-sm text-sky-800">{result.conditionNote}</p>
+          <div className="mb-6 p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-left">
+            <div className="flex items-center gap-2 text-xs font-bold text-sky-700 dark:text-sky-300 mb-1">
+              <Info className="w-4 h-4" />
+              <span>Special Condition Note:</span>
+            </div>
+            <p className="text-xs sm:text-sm text-sky-900 dark:text-sky-200 leading-relaxed">{result.conditionNote}</p>
           </div>
         )}
 
-        <button onClick={onExplore} className="btn-primary text-base px-8 py-4 mx-auto">
-          Explore My Plan
-          <ArrowRight className="w-5 h-5" />
-        </button>
+        {/* Primary Action Button */}
+        <div className="space-y-3">
+          <button
+            type="button"
+            onClick={onExplore}
+            className="btn-primary text-base sm:text-lg px-8 py-4 mx-auto w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 shadow-xl shadow-emerald-600/30 active:scale-95 transition-all font-black"
+            title="What happens: Opens your daily overview where you can check off meals and see progress"
+          >
+            <span>Open My Daily Plan</span>
+            <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+          </button>
+
+          <p className="text-xs text-stone-500 dark:text-stone-400">
+            👉 Pressing 'Open My Daily Plan' takes you to your easy daily view. You can check off meals or add any food with one tap.
+          </p>
+        </div>
       </div>
+
+      <NutritionGlossaryModal
+        isOpen={glossaryOpen}
+        onClose={() => setGlossaryOpen(false)}
+        initialTopic={glossaryTopic}
+      />
     </div>
   );
 }

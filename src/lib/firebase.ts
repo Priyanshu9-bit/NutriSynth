@@ -8,6 +8,8 @@ import {
   signInAnonymously,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut,
   updateProfile,
   type Auth,
@@ -262,6 +264,30 @@ export async function loginAsGuest(): Promise<AuthUser> {
   setLocalActiveSession(guestUser);
   notifyListeners(guestUser);
   return guestUser;
+}
+
+export async function loginWithGoogle(): Promise<AuthUser> {
+  if (isFirebaseConfigured && auth) {
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    const cred = await signInWithPopup(auth, provider);
+    const user = mapFirebaseUser(cred.user);
+    notifyListeners(user);
+    return user;
+  }
+
+  // Graceful local fallback for Google login in development/offline
+  const uid = `google_demo_${Date.now()}`;
+  const googleUser: AuthUser = {
+    uid,
+    email: 'user.nutrisynth@gmail.com',
+    displayName: 'Demo Pro Athlete',
+    photoURL: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
+    isAnonymous: false,
+  };
+  setLocalActiveSession(googleUser);
+  notifyListeners(googleUser);
+  return googleUser;
 }
 
 export async function logout(): Promise<void> {

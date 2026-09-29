@@ -234,11 +234,11 @@ export function MacroComparisonChart({ groups, height = 180 }: { groups: BarGrou
   const grown = useGrowIn();
   const plotHeight = height - 46;
   return (
-    <div className="flex items-end gap-6 overflow-x-auto pb-1" style={{ minHeight: height }}>
+    <div className="flex items-end justify-between sm:justify-around w-full max-w-full pb-1" style={{ minHeight: height }}>
       {groups.map((g, gi) => {
         const max = Math.max(...g.series.map(s => s.value), 1);
         return (
-          <div key={gi} className="flex flex-col items-center gap-2 flex-shrink-0" style={{ minWidth: 60 }}>
+          <div key={gi} className="flex flex-col items-center gap-2 flex-shrink-0" style={{ minWidth: 48 }}>
             <div className="flex items-end gap-1.5" style={{ height: plotHeight }}>
               {g.series.map((s, si) => {
                 const h = Math.max(3, (s.value / max) * plotHeight);

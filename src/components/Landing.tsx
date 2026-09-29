@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Heart, Activity, Dna, ChefHat, Beaker, BookOpen, Scale, LogIn, LayoutDashboard } from 'lucide-react';
+import { ArrowRight, Sparkles, Heart, Activity, Dna, ChefHat, Beaker, BookOpen, Scale, LogIn, LayoutDashboard, Trophy, Flame, HelpCircle, CheckCircle2, Lightbulb } from 'lucide-react';
 import type { View } from '@/components/Layout';
 import type { AuthUser } from '@/lib/firebase';
 
@@ -11,125 +11,272 @@ interface LandingProps {
 }
 
 const howItWorksSteps = [
-  { num: "01", title: "Tell us about yourself", desc: "Share your age, body metrics, lifestyle, and dietary preferences.", icon: Heart },
-  { num: "02", title: "NutriSynth estimates your needs", desc: "We calculate your BMR, TDEE, protein, and macro targets using established equations.", icon: Activity },
-  { num: "03", title: "Get personalized meal recommendations", desc: "Receive meal plans filtered by your diet, allergies, and available ingredients.", icon: ChefHat },
-  { num: "04", title: "Understand strengths and limitations", desc: "Each meal includes analysis of nutritional contributions and potential gaps.", icon: Beaker },
-  { num: "05", title: "Improve your meals with solutions", desc: "Get evidence-based suggestions and see before/after nutrition comparisons.", icon: Scale },
-  { num: "06", title: "Check potential nutrient inadequacies", desc: "Screen your dietary pattern for possible nutrient gaps on a dedicated page.", icon: Dna },
+  { num: "01", title: "Answer 4 Simple Questions", desc: "Share your height, weight, activity, and food preferences. No complicated tests needed.", icon: Heart },
+  { num: "02", title: "We Calculate Your Energy Needs", desc: "We figure out your exact daily food calories and protein targets so you never do math.", icon: Activity },
+  { num: "03", title: "Pick Easy, Real Meals", desc: "Choose from delicious, everyday recipes that match your daily target, with auto shopping lists.", icon: ChefHat },
+  { num: "04", title: "Log Food in 1 Tap", desc: "Snap a photo or tap popular everyday foods (like eggs, rice, apples) to log meals in seconds.", icon: Scale },
+  { num: "05", title: "Build Lifelong Daily Habits", desc: "Drink enough water, tick off 1 small mission a day, and keep your daily streak alive.", icon: Flame },
+  { num: "06", title: "Check Essential Vitamins", desc: "Easily see if your meals provide enough Iron, Vitamin D, and Calcium to keep you energized.", icon: Dna },
 ];
 
 const features = [
-  { icon: ChefHat, title: "Personalized Meals", desc: "Meals based on your information and nutritional targets.", color: "from-brand-500 to-emerald-600" },
-  { icon: Activity, title: "Nutrition Analysis", desc: "Understand calories, protein, carbs, fats, fiber, and relevant micronutrients.", color: "from-sky-500 to-blue-600" },
-  { icon: Beaker, title: "Food Analysis", desc: "Understand potential nutritional limitations and how to improve them.", color: "from-amber-500 to-orange-600" },
-  { icon: Dna, title: "Nutrient Status", desc: "Separate screening for potential nutrient inadequacy.", color: "from-rose-500 to-pink-600" },
-  { icon: Scale, title: "Smart Substitution", desc: "Find compatible alternatives that respect your dietary restrictions.", color: "from-teal-500 to-cyan-600" },
-  { icon: BookOpen, title: "Evidence-Based", desc: "See the reference basis behind major nutritional guidance.", color: "from-violet-500 to-indigo-600" },
+  { icon: ChefHat, title: "Simple, Real Meals", desc: "Home-cooked recipes tailored to your body and dietary preferences.", color: "from-brand-500 to-emerald-600" },
+  { icon: Activity, title: "Zero-Math Nutrition", desc: "Clear daily energy targets explained in plain everyday words without confusing charts.", color: "from-sky-500 to-blue-600" },
+  { icon: Scale, title: "Hand-Size Portions", desc: "No food scale required. Use your palm, fist, and cupped hand to measure food anywhere.", color: "from-amber-500 to-orange-600" },
+  { icon: Dna, title: "Vitamin & Mineral Check", desc: "Check common signs like fatigue or brittle nails to see what vitamins you might need.", color: "from-rose-500 to-pink-600" },
+  { icon: Flame, title: "Daily Habit Streaks", desc: "Small daily steps and water reminders that make healthy eating fun and consistent.", color: "from-teal-500 to-cyan-600" },
+  { icon: BookOpen, title: "Plain-English Glossary", desc: "An instant dictionary translating calories, protein, and nutrients into simple concepts.", color: "from-violet-500 to-indigo-600" },
 ];
 
 export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile }: LandingProps) {
   return (
     <div className="animate-fade-in">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-emerald-50/40 grid-bg">
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-24 sm:pt-24 sm:pb-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50/50 via-white to-teal-50/40 dark:from-[#15171b] dark:via-[#18191c] dark:to-[#1a1f1d] grid-bg">
+        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#15171b] via-transparent to-transparent pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-20 sm:pb-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-700 text-sm font-medium mb-6 animate-fade-in">
-                <Sparkles className="w-4 h-4" />
-                Evidence-Based Nutrition Planning
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-semibold mb-6 animate-fade-in shadow-sm border border-emerald-300/50 dark:border-emerald-700/50">
+                <img src="/logo.jpg" alt="NutriSynth" className="w-5 h-5 rounded-md object-cover shadow-sm" />
+                <span>Precision Nutrition & Meal Tracking Made Simple</span>
               </div>
-              <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-stone-900 leading-[1.1] text-balance">
-                Personalized Nutrition.
+              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-white leading-[1.1] text-balance">
+                Healthy Eating.
                 <br />
-                <span className="bg-gradient-to-r from-brand-600 to-emerald-600 bg-clip-text text-transparent">
-                  Powered by Data.
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  Made Ridiculously Simple.
                 </span>
               </h1>
-              <p className="mt-6 text-lg text-stone-600 leading-relaxed max-w-xl text-balance">
-                Understand your nutritional needs, discover personalized meals, identify potential dietary gaps, and improve your meals with evidence-based guidance.
+              <p className="mt-6 text-base sm:text-lg text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl text-balance">
+                Never used a fitness or nutrition app before? You're in the right place. No complicated math, no confusing charts, and no starvation diets. Just clear answers, easy meal ideas, and gentle daily habits.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 {hasProfile ? (
-                  <button onClick={() => onNavigate('dashboard')} className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2">
+                  <button
+                    onClick={() => onNavigate('dashboard')}
+                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-xl shadow-emerald-600/25 font-bold"
+                    title="What happens: Opens your personalized daily dashboard with your food and water logs"
+                  >
                     <LayoutDashboard className="w-5 h-5" />
                     <span>Open My Nutrition Dashboard</span>
                   </button>
                 ) : (
-                  <button onClick={onStart} className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2">
-                    <span>Start Your Nutrition Journey</span>
-                    <ArrowRight className="w-5 h-5" />
+                  <button
+                    onClick={onStart}
+                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-xl shadow-emerald-600/25 font-bold"
+                    title="What happens: Takes 60 seconds to answer 4 quick questions and get your personalized daily meal plan"
+                  >
+                    <span>✨ Build My Simple Plan (60s)</span>
+                    <ArrowRight className="w-5 h-5 stroke-[2.5]" />
                   </button>
                 )}
+
+                <button
+                  onClick={() => onNavigate('challenge')}
+                  className="btn-secondary text-base px-6 py-4 flex items-center justify-center gap-2 border-emerald-500/50 text-emerald-700 dark:text-emerald-300 bg-emerald-50/60 dark:bg-emerald-950/30 font-bold hover:border-emerald-600"
+                  title="What happens: Opens the 30-day healthy habit roadmap where you can build consistency"
+                >
+                  <Trophy className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <span>30-Day Road-map</span>
+                </button>
 
                 {!authUser && onOpenAuth && (
                   <button
                     onClick={() => onOpenAuth('signin')}
                     className="btn-secondary text-base px-6 py-4 flex items-center justify-center gap-2"
+                    title="What happens: Lets you log into an existing account or register"
                   >
                     <LogIn className="w-5 h-5" />
-                    <span>Sign In to Saved Plan</span>
+                    <span>Sign In</span>
                   </button>
                 )}
-
-                <button onClick={() => onNavigate('how-it-works')} className="btn-secondary text-base px-6 py-4">
-                  Explore NutriSynth
-                </button>
               </div>
-              <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-sm text-stone-500">
-                <span className="flex items-center gap-1.5"><CheckIcon /> Cloud sync enabled</span>
-                <span className="flex items-center gap-1.5"><CheckIcon /> Instant data recovery</span>
+              <div className="mt-8 flex items-center gap-6 justify-center lg:justify-start text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+                <span className="flex items-center gap-1.5"><CheckIcon /> 100% Free & Easy to Use</span>
+                <span className="flex items-center gap-1.5"><CheckIcon /> No food scale required</span>
               </div>
             </div>
 
-            {/* Hero Visual — Dashboard Preview */}
+            {/* Hero Visual — Friendly Dashboard Preview */}
             <div className="relative hidden lg:block">
-              <div className="absolute -inset-4 bg-gradient-to-br from-brand-200/30 to-emerald-200/20 rounded-3xl blur-2xl" />
-              <div className="relative card-lg p-6 space-y-4">
+              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-200/30 to-teal-200/20 rounded-3xl blur-2xl pointer-events-none" />
+              <div className="relative card-lg p-6 space-y-4 bg-white/95 dark:bg-[#1f2128]/95 border border-stone-200 dark:border-stone-800 shadow-xl">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-xs text-stone-500 font-medium">Daily Target</div>
-                    <div className="metric-value text-2xl text-stone-900">2,400 kcal</div>
+                    <div className="text-xs text-stone-500 dark:text-stone-400 font-medium">Daily Energy Target (Calories)</div>
+                    <div className="metric-value text-2xl text-stone-900 dark:text-white font-black">2,100 kcal</div>
+                    <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">Healthy, sustainable daily food fuel</span>
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-600 flex items-center justify-center text-white">
-                    <Activity className="w-6 h-6" />
-                  </div>
+                  <img
+                    src="/logo.jpg"
+                    alt="NutriSynth"
+                    className="w-12 h-12 rounded-2xl object-cover shadow-md ring-2 ring-emerald-500/20"
+                  />
                 </div>
                 <div className="space-y-3">
                   {[
-                    { label: "Protein", val: 95, max: 95, color: "bg-brand-500" },
-                    { label: "Carbohydrates", val: 270, max: 300, color: "bg-sky-500" },
-                    { label: "Fat", val: 67, max: 67, color: "bg-amber-500" },
-                    { label: "Fiber", val: 25, max: 38, color: "bg-teal-500" },
+                    { label: "Muscle Fuel (Protein)", val: 90, max: 90, color: "bg-emerald-500", note: "Builds & repairs body tissue" },
+                    { label: "Quick Energy (Carbs)", val: 240, max: 260, color: "bg-blue-500", note: "Powers your daily activity" },
+                    { label: "Healthy Fats", val: 60, max: 60, color: "bg-amber-500", note: "Supports hormones & joints" },
+                    { label: "Digestion Fuel (Fiber)", val: 28, max: 35, color: "bg-teal-500", note: "Keeps gut smooth & full" },
                   ].map(m => (
                     <div key={m.label}>
-                      <div className="flex justify-between text-xs mb-1">
-                        <span className="text-stone-600 font-medium">{m.label}</span>
-                        <span className="text-stone-900 font-semibold tabular-nums">{m.val}g</span>
+                      <div className="flex justify-between text-xs mb-0.5">
+                        <span className="text-stone-700 dark:text-stone-300 font-bold">{m.label}</span>
+                        <span className="text-stone-900 dark:text-white font-extrabold tabular-nums">{m.val}g</span>
                       </div>
-                      <div className="h-2 rounded-full bg-stone-200 overflow-hidden">
+                      <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
                         <div className={`h-full rounded-full ${m.color} transition-all duration-1000 ease-out`} style={{ width: `${(m.val/m.max)*100}%` }} />
                       </div>
+                      <span className="text-[10px] text-stone-400">{m.note}</span>
                     </div>
                   ))}
                 </div>
-                <div className="grid grid-cols-3 gap-3 pt-2">
-                  <div className="rounded-xl bg-brand-50 p-3 text-center">
-                    <ChefHat className="w-5 h-5 text-brand-600 mx-auto mb-1" />
-                    <div className="text-xs text-stone-600 font-medium">3 Meals</div>
+                <div className="grid grid-cols-3 gap-2.5 pt-2">
+                  <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/40 p-2.5 text-center border border-emerald-500/20">
+                    <ChefHat className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-stone-300 font-bold">3 Meals + Snack</div>
                   </div>
-                  <div className="rounded-xl bg-sky-50 p-3 text-center">
-                    <Dna className="w-5 h-5 text-sky-600 mx-auto mb-1" />
-                    <div className="text-xs text-stone-600 font-medium">16 Nutrients</div>
+                  <div className="rounded-xl bg-blue-50 dark:bg-blue-950/40 p-2.5 text-center border border-blue-500/20">
+                    <Dna className="w-4 h-4 text-blue-600 dark:text-blue-400 mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-stone-300 font-bold">16 Vitamins</div>
                   </div>
-                  <div className="rounded-xl bg-amber-50 p-3 text-center">
-                    <Beaker className="w-5 h-5 text-amber-600 mx-auto mb-1" />
-                    <div className="text-xs text-stone-600 font-medium">Food Analysis</div>
+                  <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-2.5 text-center border border-amber-500/20">
+                    <Flame className="w-4 h-4 text-amber-600 dark:text-amber-400 mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-stone-300 font-bold">Daily Streak</div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3 Golden Questions Callout for Absolute Beginners */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-12 relative z-20 mb-12">
+        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#18191c] via-[#15171b] to-[#202227] border border-emerald-500/30 text-white shadow-2xl">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+              💡
+            </span>
+            <span className="text-xs font-black uppercase tracking-wider text-emerald-400">
+              How NutriSynth Works For You:
+            </span>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4 pt-2">
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+              <span className="text-xs font-bold text-emerald-400 block">1. What is NutriSynth?</span>
+              <p className="text-xs text-stone-300 leading-relaxed">
+                A simple nutrition guide that tells you what healthy foods to eat and how much to eat—without confusing jargon or counting calories on paper.
+              </p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+              <span className="text-xs font-bold text-emerald-400 block">2. What should I do first?</span>
+              <p className="text-xs text-stone-300 leading-relaxed">
+                Tap the green button <strong>"Build My Simple Plan"</strong>. Answer 4 quick questions about your routine and goals in 60 seconds.
+              </p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+              <span className="text-xs font-bold text-emerald-400 block">3. What happens next?</span>
+              <p className="text-xs text-stone-300 leading-relaxed">
+                You immediately get personalized daily meal ideas, hand-size portion guides, a grocery checklist, and 1-tap food logging.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Friendly Two-Mode Section: Know What You Are Doing */}
+      <section className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-16">
+        <div className="text-center mb-6">
+          <span className="px-3.5 py-1.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold border border-stone-200 dark:border-stone-700">
+            🧭 Choose Where to Start
+          </span>
+          <h2 className="text-xl sm:text-2xl font-display font-extrabold text-stone-900 dark:text-white mt-2">
+            Two Easy Ways to Use NutriSynth
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Track 1: My Nutrition Plan */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#1f2127] border-2 border-emerald-500/30 dark:border-emerald-500/20 shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+            <div className="space-y-3.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
+                <ChefHat className="w-3.5 h-3.5" />
+                Track 1: Personalized Food & Meal Plan
+              </div>
+              <h3 className="font-display font-extrabold text-2xl text-stone-900 dark:text-white">
+                My Food Plan & Daily Targets
+              </h3>
+              <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                Find out exactly how much daily food energy you need, get delicious home-cooked meal ideas, and log your meals with one tap.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-stone-500 dark:text-stone-400 pt-1">
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">🥗 Simple Meal Ideas</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">📸 1-Tap Food Logger</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">🛒 Grocery Shopping List</span>
+              </div>
+            </div>
+            <div className="pt-6">
+              {hasProfile ? (
+                <button
+                  onClick={() => onNavigate('dashboard')}
+                  className="w-full py-3.5 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-98 transition-all"
+                  title="Opens your daily food tracking dashboard"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  <span>Open My Nutrition Dashboard</span>
+                </button>
+              ) : (
+                <button
+                  onClick={onStart}
+                  className="w-full py-3.5 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-98 transition-all"
+                  title="Start the 60-second setup to get your meal plan"
+                >
+                  <span>Build My Simple Food Plan</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Track 2: 30-Day Nutrition Challenge */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-amber-500/10 via-emerald-500/10 to-transparent dark:from-[#212724] dark:to-[#1a1f1d] border-2 border-amber-300/80 dark:border-amber-600/50 shadow-xl shadow-amber-500/5 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+            <div className="space-y-3.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-bold">
+                <Trophy className="w-3.5 h-3.5" />
+                Track 2: 30-Day Habit Journey
+              </div>
+              <h3 className="font-display font-extrabold text-2xl text-stone-900 dark:text-white">
+                30-Day Road-map & Daily Streak
+              </h3>
+              <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                Take on 30 bite-sized daily missions! Log your water glasses, complete daily habit to-dos, unlock milestone trophies, and build consistency.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-stone-500 dark:text-stone-400 pt-1">
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">💧 Water Logging</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">🔥 Daily Streaks</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-stone-800">🏆 30 Habit Missions</span>
+              </div>
+            </div>
+            <div className="pt-6 flex flex-col sm:flex-row gap-2.5">
+              <button
+                onClick={() => onNavigate('challenge')}
+                className="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-98 transition-all"
+                title="View the complete 30-day journey and milestones"
+              >
+                <Trophy className="w-4 h-4" />
+                <span>30-Day Road-map</span>
+              </button>
+              <button
+                onClick={() => onNavigate('today-streak')}
+                className="py-3.5 px-4 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-800 dark:text-amber-200 border border-amber-500/40 font-bold text-sm flex items-center justify-center gap-1.5 active:scale-98 transition-all"
+                title="Focus on today's single mission and checklist"
+              >
+                <Flame className="w-4 h-4 text-amber-500" />
+                <span>Today's Habits</span>
+              </button>
             </div>
           </div>
         </div>

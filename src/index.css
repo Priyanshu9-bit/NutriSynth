@@ -1,40 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
   html {
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
   }
   html.dark {
     color-scheme: dark;
   }
   body {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
     background: #fafaf9;
     color: #1c1917;
-    line-height: 1.5;
+    line-height: 1.6;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
+  #root {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
   html.dark body {
-    background: #18191c;
+    background: #0f1013;
     color: #f4f5f7;
   }
-  h1, h2, h3, h4 {
-    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    line-height: 1.2;
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
   }
 }
 
 @layer components {
   .card {
-    @apply bg-white dark:bg-[#202227] rounded-2xl border border-stone-200/60 dark:border-[#32353e] shadow-card dark:shadow-[0_4px_24px_rgba(0,0,0,0.35)];
+    @apply bg-white/95 dark:bg-[#1c1e24]/95 backdrop-blur-md rounded-3xl border border-stone-200/80 dark:border-[#2b2e38] shadow-sm hover:shadow-md transition-all duration-300;
   }
   .card-lg {
-    @apply bg-white dark:bg-[#202227] rounded-2xl border border-stone-200/60 dark:border-[#32353e] shadow-card-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)];
+    @apply bg-white/95 dark:bg-[#1c1e24]/95 backdrop-blur-md rounded-3xl border border-stone-200/80 dark:border-[#2b2e38] shadow-md dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300;
   }
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold
@@ -90,6 +111,31 @@
   .animate-radar-breathe {
     animation: radar-glow-breathe 3.5s ease-in-out infinite;
   }
+  .animate-pop-bounce {
+    animation: pop-bounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  .animate-pulse-halo {
+    animation: pulse-halo 2.5s ease-in-out infinite;
+  }
+  .animate-float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+}
+
+@keyframes pop-bounce {
+  0% { transform: scale(0.65); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-halo {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50% { transform: scale(1.18); opacity: 0.8; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes radar-sweep {

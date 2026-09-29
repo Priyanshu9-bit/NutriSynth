@@ -18,11 +18,13 @@ export interface UserProfile {
 }
 
 export interface MealItem {
+  id?: string;
   name: string;
   food: string;
   details: { calories: number; protein: number; carbs: number; fat: number; fiber: number };
-  components: string[];
+  components?: string[];
   icon: string;
+  time?: string;
 }
 
 export interface NutritionResult {
@@ -236,14 +238,14 @@ export function generateAdultMealPlan(tdee: number, availableIngredients: Set<st
     ];
   }
 
-  let breakfastChoice = pickOne(validBreakfasts);
-  let lunchCarb = pickOne(validCarbs);
-  let lunchProtein = pickOne(validProteins);
-  let lunchVeg = validVeggies.length > 0 ? pickOne(validVeggies) : { name: "", ingredients: [], components: [] };
-  let lunchAcc = pickOne(validAccompaniments);
-  let dinnerCarb = pickOne(validCarbs);
-  let dinnerProtein = pickOne(validProteins);
-  let dinnerAcc = pickOne(validAccompaniments);
+  let breakfastChoice = { ...pickOne(validBreakfasts), components: [...(pickOne(validBreakfasts).components || [])] };
+  let lunchCarb = { ...pickOne(validCarbs), components: [...(pickOne(validCarbs).components || [])] };
+  let lunchProtein = { ...pickOne(validProteins), components: [...(pickOne(validProteins).components || [])] };
+  let lunchVeg = validVeggies.length > 0 ? { ...pickOne(validVeggies), components: [...(pickOne(validVeggies).components || [])] } : { name: "", ingredients: [], components: [] };
+  let lunchAcc = { ...pickOne(validAccompaniments), components: [...(pickOne(validAccompaniments).components || [])] };
+  let dinnerCarb = { ...pickOne(validCarbs), components: [...(pickOne(validCarbs).components || [])] };
+  let dinnerProtein = { ...pickOne(validProteins), components: [...(pickOne(validProteins).components || [])] };
+  let dinnerAcc = { ...pickOne(validAccompaniments), components: [...(pickOne(validAccompaniments).components || [])] };
 
   // Goal modifications — preserved from original
   if (goal === 'lose') {
@@ -351,7 +353,7 @@ export function estimateMicroIntake(meals: MealItem[]): Record<string, number> {
     vitaminA: 0, zinc: 0, magnesium: 0, potassium: 0, fiber: 0,
   };
   meals.forEach(meal => {
-    meal.components.forEach(key => {
+    (meal.components || []).forEach(key => {
       const food = foodNutritionData[key];
       if (!food) return;
       (Object.keys(totals) as (keyof FoodData)[]).forEach(nutrient => {
@@ -468,7 +470,7 @@ export function analyzeDailyDiet(result: NutritionResult, profile: UserProfile):
   }
 
   // Dietary diversity
-  const uniqueComponents = new Set(result.meals.flatMap(m => m.components));
+  const uniqueComponents = new Set(result.meals.flatMap(m => m.components || []));
   if (uniqueComponents.size < 5) {
     items.push({ nutrient: "diversity", label: "Dietary Diversity", status: "attention", message: "Limited food variety in your plan.", detail: "Aim for diverse food groups across meals for broader nutrient coverage." });
   } else {
@@ -490,12 +492,12 @@ export function analyzeFood(meal: MealItem, result: NutritionResult, profile: Us
   let suitability: FoodAnalysis["suitability"] = "suitable";
   let suitabilityReason = "This meal matches your dietary preference and nutritional profile.";
 
-  const mealProtein = meal.details.protein;
-  const proteinTarget = result.proteinG;
+  const mealProtein = meal.details?.protein ?? 0;
+  const proteinTarget = result.proteinG || 1;
   const mealProteinPct = (mealProtein / proteinTarget) * 100;
 
   // Check dietary preference match
-  const tags = meal.components.flatMap(c => foodNutritionData[c]?.tags ?? []);
+  const tags = (meal.components || []).flatMap(c => foodNutritionData[c]?.tags ?? []);
   if (profile.diet === "vegan" && (tags.includes("dairy") || tags.includes("nonveg"))) {
     suitability = "exclude";
     suitabilityReason = "Contains animal products incompatible with a vegan diet.";
@@ -552,7 +554,7 @@ export function analyzeFood(meal: MealItem, result: NutritionResult, profile: Us
 // "Why this meal" reasoning
 export function getMealReasoning(meal: MealItem, result: NutritionResult, profile: UserProfile): string {
   const reasons: string[] = [];
-  const tags = meal.components.flatMap(c => foodNutritionData[c]?.tags ?? []);
+  const tags = (meal.components || []).flatMap(c => foodNutritionData[c]?.tags ?? []);
 
   if (meal.details.protein > 15) reasons.push(`contributes ${Math.round(meal.details.protein)}g protein toward your ${result.proteinG}g daily target`);
   if (meal.details.fiber > 5) reasons.push(`provides ${Math.round(meal.details.fiber)}g of fiber-rich ingredients`);

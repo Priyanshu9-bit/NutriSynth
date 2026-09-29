@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { playCongratsSound } from '@/lib/soundEffects';
 
 interface ConfettiProps {
   active: boolean;
@@ -29,6 +30,7 @@ export function Confetti({ active, duration = 4000, onComplete }: ConfettiProps)
 
   useEffect(() => {
     if (!active) return;
+    playCongratsSound();
 
     const canvas = canvasRef.current;
     if (!canvas) return;
