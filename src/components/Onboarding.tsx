@@ -184,22 +184,22 @@ export function Onboarding({
   const currentStepInfo = steps[step];
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-emerald-50/40 via-stone-50 to-stone-50 dark:from-[#15171b] dark:via-[#18191c] dark:to-[#18191c] py-6 sm:py-10 px-4 sm:px-6 transition-colors">
+    <div className="min-h-[calc(100vh-4rem)] bg-[#07111F] py-6 sm:py-10 px-4 sm:px-6 transition-colors">
       <div className="max-w-2xl mx-auto">
         {/* Top Reassurance Banner */}
-        <div className="mb-6 p-4 rounded-2xl bg-white/90 dark:bg-[#1f222a] border border-emerald-500/25 shadow-xs flex items-center justify-between gap-3 flex-wrap">
+        <div className="mb-6 p-4 rounded-2xl bg-[#0B0F0E] border border-[#1E293B] shadow-xs flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2.5">
             <span className="text-xl">🌟</span>
             <div>
-              <div className="text-xs font-black uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+              <div className="text-xs font-black uppercase tracking-wider text-[#34D399]">
                 Quick 60-Second Setup
               </div>
-              <div className="text-xs text-stone-600 dark:text-stone-300 font-medium">
+              <div className="text-xs text-[#CBD5E1] font-medium">
                 Step {step + 1} of {steps.length} — Customized to your body & daily routine
               </div>
             </div>
           </div>
-          <div className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+          <div className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#101D2D] text-[#34D399] border border-[#1E293B]">
             Step-by-Step • Fast & Simple
           </div>
         </div>
@@ -222,10 +222,10 @@ export function Onboarding({
                       className={`w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center transition-all duration-300 font-bold text-xs sm:text-sm
                         ${
                           isComplete
-                            ? 'bg-emerald-600 text-white shadow-sm cursor-pointer hover:scale-105'
+                            ? 'bg-[#22C55E] text-[#07111F] shadow-sm cursor-pointer hover:scale-105'
                             : isCurrent
-                            ? 'bg-emerald-500 text-white ring-4 ring-emerald-500/20 shadow-md scale-105'
-                            : 'bg-stone-200 dark:bg-stone-800 text-stone-400 cursor-not-allowed'
+                            ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] ring-4 ring-[#22C55E]/20 shadow-md scale-105'
+                            : 'bg-[#101D2D] border border-[#1E293B] text-[#8492A6] cursor-not-allowed'
                         }`}
                     >
                       {isComplete ? <Check className="w-5 h-5 stroke-[2.5]" /> : <Icon className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -233,19 +233,19 @@ export function Onboarding({
                     <span
                       className={`text-[10px] sm:text-xs font-bold hidden sm:block ${
                         isCurrent
-                          ? 'text-emerald-600 dark:text-emerald-400'
+                          ? 'text-[#34D399]'
                           : isComplete
-                          ? 'text-stone-700 dark:text-stone-300'
-                          : 'text-stone-400'
+                          ? 'text-[#CBD5E1]'
+                          : 'text-[#8492A6]'
                       }`}
                     >
                       {s.short}
                     </span>
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="flex-1 h-1 mx-1.5 sm:mx-2 rounded-full bg-stone-200 dark:bg-stone-800 relative overflow-hidden">
+                    <div className="flex-1 h-1 mx-1.5 sm:mx-2 rounded-full bg-[#1E293B] relative overflow-hidden">
                       <div
-                        className={`absolute inset-y-0 left-0 bg-emerald-500 transition-all duration-500 ${
+                        className={`absolute inset-y-0 left-0 bg-[#22C55E] transition-all duration-500 ${
                           isComplete ? 'w-full' : 'w-0'
                         }`}
                       />
@@ -258,23 +258,23 @@ export function Onboarding({
         </div>
 
         {/* 3 Core Questions Clarifier Card */}
-        <div className="mb-4 p-4 rounded-2xl bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-500/25 grid sm:grid-cols-3 gap-3 text-xs">
+        <div className="mb-4 p-4 rounded-2xl bg-[#0B0F0E] border border-[#1E293B] grid sm:grid-cols-3 gap-3 text-xs">
           <div>
-            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">👁️ 1. What is this?</div>
-            <div className="text-stone-600 dark:text-stone-300 font-medium">{currentStepInfo.label}: {currentStepInfo.question}</div>
+            <div className="font-bold text-[#34D399] mb-0.5">👁️ 1. What is this?</div>
+            <div className="text-[#CBD5E1] font-medium">{currentStepInfo.label}: {currentStepInfo.question}</div>
           </div>
           <div>
-            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">👉 2. What should I do?</div>
-            <div className="text-stone-600 dark:text-stone-300 font-medium">Pick the option that best matches your everyday reality. There are no wrong answers!</div>
+            <div className="font-bold text-[#34D399] mb-0.5">👉 2. What should I do?</div>
+            <div className="text-[#CBD5E1] font-medium">Pick the option that best matches your everyday reality. There are no wrong answers!</div>
           </div>
           <div>
-            <div className="font-bold text-emerald-800 dark:text-emerald-300 mb-0.5">⚡ 3. What happens next?</div>
-            <div className="text-stone-600 dark:text-stone-300 font-medium">NutriSynth calculates your daily energy targets automatically.</div>
+            <div className="font-bold text-[#34D399] mb-0.5">⚡ 3. What happens next?</div>
+            <div className="text-[#CBD5E1] font-medium">NutriSynth calculates your daily energy targets automatically.</div>
           </div>
         </div>
 
         {/* Step Container Card */}
-        <div key={step} className="card-lg p-6 sm:p-8 animate-slide-in-right bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f333f]">
+        <div key={step} className="card-lg p-6 sm:p-8 animate-slide-in-right bg-[#0B0F0E] border border-[#1E293B]">
           {/* STEP 0: Personal Basics */}
           {step === 0 && (
             <StepContainer
@@ -655,7 +655,7 @@ export function Onboarding({
                         className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 transition-all flex items-center gap-1.5 ${
                           selected
                             ? 'border-red-500 bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 shadow-sm'
-                            : 'border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500 text-stone-700 dark:text-stone-300 bg-white dark:bg-[#1a1c22]'
+                            : 'border-stone-200 dark:border-[#1E293B] hover:border-stone-400 dark:hover:border-stone-500 text-stone-700 dark:text-[#CBD5E1] bg-white dark:bg-[#101D2D]'
                         }`}
                       >
                         {selected && <Check className="w-3.5 h-3.5 text-red-600 stroke-[3]" />}
@@ -686,7 +686,7 @@ export function Onboarding({
                         className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 transition-all flex items-center gap-1.5 ${
                           selected
                             ? 'border-amber-500 bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 shadow-sm'
-                            : 'border-stone-200 dark:border-stone-700 hover:border-stone-400 dark:hover:border-stone-500 text-stone-700 dark:text-stone-300 bg-white dark:bg-[#1a1c22]'
+                            : 'border-stone-200 dark:border-[#1E293B] hover:border-stone-400 dark:hover:border-stone-500 text-stone-700 dark:text-[#CBD5E1] bg-white dark:bg-[#101D2D]'
                         }`}
                       >
                         {selected && <Check className="w-3.5 h-3.5 text-amber-600 stroke-[3]" />}

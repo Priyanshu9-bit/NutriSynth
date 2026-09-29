@@ -120,7 +120,7 @@ export class SectionErrorBoundary extends Component<SectionProps, SectionState> 
   public render() {
     if (this.state.hasError) {
       return (
-        <div className="p-5 sm:p-6 rounded-2xl bg-stone-900/50 dark:bg-[#1a1c22]/60 border border-stone-200 dark:border-stone-800 shadow-sm text-center space-y-3 animate-fade-in my-3">
+        <div className="p-5 sm:p-6 rounded-2xl bg-stone-900/50 dark:bg-[#0B0F0E]/80 border border-stone-200 dark:border-[#1E293B] shadow-sm text-center space-y-3 animate-fade-in my-3">
           <div className="w-10 h-10 mx-auto rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center">
             <AlertTriangle className="w-5 h-5" />
           </div>

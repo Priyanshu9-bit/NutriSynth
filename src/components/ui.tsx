@@ -39,11 +39,11 @@ export function ProgressBar({
   const remaining = Math.max(0, Math.round(max - value));
 
   const colorMap: Record<string, string> = {
-    brand: "bg-brand-500",
-    blue: "bg-sky-500",
+    brand: "bg-gradient-to-r from-[#22C55E] to-[#2DD4BF]",
+    blue: "bg-[#60A5FA]",
     amber: "bg-amber-500",
     orange: "bg-orange-500",
-    red: "bg-red-500",
+    red: "bg-rose-500",
     purple: "bg-violet-500",
   };
 
@@ -51,9 +51,9 @@ export function ProgressBar({
     <div className="w-full">
       <div className="flex items-baseline justify-between mb-1.5 flex-wrap gap-1">
         <div className="flex items-center gap-1.5">
-          <span className="text-sm font-medium text-stone-700 dark:text-stone-300">{label}</span>
+          <span className="text-sm font-medium text-stone-700 dark:text-[#CBD5E1]">{label}</span>
           {showGoalStatus && isGoalAchieved && (
-            <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300/60 dark:border-emerald-700 animate-bounce">
+            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-[#34D399] border border-emerald-300/60 dark:border-emerald-500/40 animate-bounce">
               🎯 Goal Met!
             </span>
           )}
@@ -68,12 +68,12 @@ export function ProgressBar({
             </span>
           )}
         </div>
-        <span className="text-sm font-semibold text-stone-900 dark:text-stone-100 tabular-nums">
-          {Math.round(value)}<span className="text-stone-400 font-normal"> / {Math.round(max)} {unit}</span>
+        <span className="text-sm font-semibold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
+          {Math.round(value)}<span className="text-stone-400 dark:text-[#8492A6] font-normal"> / {Math.round(max)} {unit}</span>
         </span>
       </div>
-      <div className={`h-2.5 rounded-full bg-stone-200/80 dark:bg-stone-800 overflow-hidden relative ${
-        isGoalAchieved ? 'ring-2 ring-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.35)]' : ''
+      <div className={`h-2.5 rounded-full bg-stone-200/80 dark:bg-[#101D2D] overflow-hidden relative ${
+        isGoalAchieved ? 'ring-2 ring-emerald-500/40 shadow-[0_0_12px_rgba(45,212,191,0.35)]' : ''
       }`}>
         <div
           className={`h-full rounded-full ${colorMap[color] || colorMap.brand} transition-all ease-out relative ${
@@ -99,23 +99,23 @@ export function Card({ children, className = "", onClick }: { children: ReactNod
 
 export function StatCard({ label, value, unit, icon, accent = "brand" }: { label: string; value: number | string; unit?: string; icon?: ReactNode; accent?: string }) {
   const accentMap: Record<string, string> = {
-    brand: "from-brand-500 to-emerald-600",
-    blue: "from-sky-500 to-blue-600",
-    amber: "from-amber-500 to-orange-600",
-    orange: "from-orange-500 to-red-500",
-    neutral: "from-stone-400 to-stone-500",
+    brand: "from-[#22C55E] to-[#2DD4BF] text-[#07111F]",
+    blue: "from-[#60A5FA] to-[#3B82F6] text-white",
+    amber: "from-amber-500 to-orange-500 text-white",
+    orange: "from-orange-500 to-red-500 text-white",
+    neutral: "from-stone-500 to-stone-600 text-white",
   };
   return (
     <div className="card p-4 flex items-center gap-4 group transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg">
       {icon && (
-        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${accentMap[accent]} flex items-center justify-center text-white flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+        <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${accentMap[accent]} flex items-center justify-center font-bold flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm`}>
           {icon}
         </div>
       )}
       <div className="min-w-0">
-        <div className="text-xs text-stone-500 font-medium">{label}</div>
-        <div className="metric-value text-xl text-stone-900">
-          {value}{unit && <span className="text-sm font-medium text-stone-400 ml-1">{unit}</span>}
+        <div className="text-xs text-stone-500 dark:text-[#8492A6] font-medium">{label}</div>
+        <div className="metric-value text-xl text-stone-900 dark:text-[#F8FAFC]">
+          {value}{unit && <span className="text-sm font-medium text-stone-400 dark:text-[#8492A6] ml-1">{unit}</span>}
         </div>
       </div>
     </div>
@@ -125,20 +125,20 @@ export function StatCard({ label, value, unit, icon, accent = "brand" }: { label
 export function ExpandableSection({ title, icon, children, defaultOpen = false }: { title: string; icon?: ReactNode; children: ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-t border-stone-200/60 dark:border-[#32353e]">
+    <div className="border-t border-stone-200/60 dark:border-[#1E293B]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-3 text-left hover:bg-stone-50/50 dark:hover:bg-[#282a32] transition-colors rounded-lg px-2 -mx-2"
+        className="w-full flex items-center justify-between py-3 text-left hover:bg-stone-50/50 dark:hover:bg-[#101D2D] transition-colors rounded-lg px-2 -mx-2"
         aria-expanded={open}
       >
-        <span className="flex items-center gap-2 text-sm font-semibold text-stone-700 dark:text-[#f4f5f7]">
+        <span className="flex items-center gap-2 text-sm font-semibold text-stone-700 dark:text-[#F8FAFC]">
           {icon}
           {title}
         </span>
-        <ChevronDown className={`w-4 h-4 text-stone-400 dark:text-[#9ca3af] transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-stone-400 dark:text-[#8492A6] transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="pb-3 pt-1 animate-fade-in text-stone-700 dark:text-[#d1d5db]">
+        <div className="pb-3 pt-1 animate-fade-in text-stone-700 dark:text-[#CBD5E1]">
           {children}
         </div>
       )}
@@ -177,7 +177,7 @@ export function DonutChart({ segments, size = 140, centerValue, centerUnit = "kc
   return (
     <div className="flex items-center gap-5">
       <svg width={size} height={size} className="flex-shrink-0 overflow-visible">
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" className="stroke-[#f0f0ee] dark:stroke-stone-800" strokeWidth={14} />
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" className="stroke-[#f0f0ee] dark:stroke-[#101D2D]" strokeWidth={14} />
         {arcs.map(({ seg, i, finalDash, offset }) => {
           const dash = grown ? finalDash : 0;
           const isHovered = hovered === i;
@@ -200,10 +200,10 @@ export function DonutChart({ segments, size = 140, centerValue, centerUnit = "kc
             />
           );
         })}
-        <text x="50%" y="50%" textAnchor="middle" dy="0.35em" className="fill-stone-900 dark:fill-white font-display font-bold transition-opacity duration-300" style={{ fontSize: size * 0.14 }}>
+        <text x="50%" y="50%" textAnchor="middle" dy="0.35em" className="fill-stone-900 dark:fill-[#F8FAFC] font-display font-bold transition-opacity duration-300" style={{ fontSize: size * 0.14 }}>
           {hoveredSeg ? Math.round(hoveredSeg.value).toLocaleString() : (centerValue ?? Math.round(total).toLocaleString())}
         </text>
-        <text x="50%" y="62%" textAnchor="middle" dy="0.35em" className="fill-stone-400 dark:fill-stone-500 transition-opacity duration-300" style={{ fontSize: size * 0.07 }}>
+        <text x="50%" y="62%" textAnchor="middle" dy="0.35em" className="fill-stone-400 dark:fill-[#8492A6] transition-opacity duration-300" style={{ fontSize: size * 0.07 }}>
           {hoveredSeg ? hoveredSeg.label : centerUnit}
         </text>
       </svg>
@@ -213,12 +213,12 @@ export function DonutChart({ segments, size = 140, centerValue, centerUnit = "kc
             key={i}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
-            className={`flex items-center gap-2 text-sm rounded-lg px-1.5 py-1 -mx-1.5 cursor-pointer transition-all duration-300 ${hovered === i ? 'bg-stone-100 dark:bg-stone-800' : ''} ${grown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}
+            className={`flex items-center gap-2 text-sm rounded-lg px-1.5 py-1 -mx-1.5 cursor-pointer transition-all duration-300 ${hovered === i ? 'bg-stone-100 dark:bg-[#101D2D]' : ''} ${grown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}
             style={{ transitionDelay: grown ? `${300 + i * 90}ms` : '0ms' }}
           >
             <span className={`w-3 h-3 rounded-full transition-transform duration-200 ${hovered === i ? 'scale-125' : ''}`} style={{ backgroundColor: seg.color }} />
-            <span className="text-stone-600 dark:text-stone-300">{seg.label}</span>
-            <span className="text-stone-900 dark:text-white font-semibold tabular-nums">{Math.round(seg.value)}</span>
+            <span className="text-stone-600 dark:text-[#CBD5E1]">{seg.label}</span>
+            <span className="text-stone-900 dark:text-[#F8FAFC] font-semibold tabular-nums">{Math.round(seg.value)}</span>
           </div>
         ))}
       </div>
@@ -245,17 +245,17 @@ export function MacroComparisonChart({ groups, height = 180 }: { groups: BarGrou
                 const delay = gi * 110 + si * 70;
                 return (
                   <div key={si} className="group/bar flex flex-col items-center justify-end h-full" title={`${s.name}: ${Math.round(s.value)}${g.unit}`}>
-                    <span className="text-[10px] font-semibold text-stone-600 mb-1 tabular-nums">{Math.round(s.value)}</span>
+                    <span className="text-[10px] font-semibold text-stone-600 dark:text-[#CBD5E1] mb-1 tabular-nums">{Math.round(s.value)}</span>
                     <div
-                      className="w-5 rounded-t-md transition-all ease-out origin-bottom group-hover/bar:brightness-110 group-hover/bar:scale-x-125"
+                      className="w-5 rounded-t-md transition-all ease-out origin-bottom group-hover/bar:brightness-110 group-hover/bar:scale-x-125 shadow-xs"
                       style={{ height: grown ? h : 0, backgroundColor: s.color, transitionDuration: '750ms', transitionDelay: `${delay}ms` }}
                     />
                   </div>
                 );
               })}
             </div>
-            <div className="text-xs font-semibold text-stone-700 text-center">{g.label}</div>
-            <div className="text-[10px] text-stone-400 -mt-1.5">{g.unit}</div>
+            <div className="text-xs font-semibold text-stone-700 dark:text-[#F8FAFC] text-center">{g.label}</div>
+            <div className="text-[10px] text-stone-400 dark:text-[#8492A6] -mt-1.5">{g.unit}</div>
           </div>
         );
       })}
@@ -303,19 +303,19 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
           onClick={() => setScanActive(!scanActive)}
           className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full transition-all cursor-pointer ${
             scanActive
-              ? 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700/60 shadow-sm'
-              : 'bg-stone-100 dark:bg-stone-800 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+              ? 'bg-emerald-100 dark:bg-[#101D2D] text-emerald-800 dark:text-[#34D399] border border-emerald-300 dark:border-emerald-500/30 shadow-sm'
+              : 'bg-stone-100 dark:bg-[#101D2D] text-stone-500 hover:text-stone-800 dark:hover:text-[#F8FAFC]'
           }`}
           title={scanActive ? "Click to pause radar scanner" : "Click to activate radar scanner"}
         >
-          <Radio className={`w-3 h-3 ${scanActive ? 'animate-pulse text-emerald-600 dark:text-emerald-400' : 'text-stone-400'}`} />
+          <Radio className={`w-3 h-3 ${scanActive ? 'animate-pulse text-emerald-600 dark:text-[#34D399]' : 'text-stone-400'}`} />
           <span>{scanActive ? 'Radar Scan Live' : 'Scanner Paused'}</span>
         </button>
 
         <button
           type="button"
           onClick={handleReplay}
-          className="inline-flex items-center gap-1 text-[11px] font-medium text-stone-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1 text-[11px] font-medium text-stone-400 hover:text-emerald-600 dark:hover:text-[#34D399] transition-colors cursor-pointer"
           title="Replay radar animation"
         >
           <RotateCw className="w-3 h-3 hover:rotate-180 transition-transform duration-300" />
@@ -327,22 +327,22 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
         <defs>
           {/* Ambient radial aura behind radar */}
           <radialGradient id={`radarAura-${animKey}`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.28" />
-            <stop offset="70%" stopColor="#059669" stopOpacity="0.09" />
-            <stop offset="100%" stopColor="#047857" stopOpacity="0.01" />
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.25" />
+            <stop offset="70%" stopColor="#2dd4bf" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#07111f" stopOpacity="0.01" />
           </radialGradient>
 
           {/* Sweeping line gradient */}
           <linearGradient id={`radarSweepLineGrad-${animKey}`} x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0" />
-            <stop offset="70%" stopColor="#10b981" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0" />
+            <stop offset="70%" stopColor="#22c55e" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#2dd4bf" stopOpacity="1" />
           </linearGradient>
 
           {/* Trailing fan beam gradient */}
           <linearGradient id={`radarFanGrad-${animKey}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+            <stop offset="0%" stopColor="#22c55e" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" />
           </linearGradient>
 
           {/* Bloom glow filter */}
@@ -378,7 +378,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
               points={pts}
               fill="none"
               strokeWidth={lvl === 1 ? 1.5 : 1}
-              className={`${lvl === 1 ? 'stroke-stone-300 dark:stroke-stone-600' : 'stroke-stone-200 dark:stroke-stone-800'} transition-opacity duration-500 ease-out`}
+              className={`${lvl === 1 ? 'stroke-stone-300 dark:stroke-[#1E293B]' : 'stroke-stone-200 dark:stroke-[#1E293B]/70'} transition-opacity duration-500 ease-out`}
               style={{ opacity: grown ? 1 : 0, transitionDelay: `${li * 70}ms` }}
             />
           );
@@ -394,7 +394,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
               x1={center} y1={center}
               x2={center + radius * Math.cos(angle)} y2={center + radius * Math.sin(angle)}
               strokeWidth={isHovered ? 2 : 1}
-              className={`${isHovered ? 'stroke-emerald-500 dark:stroke-emerald-400' : 'stroke-stone-200 dark:stroke-stone-800'} transition-all duration-200`}
+              className={`${isHovered ? 'stroke-emerald-500 dark:stroke-[#34D399]' : 'stroke-stone-200 dark:stroke-[#1E293B]'} transition-all duration-200`}
               style={{ opacity: grown ? 1 : 0, transitionDelay: '180ms' }}
             />
           );
@@ -406,7 +406,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
           fill="none"
           strokeWidth={1.5}
           strokeDasharray="4 3"
-          className="stroke-stone-400/80 dark:stroke-stone-500 transition-opacity duration-500 ease-out"
+          className="stroke-stone-400/80 dark:stroke-[#8492A6] transition-opacity duration-500 ease-out"
           style={{ opacity: grown ? 1 : 0, transitionDelay: '320ms' }}
         />
 
@@ -435,7 +435,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
               cx={center}
               cy={center - radius}
               r={3}
-              fill="#34d399"
+              fill="#2dd4bf"
               filter={`url(#radarBloom-${animKey})`}
             />
           </g>
@@ -454,8 +454,8 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
           {/* Main filled polygon with breathing animation */}
           <polygon
             points={dataPoints.map(p => p.join(',')).join(' ')}
-            fill="rgba(16, 185, 129, 0.22)"
-            stroke="#10b981"
+            fill="rgba(34, 197, 94, 0.18)"
+            stroke="#22c55e"
             strokeWidth={2.2}
             className="animate-radar-breathe transition-all duration-300"
             filter={`url(#radarBloom-${animKey})`}
@@ -477,7 +477,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
                   cy={p[1]}
                   r={8}
                   fill="none"
-                  stroke="#10b981"
+                  stroke="#22c55e"
                   strokeWidth={1.5}
                   className="animate-ping origin-center opacity-40 pointer-events-none"
                   style={{ animationDuration: '3s', animationDelay: `${i * 450}ms` }}
@@ -487,7 +487,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
                   cx={p[0]}
                   cy={p[1]}
                   r={isHovered ? 7.5 : 4.5}
-                  fill="#10b981"
+                  fill="#2dd4bf"
                   fillOpacity={isHovered ? 0.95 : 0.6}
                   className="transition-all duration-200"
                 />
@@ -497,7 +497,7 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
                   cy={p[1]}
                   r={isHovered ? 4.5 : 2.5}
                   fill="#ffffff"
-                  stroke="#059669"
+                  stroke="#22c55e"
                   strokeWidth={1}
                   className="transition-all duration-200"
                 />
@@ -523,8 +523,8 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
               onMouseLeave={() => setHoveredAxis(null)}
               className={`cursor-pointer transition-all duration-200 ${
                 isHovered
-                  ? 'fill-emerald-600 dark:fill-emerald-400 font-bold text-xs scale-110'
-                  : 'fill-stone-600 dark:fill-stone-300 font-medium'
+                  ? 'fill-emerald-600 dark:fill-[#34D399] font-bold text-xs scale-110'
+                  : 'fill-stone-600 dark:fill-[#CBD5E1] font-medium'
               }`}
               style={{
                 fontSize: isHovered ? 12 : 11,
@@ -541,12 +541,12 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
       {/* Interactive Tooltip / Status Display below chart */}
       <div className="mt-3.5 flex items-center justify-center min-h-[30px] w-full">
         {hoveredAxis !== null ? (
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700 shadow-sm animate-fade-in">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-[#101D2D] text-emerald-800 dark:text-[#34D399] border border-emerald-300 dark:border-emerald-500/30 shadow-sm animate-fade-in">
+            <span className="w-2 h-2 rounded-full bg-[#2DD4BF] animate-pulse" />
             <span>
               {axes[hoveredAxis].label}: {Math.round(axes[hoveredAxis].value)}% of target
             </span>
-            <span className="text-[10px] px-1.5 py-0.2 rounded font-bold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300">
+            <span className="text-[10px] px-1.5 py-0.2 rounded font-bold bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-[#34D399]">
               {axes[hoveredAxis].value >= 90 && axes[hoveredAxis].value <= 115
                 ? '🎯 Target Met'
                 : axes[hoveredAxis].value < 90
@@ -555,8 +555,8 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
             </span>
           </div>
         ) : (
-          <div className="inline-flex items-center gap-1.5 text-xs text-stone-400 dark:text-stone-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block" />
+          <div className="inline-flex items-center gap-1.5 text-xs text-stone-400 dark:text-[#8492A6]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2DD4BF] animate-ping inline-block" />
             <span>Hover on radar points to inspect individual macros</span>
           </div>
         )}
@@ -569,28 +569,28 @@ export function RadarChart({ axes, size = 240, maxValue = 150 }: { axes: { label
 const statusBarColor: Record<string, string> = {
   met: "#22c55e",
   low: "#f59e0b",
-  attention: "#ef4444",
-  professional: "#ef4444",
-  "insufficient-data": "#0ea5e9",
+  attention: "#f43f5e",
+  professional: "#f43f5e",
+  "insufficient-data": "#60a5fa",
 };
 
 export function NutrientBarRow({ label, pct, status, valueLabel, cap = 150, delayMs = 0 }: { label: string; pct: number; status: string; valueLabel: string; cap?: number; delayMs?: number }) {
   const grown = useGrowIn();
   const width = Math.min(100, (Math.max(0, pct) / cap) * 100);
   const markerPos = (100 / cap) * 100;
-  const color = statusBarColor[status] || "#a8a29e";
+  const color = statusBarColor[status] || "#8492a6";
   return (
     <div>
       <div className="flex items-baseline justify-between mb-1">
-        <span className="text-sm font-medium text-stone-700">{label}</span>
-        <span className="text-xs text-stone-500 tabular-nums">{valueLabel}</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-[#CBD5E1]">{label}</span>
+        <span className="text-xs text-stone-500 dark:text-[#8492A6] tabular-nums">{valueLabel}</span>
       </div>
-      <div className="h-2.5 rounded-full bg-stone-200/70 overflow-hidden relative">
+      <div className="h-2.5 rounded-full bg-stone-200/70 dark:bg-[#101D2D] overflow-hidden relative">
         <div
           className="h-full rounded-full transition-all ease-out"
           style={{ width: grown ? `${width}%` : '0%', backgroundColor: color, transitionDuration: '750ms', transitionDelay: `${delayMs}ms` }}
         />
-        <div className="absolute inset-y-0 w-px bg-stone-500/40" style={{ left: `${markerPos}%` }} title="100% of RDI" />
+        <div className="absolute inset-y-0 w-px bg-stone-500/40 dark:bg-[#1E293B]" style={{ left: `${markerPos}%` }} title="100% of RDI" />
       </div>
     </div>
   );
@@ -611,12 +611,12 @@ export function MacroMiniBar({ protein, carbs, fat }: { protein: number; carbs: 
   const total = pCal + cCal + fCal || 1;
   const segs = [
     { label: "Protein", pct: (pCal / total) * 100, color: "#22c55e" },
-    { label: "Carbs", pct: (cCal / total) * 100, color: "#0ea5e9" },
+    { label: "Carbs", pct: (cCal / total) * 100, color: "#60a5fa" }, // Subtle blue tech accent
     { label: "Fat", pct: (fCal / total) * 100, color: "#f59e0b" },
   ];
   return (
     <div>
-      <div className="h-2 rounded-full overflow-hidden flex w-full bg-stone-100">
+      <div className="h-2 rounded-full overflow-hidden flex w-full bg-stone-100 dark:bg-[#101D2D]">
         {segs.map((s, i) => (
           <div
             key={i}
@@ -627,7 +627,7 @@ export function MacroMiniBar({ protein, carbs, fat }: { protein: number; carbs: 
       </div>
       <div className="flex gap-3 mt-1.5 flex-wrap">
         {segs.map((s, i) => (
-          <span key={i} className="flex items-center gap-1 text-[10px] text-stone-500 font-medium">
+          <span key={i} className="flex items-center gap-1 text-[10px] text-stone-500 dark:text-[#8492A6] font-medium">
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: s.color }} />
             {s.label} {Math.round(s.pct)}%
           </span>

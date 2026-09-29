@@ -267,39 +267,39 @@ export function TodayStreak({
       {/* Floating Notification */}
       {notification && (
         <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">
-          <div className="px-5 py-3 rounded-2xl bg-[#202227] text-white text-xs sm:text-sm font-semibold shadow-2xl border border-emerald-500/50 flex items-center gap-2.5">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div className="px-5 py-3 rounded-2xl bg-[#101D2D] text-[#F8FAFC] text-xs sm:text-sm font-semibold shadow-2xl border border-[#22C55E]/50 flex items-center gap-2.5">
+            <Sparkles className="w-4 h-4 text-[#34D399]" />
             <span>{notification}</span>
           </div>
         </div>
       )}
 
       {/* Top Cross-Link Navigation Banner */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#202227] via-[#262830] to-[#202227] border border-[#32353e] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#07111F] via-[#0B0F0E] to-[#101D2D] border border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
         <div className="flex items-center gap-3 text-center sm:text-left">
           <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-display font-bold text-sm sm:text-base text-white">
+            <h3 className="font-display font-bold text-sm sm:text-base text-[#F8FAFC]">
               Looking for the full 30-Day Journey?
             </h3>
-            <p className="text-xs text-stone-400">
+            <p className="text-xs text-[#8492A6]">
               Track your 30-day roadmap, unlock milestones at Day 7, 14, 21, and earn the Master Champion Certificate.
             </p>
           </div>
         </div>
         <button
           onClick={() => onNavigate('challenge')}
-          className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#32353e] hover:bg-[#3d414c] text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 border border-stone-600/50 cursor-pointer shadow-sm"
+          className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] text-[#F8FAFC] font-semibold text-xs transition-all flex items-center justify-center gap-2 border border-[#1E293B] cursor-pointer shadow-sm"
         >
           <span>View 30-Day Road-map</span>
-          <ArrowRight className="w-4 h-4 text-amber-400" />
+          <ArrowRight className="w-4 h-4 text-[#34D399]" />
         </button>
       </div>
 
       {/* Hero Header: Today's Mission Only */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#202227] via-[#24262d] to-[#1c1d21] border border-[#32353e] p-6 sm:p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#07111F] via-[#0B0F0E] to-[#101D2D] border border-[#1E293B] p-6 sm:p-8 shadow-xl">
         <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-orange-500/10 via-amber-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
@@ -331,7 +331,7 @@ export function TodayStreak({
 
           {/* Quick Streak & Check-in Pill */}
           <div className="flex flex-col sm:flex-row lg:flex-col items-stretch gap-3 w-full lg:w-auto flex-shrink-0">
-            <div className="flex items-center justify-between sm:justify-start gap-4 p-4 rounded-2xl bg-[#18191c] border border-[#32353e]">
+            <div className="flex items-center justify-between sm:justify-start gap-4 p-4 rounded-2xl bg-[#101D2D] border border-[#1E293B]">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 shadow-inner">
                   <Flame className="w-7 h-7 stroke-[2.5] animate-bounce-subtle" />
@@ -341,12 +341,12 @@ export function TodayStreak({
                     {streak.currentStreak}{' '}
                     <span className="text-xs font-semibold text-orange-400">DAYS</span>
                   </div>
-                  <div className="text-[11px] text-stone-400 font-medium">
+                  <div className="text-[11px] text-[#8492A6] font-medium">
                     Current Streak Active
                   </div>
                 </div>
               </div>
-              <div className="text-right border-l border-stone-800 pl-4">
+              <div className="text-right border-l border-[#1E293B] pl-4">
                 <div className="text-base font-display font-bold text-amber-400">
                   {streak.longestStreak}d
                 </div>
@@ -385,22 +385,22 @@ export function TodayStreak({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Actionable Checklist (To-Do List with Tick marks) */}
         <div className="lg:col-span-7 space-y-6">
-          <div className="p-6 rounded-3xl bg-[#202227] border border-[#32353e] shadow-lg space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-[#32353e]">
+          <div className="p-6 rounded-3xl bg-[#0B0F0E] border border-[#1E293B] shadow-lg space-y-5">
+            <div className="flex items-center justify-between pb-3 border-b border-[#1E293B]">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center border border-brand-500/30">
+                <div className="w-9 h-9 rounded-xl bg-[#22C55E]/15 text-[#34D399] flex items-center justify-center border border-[#22C55E]/30">
                   <ListTodo className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-base text-white">
+                  <h3 className="font-display font-bold text-base text-[#F8FAFC]">
                     Today's Actionable Checklist
                   </h3>
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs text-[#8492A6]">
                     Tick all items as you accomplish them throughout the day
                   </p>
                 </div>
               </div>
-              <span className="px-2.5 py-1 rounded-lg bg-[#18191c] text-xs font-bold text-stone-300 border border-[#32353e]">
+              <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-xs font-bold text-[#CBD5E1] border border-[#1E293B]">
                 {tickedIndices.length} / {totalTodos} done
               </span>
             </div>
@@ -414,16 +414,16 @@ export function TodayStreak({
                     onClick={() => handleToggleTodo(idx)}
                     className={`group p-4 rounded-2xl border transition-all cursor-pointer flex items-start gap-3.5 select-none ${
                       isTicked
-                        ? 'bg-emerald-950/25 border-emerald-600/50 text-emerald-200'
-                        : 'bg-[#18191c] border-[#32353e] hover:border-brand-500/50 text-stone-300 hover:text-white'
+                        ? 'bg-emerald-950/25 border-[#22C55E]/50 text-emerald-200'
+                        : 'bg-[#101D2D] border-[#1E293B] hover:border-[#22C55E]/50 text-[#CBD5E1] hover:text-[#F8FAFC]'
                     }`}
                   >
                     <button
                       type="button"
                       className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all ${
                         isTicked
-                          ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/40'
-                          : 'border-2 border-stone-600 group-hover:border-brand-400 bg-transparent'
+                          ? 'bg-[#22C55E] text-[#07111F] shadow-md shadow-[#22C55E]/40 font-bold'
+                          : 'border-2 border-stone-600 group-hover:border-[#2DD4BF] bg-transparent'
                       }`}
                     >
                       {isTicked && <Check className="w-4 h-4 stroke-[3]" />}
@@ -445,7 +445,7 @@ export function TodayStreak({
                 className={`w-full py-3.5 px-6 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2.5 shadow-lg cursor-pointer ${
                   isTodayCompleted
                     ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/30'
-                    : 'bg-gradient-to-r from-brand-600 to-emerald-700 hover:from-brand-500 hover:to-emerald-600 text-white shadow-brand-500/25'
+                    : 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-[#22C55E]/25'
                 }`}
               >
                 {isTodayCompleted ? (
@@ -468,17 +468,17 @@ export function TodayStreak({
           </div>
 
           {/* Deep Metabolic Science Explainer Card */}
-          <div className="p-6 rounded-3xl bg-[#202227] border border-[#32353e] shadow-lg space-y-4">
-            <div className="flex items-center gap-2.5 pb-2 border-b border-[#32353e]">
+          <div className="p-6 rounded-3xl bg-[#0B0F0E] border border-[#1E293B] shadow-lg space-y-4">
+            <div className="flex items-center gap-2.5 pb-2 border-b border-[#1E293B]">
               <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
                 <BookOpen className="w-4 h-4" />
               </div>
-              <h4 className="font-display font-bold text-sm sm:text-base text-white">
+              <h4 className="font-display font-bold text-sm sm:text-base text-[#F8FAFC]">
                 Metabolic Science: Why Today's Mission Matters
               </h4>
             </div>
 
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">
               {currentTask.explanation}
             </p>
 
@@ -497,17 +497,17 @@ export function TodayStreak({
         {/* Right Column: Today's Hydration & Food Tracker */}
         <div className="lg:col-span-5 space-y-6">
           {/* Hydration Tracker */}
-          <div className="p-6 rounded-3xl bg-[#202227] border border-[#32353e] shadow-lg space-y-5">
+          <div className="p-6 rounded-3xl bg-[#0B0F0E] border border-[#1E293B] shadow-lg space-y-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+                <div className="w-9 h-9 rounded-xl bg-[#60A5FA]/20 text-[#60A5FA] flex items-center justify-center border border-[#60A5FA]/30">
                   <Droplet className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-display font-bold text-base text-white">
+                  <h3 className="font-display font-bold text-base text-[#F8FAFC]">
                     Today's Hydration Tracker
                   </h3>
-                  <p className="text-xs text-stone-400">
+                  <p className="text-xs text-[#8492A6]">
                     Target: {userSettings.waterTargetMl.toLocaleString()} ml
                   </p>
                 </div>
@@ -515,7 +515,7 @@ export function TodayStreak({
               <button
                 onClick={handleResetWater}
                 title="Reset counter"
-                className="p-1.5 rounded-lg text-stone-400 hover:text-white hover:bg-[#32353e] transition-colors"
+                className="p-1.5 rounded-lg text-[#8492A6] hover:text-[#F8FAFC] hover:bg-[#1E293B] transition-colors"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
               </button>
@@ -524,17 +524,17 @@ export function TodayStreak({
             {/* Progress Display */}
             <div className="space-y-2">
               <div className="flex justify-between items-baseline">
-                <span className="text-2xl font-display font-extrabold text-blue-400">
+                <span className="text-2xl font-display font-extrabold text-[#60A5FA]">
                   {waterAmount}{' '}
-                  <span className="text-xs font-normal text-stone-400">ml</span>
+                  <span className="text-xs font-normal text-[#8492A6]">ml</span>
                 </span>
-                <span className="text-xs font-semibold text-stone-400">
+                <span className="text-xs font-semibold text-[#8492A6]">
                   {waterPercent}% of target
                 </span>
               </div>
-              <div className="w-full h-3 bg-[#18191c] rounded-full overflow-hidden border border-[#32353e]">
+              <div className="w-full h-3 bg-[#101D2D] rounded-full overflow-hidden border border-[#1E293B]">
                 <div
-                  className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#60A5FA] to-[#2DD4BF] rounded-full transition-all duration-500"
                   style={{ width: `${waterPercent}%` }}
                 />
               </div>
@@ -544,39 +544,39 @@ export function TodayStreak({
             <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => handleAddWater(250)}
-                className="py-2.5 px-3 rounded-xl bg-[#18191c] hover:bg-[#282a32] border border-[#32353e] hover:border-blue-500/50 text-stone-200 text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
+                className="py-2.5 px-3 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#60A5FA]/50 text-[#CBD5E1] text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
               >
-                <span className="text-blue-400 font-extrabold">+250 ml</span>
-                <span className="text-[10px] text-stone-400 font-normal">1 Glass</span>
+                <span className="text-[#60A5FA] font-extrabold">+250 ml</span>
+                <span className="text-[10px] text-[#8492A6] font-normal">1 Glass</span>
               </button>
               <button
                 onClick={() => handleAddWater(500)}
-                className="py-2.5 px-3 rounded-xl bg-[#18191c] hover:bg-[#282a32] border border-[#32353e] hover:border-blue-500/50 text-stone-200 text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
+                className="py-2.5 px-3 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#60A5FA]/50 text-[#CBD5E1] text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
               >
-                <span className="text-cyan-400 font-extrabold">+500 ml</span>
-                <span className="text-[10px] text-stone-400 font-normal">1 Bottle</span>
+                <span className="text-[#2DD4BF] font-extrabold">+500 ml</span>
+                <span className="text-[10px] text-[#8492A6] font-normal">1 Bottle</span>
               </button>
               <button
                 onClick={() => handleAddWater(1000)}
-                className="py-2.5 px-3 rounded-xl bg-[#18191c] hover:bg-[#282a32] border border-[#32353e] hover:border-blue-500/50 text-stone-200 text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
+                className="py-2.5 px-3 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#60A5FA]/50 text-[#CBD5E1] text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 cursor-pointer"
               >
-                <span className="text-teal-400 font-extrabold">+1000 ml</span>
-                <span className="text-[10px] text-stone-400 font-normal">1 Liter Jug</span>
+                <span className="text-[#34D399] font-extrabold">+1000 ml</span>
+                <span className="text-[10px] text-[#8492A6] font-normal">1 Liter Jug</span>
               </button>
             </div>
           </div>
 
           {/* Today's Food Adherence Tracker */}
-          <div className="p-6 rounded-3xl bg-[#202227] border border-[#32353e] shadow-lg space-y-4">
+          <div className="p-6 rounded-3xl bg-[#0B0F0E] border border-[#1E293B] shadow-lg space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center border border-brand-500/30">
+              <div className="w-9 h-9 rounded-xl bg-[#22C55E]/15 text-[#34D399] flex items-center justify-center border border-[#22C55E]/30">
                 <Utensils className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-base text-white">
+                <h3 className="font-display font-bold text-base text-[#F8FAFC]">
                   Today's Food Adherence
                 </h3>
-                <p className="text-xs text-stone-400">
+                <p className="text-xs text-[#8492A6]">
                   Tap to record what healthy habits you adhered to today
                 </p>
               </div>
@@ -591,8 +591,8 @@ export function TodayStreak({
                     onClick={() => handleToggleFoodTag(tag)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border cursor-pointer ${
                       isSelected
-                        ? 'bg-brand-500/20 text-brand-300 border-brand-500/50 shadow-sm'
-                        : 'bg-[#18191c] text-stone-400 border-[#32353e] hover:text-stone-200 hover:border-stone-500'
+                        ? 'bg-[#22C55E]/20 text-[#34D399] border-[#22C55E]/50 shadow-sm'
+                        : 'bg-[#101D2D] text-[#8492A6] border-[#1E293B] hover:text-[#F8FAFC] hover:border-[#1E293B]'
                     }`}
                   >
                     {isSelected ? '✓ ' : '+ '}
@@ -604,7 +604,7 @@ export function TodayStreak({
 
             {/* Food Reflection / Notes */}
             <div className="pt-2 space-y-2">
-              <label className="text-xs font-semibold text-stone-300 block">
+              <label className="text-xs font-semibold text-[#CBD5E1] block">
                 Daily Food & Energy Reflection:
               </label>
               <textarea
@@ -612,11 +612,11 @@ export function TodayStreak({
                 onChange={(e) => setFoodNote(e.target.value)}
                 placeholder="Log how your body felt today, digestion, energy levels..."
                 rows={3}
-                className="w-full p-3 rounded-xl bg-[#18191c] border border-[#32353e] text-xs sm:text-sm text-stone-200 placeholder-stone-500 focus:outline-none focus:border-brand-500 transition-colors resize-none"
+                className="w-full p-3 rounded-xl bg-[#101D2D] border border-[#1E293B] text-xs sm:text-sm text-[#F8FAFC] placeholder-[#8492A6] focus:outline-none focus:border-[#22C55E] transition-colors resize-none"
               />
               <button
                 onClick={handleSaveFoodNote}
-                className="w-full py-2 px-3 rounded-xl bg-[#2b2d35] hover:bg-[#343740] border border-[#3d404d] text-stone-200 font-semibold text-xs transition-all cursor-pointer"
+                className="w-full py-2 px-3 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] border border-[#1E293B] text-[#CBD5E1] font-semibold text-xs transition-all cursor-pointer"
               >
                 Save Nutrition Reflection
               </button>
@@ -628,28 +628,28 @@ export function TodayStreak({
       {/* Single-Day Completion Celebration Modal */}
       {dayCelebration && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#252830] to-[#1c1d22] border-2 border-emerald-500/70 p-6 sm:p-8 shadow-[0_0_50px_rgba(16,185,129,0.35)] text-center space-y-6">
+          <div className="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-[#0B0F0E] to-[#07111F] border-2 border-[#22C55E]/70 p-6 sm:p-8 shadow-[0_0_50px_rgba(34,197,94,0.25)] text-center space-y-6">
             <button
               onClick={() => setDayCelebration(null)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-white bg-[#18191c] hover:bg-[#32353e] transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-xl text-[#8492A6] hover:text-[#F8FAFC] bg-[#101D2D] hover:bg-[#1E293B] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-amber-400 flex items-center justify-center text-white shadow-xl shadow-emerald-500/30 animate-bounce">
+            <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-[#22C55E] via-[#2DD4BF] to-amber-400 flex items-center justify-center text-[#07111F] shadow-xl shadow-[#22C55E]/30 animate-bounce">
               <PartyPopper className="w-10 h-10 stroke-[2.5]" />
             </div>
 
             <div className="space-y-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#22C55E]/20 text-[#34D399] border border-[#22C55E]/40">
                 Day {dayCelebration.day} Complete!
               </span>
-              <h3 className="font-display font-black text-2xl sm:text-3xl text-white">
+              <h3 className="font-display font-black text-2xl sm:text-3xl text-[#F8FAFC]">
                 Outstanding Commitment!
               </h3>
-              <p className="text-sm text-stone-300 leading-relaxed">
+              <p className="text-sm text-[#CBD5E1] leading-relaxed">
                 You successfully mastered today's habit:{' '}
-                <span className="font-bold text-emerald-300">
+                <span className="font-bold text-[#34D399]">
                   "{dayCelebration.title}"
                 </span>
                 . Your streak is now roaring at{' '}
@@ -660,17 +660,17 @@ export function TodayStreak({
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#18191c] border border-[#32353e] flex items-center justify-around">
+            <div className="p-4 rounded-2xl bg-[#101D2D] border border-[#1E293B] flex items-center justify-around">
               <div>
-                <div className="text-xs text-stone-400">Current Streak</div>
+                <div className="text-xs text-[#8492A6]">Current Streak</div>
                 <div className="text-2xl font-display font-extrabold text-orange-400">
                   {dayCelebration.streak} 🔥
                 </div>
               </div>
-              <div className="w-px h-8 bg-stone-700" />
+              <div className="w-px h-8 bg-[#1E293B]" />
               <div>
-                <div className="text-xs text-stone-400">Day Completed</div>
-                <div className="text-2xl font-display font-extrabold text-emerald-400">
+                <div className="text-xs text-[#8492A6]">Day Completed</div>
+                <div className="text-2xl font-display font-extrabold text-[#34D399]">
                   #{dayCelebration.day}
                 </div>
               </div>
@@ -679,7 +679,7 @@ export function TodayStreak({
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => setDayCelebration(null)}
-                className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all cursor-pointer"
+                className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-sm shadow-lg shadow-[#22C55E]/30 transition-all cursor-pointer"
               >
                 Keep the Momentum!
               </button>
@@ -688,10 +688,10 @@ export function TodayStreak({
                   setDayCelebration(null);
                   onNavigate('challenge');
                 }}
-                className="py-3 px-4 rounded-xl bg-[#2a2c35] hover:bg-[#343742] text-stone-200 font-semibold text-xs transition-all border border-stone-600/50 flex items-center justify-center gap-1.5 cursor-pointer"
+                className="py-3 px-4 rounded-xl bg-[#101D2D] hover:bg-[#1E293B] text-[#CBD5E1] font-semibold text-xs transition-all border border-[#1E293B] flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>30-Day Road-map</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-[#34D399]" />
               </button>
             </div>
           </div>

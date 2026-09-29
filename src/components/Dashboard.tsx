@@ -394,8 +394,8 @@ export function Dashboard({
             }}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               mealsSortOrder === opt.id
-                ? 'bg-brand-600 text-white shadow-sm scale-[1.02]'
-                : 'bg-stone-100 dark:bg-[#18191d] text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-[#282a32] border border-stone-200 dark:border-stone-700'
+                ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-sm scale-[1.02]'
+                : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-200 dark:hover:bg-[#1E293B] border border-stone-200 dark:border-[#1E293B]'
             }`}
           >
             {opt.label}
@@ -499,7 +499,7 @@ export function Dashboard({
         </div>
 
         {/* 3-Tab Perspective Switcher */}
-        <div className="p-1.5 rounded-2xl bg-white dark:bg-[#1a1c22] border border-stone-200/80 dark:border-[#2f323c] shadow-sm animate-fade-in">
+        <div className="p-1.5 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm animate-fade-in">
           <div className="grid grid-cols-3 gap-1.5 w-full">
             <button
               type="button"
@@ -509,8 +509,8 @@ export function Dashboard({
               }}
               className={`flex items-center justify-center gap-2 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
                 activeTab === 'fuel'
-                  ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white shadow-md shadow-emerald-500/20 scale-[1.01]'
-                  : 'text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800/60'
+                  ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-md shadow-[#22C55E]/20 scale-[1.01]'
+                  : 'text-stone-600 dark:text-[#CBD5E1] hover:text-stone-900 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#101D2D]'
               }`}
             >
               <Flame className="w-4 h-4 flex-shrink-0" />
@@ -525,8 +525,8 @@ export function Dashboard({
               }}
               className={`flex items-center justify-center gap-2 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
                 activeTab === 'meals'
-                  ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white shadow-md shadow-emerald-500/20 scale-[1.01]'
-                  : 'text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800/60'
+                  ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-md shadow-[#22C55E]/20 scale-[1.01]'
+                  : 'text-stone-600 dark:text-[#CBD5E1] hover:text-stone-900 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#101D2D]'
               }`}
             >
               <Soup className="w-4 h-4 flex-shrink-0" />
@@ -541,8 +541,8 @@ export function Dashboard({
               }}
               className={`flex items-center justify-center gap-2 py-3 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
                 activeTab === 'analytics'
-                  ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 text-white shadow-md shadow-emerald-500/20 scale-[1.01]'
-                  : 'text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800/60'
+                  ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-md shadow-[#22C55E]/20 scale-[1.01]'
+                  : 'text-stone-600 dark:text-[#CBD5E1] hover:text-stone-900 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#101D2D]'
               }`}
             >
               <Beaker className="w-4 h-4 flex-shrink-0" />
@@ -560,17 +560,17 @@ export function Dashboard({
           {/* Scan Food CTA */}
           <button
             onClick={() => setScannerOpen(true)}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-white to-teal-500/10 dark:from-emerald-950/40 dark:via-[#1e2027] dark:to-teal-950/30 hover:border-emerald-500/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/30 bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/60"
             title="What happens: Opens food search to log breakfast, lunch, dinner, or snacks"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-emerald-500/25">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-emerald-500/25">
               <Camera className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-white truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
                 🍽️ + Log Food
               </h3>
-              <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">
+              <p className="text-[11px] text-[#8492A6] truncate">
                 Search meal or snack
               </p>
             </div>
@@ -579,17 +579,17 @@ export function Dashboard({
           {/* Quick Water Button with droplet sound */}
           <button
             onClick={handleQuickWater}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-blue-500/30 bg-gradient-to-br from-blue-500/10 via-white to-cyan-500/10 dark:from-blue-950/40 dark:via-[#1e2027] dark:to-cyan-950/30 hover:border-blue-500/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-[#60A5FA]/30 bg-[#0B0F0E] dark:from-blue-950/40 dark:via-[#101D2D] dark:to-cyan-950/30 hover:border-[#60A5FA]/60"
             title="What happens: Logs a 250ml glass of water to your daily hydration"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-blue-500/25">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#60A5FA] to-cyan-500 flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-blue-500/25">
               <Droplet className="w-5 h-5 fill-cyan-100" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-white truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
                 💧 +1 Glass Water
               </h3>
-              <p className="text-[11px] text-blue-600 dark:text-blue-400 font-bold truncate">
+              <p className="text-[11px] text-[#60A5FA] font-bold truncate">
                 Adds 250ml to total
               </p>
             </div>
@@ -598,22 +598,22 @@ export function Dashboard({
           {/* Today's Streak CTA */}
           <button
             onClick={onGoToTodayStreak}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-white to-orange-500/10 dark:from-amber-950/40 dark:via-[#1e2027] dark:to-orange-950/30 hover:border-amber-500/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-amber-500/30 bg-[#0B0F0E] dark:from-amber-950/40 dark:via-[#101D2D] dark:to-orange-950/30 hover:border-amber-500/60"
             title="What happens: Opens your daily habit checklist and water log"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-amber-500/25">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-amber-500/25">
               <Flame className="w-5 h-5 fill-amber-200" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1">
-                <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-white truncate">
+                <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
                   Daily Habits
                 </h3>
-                <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400">
+                <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-400">
                   {streakCount || 1}d
                 </span>
               </div>
-              <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">
+              <p className="text-[11px] text-[#8492A6] truncate">
                 Daily check-in & water
               </p>
             </div>
@@ -622,17 +622,17 @@ export function Dashboard({
           {/* 30-Day Road-map CTA */}
           <button
             onClick={onGoToChallenge}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/25 bg-gradient-to-br from-emerald-500/10 via-white to-teal-500/10 dark:from-emerald-950/40 dark:via-[#1e2027] dark:to-teal-950/30 hover:border-emerald-500/50"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/25 bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/50"
             title="What happens: Shows your 30-day step-by-step habit road-map"
           >
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-emerald-500/20">
-              <Trophy className="w-5 h-5 text-white" />
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-emerald-500/20">
+              <Trophy className="w-5 h-5 text-[#07111F]" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-white truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
                 30-Day Road-map
               </h3>
-              <p className="text-[11px] text-stone-500 dark:text-stone-400 truncate">
+              <p className="text-[11px] text-[#8492A6] truncate">
                 Day {completedDaysCount ?? 1} of 30
               </p>
             </div>
@@ -911,7 +911,7 @@ export function Dashboard({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 p-1 rounded-2xl border border-stone-200 dark:border-stone-700">
+                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-[#101D2D] p-1 rounded-2xl border border-stone-200 dark:border-[#1E293B]">
                   <button
                     onClick={() => {
                       playChecklistSound(true);
@@ -919,8 +919,8 @@ export function Dashboard({
                     }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       macroViewMode === 'radar'
-                        ? 'bg-white dark:bg-[#282a32] text-brand-700 dark:text-brand-300 shadow-sm'
-                        : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'
+                        ? 'bg-white dark:bg-[#0B0F0E] text-[#22C55E] dark:text-[#34D399] shadow-sm'
+                        : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
                     }`}
                   >
                     Radar Chart
@@ -932,8 +932,8 @@ export function Dashboard({
                     }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       macroViewMode === 'bars'
-                        ? 'bg-white dark:bg-[#282a32] text-brand-700 dark:text-brand-300 shadow-sm'
-                        : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'
+                        ? 'bg-white dark:bg-[#0B0F0E] text-[#22C55E] dark:text-[#34D399] shadow-sm'
+                        : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
                     }`}
                   >
                     Side-by-Side
@@ -1022,7 +1022,7 @@ export function Dashboard({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-stone-800 p-1 rounded-2xl border border-stone-200 dark:border-stone-700">
+                <div className="flex items-center gap-1.5 bg-stone-100 dark:bg-[#101D2D] p-1 rounded-2xl border border-stone-200 dark:border-[#1E293B]">
                   <button
                     onClick={() => {
                       playChecklistSound(true);
@@ -1030,8 +1030,8 @@ export function Dashboard({
                     }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       microViewMode === 'donut'
-                        ? 'bg-white dark:bg-[#282a32] text-brand-700 dark:text-brand-300 shadow-sm'
-                        : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'
+                        ? 'bg-white dark:bg-[#0B0F0E] text-[#22C55E] dark:text-[#34D399] shadow-sm'
+                        : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
                     }`}
                   >
                     Pie Chart
@@ -1043,8 +1043,8 @@ export function Dashboard({
                     }}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       microViewMode === 'requirements'
-                        ? 'bg-white dark:bg-[#282a32] text-brand-700 dark:text-brand-300 shadow-sm'
-                        : 'text-stone-500 hover:text-stone-900 dark:hover:text-white'
+                        ? 'bg-white dark:bg-[#0B0F0E] text-[#22C55E] dark:text-[#34D399] shadow-sm'
+                        : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
                     }`}
                   >
                     User Targets
@@ -1092,7 +1092,7 @@ export function Dashboard({
                       return (
                         <div
                           key={req.name}
-                          className="p-2.5 rounded-2xl bg-stone-50 dark:bg-[#15171b] border border-stone-200/60 dark:border-stone-800 flex flex-col justify-between"
+                          className="p-2.5 rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200/60 dark:border-[#1E293B] flex flex-col justify-between"
                         >
                           <div className="flex items-center justify-between">
                             <span className="font-bold text-stone-900 dark:text-stone-100 flex items-center gap-1">
@@ -1190,7 +1190,7 @@ export function Dashboard({
         </div>
 
         {/* Deficiency Check CTA */}
-        <div className="card-lg p-6 bg-gradient-to-br from-brand-50/80 to-emerald-50/40 dark:from-[#22272a] dark:to-[#1c2220] border border-brand-200/40 dark:border-[#32353e] animate-fade-in" style={{ animationDelay: '360ms' }}>
+        <div className="card-lg p-6 bg-gradient-to-br from-brand-50/80 to-emerald-50/40 dark:from-[#0B0F0E] dark:to-[#101D2D] border border-brand-200/40 dark:border-[#1E293B] animate-fade-in" style={{ animationDelay: '360ms' }}>
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-600 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-brand-500/20">
@@ -1610,27 +1610,27 @@ function DietAnalysisRow({ item }: { item: { label: string; status: string; mess
   const statusConfig = {
     good: {
       icon: CheckCircle2,
-      color: "text-emerald-500 dark:text-emerald-400",
-      bg: "bg-emerald-50/80 dark:bg-[#1a2320] border border-emerald-200/80 dark:border-emerald-800/50",
-      labelColor: "text-emerald-700 dark:text-emerald-400",
-      titleColor: "text-stone-900 dark:text-white",
-      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+      color: "text-emerald-500 dark:text-[#34D399]",
+      bg: "bg-emerald-50/80 dark:bg-[#0B0F0E] border border-emerald-200/80 dark:border-[#22C55E]/30",
+      labelColor: "text-emerald-700 dark:text-[#34D399]",
+      titleColor: "text-stone-900 dark:text-[#F8FAFC]",
+      detailColor: "text-stone-600 dark:text-[#CBD5E1]",
     },
     attention: {
       icon: AlertTriangle,
       color: "text-amber-500 dark:text-amber-400",
-      bg: "bg-amber-50/80 dark:bg-[#25221b] border border-amber-200/80 dark:border-amber-800/50",
+      bg: "bg-amber-50/80 dark:bg-[#0B0F0E] border border-amber-200/80 dark:border-amber-500/30",
       labelColor: "text-amber-700 dark:text-amber-400",
-      titleColor: "text-stone-900 dark:text-white",
-      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+      titleColor: "text-stone-900 dark:text-[#F8FAFC]",
+      detailColor: "text-stone-600 dark:text-[#CBD5E1]",
     },
     caution: {
       icon: Info,
       color: "text-orange-500 dark:text-orange-400",
-      bg: "bg-orange-50/80 dark:bg-[#261f1c] border border-orange-200/80 dark:border-orange-800/50",
+      bg: "bg-orange-50/80 dark:bg-[#0B0F0E] border border-orange-200/80 dark:border-orange-500/30",
       labelColor: "text-orange-700 dark:text-orange-400",
-      titleColor: "text-stone-900 dark:text-white",
-      detailColor: "text-stone-600 dark:text-[#a0a5b2]",
+      titleColor: "text-stone-900 dark:text-[#F8FAFC]",
+      detailColor: "text-stone-600 dark:text-[#CBD5E1]",
     },
   };
   const config = statusConfig[item.status as keyof typeof statusConfig] || statusConfig.attention;

@@ -225,50 +225,50 @@ export function PersonalizedMealHelper({
   return (
     <div className="card-lg p-6 sm:p-8 animate-fade-in space-y-6">
       {/* Header & User Details Summary */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-stone-200/60 dark:border-[#32353e]">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-stone-200/60 dark:border-[#1E293B]">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="p-1.5 rounded-lg bg-brand-500/10 text-brand-600 dark:text-brand-400">
+            <span className="p-1.5 rounded-lg bg-emerald-500/10 text-[#22C55E] dark:text-[#34D399]">
               <ChefHat className="w-4 h-4" />
             </span>
-            <h2 className="font-display font-bold text-xl sm:text-2xl text-stone-900 dark:text-[#f4f5f7]">
+            <h2 className="font-display font-bold text-xl sm:text-2xl text-stone-900 dark:text-[#F8FAFC]">
               Smart Meal Maker & Recipe Helper
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-stone-500 dark:text-[#828795]">
+          <p className="text-xs sm:text-sm text-stone-500 dark:text-[#8492A6]">
             Easy, delicious meal ideas custom-picked for what your body needs right now to hit today's targets.
           </p>
         </div>
 
         {/* User Details Pill Box */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#18191d] border border-stone-200 dark:border-[#32353e] font-semibold text-stone-700 dark:text-[#d1d5db]">
-            Diet: <strong className="capitalize text-brand-600 dark:text-brand-400">{profile.diet || 'Standard'}</strong>
+          <span className="px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] font-semibold text-stone-700 dark:text-[#CBD5E1]">
+            Diet: <strong className="capitalize text-emerald-600 dark:text-[#34D399]">{profile.diet || 'Standard'}</strong>
           </span>
-          <span className="px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#18191d] border border-stone-200 dark:border-[#32353e] font-semibold text-stone-700 dark:text-[#d1d5db]">
-            Goal: <strong className="capitalize text-brand-600 dark:text-brand-400">{profile.goal || 'Health'}</strong>
+          <span className="px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] font-semibold text-stone-700 dark:text-[#CBD5E1]">
+            Goal: <strong className="capitalize text-emerald-600 dark:text-[#34D399]">{profile.goal || 'Health'}</strong>
           </span>
           <span className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 font-bold text-amber-600 dark:text-amber-400">
             {remainingCalories} kcal left today
           </span>
-          <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-bold text-emerald-600 dark:text-emerald-400">
+          <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-bold text-emerald-600 dark:text-[#34D399]">
             {remainingProtein}g protein needed
           </span>
         </div>
       </div>
 
       {/* 3 Golden Questions Quick Helper for Absolute Beginners */}
-      <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-stone-700 dark:text-[#d1d5db] grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-stone-700 dark:text-[#CBD5E1] grid grid-cols-1 md:grid-cols-3 gap-3">
         <div>
-          <span className="font-bold text-emerald-700 dark:text-emerald-400 block mb-0.5">👁️ 1. What am I looking at?</span>
+          <span className="font-bold text-emerald-700 dark:text-[#34D399] block mb-0.5">👁️ 1. What am I looking at?</span>
           <span>Personalized recipes that fit your remaining calorie and fuel budget for today.</span>
         </div>
         <div>
-          <span className="font-bold text-emerald-700 dark:text-emerald-400 block mb-0.5">👉 2. What should I do?</span>
+          <span className="font-bold text-emerald-700 dark:text-[#34D399] block mb-0.5">👉 2. What should I do?</span>
           <span>Pick any meal you want to eat and tap <strong>"+ Log to Today"</strong>.</span>
         </div>
         <div>
-          <span className="font-bold text-emerald-700 dark:text-emerald-400 block mb-0.5">✨ 3. What happens next?</span>
+          <span className="font-bold text-emerald-700 dark:text-[#34D399] block mb-0.5">✨ 3. What happens next?</span>
           <span>It adds the exact calories and nutrients directly into your daily tracker circles above!</span>
         </div>
       </div>
@@ -293,8 +293,8 @@ export function PersonalizedMealHelper({
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                   selectedMealType === tab.id
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'bg-stone-100 dark:bg-[#18191d] text-stone-600 dark:text-[#d1d5db] hover:bg-stone-200 dark:hover:bg-[#282a32]'
+                    ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-sm'
+                    : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-200 dark:hover:bg-[#101D2D]/80 border border-stone-200 dark:border-[#1E293B]'
                 }`}
               >
                 {tab.label}
@@ -310,14 +310,14 @@ export function PersonalizedMealHelper({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search ingredient or dish..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl bg-stone-100 dark:bg-[#18191d] border border-stone-200 dark:border-[#32353e] text-stone-900 dark:text-white focus:outline-none focus:border-brand-500"
+              className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl bg-stone-100 dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] focus:outline-none focus:border-[#2DD4BF]"
             />
           </div>
         </div>
 
         {/* Goal Quick Filters */}
         <div className="flex items-center gap-1.5 flex-wrap text-xs">
-          <span className="text-stone-400 dark:text-[#717684] text-[11px] font-medium mr-1 flex items-center gap-1">
+          <span className="text-stone-400 dark:text-[#8492A6] text-[11px] font-medium mr-1 flex items-center gap-1">
             <Filter className="w-3 h-3" /> Quick Filter:
           </span>
           {[
@@ -334,8 +334,8 @@ export function PersonalizedMealHelper({
               }}
               className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
                 selectedGoalFilter === gf.id
-                  ? 'bg-brand-100 dark:bg-brand-950/70 text-brand-800 dark:text-brand-300 font-bold border border-brand-300 dark:border-brand-700/60'
-                  : 'bg-stone-100 dark:bg-[#18191d] text-stone-500 dark:text-[#828795] hover:text-stone-800 dark:hover:text-[#f4f5f7]'
+                  ? 'bg-emerald-500/20 text-emerald-700 dark:text-[#34D399] font-bold border border-emerald-500/40'
+                  : 'bg-stone-100 dark:bg-[#101D2D] text-stone-500 dark:text-[#8492A6] hover:text-stone-800 dark:hover:text-[#F8FAFC] border border-stone-200 dark:border-[#1E293B]'
               }`}
             >
               {gf.label}
@@ -344,9 +344,9 @@ export function PersonalizedMealHelper({
         </div>
 
         {/* Dynamic Sort Toolbar: Sort by what you need max */}
-        <div className="flex items-center gap-2 flex-wrap text-xs pt-1 p-3 rounded-2xl bg-brand-50/50 dark:bg-[#15191c] border border-brand-200/60 dark:border-brand-900/40">
-          <span className="text-xs font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
-            <ArrowDownWideNarrow className="w-4 h-4 text-brand-600 dark:text-brand-400" /> Sort by Need:
+        <div className="flex items-center gap-2 flex-wrap text-xs pt-1 p-3 rounded-2xl bg-stone-100 dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B]">
+          <span className="text-xs font-bold text-stone-800 dark:text-[#CBD5E1] flex items-center gap-1.5">
+            <ArrowDownWideNarrow className="w-4 h-4 text-[#22C55E] dark:text-[#34D399]" /> Sort by Need:
           </span>
           {[
             { id: 'need', label: '🎯 Most Needed First (Max Gap Match)' },
@@ -364,8 +364,8 @@ export function PersonalizedMealHelper({
               }}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                 sortBy === opt.id
-                  ? 'bg-brand-600 text-white shadow-md scale-[1.02]'
-                  : 'bg-white dark:bg-[#202227] text-stone-600 dark:text-[#a0a5b2] hover:bg-stone-100 dark:hover:bg-[#282a32] border border-stone-200 dark:border-stone-700'
+                  ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-md scale-[1.02]'
+                  : 'bg-white dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-100 dark:hover:bg-[#101D2D]/80 border border-stone-200 dark:border-[#1E293B]'
               }`}
             >
               {opt.label}
@@ -383,17 +383,17 @@ export function PersonalizedMealHelper({
           return (
             <div
               key={recipe.id}
-              className="p-5 rounded-2xl border border-stone-200 dark:border-[#32353e] bg-stone-50/50 dark:bg-[#18191d] hover:border-brand-400 dark:hover:border-brand-500/60 transition-all flex flex-col justify-between gap-4 shadow-sm"
+              className="p-5 rounded-2xl border border-stone-200 dark:border-[#1E293B] bg-stone-50/50 dark:bg-[#0B0F0E] hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all flex flex-col justify-between gap-4 shadow-sm"
             >
               <div>
                 {/* Need Match & Rank Badges */}
                 <div className="flex items-center gap-2 mb-3 flex-wrap">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-brand-500/15 text-brand-700 dark:text-brand-300 border border-brand-500/30 flex items-center gap-1">
-                    <Award className="w-3 h-3 text-brand-500" />
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/15 text-emerald-800 dark:text-[#34D399] border border-emerald-500/30 flex items-center gap-1">
+                    <Award className="w-3 h-3 text-[#22C55E]" />
                     #{index + 1} {sortBy === 'need' ? 'Top Need Match' : 'Rank'} ({recipe.score}% Fit)
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 flex items-center gap-1">
-                    <Target className="w-3 h-3 text-emerald-500" />
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#60A5FA]/15 text-[#60A5FA] border border-[#60A5FA]/30 flex items-center gap-1">
+                    <Target className="w-3 h-3 text-[#60A5FA]" />
                     {recipe.needPill}
                   </span>
                 </div>
@@ -401,12 +401,12 @@ export function PersonalizedMealHelper({
                 {/* Top Card Info */}
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-2xl p-2 rounded-xl bg-white dark:bg-[#202227] shadow-sm">
+                    <span className="text-2xl p-2 rounded-xl bg-white dark:bg-[#101D2D] shadow-sm">
                       {recipe.icon}
                     </span>
                     <div>
-                      <div className="flex items-center gap-1.5 text-[11px] font-medium text-stone-500 dark:text-[#828795]">
-                        <span className="capitalize font-semibold text-brand-600 dark:text-brand-400">
+                      <div className="flex items-center gap-1.5 text-[11px] font-medium text-stone-500 dark:text-[#8492A6]">
+                        <span className="capitalize font-semibold text-emerald-600 dark:text-[#34D399]">
                           {recipe.mealType}
                         </span>
                         <span>•</span>
@@ -417,68 +417,68 @@ export function PersonalizedMealHelper({
                         <span>•</span>
                         <span>{recipe.difficulty}</span>
                       </div>
-                      <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#f4f5f7] leading-snug">
+                      <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC] leading-snug">
                         {recipe.name}
                       </h3>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs text-stone-600 dark:text-[#a0a5b2] leading-relaxed mb-3">
+                <p className="text-xs text-stone-600 dark:text-[#CBD5E1] leading-relaxed mb-3">
                   {recipe.description}
                 </p>
 
                 {/* Macro Badges */}
                 <div className="grid grid-cols-5 gap-1.5 text-center mb-3">
-                  <div className="p-1.5 rounded-lg bg-white dark:bg-[#202227] border border-stone-200/60 dark:border-[#282a32]">
-                    <div className="text-[10px] text-stone-400 dark:text-[#717684]">Energy</div>
-                    <div className="text-xs font-bold text-stone-900 dark:text-white tabular-nums">
+                  <div className="p-1.5 rounded-lg bg-white dark:bg-[#101D2D] border border-stone-200/60 dark:border-[#1E293B]">
+                    <div className="text-[10px] text-stone-400 dark:text-[#8492A6]">Energy</div>
+                    <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
                       {recipe.calories} kcal
                     </div>
                   </div>
-                  <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                    <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Protein</div>
-                    <div className="text-xs font-bold text-emerald-700 dark:text-emerald-300 tabular-nums">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-[#101D2D] border border-emerald-500/20 dark:border-emerald-500/30">
+                    <div className="text-[10px] text-emerald-600 dark:text-[#34D399] font-medium">Protein</div>
+                    <div className="text-xs font-bold text-emerald-700 dark:text-[#34D399] tabular-nums">
                       {recipe.protein}g
                     </div>
                   </div>
-                  <div className="p-1.5 rounded-lg bg-sky-500/10 border border-sky-500/20">
-                    <div className="text-[10px] text-sky-600 dark:text-sky-400 font-medium">Carbs</div>
-                    <div className="text-xs font-bold text-sky-700 dark:text-sky-300 tabular-nums">
+                  <div className="p-1.5 rounded-lg bg-sky-500/10 dark:bg-[#101D2D] border border-sky-500/20 dark:border-[#60A5FA]/30">
+                    <div className="text-[10px] text-[#60A5FA] font-medium">Carbs</div>
+                    <div className="text-xs font-bold text-[#60A5FA] tabular-nums">
                       {recipe.carbs}g
                     </div>
                   </div>
-                  <div className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                  <div className="p-1.5 rounded-lg bg-amber-500/10 dark:bg-[#101D2D] border border-amber-500/20 dark:border-amber-500/30">
                     <div className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">Fats</div>
                     <div className="text-xs font-bold text-amber-700 dark:text-amber-300 tabular-nums">
                       {recipe.fat}g
                     </div>
                   </div>
-                  <div className="p-1.5 rounded-lg bg-brand-500/10 border border-brand-500/20">
-                    <div className="text-[10px] text-brand-600 dark:text-brand-400 font-medium">Fiber</div>
-                    <div className="text-xs font-bold text-brand-700 dark:text-brand-300 tabular-nums">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-[#101D2D] border border-emerald-500/20 dark:border-emerald-500/30">
+                    <div className="text-[10px] text-emerald-600 dark:text-[#34D399] font-medium">Fiber</div>
+                    <div className="text-xs font-bold text-emerald-700 dark:text-[#34D399] tabular-nums">
                       {recipe.fiber}g
                     </div>
                   </div>
                 </div>
 
                 {/* Personalized Goal Benefit & Need Alignment Box */}
-                <div className="p-3 rounded-xl bg-brand-50/70 dark:bg-[#1a2320] border border-brand-200/50 dark:border-brand-800/40 text-[11px] text-brand-950 dark:text-emerald-200 flex items-start gap-2.5">
-                  <Sparkles className="w-3.5 h-3.5 text-brand-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                <div className="p-3 rounded-xl bg-emerald-500/10 dark:bg-[#101D2D] border border-emerald-500/20 dark:border-[#1E293B] text-[11px] text-emerald-950 dark:text-[#CBD5E1] flex items-start gap-2.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#22C55E] dark:text-[#34D399] shrink-0 mt-0.5" />
                   <div>
-                    <strong className="font-bold text-brand-700 dark:text-emerald-300">Why it matches your need: </strong>
+                    <strong className="font-bold text-emerald-700 dark:text-[#34D399]">Why it matches your need: </strong>
                     <span>{recipe.needHighlight}</span>
                   </div>
                 </div>
 
                 {/* Expandable Recipe Details (Ingredients & Steps) */}
                 {isExpanded && (
-                  <div className="mt-3 pt-3 border-t border-stone-200/60 dark:border-[#282a32] space-y-3 text-xs animate-fade-in">
+                  <div className="mt-3 pt-3 border-t border-stone-200/60 dark:border-[#1E293B] space-y-3 text-xs animate-fade-in">
                     <div>
-                      <div className="font-bold text-stone-800 dark:text-[#f4f5f7] mb-1.5">
+                      <div className="font-bold text-stone-800 dark:text-[#F8FAFC] mb-1.5">
                         Ingredients ({recipe.servings}):
                       </div>
-                      <ul className="list-disc list-inside space-y-0.5 text-stone-600 dark:text-[#a0a5b2]">
+                      <ul className="list-disc list-inside space-y-0.5 text-stone-600 dark:text-[#CBD5E1]">
                         {recipe.ingredients.map((ing, i) => (
                           <li key={i}>{ing}</li>
                         ))}
@@ -486,10 +486,10 @@ export function PersonalizedMealHelper({
                     </div>
 
                     <div>
-                      <div className="font-bold text-stone-800 dark:text-[#f4f5f7] mb-1.5">
+                      <div className="font-bold text-stone-800 dark:text-[#F8FAFC] mb-1.5">
                         Easy Steps to Make:
                       </div>
-                      <ol className="list-decimal list-inside space-y-1 text-stone-600 dark:text-[#a0a5b2]">
+                      <ol className="list-decimal list-inside space-y-1 text-stone-600 dark:text-[#CBD5E1]">
                         {recipe.steps.map((st, i) => (
                           <li key={i} className="leading-relaxed">
                             {st}
@@ -502,11 +502,11 @@ export function PersonalizedMealHelper({
               </div>
 
               {/* Bottom Actions */}
-              <div className="flex items-center justify-between gap-2 pt-2 border-t border-stone-200/50 dark:border-[#282a32]">
+              <div className="flex items-center justify-between gap-2 pt-2 border-t border-stone-200/50 dark:border-[#1E293B]">
                 <button
                   type="button"
                   onClick={() => setExpandedRecipeId(isExpanded ? null : recipe.id)}
-                  className="text-xs font-semibold text-stone-600 dark:text-[#a0a5b2] hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1 transition-colors"
+                  className="text-xs font-semibold text-stone-600 dark:text-[#8492A6] hover:text-[#34D399] dark:hover:text-[#34D399] flex items-center gap-1 transition-colors"
                 >
                   <span>{isExpanded ? 'Hide Steps' : 'View How to Make'}</span>
                   {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -518,19 +518,19 @@ export function PersonalizedMealHelper({
                   onClick={() => handleLogRecipe(recipe)}
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
                     isLogged
-                      ? 'bg-emerald-600 text-white animate-pulse'
-                      : 'bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-600'
+                      ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] animate-pulse'
+                      : 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] hover:opacity-95'
                   }`}
                   title="Adds this recipe to your daily intake tracker"
                 >
                   {isLogged ? (
                     <>
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      <Check className="w-3.5 h-3.5 stroke-[3] text-[#07111F]" />
                       <span>Logged to Today!</span>
                     </>
                   ) : (
                     <>
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3.5 h-3.5 text-[#07111F]" />
                       <span>+ Log Meal (+{recipe.calories} kcal)</span>
                     </>
                   )}
@@ -542,12 +542,12 @@ export function PersonalizedMealHelper({
       </div>
 
       {processedRecipes.length === 0 && (
-        <div className="p-8 text-center rounded-2xl bg-stone-50 dark:bg-[#18191d] border border-stone-200 dark:border-[#32353e]">
-          <UtensilsCrossed className="w-8 h-8 mx-auto text-stone-400 mb-2" />
-          <h4 className="font-semibold text-sm text-stone-700 dark:text-stone-300">
+        <div className="p-8 text-center rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B]">
+          <UtensilsCrossed className="w-8 h-8 mx-auto text-stone-400 dark:text-[#8492A6] mb-2" />
+          <h4 className="font-semibold text-sm text-stone-700 dark:text-[#CBD5E1]">
             No recipes matched your search filter
           </h4>
-          <p className="text-xs text-stone-400 mt-1">
+          <p className="text-xs text-stone-400 dark:text-[#8492A6] mt-1">
             Try switching to 'All Meals' or clear your keyword search.
           </p>
         </div>

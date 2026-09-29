@@ -721,13 +721,13 @@ export function DeficiencyCheck({
         )}
 
         {/* 5-Tab Main Navigation Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-stone-200/60 dark:bg-[#1e2027] p-2 rounded-2xl border border-stone-200 dark:border-[#2f323c]">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-[#101D2D] p-2 rounded-2xl border border-[#1E293B]">
           <button
             onClick={() => handleTabSwitch('matrix')}
             className={`flex items-center justify-center gap-2 px-3 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
               activeTab === 'matrix'
-                ? 'bg-white dark:bg-[#282b36] text-brand-700 dark:text-brand-300 shadow-md border border-stone-200 dark:border-stone-700 scale-[1.01]'
-                : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white'
+                ? 'bg-[#1E293B] text-[#34D399] shadow-md border border-[#2DD4BF]/30 scale-[1.01]'
+                : 'text-[#8492A6] hover:text-[#F8FAFC]'
             }`}
           >
             <Dna className="w-4 h-4 text-brand-500" />
@@ -805,7 +805,7 @@ export function DeficiencyCheck({
           <div className="space-y-6 animate-fade-in">
             {/* Overview Donut & Metric Cards */}
             <div
-              className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl"
+              className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl"
               ref={donutRef}
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
@@ -978,7 +978,7 @@ export function DeficiencyCheck({
         {activeTab === 'symptoms' && (
           <div className="space-y-6 animate-fade-in">
             {/* Header info card */}
-            <div className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl">
+            <div className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
@@ -1073,7 +1073,7 @@ export function DeficiencyCheck({
                             className={`p-4 rounded-2xl border transition-all cursor-pointer select-none text-left flex flex-col justify-between ${
                               isSelected
                                 ? 'bg-rose-50/70 dark:bg-rose-950/30 border-rose-400 dark:border-rose-700 shadow-md ring-2 ring-rose-500/20'
-                                : 'bg-white dark:bg-[#1e2027] border-stone-200 dark:border-[#2f323c] hover:border-rose-300 dark:hover:border-stone-700'
+                                : 'bg-[#0B0F0E] border-[#1E293B] hover:border-rose-400/50'
                             }`}
                           >
                             <div>
@@ -1128,7 +1128,7 @@ export function DeficiencyCheck({
         {activeTab === 'labs' && (
           <div className="space-y-6 animate-fade-in">
             {/* Clinical Overview Intro */}
-            <div className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl">
+            <div className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-sky-500/15 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold">
                   <FlaskConical className="w-5 h-5" />
@@ -1172,7 +1172,7 @@ export function DeficiencyCheck({
                 return (
                   <div
                     key={test.id}
-                    className="p-5 rounded-3xl bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] shadow-sm flex flex-col justify-between"
+                    className="p-5 rounded-3xl bg-[#0B0F0E] border border-[#1E293B] shadow-sm flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-2">
@@ -1229,7 +1229,7 @@ export function DeficiencyCheck({
             </div>
 
             {/* Custom Lab Entries Section */}
-            <div className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl">
+            <div className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl">
               <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
                 <div>
                   <h3 className="font-display font-bold text-base text-stone-900 dark:text-white">
@@ -1341,7 +1341,7 @@ export function DeficiencyCheck({
         {activeTab === 'dietary' && (
           <div className="space-y-6 animate-fade-in">
             {/* Diet Pattern Selector */}
-            <div className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl">
+            <div className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                 <div>
                   <h2 className="font-display font-bold text-xl text-stone-900 dark:text-white">
@@ -1478,7 +1478,7 @@ export function DeficiencyCheck({
             </div>
 
             {/* Clinical Bio-availability Synergy Rules */}
-            <div className="card-lg p-6 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl">
+            <div className="card-lg p-6 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl">
               <h3 className="font-display font-bold text-lg text-stone-900 dark:text-white mb-2 flex items-center gap-2">
                 <Zap className="w-5 h-5 text-amber-500" />
                 <span>Nutrient Synergy & Absorption Protocols</span>
@@ -1527,7 +1527,7 @@ export function DeficiencyCheck({
         {/* ========================================================================= */}
         {activeTab === 'report' && (
           <div className="space-y-6 animate-fade-in">
-            <div className="card-lg p-6 sm:p-8 bg-white dark:bg-[#1e2027] border border-stone-200 dark:border-[#2f323c] rounded-3xl print:p-0 print:border-none print:shadow-none">
+            <div className="card-lg p-6 sm:p-8 bg-[#0B0F0E] border border-[#1E293B] rounded-3xl print:p-0 print:border-none print:shadow-none">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-stone-200 dark:border-stone-800">
                 <div className="flex items-center gap-3">
                   <img
@@ -1726,10 +1726,10 @@ function NutrientResultCard({
   return (
     <div
       id={`nutrient-card-${result.nutrient}`}
-      className={`card-lg overflow-hidden bg-white dark:bg-[#1e2027] border rounded-3xl transition-all duration-300 ${
+      className={`card-lg overflow-hidden bg-[#0B0F0E] border rounded-3xl transition-all duration-300 ${
         isHighlighted
-          ? 'border-brand-500 ring-4 ring-brand-500/20 shadow-lg scale-[1.01]'
-          : 'border-stone-200 dark:border-[#2f323c] shadow-sm'
+          ? 'border-[#22C55E] ring-4 ring-[#22C55E]/20 shadow-lg scale-[1.01]'
+          : 'border-[#1E293B] shadow-sm'
       }`}
     >
       <div className="p-5 sm:p-6">

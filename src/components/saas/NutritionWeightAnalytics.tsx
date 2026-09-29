@@ -189,30 +189,30 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
 
         {/* Beginner Wisdom Card: Daily Weight Fluctuations */}
         <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/30 flex items-start gap-3.5 shadow-xs">
-          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-[#22C55E] dark:text-[#34D399] flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">
             <Lightbulb className="w-4 h-4" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-xs sm:text-sm font-bold text-stone-900 dark:text-white">
+            <h4 className="text-xs sm:text-sm font-bold text-stone-900 dark:text-[#F8FAFC]">
               💡 Beginner Tip: Why does scale weight change day-to-day?
             </h4>
-            <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+            <p className="text-xs text-stone-600 dark:text-[#CBD5E1] leading-relaxed">
               It is 100% normal for your body weight to swing 1 to 2 kg (2 to 4 lbs) in a single day! These short-term bumps are almost always water retention, salt from dinner, or muscle recovery after exercise—NOT body fat. What matters is the smooth green trendline over 3 to 4 weeks.
             </p>
           </div>
         </div>
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-1 border border-emerald-500/30">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-[#22C55E] dark:text-[#34D399] text-xs font-bold mb-1 border border-emerald-500/30">
               <Activity className="w-3.5 h-3.5" />
               <span>Weight Progress & Habit Consistency</span>
             </div>
-            <h1 className="font-display font-extrabold text-2xl text-stone-900 dark:text-white">
+            <h1 className="font-display font-extrabold text-2xl text-stone-900 dark:text-[#F8FAFC]">
               Progress Analytics & Weekly Report
             </h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+            <p className="text-xs text-stone-500 dark:text-[#8492A6] mt-0.5">
               Long-term weight trend lines, calorie consistency, and weekly progress summaries.
             </p>
           </div>
@@ -224,19 +224,19 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                 playChecklistSound(true);
                 setIsAddOpen(!isAddOpen);
               }}
-              className="px-3.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-200 text-xs font-bold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-[#101D2D] dark:hover:bg-[#101D2D]/80 text-stone-700 dark:text-[#CBD5E1] text-xs font-bold transition-all flex items-center gap-1.5 border border-stone-200 dark:border-[#1E293B] shadow-xs cursor-pointer"
               title="Opens a simple form to record your weight"
             >
-              <Scale className="w-3.5 h-3.5 text-emerald-500" />
+              <Scale className="w-3.5 h-3.5 text-[#22C55E] dark:text-[#34D399]" />
               <span>{isAddOpen ? 'Close Form' : '+ Log Weight'}</span>
             </button>
             <button
               type="button"
               onClick={handleExportWeeklyPDF}
-              className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-md hover:shadow-lg cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] text-xs font-bold transition-all flex items-center gap-1.5 shadow-md hover:opacity-95 cursor-pointer"
               title="Download a clean PDF summarizing your weekly nutrition consistency and weight trends"
             >
-              <FileDown className="w-3.5 h-3.5" />
+              <FileDown className="w-3.5 h-3.5 text-[#07111F]" />
               <span>Download Weekly PDF</span>
             </button>
           </div>
@@ -249,16 +249,16 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
             className="p-5 rounded-3xl bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/30 space-y-4 animate-fade-in"
           >
             <div className="flex items-center justify-between">
-              <h3 className="font-display font-bold text-sm text-stone-900 dark:text-white flex items-center gap-2">
-                <Scale className="w-4 h-4 text-emerald-500" />
+              <h3 className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2">
+                <Scale className="w-4 h-4 text-[#22C55E]" />
                 <span>Record New Weight Entry</span>
               </h3>
-              <span className="text-[10px] text-stone-400">Keep measurements consistent (e.g. morning, before food)</span>
+              <span className="text-[10px] text-stone-400 dark:text-[#8492A6]">Keep measurements consistent (e.g. morning, before food)</span>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-3">
               <div>
-                <label className="text-[10px] font-bold text-stone-500 uppercase block mb-1">
+                <label className="text-[10px] font-bold text-stone-500 dark:text-[#8492A6] uppercase block mb-1">
                   Weight (kg)
                 </label>
                 <input
@@ -268,12 +268,12 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                   placeholder="76.2"
                   value={newWeight}
                   onChange={(e) => setNewWeight(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-semibold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-semibold text-stone-900 dark:text-[#F8FAFC] focus:outline-none focus:border-[#2DD4BF]"
                 />
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-stone-500 uppercase block mb-1">
+                <label className="text-[10px] font-bold text-stone-500 dark:text-[#8492A6] uppercase block mb-1">
                   Date
                 </label>
                 <input
@@ -281,12 +281,12 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                   required
                   value={newDate}
                   onChange={(e) => setNewDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-semibold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-semibold text-stone-900 dark:text-[#F8FAFC] focus:outline-none focus:border-[#2DD4BF]"
                 />
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-stone-500 uppercase block mb-1">
+                <label className="text-[10px] font-bold text-stone-500 dark:text-[#8492A6] uppercase block mb-1">
                   Notes (Optional)
                 </label>
                 <input
@@ -294,7 +294,7 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                   placeholder="Post-morning run, good sleep..."
                   value={newNotes}
                   onChange={(e) => setNewNotes(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-semibold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-semibold text-stone-900 dark:text-[#F8FAFC] focus:outline-none focus:border-[#2DD4BF]"
                 />
               </div>
             </div>
@@ -303,13 +303,13 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
               <button
                 type="button"
                 onClick={() => setIsAddOpen(false)}
-                className="px-3 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-300"
+                className="px-3 py-1.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-300 dark:text-[#8492A6] dark:hover:text-[#F8FAFC]"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-sm"
+                className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] text-xs font-bold transition-all shadow-sm hover:opacity-95"
               >
                 Save Weight Entry
               </button>
@@ -319,59 +319,59 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
 
         {/* 3 Metric Cards */}
         <div className="grid sm:grid-cols-3 gap-4">
-          <div className="p-5 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-1">
-            <span className="text-[10px] font-extrabold uppercase text-stone-500">Current Weight</span>
+          <div className="p-5 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-1">
+            <span className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6]">Current Weight</span>
             <div className="flex items-baseline gap-2">
-              <span className="font-display font-black text-3xl text-stone-900 dark:text-white">
+              <span className="font-display font-black text-3xl text-stone-900 dark:text-[#F8FAFC]">
                 {currentWeight}
               </span>
-              <span className="text-sm font-bold text-stone-400">kg</span>
+              <span className="text-sm font-bold text-stone-400 dark:text-[#8492A6]">kg</span>
             </div>
-            <div className="text-[11px] font-bold text-stone-500 flex items-center gap-1">
+            <div className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6] flex items-center gap-1">
               <span>Target: {targetWeight} kg</span>
-              <span className="text-emerald-500">({Math.abs(currentWeight - targetWeight).toFixed(1)} kg to go)</span>
+              <span className="text-[#34D399]">({Math.abs(currentWeight - targetWeight).toFixed(1)} kg to go)</span>
             </div>
           </div>
 
-          <div className="p-5 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-1">
-            <span className="text-[10px] font-extrabold uppercase text-stone-500">Net Trajectory</span>
+          <div className="p-5 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-1">
+            <span className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6]">Net Trajectory</span>
             <div className="flex items-baseline gap-2">
-              <span className={`font-display font-black text-3xl ${totalChange <= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600'}`}>
+              <span className={`font-display font-black text-3xl ${totalChange <= 0 ? 'text-[#22C55E] dark:text-[#34D399]' : 'text-amber-500'}`}>
                 {totalChange > 0 ? `+${totalChange}` : totalChange}
               </span>
-              <span className="text-sm font-bold text-stone-400">kg total</span>
+              <span className="text-sm font-bold text-stone-400 dark:text-[#8492A6]">kg total</span>
             </div>
-            <p className="text-[11px] font-bold text-stone-500">
+            <p className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6]">
               Pacing: ~0.4 kg/week (Safe & Sustainable)
             </p>
           </div>
 
-          <div className="p-5 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-1">
-            <span className="text-[10px] font-extrabold uppercase text-stone-500">Weekly Grade</span>
+          <div className="p-5 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-1">
+            <span className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6]">Weekly Grade</span>
             <div className="flex items-baseline gap-2">
-              <span className="font-display font-black text-3xl text-emerald-600 dark:text-emerald-400">
+              <span className="font-display font-black text-3xl text-[#22C55E] dark:text-[#34D399]">
                 A (92%)
               </span>
             </div>
-            <p className="text-[11px] font-bold text-stone-500">
+            <p className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6]">
               {compliantDaysCount} of 7 days on-target
             </p>
           </div>
         </div>
 
         {/* Weight Trajectory Chart */}
-        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-4">
+        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div>
-              <h3 className="font-display font-bold text-base text-stone-900 dark:text-white flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-emerald-500" />
+              <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-[#22C55E]" />
                 <span>Weight History & Target Trajectory</span>
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6]">
                 Smooth trend lines plotted against your ideal target weight.
               </p>
             </div>
-            <span className="text-xs font-bold text-stone-400">
+            <span className="text-xs font-bold text-stone-400 dark:text-[#8492A6]">
               {weightLogs.length} logs recorded
             </span>
           </div>
@@ -385,23 +385,23 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
             >
               <defs>
                 <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+                  <stop offset="0%" stopColor="#22C55E" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#22C55E" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
               {/* Grid Lines */}
-              <line x1="20" y1="30" x2="480" y2="30" stroke="#71717a" strokeOpacity="0.15" strokeDasharray="3 3" />
-              <line x1="20" y1="85" x2="480" y2="85" stroke="#71717a" strokeOpacity="0.15" strokeDasharray="3 3" />
-              <line x1="20" y1="140" x2="480" y2="140" stroke="#71717a" strokeOpacity="0.15" strokeDasharray="3 3" />
+              <line x1="20" y1="30" x2="480" y2="30" stroke="#1E293B" strokeOpacity="0.4" strokeDasharray="3 3" />
+              <line x1="20" y1="85" x2="480" y2="85" stroke="#1E293B" strokeOpacity="0.4" strokeDasharray="3 3" />
+              <line x1="20" y1="140" x2="480" y2="140" stroke="#1E293B" strokeOpacity="0.4" strokeDasharray="3 3" />
 
-              {/* Target Line */}
+              {/* Target Line (Subtle Tech Blue Accent) */}
               <line
                 x1="20"
                 y1={180 - 24 - ((targetWeight - chartPoints.minW) / Math.max(1, chartPoints.maxW - chartPoints.minW)) * (180 - 48)}
                 x2="480"
                 y2={180 - 24 - ((targetWeight - chartPoints.minW) / Math.max(1, chartPoints.maxW - chartPoints.minW)) * (180 - 48)}
-                stroke="#06b6d4"
+                stroke="#60A5FA"
                 strokeWidth="1.5"
                 strokeDasharray="4 4"
               />
@@ -409,7 +409,7 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                 x="475"
                 y={180 - 28 - ((targetWeight - chartPoints.minW) / Math.max(1, chartPoints.maxW - chartPoints.minW)) * (180 - 48)}
                 textAnchor="end"
-                className="fill-cyan-500 text-[9px] font-bold"
+                className="fill-[#60A5FA] text-[9px] font-bold"
               >
                 Target: {targetWeight} kg
               </text>
@@ -420,19 +420,19 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
                   <path
                     d={chartPoints.path}
                     fill="none"
-                    stroke="#10b981"
+                    stroke="#22C55E"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   {chartPoints.points.map((pt, i) => (
                     <g key={i}>
-                      <circle cx={pt.x} cy={pt.y} r="5" fill="#10b981" className="stroke-white dark:stroke-[#16171c]" strokeWidth="2" />
+                      <circle cx={pt.x} cy={pt.y} r="5" fill="#22C55E" className="stroke-white dark:stroke-[#0B0F0E]" strokeWidth="2" />
                       <text
                         x={pt.x}
                         y={pt.y - 9}
                         textAnchor="middle"
-                        className="fill-stone-700 dark:fill-stone-300 text-[9px] font-black"
+                        className="fill-stone-700 dark:fill-[#CBD5E1] text-[9px] font-black"
                       >
                         {pt.entry.weightKg}k
                       </text>
@@ -445,17 +445,17 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
         </div>
 
         {/* Weekly Adherence Breakdown */}
-        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-4">
+        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-display font-bold text-base text-stone-900 dark:text-white">
+              <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC]">
                 7-Day Consistency Breakdown
               </h3>
-              <p className="text-xs text-stone-500">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6]">
                 Daily calorie and protein discipline leading to your current metabolic grade.
               </p>
             </div>
-            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+            <span className="text-xs font-bold text-emerald-600 dark:text-[#34D399]">
               {complianceRate}% Compliance
             </span>
           </div>
@@ -464,21 +464,21 @@ export function NutritionWeightAnalytics({ result, profile }: NutritionWeightAna
             {weekDays.map((d) => (
               <div
                 key={d.day}
-                className="p-3 rounded-2xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200/70 dark:border-stone-800/80 text-center space-y-1.5"
+                className="p-3 rounded-2xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200/70 dark:border-[#1E293B] text-center space-y-1.5"
               >
-                <div className="text-[10px] font-extrabold uppercase text-stone-500">
+                <div className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6]">
                   {d.day}
                 </div>
-                <div className="font-display font-bold text-sm text-stone-900 dark:text-white">
-                  {d.cals} <span className="text-[9px] text-stone-400">kcal</span>
+                <div className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC]">
+                  {d.cals} <span className="text-[9px] text-stone-400 dark:text-[#8492A6]">kcal</span>
                 </div>
-                <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                <div className="text-[10px] text-emerald-600 dark:text-[#34D399] font-bold">
                   {d.prot}g protein
                 </div>
                 <div className="pt-1">
                   <span
                     className={`inline-block w-2.5 h-2.5 rounded-full ${
-                      d.compliant ? 'bg-emerald-500' : 'bg-amber-500'
+                      d.compliant ? 'bg-[#22C55E]' : 'bg-amber-500'
                     }`}
                     title={d.compliant ? 'Target Met' : 'Minor Deviation'}
                   />

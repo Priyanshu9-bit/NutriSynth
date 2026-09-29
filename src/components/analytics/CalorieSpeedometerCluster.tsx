@@ -220,15 +220,15 @@ export function CalorieSpeedometerCluster({
   return (
     <div className="flex flex-col justify-between h-full space-y-5">
       {/* Cockpit Mode Switcher Bar */}
-      <div className="flex items-center justify-between gap-2 flex-wrap pb-2 border-b border-stone-200/80 dark:border-stone-800">
+      <div className="flex items-center justify-between gap-2 flex-wrap pb-2 border-b border-stone-200/80 dark:border-[#1E293B]">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-orange-500/15 text-orange-600 dark:text-orange-400 flex items-center justify-center font-bold">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500/15 text-[#22C55E] flex items-center justify-center font-bold">
             <Gauge className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-xs font-bold text-stone-900 dark:text-white flex items-center gap-1.5">
+            <span className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] flex items-center gap-1.5">
               <span>Metabolic Tachometer</span>
-              <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300">
+              <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] border border-transparent dark:border-[#1E293B]">
                 {targetCalories.toLocaleString()} KCAL REDLINE
               </span>
             </span>
@@ -236,7 +236,7 @@ export function CalorieSpeedometerCluster({
         </div>
 
         {/* View Mode Pill Toggle */}
-        <div className="flex items-center gap-1 bg-stone-100 dark:bg-[#1a1c22] p-1 rounded-xl border border-stone-200 dark:border-stone-800 text-xs">
+        <div className="flex items-center gap-1 bg-stone-100 dark:bg-[#101D2D] p-1 rounded-xl border border-stone-200 dark:border-[#1E293B] text-xs">
           <button
             type="button"
             onClick={() => {
@@ -245,8 +245,8 @@ export function CalorieSpeedometerCluster({
             }}
             className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 ${
               mode === 'speedometer'
-                ? 'bg-white dark:bg-[#282a32] text-orange-600 dark:text-orange-400 shadow-sm'
-                : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 hover:text-stone-800 dark:text-[#8492A6] dark:hover:text-[#F8FAFC]'
             }`}
           >
             🏎️ Gauge
@@ -259,8 +259,8 @@ export function CalorieSpeedometerCluster({
             }}
             className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 ${
               mode === 'dyno'
-                ? 'bg-white dark:bg-[#282a32] text-orange-600 dark:text-orange-400 shadow-sm'
-                : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 hover:text-stone-800 dark:text-[#8492A6] dark:hover:text-[#F8FAFC]'
             }`}
           >
             ⚡ Dyno
@@ -273,8 +273,8 @@ export function CalorieSpeedometerCluster({
             }}
             className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 ${
               mode === 'donut'
-                ? 'bg-white dark:bg-[#282a32] text-orange-600 dark:text-orange-400 shadow-sm'
-                : 'text-stone-500 hover:text-stone-800 dark:hover:text-stone-200'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 hover:text-stone-800 dark:text-[#8492A6] dark:hover:text-[#F8FAFC]'
             }`}
           >
             🍩 Ring
@@ -293,29 +293,29 @@ export function CalorieSpeedometerCluster({
                 <svg viewBox="0 0 260 210" className="w-full h-full max-w-[260px] overflow-visible select-none">
                   <defs>
                     <filter id="needleGlow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#f97316" floodOpacity="0.8" />
+                      <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#2DD4BF" floodOpacity="0.8" />
                     </filter>
                     <filter id="redlineGlow" x="-50%" y="-50%" width="200%" height="200%">
                       <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#ef4444" floodOpacity="0.75" />
                     </filter>
                     <linearGradient id="speedArcGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#10b981" />
-                      <stop offset="35%" stopColor="#06b6d4" />
-                      <stop offset="70%" stopColor="#f59e0b" />
-                      <stop offset="90%" stopColor="#f97316" />
+                      <stop offset="0%" stopColor="#22C55E" />
+                      <stop offset="45%" stopColor="#2DD4BF" />
+                      <stop offset="75%" stopColor="#60A5FA" />
+                      <stop offset="90%" stopColor="#f59e0b" />
                       <stop offset="100%" stopColor="#ef4444" />
                     </linearGradient>
                   </defs>
 
                   {/* Outer Bezel Rings */}
-                  <circle cx="130" cy="125" r="102" fill="none" className="stroke-stone-200/80 dark:stroke-stone-800" strokeWidth="1.5" />
-                  <circle cx="130" cy="125" r="95" fill="none" className="stroke-stone-100 dark:stroke-[#1f2128]" strokeWidth="12" />
+                  <circle cx="130" cy="125" r="102" fill="none" className="stroke-stone-200/80 dark:stroke-[#1E293B]" strokeWidth="1.5" />
+                  <circle cx="130" cy="125" r="95" fill="none" className="stroke-stone-100 dark:stroke-[#101D2D]" strokeWidth="12" />
 
                   {/* Background Track Arc (240 deg sweep from 150° to 390°) */}
                   <path
                     d="M 47.73 172.5 A 95 95 0 1 1 212.27 172.5"
                     fill="none"
-                    className="stroke-stone-200 dark:stroke-stone-800/90"
+                    className="stroke-stone-200 dark:stroke-[#101D2D]"
                     strokeWidth="8"
                     strokeLinecap="round"
                   />
@@ -365,7 +365,7 @@ export function CalorieSpeedometerCluster({
                           textAnchor="middle"
                           dominantBaseline="central"
                           className={`text-[9px] font-black tracking-tighter ${
-                            tick.isRedline ? 'fill-red-500 font-extrabold' : 'fill-stone-500 dark:fill-stone-400'
+                            tick.isRedline ? 'fill-red-500 font-extrabold' : 'fill-stone-500 dark:fill-[#CBD5E1]'
                           }`}
                         >
                           {tick.val}
@@ -380,7 +380,7 @@ export function CalorieSpeedometerCluster({
                       x="130"
                       y="105"
                       textAnchor="middle"
-                      className="fill-stone-900 dark:fill-white font-display font-black text-2xl tracking-tight"
+                      className="fill-stone-900 dark:fill-[#F8FAFC] font-display font-black text-2xl tracking-tight"
                     >
                       {Math.round(currentDisplayedCalories).toLocaleString()}
                     </text>
@@ -388,7 +388,7 @@ export function CalorieSpeedometerCluster({
                       x="130"
                       y="120"
                       textAnchor="middle"
-                      className="fill-orange-500 dark:fill-orange-400 text-[9px] font-extrabold uppercase tracking-widest"
+                      className="fill-[#2DD4BF] text-[9px] font-extrabold uppercase tracking-widest"
                     >
                       KCAL / DAY
                     </text>
@@ -396,7 +396,7 @@ export function CalorieSpeedometerCluster({
                       x="130"
                       y="134"
                       textAnchor="middle"
-                      className="fill-stone-400 dark:fill-stone-500 text-[8px] font-bold"
+                      className="fill-stone-400 dark:fill-[#8492A6] text-[8px] font-bold"
                     >
                       {activePercentage}% FUEL BURN
                     </text>
@@ -420,7 +420,7 @@ export function CalorieSpeedometerCluster({
                       y1="125"
                       x2="130"
                       y2="42"
-                      stroke="#f97316"
+                      stroke="#2DD4BF"
                       strokeWidth="3.2"
                       strokeLinecap="round"
                       filter="url(#needleGlow)"
@@ -431,7 +431,7 @@ export function CalorieSpeedometerCluster({
                       y1="125"
                       x2="130"
                       y2="46"
-                      stroke="#ffffff"
+                      stroke="#F8FAFC"
                       strokeWidth="1.2"
                       strokeLinecap="round"
                     />
@@ -441,16 +441,16 @@ export function CalorieSpeedometerCluster({
                       y1="125"
                       x2="130"
                       y2="142"
-                      stroke="#78716c"
+                      stroke="#8492A6"
                       strokeWidth="3.5"
                       strokeLinecap="round"
                     />
                   </g>
 
                   {/* Metallic Center Hub Pivot */}
-                  <circle cx="130" cy="125" r="11" fill="#1c1917" className="stroke-stone-700" strokeWidth="2" />
-                  <circle cx="130" cy="125" r="5" fill="#f97316" />
-                  <circle cx="130" cy="125" r="2" fill="#ffffff" />
+                  <circle cx="130" cy="125" r="11" fill="#07111F" className="stroke-[#1E293B]" strokeWidth="2" />
+                  <circle cx="130" cy="125" r="5" fill="#2DD4BF" />
+                  <circle cx="130" cy="125" r="2" fill="#F8FAFC" />
                 </svg>
               </div>
 
@@ -462,10 +462,10 @@ export function CalorieSpeedometerCluster({
                 <button
                   type="button"
                   onClick={handleRevEngine}
-                  className="px-2.5 py-0.5 rounded-full bg-stone-100 hover:bg-orange-500 hover:text-white dark:bg-stone-800 dark:hover:bg-orange-600 text-stone-700 dark:text-stone-300 border border-stone-200 dark:border-stone-700 text-[10px] font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-xs"
+                  className="px-2.5 py-0.5 rounded-full bg-stone-100 hover:bg-[#22C55E] hover:text-[#07111F] dark:bg-[#101D2D] dark:hover:bg-[#34D399] dark:hover:text-[#07111F] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] text-[10px] font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-xs"
                   title="Rev metabolic engine with realistic sound effect!"
                 >
-                  <Volume2 className="w-3 h-3 text-orange-500" />
+                  <Volume2 className="w-3 h-3 text-[#22C55E] dark:text-[#34D399]" />
                   <span>Rev Engine</span>
                 </button>
               </div>
@@ -473,75 +473,75 @@ export function CalorieSpeedometerCluster({
 
             {/* Right: High-Octane Macro Fuel Telemetry */}
             <div className="sm:col-span-5 space-y-3">
-              <div className="text-[11px] font-extrabold uppercase tracking-wider text-stone-500 dark:text-stone-400 flex items-center justify-between">
+              <div className="text-[11px] font-extrabold uppercase tracking-wider text-stone-500 dark:text-[#8492A6] flex items-center justify-between">
                 <span>⛽ Fuel Composition</span>
-                <span className="text-[10px] font-bold text-orange-600 dark:text-orange-400">Target Mix</span>
+                <span className="text-[10px] font-bold text-emerald-600 dark:text-[#34D399]">Target Mix</span>
               </div>
 
               {/* Macro Fuel 1: Protein */}
-              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#18191d] border border-stone-200/70 dark:border-stone-800/80 transition-all hover:border-emerald-500/40">
+              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200/70 dark:border-[#1E293B] transition-all hover:border-emerald-500/40">
                 <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-bold text-stone-800 dark:text-[#F8FAFC] flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
                     <span>Nitrous Fuel (Protein)</span>
                   </span>
-                  <span className="font-extrabold text-emerald-600 dark:text-emerald-400 tabular-nums">
-                    {proteinPct}% <span className="text-[10px] font-semibold text-stone-400">({result.proteinCal} kcal)</span>
+                  <span className="font-extrabold text-emerald-600 dark:text-[#34D399] tabular-nums">
+                    {proteinPct}% <span className="text-[10px] font-semibold text-stone-400 dark:text-[#8492A6]">({result.proteinCal} kcal)</span>
                   </span>
                 </div>
-                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-700"
+                    className="h-full rounded-full bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] transition-all duration-700"
                     style={{ width: `${eatenProteinPct}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-stone-500 dark:text-stone-400 mt-1">
+                <div className="flex justify-between text-[10px] text-stone-500 dark:text-[#8492A6] mt-1">
                   <span>Intake: {Math.round(eatenProtein)}g</span>
                   <span>Target: {result.proteinG}g</span>
                 </div>
               </div>
 
               {/* Macro Fuel 2: Carbs */}
-              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#18191d] border border-stone-200/70 dark:border-stone-800/80 transition-all hover:border-cyan-500/40">
+              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200/70 dark:border-[#1E293B] transition-all hover:border-[#60A5FA]/40">
                 <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-cyan-500" />
+                  <span className="font-bold text-stone-800 dark:text-[#F8FAFC] flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#60A5FA]" />
                     <span>Turbo Boost (Carbs)</span>
                   </span>
-                  <span className="font-extrabold text-cyan-600 dark:text-cyan-400 tabular-nums">
-                    {carbPct}% <span className="text-[10px] font-semibold text-stone-400">({result.carbCal} kcal)</span>
+                  <span className="font-extrabold text-[#60A5FA] tabular-nums">
+                    {carbPct}% <span className="text-[10px] font-semibold text-stone-400 dark:text-[#8492A6]">({result.carbCal} kcal)</span>
                   </span>
                 </div>
-                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-700"
+                    className="h-full rounded-full bg-gradient-to-r from-[#60A5FA] to-[#38BDF8] transition-all duration-700"
                     style={{ width: `${eatenCarbPct}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-stone-500 dark:text-stone-400 mt-1">
+                <div className="flex justify-between text-[10px] text-stone-500 dark:text-[#8492A6] mt-1">
                   <span>Intake: {Math.round(eatenCarbs)}g</span>
                   <span>Target: {result.carbG}g</span>
                 </div>
               </div>
 
               {/* Macro Fuel 3: Fat */}
-              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#18191d] border border-stone-200/70 dark:border-stone-800/80 transition-all hover:border-amber-500/40">
+              <div className="p-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200/70 dark:border-[#1E293B] transition-all hover:border-amber-500/40">
                 <div className="flex items-center justify-between text-xs mb-1.5">
-                  <span className="font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
+                  <span className="font-bold text-stone-800 dark:text-[#F8FAFC] flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-amber-500" />
                     <span>Synthetic Oil (Fats)</span>
                   </span>
                   <span className="font-extrabold text-amber-600 dark:text-amber-400 tabular-nums">
-                    {fatPct}% <span className="text-[10px] font-semibold text-stone-400">({result.fatCal} kcal)</span>
+                    {fatPct}% <span className="text-[10px] font-semibold text-stone-400 dark:text-[#8492A6]">({result.fatCal} kcal)</span>
                   </span>
                 </div>
-                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+                <div className="w-full h-1.5 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div
                     className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-400 transition-all duration-700"
                     style={{ width: `${eatenFatPct}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-[10px] text-stone-500 dark:text-stone-400 mt-1">
+                <div className="flex justify-between text-[10px] text-stone-500 dark:text-[#8492A6] mt-1">
                   <span>Intake: {Math.round(eatenFat)}g</span>
                   <span>Target: {result.fatG}g</span>
                 </div>
@@ -550,14 +550,14 @@ export function CalorieSpeedometerCluster({
           </div>
 
           {/* Interactive Test & Calibration Toolbar (0%, 25%, 50%, 75%, 100%) */}
-          <div className="p-3 rounded-2xl bg-stone-100/80 dark:bg-[#17191e] border border-stone-200/80 dark:border-[#2a2d36] flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
+          <div className="p-3 rounded-2xl bg-stone-100/80 dark:bg-[#101D2D] border border-stone-200/80 dark:border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
             <div className="flex items-center gap-2">
-              <Sliders className="w-3.5 h-3.5 text-orange-500" />
-              <span className="font-bold text-stone-800 dark:text-stone-200 text-[11px]">
+              <Sliders className="w-3.5 h-3.5 text-[#34D399]" />
+              <span className="font-bold text-stone-800 dark:text-[#CBD5E1] text-[11px]">
                 Interactive Speedometer Calibration:
               </span>
               {testPreset !== null && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-500/15 text-orange-600 dark:text-orange-400">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-[#34D399] border border-emerald-500/30">
                   Testing {testPreset}%
                 </span>
               )}
@@ -569,8 +569,8 @@ export function CalorieSpeedometerCluster({
                 onClick={() => handleSelectPreset(null)}
                 className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1 ${
                   testPreset === null
-                    ? 'bg-orange-600 text-white shadow-sm scale-105'
-                    : 'bg-white dark:bg-[#23262f] text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-200 dark:border-stone-700'
+                    ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-sm scale-105'
+                    : 'bg-white dark:bg-[#0B0F0E] text-stone-600 dark:text-[#CBD5E1] hover:text-stone-900 dark:hover:text-[#F8FAFC] border border-stone-200 dark:border-[#1E293B]'
                 }`}
                 title="Return to real-time eaten calories"
               >
@@ -584,8 +584,8 @@ export function CalorieSpeedometerCluster({
                   onClick={() => handleSelectPreset(val)}
                   className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all ${
                     testPreset === val
-                      ? 'bg-orange-600 text-white shadow-sm scale-105'
-                      : 'bg-white dark:bg-[#23262f] text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white border border-stone-200 dark:border-stone-700'
+                      ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-sm scale-105'
+                      : 'bg-white dark:bg-[#0B0F0E] text-stone-600 dark:text-[#CBD5E1] hover:text-stone-900 dark:hover:text-[#F8FAFC] border border-stone-200 dark:border-[#1E293B]'
                   }`}
                   title={`Test needle sweep at ${val}%`}
                 >
@@ -596,18 +596,18 @@ export function CalorieSpeedometerCluster({
           </div>
 
           {/* Motivational Engine Commentary Banner */}
-          <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-emerald-500/10 border border-orange-500/25 flex items-start gap-2.5 animate-fade-in text-xs">
+          <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-[#07111F] to-[#101D2D] border border-emerald-500/25 flex items-start gap-2.5 animate-fade-in text-xs">
             <span className="text-base flex-shrink-0 mt-0.5">🏎️</span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-extrabold text-stone-900 dark:text-white">
+                <span className="font-extrabold text-stone-900 dark:text-[#F8FAFC]">
                   {engineTelemetry.headline}
                 </span>
-                <span className="text-[10px] text-stone-400 dark:text-stone-500 font-semibold">
+                <span className="text-[10px] text-stone-400 dark:text-[#8492A6] font-semibold">
                   • {Math.round(currentDisplayedCalories)} / {targetCalories} kcal
                 </span>
               </div>
-              <p className="text-[11px] text-stone-600 dark:text-stone-300 mt-0.5 leading-relaxed">
+              <p className="text-[11px] text-stone-600 dark:text-[#CBD5E1] mt-0.5 leading-relaxed">
                 {engineTelemetry.quote}
               </p>
             </div>
@@ -618,23 +618,23 @@ export function CalorieSpeedometerCluster({
       {/* Mode 2: Dyno Power & Turbo Boost Meter */}
       {mode === 'dyno' && (
         <div className="space-y-4 py-1">
-          <div className="p-4 rounded-2xl bg-stone-900 text-white border border-stone-800 shadow-inner relative overflow-hidden">
+          <div className="p-4 rounded-2xl bg-stone-900 dark:bg-[#0B0F0E] text-white border border-stone-800 dark:border-[#1E293B] shadow-inner relative overflow-hidden">
             <div
               className="absolute inset-0 opacity-10 pointer-events-none"
               style={{
-                backgroundImage: 'linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)',
+                backgroundImage: 'linear-gradient(#2DD4BF 1px, transparent 1px), linear-gradient(90deg, #2DD4BF 1px, transparent 1px)',
                 backgroundSize: '20px 20px',
               }}
             />
 
             <div className="flex items-center justify-between relative z-10 mb-3">
               <div className="flex items-center gap-2">
-                <Activity className="w-4 h-4 text-orange-400 animate-pulse" />
-                <span className="text-xs font-black uppercase tracking-wider text-orange-300">
+                <Activity className="w-4 h-4 text-[#34D399] animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-wider text-[#34D399]">
                   Chassis Dyno • Live Horsepower & Torque
                 </span>
               </div>
-              <span className="text-xs font-extrabold text-stone-400">
+              <span className="text-xs font-extrabold text-[#8492A6]">
                 Max Output: {targetCalories} kcal
               </span>
             </div>
@@ -642,16 +642,16 @@ export function CalorieSpeedometerCluster({
             <div className="space-y-3 relative z-10">
               <div>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-stone-300 font-bold flex items-center gap-1.5">
+                  <span className="text-stone-300 dark:text-[#CBD5E1] font-bold flex items-center gap-1.5">
                     <span>⚡ Boost Pressure (Energy Intake)</span>
                   </span>
-                  <span className="font-extrabold text-orange-400 tabular-nums">
+                  <span className="font-extrabold text-[#34D399] tabular-nums">
                     {Math.round(currentDisplayedCalories)} / {targetCalories} kcal ({activePercentage}%)
                   </span>
                 </div>
-                <div className="w-full h-3 rounded-full bg-stone-800 p-0.5 border border-stone-700">
+                <div className="w-full h-3 rounded-full bg-stone-800 dark:bg-[#07111F] p-0.5 border border-stone-700 dark:border-[#1E293B]">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-orange-500 via-amber-400 to-emerald-400 transition-all duration-700"
+                    className="h-full rounded-full bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] transition-all duration-700"
                     style={{ width: `${Math.min(100, activePercentage)}%` }}
                   />
                 </div>
@@ -659,16 +659,16 @@ export function CalorieSpeedometerCluster({
 
               <div>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-stone-300 font-bold flex items-center gap-1.5">
+                  <span className="text-stone-300 dark:text-[#CBD5E1] font-bold flex items-center gap-1.5">
                     <span>🥩 Nitrous Injection (Protein Synthesis)</span>
                   </span>
-                  <span className="font-extrabold text-emerald-400 tabular-nums">
+                  <span className="font-extrabold text-[#34D399] tabular-nums">
                     {Math.round(eatenProtein)} / {result.proteinG}g ({eatenProteinPct}%)
                   </span>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-stone-800 p-0.5 border border-stone-700">
+                <div className="w-full h-2.5 rounded-full bg-stone-800 dark:bg-[#07111F] p-0.5 border border-stone-700 dark:border-[#1E293B]">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-700"
+                    className="h-full rounded-full bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] transition-all duration-700"
                     style={{ width: `${eatenProteinPct}%` }}
                   />
                 </div>
@@ -683,13 +683,13 @@ export function CalorieSpeedometerCluster({
         <div className="py-2 flex flex-col items-center justify-center space-y-3">
           <div className="relative w-44 h-44 flex items-center justify-center">
             <svg viewBox="0 0 160 160" className="w-full h-full -rotate-90">
-              <circle cx="80" cy="80" r="65" fill="none" className="stroke-stone-200 dark:stroke-stone-800" strokeWidth="14" />
+              <circle cx="80" cy="80" r="65" fill="none" className="stroke-stone-200 dark:stroke-[#101D2D]" strokeWidth="14" />
               <circle
                 cx="80"
                 cy="80"
                 r="65"
                 fill="none"
-                stroke="#f97316"
+                stroke="#2DD4BF"
                 strokeWidth="14"
                 strokeLinecap="round"
                 strokeDasharray="408"
@@ -698,10 +698,10 @@ export function CalorieSpeedometerCluster({
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="font-display font-black text-2xl text-stone-900 dark:text-white">
+              <span className="font-display font-black text-2xl text-stone-900 dark:text-[#F8FAFC]">
                 {Math.round(currentDisplayedCalories)}
               </span>
-              <span className="text-[10px] font-bold text-stone-400 uppercase">
+              <span className="text-[10px] font-bold text-stone-400 dark:text-[#8492A6] uppercase">
                 / {targetCalories} kcal
               </span>
             </div>

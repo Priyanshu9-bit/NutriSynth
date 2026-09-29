@@ -102,7 +102,7 @@ export function ModeContextBar({
   const info = getModeInfo();
 
   return (
-    <div className="bg-gradient-to-r from-stone-100 via-stone-50 to-stone-100 dark:from-[#1d1f24] dark:via-[#191a1e] dark:to-[#1d1f24] border-b border-stone-200 dark:border-[#32353e] px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 transition-colors duration-200">
+    <div className="bg-gradient-to-r from-stone-100 via-stone-50 to-stone-100 dark:from-[#07111F] dark:via-[#0B0F0E] dark:to-[#101D2D] border-b border-stone-200 dark:border-[#1E293B] px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 transition-colors duration-200">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5">
         {/* Left: What am I looking at right now? */}
         <div className="flex items-start sm:items-center gap-2.5 min-w-0">
@@ -111,16 +111,16 @@ export function ModeContextBar({
               <Sparkles className="w-3.5 h-3.5" />
               <span>{info.badge}</span>
             </span>
-            <div className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-medium truncate">
-              <span className="font-bold text-stone-900 dark:text-white">{info.title}</span>
-              <span className="hidden xl:inline text-stone-500 dark:text-stone-400 ml-2">— {info.description}</span>
+            <div className="text-xs sm:text-sm text-stone-600 dark:text-[#CBD5E1] font-medium truncate">
+              <span className="font-bold text-stone-900 dark:text-[#F8FAFC]">{info.title}</span>
+              <span className="hidden xl:inline text-stone-500 dark:text-[#8492A6] ml-2">— {info.description}</span>
             </div>
           </div>
         </div>
 
         {/* Right: Quick friendly mode switch pills */}
         <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500 uppercase tracking-wider mr-1 hidden lg:inline">
+          <span className="text-[10px] font-bold text-stone-400 dark:text-[#8492A6] uppercase tracking-wider mr-1 hidden lg:inline">
             Quick Jump:
           </span>
 
@@ -129,8 +129,8 @@ export function ModeContextBar({
             onClick={() => handleSwitch('dashboard')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               currentView === 'dashboard' || currentView === 'meals'
-                ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/30'
-                : 'bg-white dark:bg-[#252830] text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-[#383c46] hover:bg-stone-50 dark:hover:bg-[#2c303a]'
+                ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-sm shadow-emerald-500/30'
+                : 'bg-white dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] hover:bg-stone-50 dark:hover:bg-[#162536]'
             }`}
             title="What happens: View today's calories, protein, and meals"
           >
@@ -143,8 +143,8 @@ export function ModeContextBar({
             onClick={() => handleSwitch('today-streak')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               currentView === 'today-streak'
-                ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/30'
-                : 'bg-white dark:bg-[#252830] text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-[#383c46] hover:bg-stone-50 dark:hover:bg-[#2c303a]'
+                ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-sm shadow-amber-600/30'
+                : 'bg-white dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] hover:bg-stone-50 dark:hover:bg-[#162536]'
             }`}
             title="What happens: Open daily habit checklist and log water"
           >
@@ -162,8 +162,8 @@ export function ModeContextBar({
             onClick={() => handleSwitch('challenge')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               currentView === 'challenge'
-                ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/30'
-                : 'bg-white dark:bg-[#252830] text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-[#383c46] hover:bg-stone-50 dark:hover:bg-[#2c303a]'
+                ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-sm shadow-emerald-500/30'
+                : 'bg-white dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] hover:bg-stone-50 dark:hover:bg-[#162536]'
             }`}
             title="What happens: View your 30-day guided habit journey"
           >
@@ -176,8 +176,8 @@ export function ModeContextBar({
             onClick={() => handleSwitch('deficiency')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
               currentView === 'deficiency'
-                ? 'bg-purple-600 text-white shadow-sm shadow-purple-600/30'
-                : 'bg-white dark:bg-[#252830] text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-[#383c46] hover:bg-stone-50 dark:hover:bg-[#2c303a]'
+                ? 'bg-gradient-to-r from-[#60A5FA] to-[#3B82F6] text-white shadow-sm shadow-blue-500/30'
+                : 'bg-white dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] hover:bg-stone-50 dark:hover:bg-[#162536]'
             }`}
             title="What happens: Screen if you're getting enough essential vitamins"
           >

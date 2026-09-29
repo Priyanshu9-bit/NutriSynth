@@ -351,17 +351,17 @@ export function Challenge({
       {/* ------------------------------------------------------------- */}
       {isSettingsOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
-          <div className="card-lg max-w-lg w-full p-6 sm:p-8 relative overflow-hidden animate-pop-bounce border-2 border-brand-500/50 shadow-2xl space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-stone-200/60 dark:border-[#32353e]">
+          <div className="card-lg max-w-lg w-full p-6 sm:p-8 relative overflow-hidden animate-pop-bounce border-2 border-[#22C55E]/50 shadow-2xl space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-200/60 dark:border-[#1E293B]">
               <div className="flex items-center gap-2">
-                <Settings className="w-5 h-5 text-brand-600 dark:text-brand-400" />
-                <h3 className="font-display font-bold text-lg text-stone-900 dark:text-[#f4f5f7]">
+                <Settings className="w-5 h-5 text-[#22C55E] dark:text-[#34D399]" />
+                <h3 className="font-display font-bold text-lg text-stone-900 dark:text-[#F8FAFC]">
                   Customize 30-Day Streak Options
                 </h3>
               </div>
               <button
                 onClick={() => setIsSettingsOpen(false)}
-                className="p-1.5 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-white"
+                className="p-1.5 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-[#F8FAFC]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -369,11 +369,11 @@ export function Challenge({
 
             {/* Water Target Selector */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-700 dark:text-[#d1d5db] flex items-center justify-between">
+              <label className="text-xs font-bold text-stone-700 dark:text-[#CBD5E1] flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
-                  <Droplet className="w-3.5 h-3.5 text-sky-500" /> Daily Hydration Target:
+                  <Droplet className="w-3.5 h-3.5 text-[#60A5FA]" /> Daily Hydration Target:
                 </span>
-                <span className="text-sky-600 dark:text-sky-400 font-extrabold">{tempWaterTarget} ml ({(tempWaterTarget / 1000).toFixed(1)}L)</span>
+                <span className="text-[#60A5FA] font-extrabold">{tempWaterTarget} ml ({(tempWaterTarget / 1000).toFixed(1)}L)</span>
               </label>
               <div className="grid grid-cols-4 gap-2">
                 {[2000, 2500, 3000, 3500].map((ml) => (
@@ -383,8 +383,8 @@ export function Challenge({
                     onClick={() => setTempWaterTarget(ml)}
                     className={`py-2 px-1 rounded-xl text-xs font-bold transition-all ${
                       tempWaterTarget === ml
-                        ? 'bg-sky-500 text-white shadow-md'
-                        : 'bg-stone-100 dark:bg-[#18191d] text-stone-600 dark:text-[#a0a5b2] hover:bg-stone-200 dark:hover:bg-[#282a32]'
+                        ? 'bg-[#60A5FA] text-[#07111F] font-bold shadow-md'
+                        : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-200 dark:hover:bg-[#1E293B]'
                     }`}
                   >
                     {ml / 1000}L
@@ -395,8 +395,8 @@ export function Challenge({
 
             {/* Food Focus Selector */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-700 dark:text-[#d1d5db] flex items-center gap-1.5">
-                <Utensils className="w-3.5 h-3.5 text-brand-500" /> Primary Nutrition / Food Focus:
+              <label className="text-xs font-bold text-stone-700 dark:text-[#CBD5E1] flex items-center gap-1.5">
+                <Utensils className="w-3.5 h-3.5 text-[#22C55E]" /> Primary Nutrition / Food Focus:
               </label>
               <div className="space-y-1.5">
                 {[
@@ -412,8 +412,8 @@ export function Challenge({
                     onClick={() => setTempFoodFocus(item.id as any)}
                     className={`w-full text-left p-3 rounded-xl text-xs font-semibold transition-all border ${
                       tempFoodFocus === item.id
-                        ? 'bg-brand-50 dark:bg-brand-950/60 border-brand-500 text-brand-900 dark:text-brand-300 ring-2 ring-brand-500/20'
-                        : 'bg-stone-50 dark:bg-[#18191d] border-stone-200 dark:border-[#32353e] text-stone-700 dark:text-[#a0a5b2]'
+                        ? 'bg-[#22C55E]/15 border-[#22C55E] text-[#34D399] ring-2 ring-[#22C55E]/20'
+                        : 'bg-stone-50 dark:bg-[#101D2D] border-stone-200 dark:border-[#1E293B] text-stone-700 dark:text-[#CBD5E1]'
                     }`}
                   >
                     {item.label}
@@ -424,7 +424,7 @@ export function Challenge({
 
             {/* Meal Frequency Goal */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-stone-700 dark:text-[#d1d5db]">
+              <label className="text-xs font-bold text-stone-700 dark:text-[#CBD5E1]">
                 Daily Meals Structure Target:
               </label>
               <div className="grid grid-cols-3 gap-2">
@@ -439,8 +439,8 @@ export function Challenge({
                     onClick={() => setTempMealFrequency(m.num)}
                     className={`p-2.5 rounded-xl text-xs font-bold text-center transition-all ${
                       tempMealFrequency === m.num
-                        ? 'bg-brand-600 text-white shadow-md'
-                        : 'bg-stone-100 dark:bg-[#18191d] text-stone-600 dark:text-[#a0a5b2]'
+                        ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-md'
+                        : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1]'
                     }`}
                   >
                     {m.label}
@@ -480,7 +480,7 @@ export function Challenge({
 
             <button
               onClick={() => setDayCelebration(null)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-[#282a32] transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#1E293B] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -503,7 +503,7 @@ export function Challenge({
               <strong className="text-stone-900 dark:text-white">"{dayCelebration.title}"</strong>.
             </p>
 
-            <div className="p-4 rounded-2xl bg-amber-500/10 dark:bg-[#282419] border border-amber-500/30 flex items-center justify-around mb-6">
+            <div className="p-4 rounded-2xl bg-amber-500/10 dark:bg-[#101D2D] border border-amber-500/30 dark:border-[#1E293B] flex items-center justify-around mb-6">
               <div className="text-center">
                 <span className="text-[11px] font-semibold text-stone-500 dark:text-[#828795] uppercase">
                   Daily Streak
@@ -552,7 +552,7 @@ export function Challenge({
 
             <button
               onClick={() => setGrandCelebration(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-[#282a32] transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-700 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#1E293B] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -628,14 +628,14 @@ export function Challenge({
               </div>
 
               {/* 4 Milestone Badges Showcase */}
-              <div className="grid grid-cols-4 gap-2 pt-4 border-t border-stone-200/80 dark:border-[#32353e] text-center">
+              <div className="grid grid-cols-4 gap-2 pt-4 border-t border-stone-200/80 dark:border-[#1E293B] text-center">
                 {challengeMilestones.map((m) => (
-                  <div key={m.id} className="p-2 rounded-xl bg-stone-50 dark:bg-[#202227] border border-amber-400/30">
+                  <div key={m.id} className="p-2 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-amber-400/30">
                     <div className="text-xl sm:text-2xl mb-0.5">{m.icon}</div>
                     <div className="text-[10px] font-bold text-stone-800 dark:text-white truncate">
                       {m.title}
                     </div>
-                    <div className="text-[9px] text-emerald-600 dark:text-emerald-400 font-extrabold">
+                    <div className="text-[9px] text-[#22C55E] dark:text-[#34D399] font-extrabold">
                       UNLOCKED
                     </div>
                   </div>
@@ -688,7 +688,7 @@ export function Challenge({
       {/* ------------------------------------------------------------- */}
       {/* SWITCHER BANNER: JUMP TO TODAY'S SINGLE-DAY MISSION          */}
       {/* ------------------------------------------------------------- */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-orange-500/15 via-[#202227] to-amber-500/15 border border-orange-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 shadow-md">
+      <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-orange-500/15 via-[#0B0F0E] to-amber-500/15 border border-orange-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 shadow-md">
         <div className="flex items-center gap-3 text-center sm:text-left">
           <div className="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400 flex-shrink-0">
             <Flame className="w-5 h-5 fill-orange-400" />
@@ -727,7 +727,7 @@ export function Challenge({
       {/* ------------------------------------------------------------- */}
       {/* HEADER BANNER                                                 */}
       {/* ------------------------------------------------------------- */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500/10 via-brand-500/10 to-emerald-500/10 dark:from-amber-950/20 dark:via-[#202227] dark:to-[#1a2320] border border-amber-200/60 dark:border-[#32353e] p-6 sm:p-10 mb-8 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#07111F] via-[#0B0F0E] to-[#101D2D] border border-[#1E293B] p-6 sm:p-10 mb-8 shadow-sm">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-gradient-to-br from-amber-400/20 to-brand-500/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -796,25 +796,25 @@ export function Challenge({
       {/* ------------------------------------------------------------- */}
       {/* DAILY FOOD & WATER STREAK DETAILS CONTAINER                   */}
       {/* ------------------------------------------------------------- */}
-      <div className="card-lg p-6 sm:p-8 mb-8 border border-stone-200/80 dark:border-[#32353e] bg-gradient-to-br from-white to-stone-50/50 dark:from-[#202227] dark:to-[#18191d]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-stone-200/60 dark:border-[#32353e]">
+      <div className="card-lg p-6 sm:p-8 mb-8 border border-stone-200/80 dark:border-[#1E293B] bg-gradient-to-br from-white to-stone-50/50 dark:from-[#0B0F0E] dark:to-[#101D2D]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-stone-200/60 dark:border-[#1E293B]">
           <div>
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400">
+              <span className="p-1.5 rounded-lg bg-sky-500/10 text-sky-600 dark:text-[#60A5FA]">
                 <Droplet className="w-4 h-4" />
               </span>
-              <h3 className="font-display font-bold text-lg sm:text-xl text-stone-900 dark:text-[#f4f5f7]">
+              <h3 className="font-display font-bold text-lg sm:text-xl text-stone-900 dark:text-[#F8FAFC]">
                 Today’s Food & Water Streak Details
               </h3>
             </div>
-            <p className="text-xs text-stone-500 dark:text-[#828795] mt-0.5">
+            <p className="text-xs text-stone-500 dark:text-[#8492A6] mt-0.5">
               Set and log your daily water intake and food adherence as part of your 30-day streak.
             </p>
           </div>
 
           <button
             onClick={() => setIsSettingsOpen(true)}
-            className="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1 self-start sm:self-auto"
+            className="text-xs font-semibold text-[#22C55E] dark:text-[#34D399] hover:underline flex items-center gap-1 self-start sm:self-auto"
           >
             <Sliders className="w-3.5 h-3.5" />
             <span>Customize Targets (Current: {(userSettings.waterTargetMl / 1000).toFixed(1)}L)</span>
@@ -823,11 +823,11 @@ export function Challenge({
 
         <div className="grid md:grid-cols-12 gap-6 pt-5">
           {/* Left Column: Water Tracker (6 cols) */}
-          <div className="md:col-span-6 p-5 rounded-2xl bg-sky-50/40 dark:bg-[#161d26] border border-sky-200/60 dark:border-sky-800/40 space-y-4">
+          <div className="md:col-span-6 p-5 rounded-2xl bg-sky-50/40 dark:bg-[#101D2D] border border-sky-200/60 dark:border-[#1E293B] space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Droplet className="w-5 h-5 text-sky-500 fill-sky-500" />
-                <span className="font-display font-bold text-sm text-stone-900 dark:text-[#f4f5f7]">
+                <Droplet className="w-5 h-5 text-[#60A5FA] fill-[#60A5FA]" />
+                <span className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC]">
                   Hydration Tracker
                 </span>
               </div>
@@ -836,7 +836,7 @@ export function Challenge({
                   💧 Goal Met!
                 </span>
               ) : (
-                <span className="text-xs font-semibold text-sky-600 dark:text-sky-400">
+                <span className="text-xs font-semibold text-[#60A5FA]">
                   {Math.max(0, userSettings.waterTargetMl - waterAmount)} ml left
                 </span>
               )}
@@ -844,21 +844,21 @@ export function Challenge({
 
             {/* Current Water Intake Gauge */}
             <div className="flex items-baseline justify-between">
-              <div className="text-3xl font-display font-black text-sky-600 dark:text-sky-400 tabular-nums">
+              <div className="text-3xl font-display font-black text-[#60A5FA] tabular-nums">
                 {waterAmount.toLocaleString()}{' '}
-                <span className="text-sm font-semibold text-stone-500 dark:text-[#828795]">
+                <span className="text-sm font-semibold text-stone-500 dark:text-[#8492A6]">
                   / {userSettings.waterTargetMl.toLocaleString()} ml
                 </span>
               </div>
-              <span className="text-sm font-bold text-stone-600 dark:text-[#a0a5b2]">
+              <span className="text-sm font-bold text-stone-600 dark:text-[#CBD5E1]">
                 {waterPercent}%
               </span>
             </div>
 
             {/* Water Progress Bar */}
-            <div className="w-full bg-stone-200 dark:bg-[#282a32] h-2.5 rounded-full overflow-hidden">
+            <div className="w-full bg-stone-200 dark:bg-[#1E293B] h-2.5 rounded-full overflow-hidden">
               <div
-                className="bg-gradient-to-r from-sky-400 to-blue-500 h-full rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-[#60A5FA] to-[#2DD4BF] h-full rounded-full transition-all duration-300"
                 style={{ width: `${waterPercent}%` }}
               />
             </div>
@@ -868,28 +868,28 @@ export function Challenge({
               <button
                 type="button"
                 onClick={() => handleAddWater(250)}
-                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#202227] border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 shadow-sm active:scale-95 transition-all"
+                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#101D2D] border border-sky-300 dark:border-[#1E293B] text-sky-700 dark:text-[#60A5FA] hover:bg-sky-50 dark:hover:bg-[#1E293B] shadow-sm active:scale-95 transition-all"
               >
                 +250ml
               </button>
               <button
                 type="button"
                 onClick={() => handleAddWater(500)}
-                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#202227] border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 shadow-sm active:scale-95 transition-all"
+                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#101D2D] border border-sky-300 dark:border-[#1E293B] text-sky-700 dark:text-[#60A5FA] hover:bg-sky-50 dark:hover:bg-[#1E293B] shadow-sm active:scale-95 transition-all"
               >
                 +500ml
               </button>
               <button
                 type="button"
                 onClick={() => handleAddWater(1000)}
-                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#202227] border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-950/60 shadow-sm active:scale-95 transition-all"
+                className="py-2 px-1 rounded-xl text-xs font-bold bg-white dark:bg-[#101D2D] border border-sky-300 dark:border-[#1E293B] text-sky-700 dark:text-[#60A5FA] hover:bg-sky-50 dark:hover:bg-[#1E293B] shadow-sm active:scale-95 transition-all"
               >
                 +1.0L
               </button>
               <button
                 type="button"
                 onClick={() => handleAddWater(-waterAmount)}
-                className="py-2 px-1 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-[#202227] text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors"
+                className="py-2 px-1 rounded-xl text-xs font-semibold bg-stone-100 dark:bg-[#101D2D] text-stone-500 hover:text-stone-800 dark:hover:text-[#F8FAFC] transition-colors"
               >
                 Reset
               </button>
@@ -897,15 +897,15 @@ export function Challenge({
           </div>
 
           {/* Right Column: Food Quality & Notes Log (6 cols) */}
-          <div className="md:col-span-6 p-5 rounded-2xl bg-emerald-50/30 dark:bg-[#17201c] border border-emerald-200/60 dark:border-emerald-800/40 space-y-4">
+          <div className="md:col-span-6 p-5 rounded-2xl bg-emerald-50/30 dark:bg-[#0B0F0E] border border-emerald-200/60 dark:border-[#1E293B] space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Utensils className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                <span className="font-display font-bold text-sm text-stone-900 dark:text-[#f4f5f7]">
+                <Utensils className="w-5 h-5 text-[#22C55E] dark:text-[#34D399]" />
+                <span className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC]">
                   Today's Food Adherence
                 </span>
               </div>
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 uppercase">
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-[#22C55E]/20 text-emerald-800 dark:text-[#34D399] uppercase">
                 {userSettings.foodFocus.replace('_', ' ')}
               </span>
             </div>
@@ -927,8 +927,8 @@ export function Challenge({
                     onClick={() => handleToggleFoodTag(tag)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all ${
                       isSelected
-                        ? 'bg-emerald-600 text-white shadow-sm'
-                        : 'bg-white dark:bg-[#202227] border border-stone-200 dark:border-[#32353e] text-stone-600 dark:text-[#a0a5b2] hover:border-emerald-500'
+                        ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-sm'
+                        : 'bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-600 dark:text-[#CBD5E1] hover:border-[#22C55E]'
                     }`}
                   >
                     {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
@@ -940,7 +940,7 @@ export function Challenge({
 
             {/* Food Note Input */}
             <div className="space-y-1.5">
-              <label className="text-[11px] font-semibold text-stone-500 dark:text-[#a0a5b2]">
+              <label className="text-[11px] font-semibold text-stone-500 dark:text-[#8492A6]">
                 What healthy meals/foods did you make or eat today?
               </label>
               <div className="flex gap-2">
@@ -949,7 +949,7 @@ export function Challenge({
                   value={foodNote}
                   onChange={(e) => setFoodNote(e.target.value)}
                   placeholder="e.g. Oatmeal with chia seeds & grilled paneer salad"
-                  className="flex-1 text-xs px-3 py-2 rounded-xl bg-white dark:bg-[#202227] border border-stone-200 dark:border-[#32353e] text-stone-900 dark:text-white focus:outline-none focus:border-brand-500"
+                  className="flex-1 text-xs px-3 py-2 rounded-xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] focus:outline-none focus:border-[#22C55E]"
                 />
                 <button
                   type="button"
@@ -1019,9 +1019,9 @@ export function Challenge({
             <span className="text-sm font-semibold text-stone-500 dark:text-[#828795]">/ 30</span>
           </div>
           {/* Progress Mini Bar */}
-          <div className="w-full bg-stone-200 dark:bg-[#32353e] h-2 rounded-full mt-2 overflow-hidden">
+          <div className="w-full bg-stone-200 dark:bg-[#1E293B] h-2 rounded-full mt-2 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-brand-500 to-emerald-500 h-full rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] h-full rounded-full transition-all duration-500"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -1054,18 +1054,18 @@ export function Challenge({
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Container Day Navigation Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-stone-200/60 dark:border-[#32353e]">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-stone-200/60 dark:border-[#1E293B]">
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrevDay}
               title="Previous Day"
-              className="p-2 rounded-xl bg-stone-100 dark:bg-[#282a32] hover:bg-stone-200 dark:hover:bg-[#32353e] text-stone-700 dark:text-stone-300 transition-colors"
+              className="p-2 rounded-xl bg-stone-100 dark:bg-[#101D2D] hover:bg-stone-200 dark:hover:bg-[#1E293B] text-stone-700 dark:text-[#CBD5E1] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
 
             <div className="flex items-center gap-2">
-              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-brand-100 dark:bg-brand-950/70 text-brand-800 dark:text-brand-300 border border-brand-300 dark:border-brand-700/60 shadow-sm">
+              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-[#22C55E]/15 text-[#34D399] border border-[#22C55E]/30 shadow-sm">
                 Day {currentTask.day} of 30
               </span>
               {currentTask.day === activeDay && (
@@ -1078,7 +1078,7 @@ export function Challenge({
             <button
               onClick={handleNextDay}
               title="Next Day"
-              className="p-2 rounded-xl bg-stone-100 dark:bg-[#282a32] hover:bg-stone-200 dark:hover:bg-[#32353e] text-stone-700 dark:text-stone-300 transition-colors"
+              className="p-2 rounded-xl bg-stone-100 dark:bg-[#101D2D] hover:bg-stone-200 dark:hover:bg-[#1E293B] text-stone-700 dark:text-[#CBD5E1] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -1088,7 +1088,7 @@ export function Challenge({
             {selectedDay !== activeDay && (
               <button
                 onClick={() => setSelectedDay(activeDay)}
-                className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#282a32] text-stone-700 dark:text-stone-300 hover:border-brand-500 border border-transparent transition-all"
+                className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] hover:border-[#22C55E] border border-transparent transition-all"
               >
                 Jump to Day {activeDay}
               </button>
@@ -1122,29 +1122,29 @@ export function Challenge({
             </div>
 
             {/* Core Action */}
-            <div className="p-4 rounded-2xl bg-stone-100/70 dark:bg-[#18191d] border border-stone-200/60 dark:border-[#32353e]">
-              <div className="flex items-center gap-2 text-xs font-bold text-brand-700 dark:text-brand-400 uppercase tracking-wider mb-1">
+            <div className="p-4 rounded-2xl bg-stone-100/70 dark:bg-[#0B0F0E] border border-stone-200/60 dark:border-[#1E293B]">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#22C55E] dark:text-[#34D399] uppercase tracking-wider mb-1">
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>What to Do</span>
               </div>
-              <p className="text-sm sm:text-base text-stone-800 dark:text-[#f4f5f7] font-medium leading-relaxed">
+              <p className="text-sm sm:text-base text-stone-800 dark:text-[#F8FAFC] font-medium leading-relaxed">
                 {currentTask.action}
               </p>
             </div>
 
             {/* Detailed Explanation */}
             <div>
-              <h4 className="text-xs font-bold text-stone-500 dark:text-[#a0a5b2] uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-bold text-stone-500 dark:text-[#8492A6] uppercase tracking-wider mb-1.5">
                 Why This Habit Works
               </h4>
-              <p className="text-sm text-stone-700 dark:text-[#d1d5db] leading-relaxed">
+              <p className="text-sm text-stone-700 dark:text-[#CBD5E1] leading-relaxed">
                 {currentTask.explanation}
               </p>
             </div>
 
             {/* Science Note */}
-            <div className="p-3.5 rounded-xl bg-brand-50/60 dark:bg-[#1a2320] border border-brand-200/50 dark:border-brand-800/40 text-xs text-brand-950 dark:text-emerald-200 flex items-start gap-2.5">
-              <Sparkles className="w-4 h-4 text-brand-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-xl bg-brand-50/60 dark:bg-[#101D2D] border border-brand-200/50 dark:border-[#1E293B] text-xs text-brand-950 dark:text-emerald-200 flex items-start gap-2.5">
+              <Sparkles className="w-4 h-4 text-[#22C55E] dark:text-[#34D399] shrink-0 mt-0.5" />
               <span>
                 <strong>Science Note:</strong> {currentTask.scienceTip}
               </span>
@@ -1152,24 +1152,24 @@ export function Challenge({
           </div>
 
           {/* Right Column (5 cols): Action Checklist with Tick Marks */}
-          <div className="lg:col-span-5 flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-stone-50/80 dark:bg-[#18191d] border border-stone-200/80 dark:border-[#32353e]">
+          <div className="lg:col-span-5 flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-stone-50/80 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B]">
             <div>
               <div className="flex items-center justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2">
-                  <ListTodo className="w-4 h-4 text-brand-600 dark:text-brand-400" />
-                  <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#f4f5f7]">
+                  <ListTodo className="w-4 h-4 text-[#22C55E] dark:text-[#34D399]" />
+                  <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC]">
                     Day {currentTask.day} Checklist
                   </h3>
                 </div>
-                <span className="text-xs font-bold text-stone-500 dark:text-[#a0a5b2]">
+                <span className="text-xs font-bold text-stone-500 dark:text-[#8492A6]">
                   {tickedIndices.length} / {totalTodos}
                 </span>
               </div>
 
               {/* Progress Bar for Current Day's To-Dos */}
-              <div className="w-full bg-stone-200 dark:bg-[#282a32] h-1.5 rounded-full overflow-hidden mb-5">
+              <div className="w-full bg-stone-200 dark:bg-[#1E293B] h-1.5 rounded-full overflow-hidden mb-5">
                 <div
-                  className="bg-brand-500 h-full rounded-full transition-all duration-300"
+                  className="bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] h-full rounded-full transition-all duration-300"
                   style={{ width: `${(tickedIndices.length / totalTodos) * 100}%` }}
                 />
               </div>
@@ -1184,8 +1184,8 @@ export function Challenge({
                       onClick={() => handleToggleTodo(idx)}
                       className={`p-3.5 rounded-xl border transition-all duration-200 flex items-start gap-3 cursor-pointer group select-none ${
                         isChecked
-                          ? 'bg-emerald-50/70 dark:bg-[#1a2320]/80 border-emerald-400/60 dark:border-emerald-700/60 text-emerald-950 dark:text-emerald-200'
-                          : 'bg-white dark:bg-[#202227] border-stone-200 dark:border-[#32353e] hover:border-brand-400 text-stone-800 dark:text-[#d1d5db]'
+                          ? 'bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-400/60 dark:border-emerald-700/60 text-emerald-950 dark:text-emerald-200'
+                          : 'bg-white dark:bg-[#101D2D] border-stone-200 dark:border-[#1E293B] hover:border-[#22C55E] text-stone-800 dark:text-[#CBD5E1]'
                       }`}
                     >
                       <button
@@ -1193,8 +1193,8 @@ export function Challenge({
                         aria-label={`Tick to-do item: ${todoText}`}
                         className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200 mt-0.5 ${
                           isChecked
-                            ? 'bg-emerald-600 text-white shadow-sm scale-105'
-                            : 'border-2 border-stone-300 dark:border-stone-600 group-hover:border-brand-500 bg-stone-50 dark:bg-[#18191d]'
+                            ? 'bg-[#22C55E] text-[#07111F] shadow-sm scale-105 font-bold'
+                            : 'border-2 border-stone-300 dark:border-stone-600 group-hover:border-[#22C55E] bg-stone-50 dark:bg-[#101D2D]'
                         }`}
                       >
                         {isChecked && <Check className="w-4 h-4 stroke-[3]" />}
@@ -1204,8 +1204,8 @@ export function Challenge({
                         <span
                           className={`text-xs sm:text-sm font-medium leading-snug transition-all ${
                             isChecked
-                              ? 'line-through opacity-85 text-emerald-900 dark:text-emerald-300'
-                              : 'text-stone-800 dark:text-[#e5e7eb]'
+                              ? 'line-through opacity-85 text-emerald-900 dark:text-[#34D399]'
+                              : 'text-stone-800 dark:text-[#F8FAFC]'
                           }`}
                         >
                           {todoText}
@@ -1217,7 +1217,7 @@ export function Challenge({
               </div>
 
               {isAllTodosDone && (
-                <div className="mt-4 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs font-semibold text-emerald-700 dark:text-emerald-300 text-center animate-fade-in flex items-center justify-center gap-1.5">
+                <div className="mt-4 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs font-semibold text-emerald-700 dark:text-[#34D399] text-center animate-fade-in flex items-center justify-center gap-1.5">
                   <PartyPopper className="w-4 h-4" />
                   <span>All tasks completed for Day {currentTask.day}!</span>
                 </div>
@@ -1225,13 +1225,13 @@ export function Challenge({
             </div>
 
             {/* Bottom Actions */}
-            <div className="mt-6 pt-4 border-t border-stone-200/60 dark:border-[#282a32] space-y-2">
+            <div className="mt-6 pt-4 border-t border-stone-200/60 dark:border-[#1E293B] space-y-2">
               <button
                 onClick={() => handleToggleDay(currentTask.day)}
                 className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md ${
                   isSelectedDayCompleted
                     ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                    : 'bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white shadow-brand-600/20'
+                    : 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-[#22C55E]/20'
                 }`}
               >
                 {isSelectedDayCompleted ? (
@@ -1271,7 +1271,7 @@ export function Challenge({
                 key={m.id}
                 className={`card p-4 flex items-start gap-3.5 transition-all ${
                   isUnlocked
-                    ? 'border-amber-300/80 dark:border-amber-600/50 bg-gradient-to-br from-white to-amber-50/30 dark:from-[#202227] dark:to-[#262218] shadow-sm'
+                    ? 'border-amber-300/80 dark:border-amber-600/50 bg-gradient-to-br from-white to-amber-50/30 dark:from-[#0B0F0E] dark:to-[#101D2D] shadow-sm'
                     : 'opacity-70 grayscale hover:grayscale-0'
                 }`}
               >
@@ -1302,7 +1302,7 @@ export function Challenge({
 
       {/* 30-Day Road-map & Filter Controls */}
       <div className="card p-6 sm:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-200/60 dark:border-[#32353e]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-200/60 dark:border-[#1E293B]">
           <div>
             <h3 className="font-display font-bold text-xl text-stone-900 dark:text-[#f4f5f7]">
               Complete 30-Day Road-map
@@ -1319,8 +1319,8 @@ export function Challenge({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-brand-600 text-white shadow-sm'
-                    : 'bg-stone-100 dark:bg-[#282a32] text-stone-600 dark:text-[#d1d5db] hover:bg-stone-200 dark:hover:bg-[#32353e]'
+                    ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-sm'
+                    : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-200 dark:hover:bg-[#1E293B]'
                 }`}
               >
                 {cat.label}
@@ -1343,12 +1343,12 @@ export function Challenge({
                 onClick={() => handleSelectDayCard(t.day)}
                 className={`p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between gap-3 cursor-pointer group hover:-translate-y-0.5 hover:shadow-card-lg ${
                   isSelected
-                    ? 'ring-2 ring-brand-500 border-brand-500'
+                    ? 'ring-2 ring-[#22C55E] border-[#22C55E]'
                     : isCompleted
-                    ? 'bg-emerald-50/50 dark:bg-[#1a2320] border-emerald-300/80 dark:border-emerald-800/50 shadow-sm'
+                    ? 'bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-300/80 dark:border-emerald-800/50 shadow-sm'
                     : isToday
-                    ? 'bg-amber-50/40 dark:bg-[#25221b] border-amber-300 dark:border-amber-700/60 ring-2 ring-amber-500/20'
-                    : 'bg-stone-50/60 dark:bg-[#18191d] border-stone-200 dark:border-[#32353e] hover:border-stone-300 dark:hover:border-stone-600'
+                    ? 'bg-amber-50/40 dark:bg-[#101D2D] border-amber-300 dark:border-amber-700/60 ring-2 ring-amber-500/20'
+                    : 'bg-stone-50/60 dark:bg-[#0B0F0E] border-stone-200 dark:border-[#1E293B] hover:border-stone-300 dark:hover:border-stone-600'
                 }`}
               >
                 <div>
@@ -1356,30 +1356,30 @@ export function Challenge({
                     <span
                       className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
                         isCompleted
-                          ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
+                          ? 'bg-emerald-100 dark:bg-[#22C55E]/20 text-emerald-800 dark:text-[#34D399]'
                           : isToday
                           ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300'
-                          : 'bg-stone-200 dark:bg-[#282a32] text-stone-700 dark:text-[#d1d5db]'
+                          : 'bg-stone-200 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]'
                       }`}
                     >
                       Day {t.day}
                     </span>
 
-                    <span className="text-[11px] font-medium text-stone-400 dark:text-[#828795]">
+                    <span className="text-[11px] font-medium text-stone-400 dark:text-[#8492A6]">
                       {t.categoryLabel}
                     </span>
                   </div>
 
-                  <h4 className="font-semibold text-sm text-stone-900 dark:text-[#f4f5f7] mb-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                  <h4 className="font-semibold text-sm text-stone-900 dark:text-[#F8FAFC] mb-1 group-hover:text-[#22C55E] dark:group-hover:text-[#34D399] transition-colors">
                     {t.title}
                   </h4>
-                  <p className="text-xs text-stone-600 dark:text-[#a0a5b2] leading-relaxed line-clamp-2">
+                  <p className="text-xs text-stone-600 dark:text-[#8492A6] leading-relaxed line-clamp-2">
                     {t.action}
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-stone-200/50 dark:border-[#282a32] flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-stone-500 dark:text-[#828795]">
+                <div className="pt-2 border-t border-stone-200/50 dark:border-[#1E293B] flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-stone-500 dark:text-[#8492A6]">
                     {dayTicks.length}/{t.todos.length} to-dos
                   </span>
 
@@ -1392,7 +1392,7 @@ export function Challenge({
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
                       isCompleted
                         ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                        : 'bg-white dark:bg-[#282a32] border border-stone-300 dark:border-[#373a44] text-stone-700 dark:text-[#d1d5db] hover:border-brand-500'
+                        : 'bg-white dark:bg-[#101D2D] border border-stone-300 dark:border-[#1E293B] text-stone-700 dark:text-[#CBD5E1] hover:border-[#22C55E]'
                     }`}
                   >
                     {isCompleted ? (

@@ -28,6 +28,7 @@ import { isFirebaseConfigured } from '@/lib/firebase';
 import { playChecklistSound, playAddProgressSound } from '@/lib/soundEffects';
 import { SectionErrorBoundary } from '@/components/ErrorBoundary';
 import { BeginnerGuideBanner } from '@/components/beginner/BeginnerGuideBanner';
+import { UserAccountCard } from '@/components/auth/UserAccountCard';
 
 interface ProfileGoalSettingsProps {
   profile: UserProfile;
@@ -35,6 +36,8 @@ interface ProfileGoalSettingsProps {
   authUser: AuthUser | null;
   onUpdateProfile: (updatedProfile: UserProfile) => void;
   onOpenAuth?: (mode?: 'signin' | 'signup') => void;
+  onSignOut?: () => void;
+  streakCount?: number;
 }
 
 export function ProfileGoalSettings({
@@ -43,6 +46,8 @@ export function ProfileGoalSettings({
   authUser,
   onUpdateProfile,
   onOpenAuth,
+  onSignOut,
+  streakCount = 0,
 }: ProfileGoalSettingsProps) {
   const [preferences, setPreferences] = useState<UserPreferences>(() => loadUserPreferencesLocal());
   const [weight, setWeight] = useState(profile.weight?.toString() || '75');
@@ -140,16 +145,16 @@ export function ProfileGoalSettings({
         />
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 text-xs font-bold mb-1 border border-emerald-500/30">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#22C55E]/15 text-emerald-600 dark:text-[#34D399] text-xs font-bold mb-1 border border-[#22C55E]/30">
               <Settings className="w-3.5 h-3.5" />
               <span>Personal Profile & Preferences</span>
             </div>
-            <h1 className="font-display font-extrabold text-2xl text-stone-900 dark:text-white">
+            <h1 className="font-display font-extrabold text-2xl text-stone-900 dark:text-[#F8FAFC]">
               Profile & Goal Settings
             </h1>
-            <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+            <p className="text-xs text-stone-500 dark:text-[#8492A6] mt-0.5">
               Keep your measurements up-to-date so your daily food and water recommendations stay accurate.
             </p>
           </div>
@@ -158,8 +163,8 @@ export function ProfileGoalSettings({
             <span
               className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 border ${
                 authUser
-                  ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-                  : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 border-stone-200 dark:border-stone-700'
+                  ? 'bg-[#22C55E]/15 text-emerald-600 dark:text-[#34D399] border-[#22C55E]/30'
+                  : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] border-stone-200 dark:border-[#1E293B]'
               }`}
             >
               <Cloud className="w-3.5 h-3.5" />
@@ -170,47 +175,34 @@ export function ProfileGoalSettings({
 
         {/* Success Banner */}
         {savedSuccess && (
-          <div className="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-bold flex items-center gap-2 animate-fade-in">
-            <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+          <div className="p-4 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/30 text-emerald-800 dark:text-[#34D399] text-xs sm:text-sm font-bold flex items-center gap-2 animate-fade-in">
+            <CheckCircle2 className="w-4 h-4 text-[#22C55E] flex-shrink-0" />
             <span>Profile settings & daily nutrition recommendations updated successfully!</span>
           </div>
         )}
 
-        {/* Account Sync Card */}
-        {!authUser && (
-          <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <h3 className="font-display font-bold text-sm text-stone-900 dark:text-white flex items-center gap-2">
-                <span>🔒 Link Your Free Account</span>
-              </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
-                You are currently in guest mode. Sign in to synchronize your nutrition history across all your devices.
-              </p>
-            </div>
-            {onOpenAuth && (
-              <button
-                type="button"
-                onClick={() => onOpenAuth('signin')}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 flex-shrink-0 cursor-pointer"
-              >
-                <span>Sign In or Register</span>
-              </button>
-            )}
-          </div>
-        )}
+        {/* User Account & Login/Logout Hub Container */}
+        <UserAccountCard
+          authUser={authUser}
+          profile={profile}
+          result={result}
+          streakCount={streakCount}
+          onOpenAuth={onOpenAuth}
+          onSignOut={onSignOut}
+        />
 
         {/* Settings Form */}
         <form onSubmit={handleSave} className="space-y-6">
           {/* Section 1: Physical Parameters */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-4">
-            <h3 className="font-display font-bold text-base text-stone-900 dark:text-white flex items-center gap-2 pb-2 border-b border-stone-100 dark:border-stone-800">
-              <User className="w-4 h-4 text-emerald-500" />
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-4">
+            <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2 pb-2 border-b border-stone-100 dark:border-[#1E293B]">
+              <User className="w-4 h-4 text-[#22C55E]" />
               <span>Your Body Measurements</span>
             </h3>
 
             <div className="grid sm:grid-cols-3 gap-4">
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Current Weight (kg)
                 </label>
                 <input
@@ -219,12 +211,12 @@ export function ProfileGoalSettings({
                   required
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 />
               </div>
 
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Height (cm)
                 </label>
                 <input
@@ -232,12 +224,12 @@ export function ProfileGoalSettings({
                   required
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 />
               </div>
 
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Age (years)
                 </label>
                 <input
@@ -245,28 +237,28 @@ export function ProfileGoalSettings({
                   required
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 />
               </div>
             </div>
           </div>
 
           {/* Section 2: Goals & Diet Philosophy */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-4">
-            <h3 className="font-display font-bold text-base text-stone-900 dark:text-white flex items-center gap-2 pb-2 border-b border-stone-100 dark:border-stone-800">
-              <Target className="w-4 h-4 text-emerald-500" />
+          <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-4">
+            <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2 pb-2 border-b border-stone-100 dark:border-[#1E293B]">
+              <Target className="w-4 h-4 text-[#22C55E]" />
               <span>Your Goal & Daily Routine</span>
             </h3>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Primary Fitness Objective
                 </label>
                 <select
                   value={goal}
                   onChange={(e) => setGoal(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 >
                   <option value="fat_loss">Lose Weight & Tone Up (Gentle, sustainable pace)</option>
                   <option value="maintenance">Stay at Current Weight (Healthy balance)</option>
@@ -276,13 +268,13 @@ export function ProfileGoalSettings({
               </div>
 
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Daily Activity Level
                 </label>
                 <select
                   value={activity}
                   onChange={(e) => setActivity(Number(e.target.value))}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 >
                   <option value={1.2}>Desk job / mostly sitting during the day</option>
                   <option value={1.375}>Light activity (daily walking or 1–2 workouts/wk)</option>
@@ -293,13 +285,13 @@ export function ProfileGoalSettings({
               </div>
 
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Dietary Pattern
                 </label>
                 <select
                   value={diet}
                   onChange={(e) => setDiet(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 >
                   <option value="veg">Vegetarian (Veggies, grains & dairy, no meat)</option>
                   <option value="vegan">100% Plant-Based (Vegan)</option>
@@ -311,7 +303,7 @@ export function ProfileGoalSettings({
               </div>
 
               <div>
-                <label className="text-[10px] font-extrabold uppercase text-stone-500 block mb-1">
+                <label className="text-[10px] font-extrabold uppercase text-stone-500 dark:text-[#8492A6] block mb-1">
                   Daily Water Target (ml)
                 </label>
                 <input
@@ -319,7 +311,7 @@ export function ProfileGoalSettings({
                   step="100"
                   value={waterTarget}
                   onChange={(e) => setWaterTarget(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-xs font-bold text-stone-900 dark:text-[#F8FAFC] focus:ring-2 focus:ring-[#22C55E]"
                 />
               </div>
             </div>
@@ -330,17 +322,17 @@ export function ProfileGoalSettings({
             <button
               type="button"
               onClick={handleExportJSON}
-              className="px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-300 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-[#101D2D] dark:hover:bg-[#101D2D]/80 text-stone-700 dark:text-[#CBD5E1] border border-transparent dark:border-[#1E293B] text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
               title="Download a backup file of your profile and history"
             >
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5 text-[#60A5FA]" />
               <span>Export Data Backup (JSON)</span>
             </button>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg cursor-pointer disabled:opacity-50"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 text-[#07111F] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-[#22C55E]/20 cursor-pointer disabled:opacity-50"
               title="Saves your changes and recalculates your daily nutrition targets"
             >
               <Save className="w-4 h-4" />

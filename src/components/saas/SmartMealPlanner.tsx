@@ -253,17 +253,17 @@ export function SmartMealPlanner({
         )}
 
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#18191c] via-[#15171b] to-[#202227] border border-stone-800 text-white shadow-xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#07111F] via-[#0B0F0E] to-[#101D2D] border border-[#1E293B] text-white shadow-xl">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-xs font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-[#34D399] border border-emerald-500/30 text-xs font-bold">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Simple, Healthy Recipes</span>
             </div>
-            <h1 className="font-display font-black text-2xl sm:text-3xl tracking-tight text-white">
+            <h1 className="font-display font-black text-2xl sm:text-3xl tracking-tight text-[#F8FAFC]">
               Personalized Meal Ideas
             </h1>
-            <p className="text-xs sm:text-sm text-stone-400 max-w-xl">
-              Easy, home-cooked dishes calibrated to your <span className="text-emerald-400 font-bold">{result.tdee} calorie</span> daily target and dietary preferences.
+            <p className="text-xs sm:text-sm text-[#8492A6] max-w-xl">
+              Easy, home-cooked dishes calibrated to your <span className="text-[#34D399] font-bold">{result.tdee} calorie</span> daily target and dietary preferences.
             </p>
           </div>
 
@@ -274,52 +274,52 @@ export function SmartMealPlanner({
                 playChecklistSound(true);
                 setDaySeed((s) => s + 1);
               }}
-              className="px-4 py-2.5 rounded-2xl bg-stone-800 hover:bg-stone-700 border border-stone-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer"
+              className="px-4 py-2.5 rounded-2xl bg-[#101D2D] hover:bg-[#101D2D]/80 border border-[#1E293B] text-[#F8FAFC] text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer"
               title="Click to generate 4 new recipe options for today"
             >
-              <RefreshCw className="w-4 h-4 text-emerald-400" />
+              <RefreshCw className="w-4 h-4 text-[#34D399]" />
               <span>🎲 Shuffle Meals</span>
             </button>
             <button
               type="button"
               onClick={handleAddAllToGrocery}
-              className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:shadow-lg cursor-pointer"
+              className="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:opacity-95 cursor-pointer"
               title="Adds all 4 meals' ingredients to your Shopping List"
             >
-              <ShoppingCart className="w-4 h-4" />
+              <ShoppingCart className="w-4 h-4 text-[#07111F]" />
               <span>🛒 Add All to Shopping List</span>
             </button>
           </div>
         </div>
 
         {/* Generated Daily Full-Course Formula */}
-        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-6">
+        <div className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-display font-bold text-lg sm:text-xl text-stone-900 dark:text-white">
+                <h2 className="font-display font-bold text-lg sm:text-xl text-stone-900 dark:text-[#F8FAFC]">
                   Today's Easy Full-Day Meal Plan
                 </h2>
-                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-[#34D399] border border-emerald-500/30">
                   Target Calibrated
                 </span>
               </div>
-              <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6] mt-0.5">
                 4 balanced meals that together hit around {result.tdee} calories with {result.proteinG}g muscle fuel (protein).
               </p>
             </div>
 
             <div className="flex items-center gap-2 flex-wrap text-xs">
-              <span className="px-2.5 py-1 rounded-xl bg-orange-500/10 text-orange-600 dark:text-orange-400 font-extrabold border border-orange-500/20">
+              <span className="px-2.5 py-1 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 font-extrabold border border-amber-500/20">
                 ⚡ {dailyPlan.totals.calories} / {result.tdee} kcal
               </span>
-              <span className="px-2.5 py-1 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-extrabold border border-emerald-500/20">
+              <span className="px-2.5 py-1 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-[#34D399] font-extrabold border border-emerald-500/20">
                 🥩 {dailyPlan.totals.protein} / {result.proteinG}g Protein
               </span>
               <button
                 type="button"
                 onClick={handleCopyPlan}
-                className="px-2.5 py-1 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-stone-700 dark:text-stone-300 font-bold transition-all flex items-center gap-1 cursor-pointer"
+                className="px-2.5 py-1 rounded-xl bg-stone-100 dark:bg-[#101D2D] hover:bg-stone-200 text-stone-700 dark:text-[#CBD5E1] font-bold transition-all flex items-center gap-1 border border-stone-200 dark:border-[#1E293B] cursor-pointer"
                 title="Copy plan text to paste into messages or notes"
               >
                 <Copy className="w-3.5 h-3.5" />
@@ -335,43 +335,43 @@ export function SmartMealPlanner({
               return (
                 <div
                   key={slot}
-                  className="p-4 rounded-2xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200/80 dark:border-stone-800/80 flex flex-col justify-between hover:border-emerald-500/40 transition-all group"
+                  className="p-4 rounded-2xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200/80 dark:border-[#1E293B] flex flex-col justify-between hover:border-emerald-500/40 transition-all group"
                 >
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-lg bg-stone-200/80 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-lg bg-stone-200/80 dark:bg-[#07111F] text-stone-700 dark:text-[#CBD5E1] border border-transparent dark:border-[#1E293B]">
                         {slot} • {time}
                       </span>
-                      <span className="text-xs font-black text-orange-600 dark:text-orange-400">
+                      <span className="text-xs font-black text-amber-500">
                         {recipe.calories} kcal
                       </span>
                     </div>
 
-                    <h4 className="font-display font-bold text-sm text-stone-900 dark:text-white line-clamp-1 group-hover:text-emerald-500 transition-colors">
+                    <h4 className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC] line-clamp-1 group-hover:text-[#34D399] transition-colors">
                       {recipe.name}
                     </h4>
 
-                    <div className="flex items-center gap-2 text-[11px] text-stone-500 dark:text-stone-400">
+                    <div className="flex items-center gap-2 text-[11px] text-stone-500 dark:text-[#8492A6]">
                       <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-stone-400" />
+                        <Clock className="w-3 h-3 text-stone-400 dark:text-[#8492A6]" />
                         <span>{recipe.cookTimeMin}m</span>
                       </span>
                       <span>•</span>
-                      <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="font-bold text-emerald-600 dark:text-[#34D399]">
                         {recipe.protein}g protein
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 pt-3 mt-3 border-t border-stone-200/70 dark:border-stone-800">
+                  <div className="flex flex-col gap-2 pt-3 mt-3 border-t border-stone-200/70 dark:border-[#1E293B]">
                     <button
                       type="button"
                       onClick={() => handleLogRecipe(recipe)}
                       disabled={loggedRecipeIds[recipe.id]}
-                      className="w-full py-2 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-xs"
+                      className="w-full py-2 px-2.5 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-xs hover:opacity-95"
                       title="Adds this meal to today's food total"
                     >
-                      {loggedRecipeIds[recipe.id] ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                      {loggedRecipeIds[recipe.id] ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : <Plus className="w-3.5 h-3.5" />}
                       <span>{loggedRecipeIds[recipe.id] ? '✓ Logged to Today' : `+ Log Meal (+${recipe.calories} kcal)`}</span>
                     </button>
                     <button
@@ -379,13 +379,13 @@ export function SmartMealPlanner({
                       onClick={() => handleAddRecipeToGrocery(recipe)}
                       className={`w-full py-1.5 px-2.5 rounded-xl text-[11px] font-semibold transition-all border flex items-center justify-center gap-1.5 cursor-pointer ${
                         addedGroceryIds[recipe.id]
-                          ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                          : 'bg-stone-200/80 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-700 dark:text-stone-300 border-stone-300/60 dark:border-stone-700'
+                          ? 'bg-emerald-500/20 text-[#34D399] border-emerald-500/40'
+                          : 'bg-stone-200/80 hover:bg-stone-300 dark:bg-[#07111F] dark:hover:bg-[#07111F]/80 text-stone-700 dark:text-[#CBD5E1] border-stone-300/60 dark:border-[#1E293B]'
                       }`}
                       title="Copies all ingredients to your Shopping List"
                     >
                       <ShoppingCart className="w-3 h-3" />
-                      <span>{addedGroceryIds[recipe.id] ? '✓ Ingredients Added' : '🛒 Add Ingredients to Shopping'}</span>
+                      <span>{addedGroceryIds[recipe.id] ? '✓ Ingredients Added' : '🛒 Add to Shopping List'}</span>
                     </button>
                   </div>
                 </div>
@@ -395,15 +395,15 @@ export function SmartMealPlanner({
         </div>
 
         {/* Filter Controls Suite */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800 shadow-sm space-y-5">
-          <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-200/80 dark:border-stone-800">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm space-y-5">
+          <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-stone-200/80 dark:border-[#1E293B]">
             <div className="flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-emerald-500" />
-              <h3 className="font-display font-bold text-base text-stone-900 dark:text-white">
+              <SlidersHorizontal className="w-4 h-4 text-[#22C55E] dark:text-[#34D399]" />
+              <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC]">
                 Recipe Catalog Filters
               </h3>
             </div>
-            <span className="text-xs font-bold text-stone-500">
+            <span className="text-xs font-bold text-stone-500 dark:text-[#8492A6]">
               Showing {filteredRecipes.length} matching recipes
             </span>
           </div>
@@ -411,13 +411,13 @@ export function SmartMealPlanner({
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
             {/* Diet Filter */}
             <div className="space-y-1.5">
-              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-stone-400">
+              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-[#8492A6]">
                 Dietary Philosophy
               </label>
               <select
                 value={dietFilter}
                 onChange={(e) => setDietFilter(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs"
+                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] font-semibold focus:outline-none focus:border-[#2DD4BF] text-xs"
               >
                 <option value="all">All Diets (Flexible)</option>
                 <option value="veg">Vegetarian</option>
@@ -429,13 +429,13 @@ export function SmartMealPlanner({
 
             {/* Meal Slot */}
             <div className="space-y-1.5">
-              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-stone-400">
+              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-[#8492A6]">
                 Meal Course Slot
               </label>
               <select
                 value={activeSlot}
                 onChange={(e) => setActiveSlot(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs"
+                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] font-semibold focus:outline-none focus:border-[#2DD4BF] text-xs"
               >
                 <option value="all">All Meal Times</option>
                 <option value="breakfast">Breakfast</option>
@@ -447,13 +447,13 @@ export function SmartMealPlanner({
 
             {/* Budget */}
             <div className="space-y-1.5">
-              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-stone-400">
+              <label className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-[#8492A6]">
                 Ingredient Budget
               </label>
               <select
                 value={budgetFilter}
                 onChange={(e) => setBudgetFilter(e.target.value as any)}
-                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-700 text-stone-900 dark:text-white font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs"
+                className="w-full px-3 py-2 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] font-semibold focus:outline-none focus:border-[#2DD4BF] text-xs"
               >
                 <option value="all">Any Budget Tier</option>
                 <option value="economy">Economy ($ Budget-Friendly)</option>
@@ -464,9 +464,9 @@ export function SmartMealPlanner({
 
             {/* Cooking Time Slider */}
             <div className="space-y-1.5">
-              <div className="flex justify-between font-extrabold uppercase text-[10px] text-stone-500 dark:text-stone-400">
+              <div className="flex justify-between font-extrabold uppercase text-[10px] text-stone-500 dark:text-[#8492A6]">
                 <span>Max Prep Time</span>
-                <span className="text-emerald-500 font-bold">{cookingTimeFilter} mins</span>
+                <span className="text-[#34D399] font-bold">{cookingTimeFilter} mins</span>
               </div>
               <input
                 type="range"
@@ -475,14 +475,14 @@ export function SmartMealPlanner({
                 step="5"
                 value={cookingTimeFilter}
                 onChange={(e) => setCookingTimeFilter(Number(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
+                className="w-full accent-[#22C55E] cursor-pointer"
               />
             </div>
           </div>
 
           {/* Allergy Chips */}
           <div className="space-y-2 pt-2">
-            <span className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-stone-400">
+            <span className="font-extrabold uppercase text-[10px] text-stone-500 dark:text-[#8492A6]">
               Allergy Exclusions:
             </span>
             <div className="flex flex-wrap gap-2">
@@ -496,7 +496,7 @@ export function SmartMealPlanner({
                     className={`px-3 py-1 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                       active
                         ? 'bg-rose-500/20 text-rose-500 border-rose-500/40 shadow-xs'
-                        : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:border-stone-400'
+                        : 'bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] border-stone-200 dark:border-[#1E293B] hover:border-emerald-500/40'
                     }`}
                   >
                     {active ? '✓ ' : '+ '} {allergy}
@@ -507,7 +507,7 @@ export function SmartMealPlanner({
                 <button
                   type="button"
                   onClick={() => setSelectedAllergies([])}
-                  className="text-xs text-stone-400 hover:text-stone-200 underline ml-1"
+                  className="text-xs text-stone-400 dark:text-[#8492A6] hover:text-[#F8FAFC] underline ml-1"
                 >
                   Clear all
                 </button>
@@ -519,14 +519,14 @@ export function SmartMealPlanner({
         {/* Filtered Recipe Results Grid */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-display font-bold text-lg text-stone-900 dark:text-white">
+            <h3 className="font-display font-bold text-lg text-stone-900 dark:text-[#F8FAFC]">
               Curated Recipe Cards
             </h3>
             {onNavigateToGrocery && (
               <button
                 type="button"
                 onClick={onNavigateToGrocery}
-                className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer"
+                className="text-xs font-bold text-emerald-600 dark:text-[#34D399] hover:underline flex items-center gap-1 cursor-pointer"
               >
                 <span>View My Grocery List</span>
                 <ShoppingCart className="w-3.5 h-3.5" />
@@ -535,12 +535,12 @@ export function SmartMealPlanner({
           </div>
 
           {filteredRecipes.length === 0 ? (
-            <div className="p-12 text-center rounded-3xl bg-white dark:bg-[#16171c] border border-stone-200 dark:border-stone-800 space-y-3">
-              <ChefHat className="w-12 h-12 mx-auto text-stone-400" />
-              <h4 className="font-display font-bold text-base text-stone-900 dark:text-white">
+            <div className="p-12 text-center rounded-3xl bg-white dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B] space-y-3">
+              <ChefHat className="w-12 h-12 mx-auto text-stone-400 dark:text-[#8492A6]" />
+              <h4 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC]">
                 No recipes match your exact filter combination
               </h4>
-              <p className="text-xs text-stone-500 max-w-sm mx-auto">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6] max-w-sm mx-auto">
                 Try easing the prep time slider or clearing allergy filters to discover more dishes.
               </p>
               <button
@@ -552,7 +552,7 @@ export function SmartMealPlanner({
                   setBudgetFilter('all');
                   setActiveSlot('all');
                 }}
-                className="px-4 py-2 rounded-xl bg-stone-800 text-white text-xs font-bold transition-all"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] text-xs font-bold transition-all"
               >
                 Reset All Filters
               </button>
@@ -567,69 +567,69 @@ export function SmartMealPlanner({
                 return (
                   <div
                     key={recipe.id}
-                    className="p-5 rounded-2xl bg-white dark:bg-[#16171c] border border-stone-200/80 dark:border-stone-800/80 shadow-sm flex flex-col justify-between hover:border-emerald-500/40 transition-all space-y-4"
+                    className="p-5 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] shadow-sm flex flex-col justify-between hover:border-emerald-500/40 transition-all space-y-4"
                   >
                     <div className="space-y-3">
                       {/* Top Badges */}
                       <div className="flex items-center justify-between gap-2 flex-wrap">
-                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-transparent dark:border-[#1E293B]">
                           {recipe.mealType}
                         </span>
-                        <div className="flex items-center gap-1 text-[11px] font-extrabold text-orange-600 dark:text-orange-400">
-                          <Flame className="w-3.5 h-3.5 fill-orange-500" />
+                        <div className="flex items-center gap-1 text-[11px] font-extrabold text-amber-500">
+                          <Flame className="w-3.5 h-3.5 fill-amber-500" />
                           <span>{recipe.calories} kcal</span>
                         </div>
                       </div>
 
                       {/* Title & Description */}
                       <div>
-                        <h4 className="font-display font-bold text-base text-stone-900 dark:text-white">
+                        <h4 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC]">
                           {recipe.name}
                         </h4>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 mt-1 line-clamp-2">
+                        <p className="text-xs text-stone-500 dark:text-[#CBD5E1] mt-1 line-clamp-2">
                           {recipe.description}
                         </p>
                       </div>
 
                       {/* Macro Chips with Plain Words */}
                       <div className="grid grid-cols-4 gap-1.5 text-center text-[10px] font-bold">
-                        <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                        <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-[#101D2D] text-emerald-600 dark:text-[#34D399] border border-emerald-500/20 dark:border-emerald-500/30">
                           <span className="font-extrabold">{recipe.protein}g</span>
                           <span className="block text-[8px] opacity-75">Protein</span>
                         </div>
-                        <div className="p-1.5 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                        <div className="p-1.5 rounded-lg bg-sky-500/10 dark:bg-[#101D2D] text-[#60A5FA] border border-sky-500/20 dark:border-[#60A5FA]/30">
                           <span className="font-extrabold">{recipe.carbs}g</span>
                           <span className="block text-[8px] opacity-75">Carbs</span>
                         </div>
-                        <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                        <div className="p-1.5 rounded-lg bg-amber-500/10 dark:bg-[#101D2D] text-amber-600 dark:text-amber-400 border border-amber-500/20 dark:border-amber-500/30">
                           <span className="font-extrabold">{recipe.fat}g</span>
                           <span className="block text-[8px] opacity-75">Fats</span>
                         </div>
-                        <div className="p-1.5 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                        <div className="p-1.5 rounded-lg bg-emerald-500/10 dark:bg-[#101D2D] text-emerald-600 dark:text-[#34D399] border border-emerald-500/20 dark:border-emerald-500/30">
                           <span className="font-extrabold">{recipe.fiber || 3}g</span>
                           <span className="block text-[8px] opacity-75">Fiber</span>
                         </div>
                       </div>
 
                       {/* Prep time & Budget info */}
-                      <div className="flex items-center justify-between text-[11px] text-stone-500 dark:text-stone-400 pt-1 border-t border-stone-100 dark:border-stone-800">
+                      <div className="flex items-center justify-between text-[11px] text-stone-500 dark:text-[#8492A6] pt-1 border-t border-stone-100 dark:border-[#1E293B]">
                         <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-stone-400" />
+                          <Clock className="w-3.5 h-3.5 text-stone-400 dark:text-[#8492A6]" />
                           <span>{recipe.cookTimeMin} mins</span>
                         </span>
-                        <span className="capitalize font-bold text-stone-600 dark:text-stone-300">
+                        <span className="capitalize font-bold text-stone-600 dark:text-[#CBD5E1]">
                           Focus: {recipe.goalFocus || 'balanced'}
                         </span>
                       </div>
 
                       {/* Expanded Ingredients & Steps */}
                       {isExpanded && (
-                        <div className="space-y-3 pt-3 border-t border-stone-200 dark:border-stone-800 text-xs animate-fade-in">
+                        <div className="space-y-3 pt-3 border-t border-stone-200 dark:border-[#1E293B] text-xs animate-fade-in">
                           <div>
-                            <span className="font-bold text-stone-900 dark:text-white block mb-1">
+                            <span className="font-bold text-stone-900 dark:text-[#F8FAFC] block mb-1">
                               Ingredients:
                             </span>
-                            <ul className="list-disc list-inside space-y-0.5 text-stone-600 dark:text-stone-300 text-[11px]">
+                            <ul className="list-disc list-inside space-y-0.5 text-stone-600 dark:text-[#CBD5E1] text-[11px]">
                               {recipe.ingredients.map((ing, i) => (
                                 <li key={i}>{ing}</li>
                               ))}
@@ -637,10 +637,10 @@ export function SmartMealPlanner({
                           </div>
 
                           <div>
-                            <span className="font-bold text-stone-900 dark:text-white block mb-1">
+                            <span className="font-bold text-stone-900 dark:text-[#F8FAFC] block mb-1">
                               Directions:
                             </span>
-                            <ol className="list-decimal list-inside space-y-1 text-stone-600 dark:text-stone-300 text-[11px]">
+                            <ol className="list-decimal list-inside space-y-1 text-stone-600 dark:text-[#CBD5E1] text-[11px]">
                               {recipe.steps.map((step: string, i: number) => (
                                 <li key={i}>{step}</li>
                               ))}
@@ -651,12 +651,12 @@ export function SmartMealPlanner({
                     </div>
 
                     {/* Action Bar with clear outcome labels */}
-                    <div className="pt-2 border-t border-stone-100 dark:border-stone-800/80 flex flex-wrap items-center gap-2">
+                    <div className="pt-2 border-t border-stone-100 dark:border-[#1E293B] flex flex-wrap items-center gap-2">
                       <button
                         type="button"
                         onClick={() => handleLogRecipe(recipe)}
                         disabled={isLogged}
-                        className="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer disabled:opacity-50"
+                        className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer disabled:opacity-50 hover:opacity-95"
                         title="Records this meal into your food journal for today"
                       >
                         {isLogged ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
@@ -668,8 +668,8 @@ export function SmartMealPlanner({
                         onClick={() => handleAddRecipeToGrocery(recipe)}
                         className={`py-2 px-2.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
                           isAddedGrocery
-                            ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                            : 'bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 border-stone-200 dark:border-stone-700 hover:bg-stone-200'
+                            ? 'bg-emerald-500/20 text-[#34D399] border-emerald-500/40'
+                            : 'bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border-stone-200 dark:border-[#1E293B] hover:bg-stone-200 dark:hover:bg-[#101D2D]/80'
                         }`}
                         title="Add recipe ingredients to your Grocery Shopping List"
                       >
@@ -680,7 +680,7 @@ export function SmartMealPlanner({
                       <button
                         type="button"
                         onClick={() => setExpandedRecipeId(isExpanded ? null : recipe.id)}
-                        className="py-2 px-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 text-xs font-bold transition-all border border-stone-200 dark:border-stone-700 hover:bg-stone-200 cursor-pointer flex items-center gap-1"
+                        className="py-2 px-2.5 rounded-xl bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] text-xs font-bold transition-all border border-stone-200 dark:border-[#1E293B] hover:bg-stone-200 dark:hover:bg-[#101D2D]/80 cursor-pointer flex items-center gap-1"
                         title={isExpanded ? 'Hide directions' : 'Show directions and ingredients'}
                       >
                         <span className="text-[11px]">{isExpanded ? 'Hide' : 'Recipe'}</span>

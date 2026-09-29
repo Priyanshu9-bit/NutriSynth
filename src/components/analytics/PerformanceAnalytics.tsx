@@ -99,27 +99,27 @@ export function PerformanceAnalytics({
   // Determine Performance Tier
   let currentTier: PerformanceTier = 'GOOD';
   let tierLabel = 'Good';
-  let tierColor = 'text-sky-500 dark:text-sky-400';
-  let tierBadgeBg = 'bg-sky-500/15 border-sky-500/30 text-sky-600 dark:text-sky-300';
+  let tierColor = 'text-[#60A5FA]';
+  let tierBadgeBg = 'bg-[#60A5FA]/15 border-[#60A5FA]/30 text-[#60A5FA]';
   let tierFeedback = '';
 
   if (totalScore >= 90) {
     currentTier = 'BEST';
     tierLabel = 'Best';
-    tierColor = 'text-emerald-500 dark:text-emerald-400';
-    tierBadgeBg = 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border-emerald-400/40 text-emerald-600 dark:text-emerald-300 animate-pulse';
+    tierColor = 'text-emerald-500 dark:text-[#34D399]';
+    tierBadgeBg = 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border-emerald-400/40 text-emerald-600 dark:text-[#34D399] animate-pulse';
     tierFeedback = '🌟 Elite Performance! Your calorie balance, protein synthesis, and streak consistency are in the top tier.';
   } else if (totalScore >= 80) {
     currentTier = 'BETTER';
     tierLabel = 'Better';
-    tierColor = 'text-emerald-500 dark:text-emerald-400';
-    tierBadgeBg = 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-300';
+    tierColor = 'text-emerald-500 dark:text-[#34D399]';
+    tierBadgeBg = 'bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-[#34D399]';
     tierFeedback = '🟢 Better Than Average! Strong daily momentum. You are consistently hitting your macronutrient milestones.';
   } else if (totalScore >= 68) {
     currentTier = 'GOOD';
     tierLabel = 'Good';
-    tierColor = 'text-brand-500 dark:text-brand-400';
-    tierBadgeBg = 'bg-brand-500/15 border-brand-500/30 text-brand-600 dark:text-brand-300';
+    tierColor = 'text-[#60A5FA]';
+    tierBadgeBg = 'bg-[#60A5FA]/15 border-[#60A5FA]/30 text-[#60A5FA]';
     tierFeedback = '🔵 Good Foundation! You are tracking well. Hitting your evening protein target will level you up to Better.';
   } else if (totalScore >= 50) {
     currentTier = 'AVERAGE';
@@ -218,29 +218,29 @@ export function PerformanceAnalytics({
   return (
     <div className="card-lg p-6 sm:p-8 animate-fade-in space-y-6">
       {/* Header with Title and Mode Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200/60 dark:border-[#32353e]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200/60 dark:border-[#1E293B]">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <span className="p-1.5 rounded-lg bg-emerald-500/10 text-[#22C55E] dark:text-[#34D399]">
               <TrendingUp className="w-4 h-4" />
             </span>
-            <h2 className="font-display font-bold text-xl sm:text-2xl text-stone-900 dark:text-[#f4f5f7]">
+            <h2 className="font-display font-bold text-xl sm:text-2xl text-stone-900 dark:text-[#F8FAFC]">
               How You're Going & Daily Performance
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-stone-500 dark:text-[#828795]">
+          <p className="text-xs sm:text-sm text-stone-500 dark:text-[#8492A6]">
             Real-time evaluation based on your personal targets, caloric pacing, and habits.
           </p>
         </div>
 
         {/* View Mode Pills */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-stone-100 dark:bg-[#18191d] border border-stone-200 dark:border-[#32353e] self-start sm:self-auto">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-stone-100 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] self-start sm:self-auto">
           <button
             onClick={() => setViewMode('score')}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               viewMode === 'score'
-                ? 'bg-white dark:bg-[#282a32] text-stone-900 dark:text-white shadow-sm'
-                : 'text-stone-500 dark:text-[#828795] hover:text-stone-900 dark:hover:text-white'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
             }`}
           >
             Score Trend
@@ -249,8 +249,8 @@ export function PerformanceAnalytics({
             onClick={() => setViewMode('calories')}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               viewMode === 'calories'
-                ? 'bg-white dark:bg-[#282a32] text-stone-900 dark:text-white shadow-sm'
-                : 'text-stone-500 dark:text-[#828795] hover:text-stone-900 dark:hover:text-white'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
             }`}
           >
             Calorie Pacing
@@ -259,8 +259,8 @@ export function PerformanceAnalytics({
             onClick={() => setViewMode('protein')}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
               viewMode === 'protein'
-                ? 'bg-white dark:bg-[#282a32] text-stone-900 dark:text-white shadow-sm'
-                : 'text-stone-500 dark:text-[#828795] hover:text-stone-900 dark:hover:text-white'
+                ? 'bg-white dark:bg-[#07111F] text-[#22C55E] dark:text-[#34D399] shadow-sm border border-transparent dark:border-emerald-500/30'
+                : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
             }`}
           >
             Protein Target
@@ -271,9 +271,9 @@ export function PerformanceAnalytics({
       {/* Top Highlight: Performance Status Card */}
       <div className="grid md:grid-cols-12 gap-6 items-center">
         {/* Left: Overall Performance Rating Card (5 cols) */}
-        <div className="md:col-span-5 p-5 rounded-2xl bg-gradient-to-br from-stone-50 to-stone-100/60 dark:from-[#18191d] dark:to-[#202227] border border-stone-200/80 dark:border-[#32353e] relative overflow-hidden">
+        <div className="md:col-span-5 p-5 rounded-2xl bg-gradient-to-br from-stone-50 to-stone-100/60 dark:from-[#0B0F0E] dark:to-[#101D2D] border border-stone-200/80 dark:border-[#1E293B] relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold text-stone-500 dark:text-[#a0a5b2] uppercase tracking-wider">
+            <span className="text-xs font-bold text-stone-500 dark:text-[#8492A6] uppercase tracking-wider">
               Current Rating
             </span>
             <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border shadow-sm ${tierBadgeBg}`}>
@@ -282,33 +282,33 @@ export function PerformanceAnalytics({
           </div>
 
           <div className="flex items-baseline gap-3 mb-2">
-            <div className="text-4xl sm:text-5xl font-display font-black text-stone-900 dark:text-[#f4f5f7] tabular-nums">
+            <div className="text-4xl sm:text-5xl font-display font-black text-stone-900 dark:text-[#F8FAFC] tabular-nums">
               {totalScore}
             </div>
-            <div className="text-sm font-semibold text-stone-400 dark:text-[#828795]">
+            <div className="text-sm font-semibold text-stone-400 dark:text-[#8492A6]">
               / 100 Score
             </div>
           </div>
 
           {/* Performance Tier Progression Bar */}
           <div className="space-y-1 mb-3">
-            <div className="w-full bg-stone-200 dark:bg-[#32353e] h-2.5 rounded-full overflow-hidden flex">
+            <div className="w-full bg-stone-200 dark:bg-[#101D2D] h-2.5 rounded-full overflow-hidden flex">
               <div
-                className="bg-gradient-to-r from-brand-500 to-emerald-500 h-full rounded-full transition-all duration-700"
+                className="bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] h-full rounded-full transition-all duration-700"
                 style={{ width: `${totalScore}%` }}
               />
             </div>
-            <div className="flex justify-between text-[10px] font-semibold text-stone-400 dark:text-[#717684]">
+            <div className="flex justify-between text-[10px] font-semibold text-stone-400 dark:text-[#8492A6]">
               <span>Below Avg</span>
               <span>Average</span>
               <span>Good</span>
               <span>Better</span>
-              <span className="text-emerald-500 font-bold">Best</span>
+              <span className="text-[#34D399] font-bold">Best</span>
             </div>
           </div>
 
           {/* Coach Advice */}
-          <p className="text-xs text-stone-600 dark:text-[#d1d5db] leading-relaxed pt-2 border-t border-stone-200/60 dark:border-[#32353e]">
+          <p className="text-xs text-stone-600 dark:text-[#CBD5E1] leading-relaxed pt-2 border-t border-stone-200/60 dark:border-[#1E293B]">
             {tierFeedback}
           </p>
         </div>
@@ -316,55 +316,55 @@ export function PerformanceAnalytics({
         {/* Right: Metric Score Breakdown Pill Grid (7 cols) */}
         <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {/* Calorie Adherence */}
-          <div className="p-3.5 rounded-xl bg-white dark:bg-[#18191d] border border-stone-200/70 dark:border-[#32353e]">
-            <div className="text-[11px] font-medium text-stone-500 dark:text-[#828795] mb-1">
+          <div className="p-3.5 rounded-xl bg-white dark:bg-[#0B0F0E] border border-stone-200/70 dark:border-[#1E293B]">
+            <div className="text-[11px] font-medium text-stone-500 dark:text-[#8492A6] mb-1">
               Calories
             </div>
-            <div className="text-lg font-bold text-stone-900 dark:text-[#f4f5f7] tabular-nums">
+            <div className="text-lg font-bold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
               {calorieScore} / 35
             </div>
-            <div className="text-[10px] text-stone-400 dark:text-[#828795] mt-0.5">
+            <div className="text-[10px] text-stone-400 dark:text-[#8492A6] mt-0.5">
               {eatenCalories > 0 ? `${Math.round(eatenCalories)} kcal` : 'Awaiting logs'}
             </div>
           </div>
 
           {/* Protein Goal */}
-          <div className="p-3.5 rounded-xl bg-white dark:bg-[#18191d] border border-stone-200/70 dark:border-[#32353e]">
-            <div className="text-[11px] font-medium text-stone-500 dark:text-[#828795] mb-1">
+          <div className="p-3.5 rounded-xl bg-white dark:bg-[#0B0F0E] border border-stone-200/70 dark:border-[#1E293B]">
+            <div className="text-[11px] font-medium text-stone-500 dark:text-[#8492A6] mb-1">
               Protein Pacing
             </div>
-            <div className="text-lg font-bold text-stone-900 dark:text-[#f4f5f7] tabular-nums">
+            <div className="text-lg font-bold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
               {proteinScore} / 25
             </div>
-            <div className="text-[10px] text-stone-400 dark:text-[#828795] mt-0.5">
+            <div className="text-[10px] text-stone-400 dark:text-[#8492A6] mt-0.5">
               {eatenProtein}g of {result.proteinG}g
             </div>
           </div>
 
           {/* Streak Consistency */}
-          <div className="p-3.5 rounded-xl bg-white dark:bg-[#18191d] border border-stone-200/70 dark:border-[#32353e]">
-            <div className="text-[11px] font-medium text-stone-500 dark:text-[#828795] mb-1">
+          <div className="p-3.5 rounded-xl bg-white dark:bg-[#0B0F0E] border border-stone-200/70 dark:border-[#1E293B]">
+            <div className="text-[11px] font-medium text-stone-500 dark:text-[#8492A6] mb-1">
               Streak
             </div>
             <div className="text-lg font-bold text-amber-500 tabular-nums flex items-center gap-1">
               <Flame className="w-4 h-4 fill-amber-500" />
               <span>{currentStreak}d</span>
             </div>
-            <div className="text-[10px] text-stone-400 dark:text-[#828795] mt-0.5">
+            <div className="text-[10px] text-stone-400 dark:text-[#8492A6] mt-0.5">
               {streakScore} / 20 pts
             </div>
           </div>
 
           {/* 30-Day Mission */}
-          <div className="p-3.5 rounded-xl bg-white dark:bg-[#18191d] border border-stone-200/70 dark:border-[#32353e]">
-            <div className="text-[11px] font-medium text-stone-500 dark:text-[#828795] mb-1">
+          <div className="p-3.5 rounded-xl bg-white dark:bg-[#0B0F0E] border border-stone-200/70 dark:border-[#1E293B]">
+            <div className="text-[11px] font-medium text-stone-500 dark:text-[#8492A6] mb-1">
               30-Day Habit
             </div>
-            <div className="text-lg font-bold text-emerald-500 tabular-nums flex items-center gap-1">
-              <Target className="w-4 h-4" />
+            <div className="text-lg font-bold text-[#34D399] tabular-nums flex items-center gap-1">
+              <Target className="w-4 h-4 text-[#34D399]" />
               <span>{completedChallengeDays}/30</span>
             </div>
-            <div className="text-[10px] text-stone-400 dark:text-[#828795] mt-0.5">
+            <div className="text-[10px] text-stone-400 dark:text-[#8492A6] mt-0.5">
               {challengeScore} / 20 pts
             </div>
           </div>
@@ -372,15 +372,15 @@ export function PerformanceAnalytics({
       </div>
 
       {/* Bottom: "How You're Going" 7-Day Trend Graph */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-stone-50/60 dark:bg-[#18191d] border border-stone-200/70 dark:border-[#32353e] space-y-3">
+      <div className="p-4 sm:p-5 rounded-2xl bg-stone-50/60 dark:bg-[#0B0F0E] border border-stone-200/70 dark:border-[#1E293B] space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-brand-600 dark:text-brand-400" />
-            <h3 className="font-display font-semibold text-sm text-stone-900 dark:text-[#f4f5f7]">
+            <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-[#34D399]" />
+            <h3 className="font-display font-semibold text-sm text-stone-900 dark:text-[#F8FAFC]">
               7-Day Consistency & Adherence Graph
             </h3>
           </div>
-          <span className="text-xs text-stone-500 dark:text-[#828795]">
+          <span className="text-xs text-stone-500 dark:text-[#8492A6]">
             Hover over any point to inspect performance
           </span>
         </div>
@@ -393,8 +393,8 @@ export function PerformanceAnalytics({
           >
             <defs>
               <linearGradient id="performanceGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#22c55e" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#22c55e" stopOpacity="0.0" />
+                <stop offset="0%" stopColor="#22C55E" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#22C55E" stopOpacity="0.0" />
               </linearGradient>
             </defs>
 
@@ -405,14 +405,14 @@ export function PerformanceAnalytics({
               y1={paddingY + graphHeight * 0.1}
               x2={chartWidth - paddingX}
               y2={paddingY + graphHeight * 0.1}
-              stroke="#22c55e"
+              stroke="#22C55E"
               strokeDasharray="4 4"
-              strokeOpacity="0.25"
+              strokeOpacity="0.3"
             />
             <text
               x={chartWidth - paddingX + 5}
               y={paddingY + graphHeight * 0.1 + 3}
-              className="text-[9px] fill-emerald-500/80 font-bold"
+              className="text-[9px] fill-[#34D399] font-bold"
             >
               BEST (90%)
             </text>
@@ -423,14 +423,14 @@ export function PerformanceAnalytics({
               y1={paddingY + graphHeight * 0.3}
               x2={chartWidth - paddingX}
               y2={paddingY + graphHeight * 0.3}
-              stroke="#0ea5e9"
+              stroke="#60A5FA"
               strokeDasharray="4 4"
-              strokeOpacity="0.2"
+              strokeOpacity="0.3"
             />
             <text
               x={chartWidth - paddingX + 5}
               y={paddingY + graphHeight * 0.3 + 3}
-              className="text-[9px] fill-sky-500/80 font-bold"
+              className="text-[9px] fill-[#60A5FA] font-bold"
             >
               GOOD (70%)
             </text>
@@ -460,7 +460,7 @@ export function PerformanceAnalytics({
             <path
               d={pathData}
               fill="none"
-              stroke="#22c55e"
+              stroke="#22C55E"
               strokeWidth="3.5"
               strokeLinecap="round"
               className="drop-shadow-sm"
@@ -482,8 +482,8 @@ export function PerformanceAnalytics({
                     r={isHovered ? 7 : 5}
                     className={`transition-all duration-200 ${
                       isHovered
-                        ? 'fill-white stroke-emerald-600 stroke-[3.5]'
-                        : 'fill-emerald-500 stroke-white dark:stroke-[#18191d] stroke-2'
+                        ? 'fill-white stroke-[#22C55E] stroke-[3.5]'
+                        : 'fill-[#22C55E] stroke-white dark:stroke-[#0B0F0E] stroke-2'
                     }`}
                   />
                   {/* Day Label on X Axis */}
@@ -493,8 +493,8 @@ export function PerformanceAnalytics({
                     textAnchor="middle"
                     className={`text-[11px] font-semibold transition-colors ${
                       isHovered
-                        ? 'fill-emerald-500 font-bold'
-                        : 'fill-stone-500 dark:fill-[#828795]'
+                        ? 'fill-[#34D399] font-bold'
+                        : 'fill-stone-500 dark:fill-[#8492A6]'
                     }`}
                   >
                     {pt.data.dayName}
@@ -506,18 +506,18 @@ export function PerformanceAnalytics({
         </div>
 
         {/* Hovered Tooltip Inspector */}
-        <div className="min-h-[46px] p-3 rounded-xl bg-white dark:bg-[#202227] border border-stone-200/80 dark:border-[#32353e] flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="min-h-[46px] p-3 rounded-xl bg-white dark:bg-[#101D2D] border border-stone-200/80 dark:border-[#1E293B] flex flex-wrap items-center justify-between gap-3 text-xs">
           {hoveredPoint ? (
             <>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-stone-900 dark:text-white">
+                <span className="font-bold text-stone-900 dark:text-[#F8FAFC]">
                   {hoveredPoint.label} ({hoveredPoint.dayName}):
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300">
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-700 dark:text-[#34D399] border border-emerald-500/30">
                   {hoveredPoint.tier} ({hoveredPoint.score}%)
                 </span>
               </div>
-              <div className="flex items-center gap-4 text-stone-600 dark:text-[#a0a5b2]">
+              <div className="flex items-center gap-4 text-stone-600 dark:text-[#CBD5E1]">
                 <span>
                   Calories: <strong>{hoveredPoint.calories} / {hoveredPoint.targetCalories} kcal</strong>
                 </span>
@@ -530,7 +530,7 @@ export function PerformanceAnalytics({
               </div>
             </>
           ) : (
-            <div className="w-full text-center text-stone-400 dark:text-[#717684]">
+            <div className="w-full text-center text-stone-400 dark:text-[#8492A6]">
               Hover over any point on the curve to see day details and caloric performance breakdown.
             </div>
           )}

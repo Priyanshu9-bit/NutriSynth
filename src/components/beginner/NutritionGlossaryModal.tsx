@@ -159,23 +159,23 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
         aria-hidden="true"
       />
 
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-[#181a20] rounded-3xl border border-stone-200 dark:border-[#2f333f] shadow-2xl overflow-hidden flex flex-col z-10 animate-fade-in-scale">
+      <div className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-[#07111F] rounded-3xl border border-stone-200 dark:border-[#1E293B] shadow-2xl overflow-hidden flex flex-col z-10 animate-fade-in-scale">
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-stone-200/80 dark:border-stone-800 bg-gradient-to-r from-emerald-500/10 via-transparent to-teal-500/10">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-stone-200/80 dark:border-[#1E293B] bg-gradient-to-r from-[#22C55E]/10 via-transparent to-[#2DD4BF]/10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shadow-md">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold flex items-center justify-center shadow-md">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                <span className="text-[11px] font-black uppercase tracking-wider text-emerald-600 dark:text-[#34D399]">
                   Beginner's Cheat-Sheet
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#22C55E]/15 text-[#22C55E] dark:text-[#34D399]">
                   Zero Jargon
                 </span>
               </div>
-              <h2 id="glossary-dialog-title" className="text-xl font-black text-stone-900 dark:text-white">
+              <h2 id="glossary-dialog-title" className="text-xl font-black text-stone-900 dark:text-[#F8FAFC]">
                 Nutrition in Plain Everyday Words
               </h2>
             </div>
@@ -184,7 +184,7 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
           <button
             type="button"
             onClick={onClose}
-            className="p-2.5 rounded-2xl bg-stone-100 hover:bg-stone-200 dark:bg-stone-800 dark:hover:bg-stone-700 text-stone-500 dark:text-stone-300 transition-colors"
+            className="p-2.5 rounded-2xl bg-stone-100 hover:bg-stone-200 dark:bg-[#101D2D] dark:hover:bg-[#101D2D]/80 text-stone-500 dark:text-[#CBD5E1] transition-colors cursor-pointer"
             aria-label="Close glossary"
           >
             <X className="w-5 h-5" />
@@ -192,21 +192,21 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
         </div>
 
         {/* Search Bar */}
-        <div className="px-6 py-3 border-b border-stone-200/80 dark:border-stone-800 bg-stone-50/50 dark:bg-[#15171c]/50">
+        <div className="px-6 py-3 border-b border-stone-200/80 dark:border-[#1E293B] bg-stone-50/50 dark:bg-[#0B0F0E]">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-[#8492A6]" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search any term (e.g. calories, protein, water, carbs, portions)..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-[#1e2129] text-sm text-stone-900 dark:text-white placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-white dark:bg-[#101D2D] text-sm text-stone-900 dark:text-[#F8FAFC] placeholder:text-stone-400 dark:placeholder:text-[#8492A6] focus:outline-none focus:ring-2 focus:ring-[#22C55E]"
             />
           </div>
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto grid md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-stone-200/80 dark:divide-stone-800">
+        <div className="flex-1 overflow-y-auto grid md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-stone-200/80 dark:divide-[#1E293B]">
           {/* Left Column: Topic List */}
           <div className="md:col-span-5 p-4 space-y-1.5 max-h-[50vh] md:max-h-none overflow-y-auto">
             {filteredTerms.map((term) => {
@@ -216,18 +216,18 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
                   key={term.id}
                   type="button"
                   onClick={() => setSelectedTermId(term.id)}
-                  className={`w-full text-left p-3 rounded-2xl transition-all flex items-start gap-3 ${
+                  className={`w-full text-left p-3 rounded-2xl transition-all flex items-start gap-3 cursor-pointer ${
                     isSelected
-                      ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/25 scale-[1.01]'
-                      : 'hover:bg-stone-100 dark:hover:bg-stone-800/60 text-stone-800 dark:text-stone-200'
+                      ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] shadow-md shadow-[#22C55E]/20 scale-[1.01]'
+                      : 'hover:bg-stone-100 dark:hover:bg-[#101D2D] text-stone-800 dark:text-[#CBD5E1]'
                   }`}
                 >
                   <span className="text-xl flex-shrink-0 mt-0.5">{term.icon}</span>
                   <div className="min-w-0">
-                    <div className="font-bold text-sm leading-tight">{term.name}</div>
+                    <div className={`font-bold text-sm leading-tight ${isSelected ? 'text-[#07111F]' : 'text-stone-900 dark:text-[#F8FAFC]'}`}>{term.name}</div>
                     <div
                       className={`text-xs mt-0.5 truncate ${
-                        isSelected ? 'text-emerald-100 font-medium' : 'text-stone-500 dark:text-stone-400'
+                        isSelected ? 'text-[#07111F]/80 font-medium' : 'text-stone-500 dark:text-[#8492A6]'
                       }`}
                     >
                       {term.plainTitle}
@@ -239,62 +239,62 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
           </div>
 
           {/* Right Column: Detailed Explanation */}
-          <div className="md:col-span-7 p-6 overflow-y-auto space-y-5 bg-stone-50/30 dark:bg-[#15171c]/30">
+          <div className="md:col-span-7 p-6 overflow-y-auto space-y-5 bg-stone-50/30 dark:bg-[#07111F]">
             {activeTerm && (
               <>
                 <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-500/20">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold flex items-center justify-center text-2xl shadow-lg shadow-[#22C55E]/20">
                     {activeTerm.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-stone-900 dark:text-white">
+                    <h3 className="text-xl font-black text-stone-900 dark:text-[#F8FAFC]">
                       {activeTerm.name}
                     </h3>
-                    <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                    <p className="text-sm font-bold text-emerald-600 dark:text-[#34D399]">
                       {activeTerm.plainTitle}
                     </p>
                   </div>
                 </div>
 
                 {/* 1-Sentence Quick Summary */}
-                <div className="p-4 rounded-2xl bg-white dark:bg-[#1e2129] border border-stone-200 dark:border-stone-700 shadow-xs">
-                  <div className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-stone-400 mb-1 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
+                <div className="p-4 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B] shadow-xs">
+                  <div className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-[#8492A6] mb-1 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#22C55E]" />
                     <span>In Plain English:</span>
                   </div>
-                  <p className="text-sm font-semibold text-stone-800 dark:text-stone-100 leading-relaxed">
+                  <p className="text-sm font-semibold text-stone-800 dark:text-[#F8FAFC] leading-relaxed">
                     {activeTerm.quickSummary}
                   </p>
                 </div>
 
                 {/* Everyday Real-World Analogy */}
-                <div className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-500/30">
-                  <div className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-emerald-300 mb-1 flex items-center gap-1.5">
-                    <Lightbulb className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <div className="p-4 rounded-2xl bg-[#22C55E]/10 dark:bg-[#22C55E]/10 border border-[#22C55E]/30">
+                  <div className="text-xs font-black uppercase tracking-wider text-emerald-800 dark:text-[#34D399] mb-1 flex items-center gap-1.5">
+                    <Lightbulb className="w-3.5 h-3.5 text-emerald-600 dark:text-[#34D399]" />
                     <span>Real-World Analogy:</span>
                   </div>
-                  <p className="text-sm text-stone-700 dark:text-stone-200 leading-relaxed">
+                  <p className="text-sm text-stone-700 dark:text-[#CBD5E1] leading-relaxed">
                     {activeTerm.everydayAnalogy}
                   </p>
                 </div>
 
                 {/* Where to find it / Hand portions */}
-                <div className="p-4 rounded-2xl bg-white dark:bg-[#1e2129] border border-stone-200 dark:border-stone-700 shadow-xs">
-                  <div className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-stone-400 mb-1">
+                <div className="p-4 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B] shadow-xs">
+                  <div className="text-xs font-black uppercase tracking-wider text-stone-400 dark:text-[#8492A6] mb-1">
                     {activeTerm.id === 'portions' ? 'Quick Reference Guide:' : 'Everyday Food Examples:'}
                   </div>
-                  <div className="text-sm text-stone-800 dark:text-stone-200 font-medium whitespace-pre-line leading-relaxed">
+                  <div className="text-sm text-stone-800 dark:text-[#CBD5E1] font-medium whitespace-pre-line leading-relaxed">
                     {activeTerm.whereToFindIt}
                   </div>
                 </div>
 
                 {/* Why it matters for your health */}
-                <div className="p-4 rounded-2xl bg-teal-50/60 dark:bg-teal-950/30 border border-teal-500/30">
-                  <div className="text-xs font-black uppercase tracking-wider text-teal-800 dark:text-teal-300 mb-1 flex items-center gap-1.5">
-                    <Heart className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+                <div className="p-4 rounded-2xl bg-[#2DD4BF]/10 dark:bg-[#2DD4BF]/10 border border-[#2DD4BF]/30">
+                  <div className="text-xs font-black uppercase tracking-wider text-[#2DD4BF] dark:text-[#2DD4BF] mb-1 flex items-center gap-1.5">
+                    <Heart className="w-3.5 h-3.5 text-[#2DD4BF] dark:text-[#2DD4BF]" />
                     <span>Why You Don't Need To Stress About It:</span>
                   </div>
-                  <p className="text-sm text-stone-700 dark:text-stone-200 leading-relaxed">
+                  <p className="text-sm text-stone-700 dark:text-[#CBD5E1] leading-relaxed">
                     {activeTerm.whyItMatters}
                   </p>
                 </div>
@@ -304,16 +304,16 @@ export function NutritionGlossaryModal({ isOpen, onClose, initialTopic }: Nutrit
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-stone-200/80 dark:border-stone-800 bg-stone-50 dark:bg-[#15171c] flex items-center justify-between flex-wrap gap-2">
-          <div className="text-xs text-stone-500 dark:text-stone-400 flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+        <div className="px-6 py-4 border-t border-stone-200/80 dark:border-[#1E293B] bg-stone-50 dark:bg-[#0B0F0E] flex items-center justify-between flex-wrap gap-2">
+          <div className="text-xs text-stone-500 dark:text-[#8492A6] flex items-center gap-1.5">
+            <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
             <span>NutriSynth calculates all the math automatically in the background.</span>
           </div>
 
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 dark:bg-white dark:hover:bg-stone-100 text-white dark:text-stone-900 transition-all shadow-sm"
+            className="px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 text-[#07111F] transition-all shadow-sm cursor-pointer"
           >
             Got it, take me back
           </button>

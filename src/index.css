@@ -20,8 +20,8 @@
   }
   body {
     font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
-    background: #fafaf9;
-    color: #1c1917;
+    background: #07111F;
+    color: #F8FAFC;
     line-height: 1.6;
     overflow-x: hidden;
     max-width: 100%;
@@ -35,10 +35,13 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: #07111F;
+    color: #F8FAFC;
   }
+  /* NutriSynth Unified Color System - Deep Navy #07111F & Primary Text #F8FAFC */
   html.dark body {
-    background: #0f1013;
-    color: #f4f5f7;
+    background: #07111F;
+    color: #F8FAFC;
   }
   h1, h2, h3, h4, .font-display {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
@@ -51,58 +54,67 @@
 }
 
 @layer components {
+  /* Graphite #0B0F0E surface / card with subtle border #1E293B */
   .card {
-    @apply bg-white/95 dark:bg-[#1c1e24]/95 backdrop-blur-md rounded-3xl border border-stone-200/80 dark:border-[#2b2e38] shadow-sm hover:shadow-md transition-all duration-300;
+    @apply bg-[#0B0F0E]/95 backdrop-blur-md rounded-3xl border border-[#1E293B] shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-md transition-all duration-300;
   }
+  /* Elevated Navy/Graphite #101D2D card with subtle border #1E293B */
   .card-lg {
-    @apply bg-white/95 dark:bg-[#1c1e24]/95 backdrop-blur-md rounded-3xl border border-stone-200/80 dark:border-[#2b2e38] shadow-md dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300;
+    @apply bg-[#101D2D]/95 backdrop-blur-md rounded-3xl border border-[#1E293B] shadow-[0_12px_36px_rgba(7,17,31,0.65)] transition-all duration-300;
   }
+  /* Primary CTA Button: Emerald #22C55E to Mint #2DD4BF gradient */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold
-           transition-all duration-200 hover:bg-brand-700 hover:shadow-glow active:scale-[0.98]
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold
+           transition-all duration-200 hover:opacity-95 hover:shadow-[0_0_22px_rgba(45,212,191,0.28)] active:scale-[0.98]
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
+  /* Secondary Button: Elevated #101D2D surface with subtle border */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-[#282a32] text-stone-800 dark:text-[#f4f5f7] font-semibold
-           border border-stone-300 dark:border-[#373a44] transition-all duration-200 hover:bg-stone-50 dark:hover:bg-[#32353e] hover:border-stone-400 dark:hover:border-[#4b505e] active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#101D2D] text-[#F8FAFC] font-semibold
+           border border-[#1E293B] transition-all duration-200 hover:bg-[#152538] hover:border-[#60A5FA]/35 active:scale-[0.98];
   }
+  /* Ghost Button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-stone-600 dark:text-[#d1d5db] font-medium
-           transition-all duration-200 hover:bg-stone-100 dark:hover:bg-[#282a32] hover:text-stone-900 dark:hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-[#CBD5E1] font-medium
+           transition-all duration-200 hover:bg-[#101D2D] hover:text-[#F8FAFC];
   }
+  /* Input Fields: Deep Navy / Graphite surface with Mint #2DD4BF focus ring */
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-stone-300 dark:border-[#373a44] bg-white dark:bg-[#18191d] text-stone-900 dark:text-[#f4f5f7]
-           transition-all duration-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none
-           placeholder:text-stone-400 dark:placeholder:text-[#717684];
+    @apply w-full px-4 py-3 rounded-xl border border-[#1E293B] bg-[#07111F] text-[#F8FAFC]
+           transition-all duration-200 focus:border-[#2DD4BF] focus:ring-2 focus:ring-[#2DD4BF]/20 focus:outline-none
+           placeholder:text-[#8492A6];
   }
+  /* Option Card: Graphite #0B0F0E with subtle border */
   .option-card {
-    @apply relative w-full text-left px-4 py-4 rounded-xl border-2 border-stone-200 dark:border-[#32353e] bg-white dark:bg-[#202227]
-           transition-all duration-200 cursor-pointer hover:border-brand-400 dark:hover:border-brand-500 hover:bg-brand-50/40 dark:hover:bg-brand-950/30;
+    @apply relative w-full text-left px-4 py-4 rounded-xl border-2 border-[#1E293B] bg-[#0B0F0E]
+           transition-all duration-200 cursor-pointer hover:border-[#2DD4BF]/60 hover:bg-[#101D2D];
   }
+  /* Option Card Selected: Emerald/Mint highlight with subtle glow */
   .option-card-selected {
-    @apply border-brand-500 dark:border-brand-500 bg-brand-50 dark:bg-brand-950/40 ring-2 ring-brand-500/20;
+    @apply border-[#22C55E] bg-[#101D2D] ring-2 ring-[#2DD4BF]/20;
   }
   .metric-value {
     @apply font-display font-bold tabular-nums;
   }
+  /* Refined Badges with Health Indicators & Subtle Tech Blue */
   .badge {
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
   }
-  .badge-success { @apply bg-brand-100 dark:bg-emerald-950/60 text-brand-700 dark:text-emerald-300 border border-brand-200/50 dark:border-emerald-800/40; }
-  .badge-warning { @apply bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200/50 dark:border-amber-800/40; }
-  .badge-error { @apply bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-300 border border-red-200/50 dark:border-red-800/40; }
-  .badge-info { @apply bg-sky-100 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/50 dark:border-sky-800/40; }
-  .badge-neutral { @apply bg-stone-100 dark:bg-[#282a32] text-stone-600 dark:text-[#d1d5db] border border-stone-200/50 dark:border-[#373a44]; }
+  .badge-success { @apply bg-emerald-950/40 text-[#34D399] border border-emerald-500/30; }
+  .badge-warning { @apply bg-amber-950/40 text-amber-300 border border-amber-600/30; }
+  .badge-error { @apply bg-rose-950/40 text-rose-300 border border-rose-600/30; }
+  .badge-info { @apply bg-[#60A5FA]/10 text-[#60A5FA] border border-[#60A5FA]/25; }
+  .badge-neutral { @apply bg-[#101D2D] text-[#CBD5E1] border border-[#1E293B]; }
 }
 
 @layer utilities {
   .progress-bar {
     background-size: 200% 100%;
-    background-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    background-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
   }
   .text-balance { text-wrap: balance; }
   .grid-bg {
-    background-image: radial-gradient(circle at 1px 1px, rgba(22,101,52,0.06) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(34,197,94,0.06) 1px, transparent 0);
     background-size: 32px 32px;
   }
   .animate-radar-sweep {
@@ -144,8 +156,8 @@
 }
 
 @keyframes radar-glow-breathe {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.25)); }
-  50% { filter: drop-shadow(0 0 16px rgba(34, 197, 94, 0.45)); }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.22)); }
+  50% { filter: drop-shadow(0 0 16px rgba(45, 212, 191, 0.38)); }
 }
 
 /* Custom scrollbar */
@@ -154,45 +166,54 @@
 ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
 
-/* Dark mode utility enhancements - Rich Dark Grey & Normal Grey palette */
+/* Dark mode utility enhancements - Deep Navy & Graphite Theme */
 html.dark .grid-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(34, 197, 94, 0.12) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(45, 212, 191, 0.09) 1px, transparent 0);
 }
 
-html.dark ::-webkit-scrollbar-thumb { background: #373a44; }
-html.dark ::-webkit-scrollbar-thumb:hover { background: #4b505e; }
+html.dark ::-webkit-scrollbar-thumb { background: #1E293B; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #2A3A52; }
 
-/* Text colors in dark grey mode */
-html.dark .text-stone-900 { color: #f4f5f7; }
-html.dark .text-stone-800 { color: #e5e7eb; }
-html.dark .text-stone-700 { color: #d1d5db; }
-html.dark .text-stone-600 { color: #9ca3af; }
-html.dark .text-stone-500 { color: #828795; }
-html.dark .text-stone-400 { color: #6b7280; }
+/* Text colors in dark mode:
+   Primary:   #F8FAFC
+   Secondary: #CBD5E1
+   Muted:     #8492A6
+*/
+html.dark .text-stone-900 { color: #F8FAFC; }
+html.dark .text-stone-800 { color: #F8FAFC; }
+html.dark .text-stone-700 { color: #CBD5E1; }
+html.dark .text-stone-600 { color: #CBD5E1; }
+html.dark .text-stone-500 { color: #8492A6; }
+html.dark .text-stone-400 { color: #8492A6; }
 
-/* Background colors in dark grey mode */
-html.dark .bg-white { background-color: #202227; }
-html.dark .bg-stone-50 { background-color: #18191c; }
-html.dark .bg-stone-100 { background-color: #282a32; }
+/* Background colors in dark mode:
+   Main background: #07111F (Deep Navy)
+   Surface/cards:   #0B0F0E (Graphite)
+   Elevated cards:  #101D2D (Navy-Graphite)
+*/
+html.dark .bg-white { background-color: #0B0F0E; }
+html.dark .bg-stone-50 { background-color: #07111F; }
+html.dark .bg-stone-100 { background-color: #101D2D; }
 html.dark .bg-stone-200,
 html.dark .bg-stone-200\/60,
 html.dark .bg-stone-200\/70,
-html.dark .bg-stone-200\/80 { background-color: #32353e; }
-html.dark .bg-stone-700 { background-color: #373a44; }
-html.dark .bg-stone-800 { background-color: #282a32; }
-html.dark .bg-stone-900 { background-color: #18191d; }
+html.dark .bg-stone-200\/80 { background-color: #162436; }
+html.dark .bg-stone-700 { background-color: #1E293B; }
+html.dark .bg-stone-800 { background-color: #101D2D; }
+html.dark .bg-stone-900 { background-color: #07111F; }
 
-/* Border colors in dark grey mode */
+/* Border colors in dark mode: subtle #1E293B / rgba(255,255,255,0.08) */
 html.dark .border-stone-200,
 html.dark .border-stone-200\/40,
 html.dark .border-stone-200\/50,
 html.dark .border-stone-200\/60,
+html.dark .border-stone-200\/70,
 html.dark .border-stone-200\/80,
 html.dark .border-stone-200\/90,
 html.dark .border-stone-300,
 html.dark .border-stone-700,
 html.dark .border-stone-800 {
-  border-color: #32353e;
+  border-color: #1E293B;
 }
 
 /* Tinted alert/status card dark mode surfaces */
@@ -201,31 +222,32 @@ html.dark .bg-emerald-50,
 html.dark .bg-brand-50\/40,
 html.dark .bg-brand-50\/60,
 html.dark .bg-brand-50\/80 {
-  background-color: #1a2320;
+  background-color: rgba(34, 197, 94, 0.08);
 }
 html.dark .bg-amber-50,
 html.dark .bg-yellow-50,
 html.dark .bg-amber-50\/30,
 html.dark .bg-amber-50\/60,
 html.dark .bg-amber-50\/80 {
-  background-color: #25221b;
+  background-color: rgba(245, 158, 11, 0.08);
 }
 html.dark .bg-orange-50,
 html.dark .bg-orange-50\/30,
 html.dark .bg-orange-50\/80 {
-  background-color: #261f1c;
+  background-color: rgba(249, 115, 22, 0.08);
 }
 html.dark .bg-red-50,
+html.dark .bg-rose-50,
 html.dark .bg-red-50\/40,
 html.dark .bg-red-50\/60,
 html.dark .bg-red-50\/80 {
-  background-color: #261b1b;
+  background-color: rgba(239, 68, 68, 0.08);
 }
 html.dark .bg-sky-50,
 html.dark .bg-blue-50,
 html.dark .bg-sky-50\/40,
 html.dark .bg-sky-50\/60 {
-  background-color: #1c222b;
+  background-color: rgba(96, 165, 250, 0.08);
 }
 
 /* Tinted alert/status border colors in dark mode */
@@ -233,24 +255,24 @@ html.dark .border-brand-200,
 html.dark .border-brand-200\/40,
 html.dark .border-brand-200\/50,
 html.dark .border-emerald-200 {
-  border-color: rgba(16, 185, 129, 0.28);
+  border-color: rgba(34, 197, 94, 0.25);
 }
 html.dark .border-amber-200,
 html.dark .border-amber-200\/40,
 html.dark .border-amber-200\/50 {
-  border-color: rgba(245, 158, 11, 0.28);
+  border-color: rgba(245, 158, 11, 0.25);
 }
 html.dark .border-orange-200,
 html.dark .border-orange-200\/40 {
-  border-color: rgba(249, 115, 22, 0.28);
+  border-color: rgba(249, 115, 22, 0.25);
 }
 html.dark .border-red-200,
 html.dark .border-red-200\/40 {
-  border-color: rgba(239, 68, 68, 0.28);
+  border-color: rgba(239, 68, 68, 0.25);
 }
 html.dark .border-sky-200,
 html.dark .border-sky-200\/50 {
-  border-color: rgba(14, 165, 233, 0.28);
+  border-color: rgba(96, 165, 250, 0.25);
 }
 
 /* Reduced motion */

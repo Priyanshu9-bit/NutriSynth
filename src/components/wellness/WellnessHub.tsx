@@ -306,17 +306,17 @@ export function WellnessHub({
       {/* Wellness Cockpit Grid: 3 Interactive Modules */}
       <div className="grid md:grid-cols-3 gap-4 items-stretch">
         {/* Module 1: Interactive Hydration Tracker & Streak */}
-        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-blue-500/25 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent relative overflow-hidden">
+        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-[#1E293B] bg-gradient-to-br from-[#0B0F0E] via-[#07111F] to-[#101D2D] relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-lg shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#60A5FA]/20 text-[#60A5FA] flex items-center justify-center font-bold text-lg shadow-sm">
                 💧
               </div>
               <div>
-                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-white flex items-center gap-1.5">
+                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC] flex items-center gap-1.5">
                   <span>Hydration Streak</span>
                 </h3>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                   Daily water requirement & flow
                 </p>
               </div>
@@ -326,8 +326,8 @@ export function WellnessHub({
             <div
               className={`flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-black border transition-all ${
                 hydrationStreak > 0
-                  ? 'bg-blue-500/20 text-blue-600 dark:text-blue-300 border-blue-500/40 animate-pulse'
-                  : 'bg-stone-100 dark:bg-stone-800 text-stone-500 border-stone-200 dark:border-stone-700'
+                  ? 'bg-[#60A5FA]/20 text-[#60A5FA] border-[#60A5FA]/40 animate-pulse'
+                  : 'bg-stone-100 dark:bg-[#101D2D] text-stone-500 dark:text-[#CBD5E1] border-stone-200 dark:border-[#1E293B]'
               }`}
             >
               <span>🌊</span>
@@ -339,16 +339,16 @@ export function WellnessHub({
           <div className="flex items-center justify-between gap-4 py-1">
             <div className="space-y-1">
               <div className="flex items-baseline gap-1.5">
-                <span className="font-display font-black text-2xl text-stone-900 dark:text-white tabular-nums">
+                <span className="font-display font-black text-2xl text-stone-900 dark:text-[#F8FAFC] tabular-nums">
                   {currentWaterMl.toLocaleString()}
                 </span>
-                <span className="text-xs font-semibold text-stone-500 dark:text-stone-400">
+                <span className="text-xs font-semibold text-stone-500 dark:text-[#8492A6]">
                   / {waterTargetMl.toLocaleString()} ml
                 </span>
               </div>
               <div className="flex items-center gap-1.5 text-xs">
-                <span className="font-bold text-blue-600 dark:text-blue-400">{waterPct}%</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="font-bold text-[#60A5FA]">{waterPct}%</span>
+                <span className="text-[11px] text-stone-400 dark:text-[#8492A6]">
                   {currentWaterMl >= waterTargetMl
                     ? '🎉 Target reached!'
                     : `${Math.max(0, waterTargetMl - currentWaterMl).toLocaleString()} ml left`}
@@ -359,13 +359,13 @@ export function WellnessHub({
             {/* Micro Gauge Droplet Ring */}
             <div className="relative w-14 h-14 flex items-center justify-center flex-shrink-0">
               <svg viewBox="0 0 48 48" className="w-full h-full -rotate-90">
-                <circle cx="24" cy="24" r="20" fill="none" className="stroke-stone-200 dark:stroke-stone-800" strokeWidth="4" />
+                <circle cx="24" cy="24" r="20" fill="none" className="stroke-stone-200 dark:stroke-[#1E293B]" strokeWidth="4" />
                 <circle
                   cx="24"
                   cy="24"
                   r="20"
                   fill="none"
-                  stroke="#0284c7"
+                  stroke="#60A5FA"
                   strokeWidth="4"
                   strokeLinecap="round"
                   strokeDasharray="125.6"
@@ -373,18 +373,18 @@ export function WellnessHub({
                   className="transition-all duration-500"
                 />
               </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-blue-400">
+              <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-[#60A5FA]">
                 💧
               </span>
             </div>
           </div>
 
           {/* Water Quick Action Buttons */}
-          <div className="flex items-center gap-2 pt-1 border-t border-stone-200/60 dark:border-stone-800/80">
+          <div className="flex items-center gap-2 pt-1 border-t border-stone-200/60 dark:border-[#1E293B]">
             <button
               type="button"
               onClick={() => handleAdjustWater(250)}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold bg-[#101D2D] hover:bg-[#101D2D]/80 text-[#60A5FA] border border-[#60A5FA]/30 active:scale-95 transition-all cursor-pointer"
               title="Add 250ml glass of water"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -394,7 +394,7 @@ export function WellnessHub({
             <button
               type="button"
               onClick={() => handleAdjustWater(500)}
-              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold bg-blue-500/15 hover:bg-blue-500/25 text-blue-700 dark:text-blue-300 border border-blue-500/30 active:scale-95 transition-all"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold bg-[#60A5FA]/15 hover:bg-[#60A5FA]/25 text-[#60A5FA] border border-[#60A5FA]/30 active:scale-95 transition-all cursor-pointer"
               title="Add 500ml water bottle"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -405,7 +405,7 @@ export function WellnessHub({
               <button
                 type="button"
                 onClick={() => handleAdjustWater(-250)}
-                className="p-2 rounded-xl text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-200/60 dark:hover:bg-stone-800 transition-colors"
+                className="p-2 rounded-xl text-xs text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 hover:bg-stone-200/60 dark:hover:bg-[#101D2D] transition-colors cursor-pointer"
                 title="Undo 250ml"
                 aria-label="Undo 250ml"
               >
@@ -416,37 +416,37 @@ export function WellnessHub({
         </div>
 
         {/* Module 2: Interactive Daily Wellness Micro-Challenge */}
-        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-amber-500/25 bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent relative overflow-hidden">
+        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-[#1E293B] bg-gradient-to-br from-[#0B0F0E] via-[#07111F] to-[#101D2D] relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-lg shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#22C55E]/15 text-[#34D399] flex items-center justify-center font-bold text-lg shadow-sm">
                 {dailyChallenge.icon}
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-700 dark:text-amber-300">
+                  <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-[#22C55E]/20 text-[#34D399]">
                     Daily Challenge
                   </span>
-                  <span className="text-[10px] font-bold text-stone-400">+{dailyChallenge.xp} XP</span>
+                  <span className="text-[10px] font-bold text-stone-400 dark:text-[#8492A6]">+{dailyChallenge.xp} XP</span>
                 </div>
-                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-white mt-0.5">
+                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC] mt-0.5">
                   {dailyChallenge.title}
                 </h3>
               </div>
             </div>
 
             {isChallengeDone ? (
-              <span className="px-2 py-0.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/40 flex items-center gap-1">
+              <span className="px-2 py-0.5 rounded-full text-xs font-black bg-[#22C55E]/20 text-[#34D399] border border-[#22C55E]/40 flex items-center gap-1">
                 <Check className="w-3 h-3 stroke-[3]" /> Done!
               </span>
             ) : (
-              <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 text-amber-600 border border-amber-500/30">
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#2DD4BF]/15 text-[#2DD4BF] border border-[#2DD4BF]/30">
                 Active
               </span>
             )}
           </div>
 
-          <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed py-1">
+          <p className="text-xs text-stone-600 dark:text-[#CBD5E1] leading-relaxed py-1">
             {dailyChallenge.description}
           </p>
 
@@ -457,18 +457,18 @@ export function WellnessHub({
             disabled={isChallengeDone}
             className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
               isChallengeDone
-                ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/40 cursor-default'
-                : 'bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-md shadow-amber-500/20 active:scale-95 cursor-pointer'
+                ? 'bg-[#22C55E]/15 text-[#34D399] border border-[#22C55E]/30 cursor-default'
+                : 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 text-[#07111F] font-bold shadow-md shadow-[#22C55E]/20 active:scale-95 cursor-pointer'
             }`}
           >
             {isChallengeDone ? (
               <>
-                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
                 <span>Challenge Completed (+{dailyChallenge.xp} XP)</span>
               </>
             ) : (
               <>
-                <Sparkles className="w-4 h-4 text-amber-200" />
+                <Sparkles className="w-4 h-4 text-[#07111F]" />
                 <span>Tap to Complete Challenge</span>
               </>
             )}
@@ -476,17 +476,17 @@ export function WellnessHub({
         </div>
 
         {/* Module 3: Composite Nutrition Score Speedometer Gauge */}
-        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-emerald-500/25 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent relative overflow-hidden">
+        <div className="card-lg p-5 flex flex-col justify-between space-y-4 border-[#1E293B] bg-gradient-to-br from-[#0B0F0E] via-[#07111F] to-[#101D2D] relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-[#22C55E]/20 text-[#34D399] flex items-center justify-center font-bold text-lg shadow-sm">
                 ⚡
               </div>
               <div>
-                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-white">
+                <h3 className="font-display font-bold text-sm text-stone-900 dark:text-[#F8FAFC]">
                   Nutrition Score
                 </h3>
-                <p className="text-[11px] text-stone-500 dark:text-stone-400">
+                <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                   Comprehensive health rating
                 </p>
               </div>
@@ -501,15 +501,15 @@ export function WellnessHub({
           <div className="flex items-center justify-between gap-4 py-1">
             <div className="space-y-1">
               <div className="flex items-baseline gap-1.5">
-                <span className="font-display font-black text-3xl text-stone-900 dark:text-white tabular-nums">
+                <span className="font-display font-black text-3xl text-stone-900 dark:text-[#F8FAFC] tabular-nums">
                   {scoreBreakdown.totalScore}
                 </span>
-                <span className="text-xs font-semibold text-stone-400">/ 100</span>
+                <span className="text-xs font-semibold text-stone-400 dark:text-[#8492A6]">/ 100</span>
               </div>
-              <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="text-xs font-bold text-emerald-600 dark:text-[#34D399]">
                 {scoreBreakdown.label}
               </div>
-              <p className="text-[10px] text-stone-500 dark:text-stone-400">
+              <p className="text-[10px] text-stone-500 dark:text-[#8492A6]">
                 Based on calories, macros, hydration & habits
               </p>
             </div>
@@ -517,13 +517,13 @@ export function WellnessHub({
             {/* Mini Dial Gauge */}
             <div className="relative w-16 h-16 flex items-center justify-center flex-shrink-0">
               <svg viewBox="0 0 60 60" className="w-full h-full -rotate-90">
-                <circle cx="30" cy="30" r="24" fill="none" className="stroke-stone-200 dark:stroke-stone-800" strokeWidth="5" />
+                <circle cx="30" cy="30" r="24" fill="none" className="stroke-stone-200 dark:stroke-[#1E293B]" strokeWidth="5" />
                 <circle
                   cx="30"
                   cy="30"
                   r="24"
                   fill="none"
-                  stroke="#10b981"
+                  stroke="#22C55E"
                   strokeWidth="5"
                   strokeLinecap="round"
                   strokeDasharray="150.8"
@@ -531,7 +531,7 @@ export function WellnessHub({
                   className="transition-all duration-700"
                 />
               </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-stone-900 dark:text-white">
+              <span className="absolute inset-0 flex items-center justify-center text-xs font-black text-stone-900 dark:text-[#F8FAFC]">
                 {scoreBreakdown.grade}
               </span>
             </div>
@@ -541,13 +541,13 @@ export function WellnessHub({
           <button
             type="button"
             onClick={() => setScoreModalOpen(true)}
-            className="w-full py-2 px-3 rounded-xl text-xs font-bold bg-white dark:bg-[#1f2229] hover:bg-stone-100 dark:hover:bg-[#282b35] text-stone-700 dark:text-stone-200 border border-stone-200 dark:border-stone-700/80 transition-all flex items-center justify-between"
+            className="w-full py-2 px-3 rounded-xl text-xs font-bold bg-white dark:bg-[#101D2D] hover:bg-stone-100 dark:hover:bg-[#101D2D]/80 text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B] transition-all flex items-center justify-between cursor-pointer"
           >
             <span className="flex items-center gap-1.5">
-              <Info className="w-3.5 h-3.5 text-stone-400" />
+              <Info className="w-3.5 h-3.5 text-stone-400 dark:text-[#8492A6]" />
               <span>Score Breakdown & Points</span>
             </span>
-            <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
+            <ChevronRight className="w-3.5 h-3.5 text-stone-400 dark:text-[#8492A6]" />
           </button>
         </div>
       </div>
@@ -560,13 +560,13 @@ export function WellnessHub({
               <Award className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-display font-bold text-base text-stone-900 dark:text-white flex items-center gap-2">
+              <h3 className="font-display font-bold text-base text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2">
                 <span>Achievement Badges & Trophies</span>
                 <span className="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400">
                   {unlockedCount} / {badges.length} Unlocked
                 </span>
               </h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6]">
                 Unlock wellness milestones by staying consistent with your daily targets.
               </p>
             </div>
@@ -598,33 +598,33 @@ export function WellnessHub({
               className={`p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer text-left flex flex-col justify-between gap-2.5 hover:-translate-y-0.5 hover:shadow-card-md ${
                 b.isUnlocked
                   ? 'bg-gradient-to-b from-amber-500/10 to-transparent border-amber-500/40 shadow-sm shadow-amber-500/10'
-                  : 'bg-stone-50/80 dark:bg-[#16181d] border-stone-200/80 dark:border-stone-800/80 opacity-75 hover:opacity-100'
+                  : 'bg-stone-50/80 dark:bg-[#0B0F0E] border-stone-200/80 dark:border-[#1E293B] opacity-75 hover:opacity-100'
               }`}
             >
               <div className="flex items-center justify-between">
                 <span className="text-2xl">{b.icon}</span>
                 {b.isUnlocked ? (
-                  <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center text-[10px] font-black">
+                  <span className="w-5 h-5 rounded-full bg-[#22C55E]/20 text-[#22C55E] flex items-center justify-center text-[10px] font-black">
                     ✓
                   </span>
                 ) : (
-                  <span className="text-[10px] font-bold text-stone-400 dark:text-stone-500">
+                  <span className="text-[10px] font-bold text-stone-400 dark:text-[#8492A6]">
                     Locked
                   </span>
                 )}
               </div>
 
               <div>
-                <div className="text-xs font-bold text-stone-900 dark:text-white truncate">
+                <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] truncate">
                   {b.name}
                 </div>
-                <div className="text-[10px] text-stone-500 dark:text-stone-400 truncate mt-0.5">
+                <div className="text-[10px] text-stone-500 dark:text-[#8492A6] truncate mt-0.5">
                   {b.progressText}
                 </div>
               </div>
 
               {/* Mini Progress Bar */}
-              <div className="w-full h-1 rounded-full bg-stone-200 dark:bg-stone-800 overflow-hidden">
+              <div className="w-full h-1 rounded-full bg-stone-200 dark:bg-[#1E293B] overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${
                     b.isUnlocked ? 'bg-amber-500' : 'bg-stone-400 dark:bg-stone-600'
@@ -640,11 +640,11 @@ export function WellnessHub({
       {/* Badge Detail Modal / Celebration */}
       {selectedBadge && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-800 p-6 space-y-4 shadow-2xl relative animate-scale-up">
+          <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B] p-6 space-y-4 shadow-2xl relative animate-scale-up">
             <button
               type="button"
               onClick={() => setSelectedBadge(null)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800"
+              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#101D2D] cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -654,25 +654,25 @@ export function WellnessHub({
               <div className="w-16 h-16 mx-auto rounded-3xl bg-amber-500/15 border-2 border-amber-500/30 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20">
                 {selectedBadge.icon}
               </div>
-              <h4 className="font-display font-extrabold text-lg text-stone-900 dark:text-white">
+              <h4 className="font-display font-extrabold text-lg text-stone-900 dark:text-[#F8FAFC]">
                 {selectedBadge.name}
               </h4>
               <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase border ${
                 selectedBadge.isUnlocked
-                  ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-                  : 'bg-stone-100 dark:bg-stone-800 text-stone-500 border-stone-200 dark:border-stone-700'
+                  ? 'bg-[#22C55E]/15 text-emerald-600 dark:text-[#34D399] border-[#22C55E]/30'
+                  : 'bg-stone-100 dark:bg-[#101D2D] text-stone-500 dark:text-[#CBD5E1] border-stone-200 dark:border-[#1E293B]'
               }`}>
                 {selectedBadge.isUnlocked ? '🏆 Achievement Unlocked' : '🔒 In Progress'}
               </span>
             </div>
 
-            <p className="text-xs text-stone-600 dark:text-stone-300 text-center leading-relaxed">
+            <p className="text-xs text-stone-600 dark:text-[#CBD5E1] text-center leading-relaxed">
               {selectedBadge.description}
             </p>
 
-            <div className="p-3 rounded-2xl bg-stone-100 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700/80 text-xs flex justify-between items-center">
-              <span className="font-semibold text-stone-600 dark:text-stone-300">Progress:</span>
-              <span className="font-extrabold text-stone-900 dark:text-white">{selectedBadge.progressText}</span>
+            <div className="p-3 rounded-2xl bg-stone-100 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] text-xs flex justify-between items-center">
+              <span className="font-semibold text-stone-600 dark:text-[#CBD5E1]">Progress:</span>
+              <span className="font-extrabold text-stone-900 dark:text-[#F8FAFC]">{selectedBadge.progressText}</span>
             </div>
 
             {selectedBadge.isUnlocked ? (
@@ -691,7 +691,7 @@ export function WellnessHub({
               <button
                 type="button"
                 onClick={() => setSelectedBadge(null)}
-                className="w-full py-2.5 rounded-xl bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-200 font-bold text-xs"
+                className="w-full py-2.5 rounded-xl bg-stone-200 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-transparent dark:border-[#1E293B] font-bold text-xs cursor-pointer"
               >
                 Got It
               </button>
@@ -703,62 +703,62 @@ export function WellnessHub({
       {/* Score Breakdown Modal */}
       {scoreModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="w-full max-w-md rounded-3xl bg-white dark:bg-[#1a1c22] border border-stone-200 dark:border-stone-800 p-6 space-y-4 shadow-2xl relative animate-scale-up">
+          <div className="w-full max-w-md rounded-3xl bg-white dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B] p-6 space-y-4 shadow-2xl relative animate-scale-up">
             <button
               type="button"
               onClick={() => setScoreModalOpen(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-white hover:bg-stone-100 dark:hover:bg-stone-800"
+              className="absolute top-4 right-4 p-2 rounded-xl text-stone-400 hover:text-stone-600 dark:hover:text-[#F8FAFC] hover:bg-stone-100 dark:hover:bg-[#101D2D] cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
             </button>
 
             <div>
-              <h4 className="font-display font-extrabold text-lg text-stone-900 dark:text-white">
+              <h4 className="font-display font-extrabold text-lg text-stone-900 dark:text-[#F8FAFC]">
                 Nutrition Score Breakdown
               </h4>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
+              <p className="text-xs text-stone-500 dark:text-[#8492A6]">
                 How your {scoreBreakdown.totalScore}/100 composite score is calculated:
               </p>
             </div>
 
             <div className="space-y-2.5 text-xs">
-              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700 flex justify-between items-center">
+              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-stone-900 dark:text-white">Calorie Precision</div>
-                  <div className="text-[11px] text-stone-500">Target balance ±10%</div>
+                  <div className="font-bold text-stone-900 dark:text-[#F8FAFC]">Calorie Precision</div>
+                  <div className="text-[11px] text-stone-500 dark:text-[#8492A6]">Target balance ±10%</div>
                 </div>
                 <span className="font-extrabold text-orange-500 text-sm">
                   {scoreBreakdown.calScore} / 30 pts
                 </span>
               </div>
 
-              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700 flex justify-between items-center">
+              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-stone-900 dark:text-white">Protein Target Adherence</div>
-                  <div className="text-[11px] text-stone-500">{result.proteinG}g daily target</div>
+                  <div className="font-bold text-stone-900 dark:text-[#F8FAFC]">Protein Target Adherence</div>
+                  <div className="text-[11px] text-stone-500 dark:text-[#8492A6]">{result.proteinG}g daily target</div>
                 </div>
-                <span className="font-extrabold text-emerald-500 text-sm">
+                <span className="font-extrabold text-[#22C55E] text-sm">
                   {scoreBreakdown.proteinScore} / 25 pts
                 </span>
               </div>
 
-              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700 flex justify-between items-center">
+              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-stone-900 dark:text-white">Hydration Fulfillment</div>
-                  <div className="text-[11px] text-stone-500">{waterTargetMl}ml water target</div>
+                  <div className="font-bold text-stone-900 dark:text-[#F8FAFC]">Hydration Fulfillment</div>
+                  <div className="text-[11px] text-stone-500 dark:text-[#8492A6]">{waterTargetMl}ml water target</div>
                 </div>
-                <span className="font-extrabold text-blue-500 text-sm">
+                <span className="font-extrabold text-[#60A5FA] text-sm">
                   {scoreBreakdown.hydraScore} / 25 pts
                 </span>
               </div>
 
-              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700 flex justify-between items-center">
+              <div className="p-3 rounded-2xl bg-stone-50 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] flex justify-between items-center">
                 <div>
-                  <div className="font-bold text-stone-900 dark:text-white">Fiber & Daily Challenge</div>
-                  <div className="text-[11px] text-stone-500">Gut health & micro-challenge</div>
+                  <div className="font-bold text-stone-900 dark:text-[#F8FAFC]">Fiber & Daily Challenge</div>
+                  <div className="text-[11px] text-stone-500 dark:text-[#8492A6]">Gut health & micro-challenge</div>
                 </div>
-                <span className="font-extrabold text-teal-500 text-sm">
+                <span className="font-extrabold text-[#2DD4BF] text-sm">
                   {scoreBreakdown.habitScore} / 20 pts
                 </span>
               </div>
@@ -767,7 +767,7 @@ export function WellnessHub({
             <button
               type="button"
               onClick={() => setScoreModalOpen(false)}
-              className="w-full py-2.5 rounded-xl bg-stone-900 dark:bg-stone-800 text-white font-bold text-xs"
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 text-[#07111F] font-bold text-xs cursor-pointer shadow-sm"
             >
               Close Breakdown
             </button>

@@ -92,20 +92,20 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
 
   return (
     <div className="fixed inset-0 z-[70] bg-stone-900/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
-      <div className="bg-white dark:bg-[#18191d] border border-stone-200 dark:border-[#2e323b] w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200/60 dark:border-[#2e323b] flex-shrink-0">
+      <div className="bg-white dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B] w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200/60 dark:border-[#1E293B] flex-shrink-0">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-base">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] font-bold text-base">
               ✍️
             </div>
             <div>
-              <h2 className="font-display font-semibold text-lg text-stone-900 dark:text-white">Type What You Ate</h2>
-              <p className="text-xs text-stone-500 dark:text-[#828795]">Describe your meal in simple plain English</p>
+              <h2 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC]">Type What You Ate</h2>
+              <p className="text-xs text-stone-500 dark:text-[#8492A6]">Describe your meal in simple plain English</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#282a32] text-stone-500 dark:text-[#a0a5b2] transition-colors"
+            className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#101D2D] text-stone-500 dark:text-[#8492A6] transition-colors"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -116,13 +116,13 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
           {!success && (
             <>
               {/* Beginner 3-Questions Helper */}
-              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-stone-700 dark:text-[#d1d5db] space-y-1">
+              <div className="p-3 rounded-xl bg-[#22C55E]/10 border border-[#22C55E]/20 text-xs text-stone-700 dark:text-[#CBD5E1] space-y-1">
                 <div>
-                  <strong className="text-emerald-700 dark:text-emerald-400">1. What to do: </strong>
+                  <strong className="text-emerald-700 dark:text-[#34D399]">1. What to do: </strong>
                   Type what you ate (or tap an example below) and press "Calculate Nutrition".
                 </div>
                 <div>
-                  <strong className="text-emerald-700 dark:text-emerald-400">2. What happens next: </strong>
+                  <strong className="text-emerald-700 dark:text-[#34D399]">2. What happens next: </strong>
                   We parse each food, look up calories and fuel, and let you review before saving!
                 </div>
               </div>
@@ -133,7 +133,7 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                   onChange={(e) => setText(e.target.value)}
                   placeholder='e.g. "2 eggs, 2 toast and 1 banana"'
                   rows={3}
-                  className="input-field text-sm resize-none w-full rounded-xl bg-stone-50 dark:bg-[#202227] border border-stone-200 dark:border-[#2e323b] text-stone-900 dark:text-white p-3"
+                  className="input-field text-sm resize-none w-full rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] p-3 focus:ring-2 focus:ring-[#22C55E]"
                 />
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {EXAMPLES.map((ex) => (
@@ -141,7 +141,7 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                       key={ex}
                       type="button"
                       onClick={() => setText(ex)}
-                      className="text-[11px] px-2.5 py-1 rounded-full bg-stone-100 dark:bg-[#202227] text-stone-600 dark:text-[#a0a5b2] hover:bg-stone-200 dark:hover:bg-[#2a2d36] border border-stone-200 dark:border-[#2e323b] transition-colors"
+                      className="text-[11px] px-2.5 py-1 rounded-full bg-stone-100 dark:bg-[#101D2D] text-stone-600 dark:text-[#CBD5E1] hover:bg-stone-200 dark:hover:bg-[#101D2D]/80 border border-stone-200 dark:border-[#1E293B] transition-colors cursor-pointer"
                     >
                       {ex}
                     </button>
@@ -151,7 +151,7 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                   type="button"
                   onClick={handleParse}
                   disabled={!text.trim() || parsing}
-                  className="w-full mt-3 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+                  className="w-full mt-3 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 disabled:opacity-50 text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
                 >
                   {parsing ? <Loader2 className="w-4 h-4 animate-spin" /> : <PenLine className="w-4 h-4" />}
                   {parsing ? 'Calculating Nutrients…' : 'Calculate Nutrition'}
@@ -174,7 +174,7 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
               )}
 
               {items.length > 0 && (
-                <div className="space-y-3 pt-2 border-t border-stone-200/60 dark:border-[#2e323b]">
+                <div className="space-y-3 pt-2 border-t border-stone-200/60 dark:border-[#1E293B]">
                   <div className="space-y-3 pt-2">
                     {items.map((item) => (
                       <FoodItemCard
@@ -186,13 +186,13 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                     ))}
                   </div>
 
-                  <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-4">
+                  <div className="rounded-xl bg-gradient-to-br from-[#0B0F0E] to-[#101D2D] border border-[#1E293B] p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-display font-semibold text-stone-900 dark:text-white flex items-center gap-1.5">
+                      <span className="font-display font-semibold text-stone-900 dark:text-[#F8FAFC] flex items-center gap-1.5">
                         <Flame className="w-4 h-4 text-orange-500" /> Total Added Energy
                       </span>
-                      <span className="metric-value text-xl text-stone-900 dark:text-white font-bold">
-                        {Math.round(totals.calories)} <span className="text-sm font-medium text-stone-400">kcal</span>
+                      <span className="metric-value text-xl text-stone-900 dark:text-[#F8FAFC] font-bold">
+                        {Math.round(totals.calories)} <span className="text-sm font-medium text-stone-400 dark:text-[#8492A6]">kcal</span>
                       </span>
                     </div>
                     <div className="grid grid-cols-4 gap-2 text-center">
@@ -202,26 +202,26 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                         { label: 'Healthy Fat', val: totals.fat },
                         { label: 'Fiber', val: totals.fiber },
                       ].map((m) => (
-                        <div key={m.label} className="p-1 rounded-lg bg-white/50 dark:bg-[#1a1c22]">
-                          <div className="text-sm font-bold text-stone-800 dark:text-white tabular-nums">{Math.round(m.val)}g</div>
-                          <div className="text-[10px] text-stone-500 dark:text-[#828795]">{m.label}</div>
+                        <div key={m.label} className="p-1 rounded-lg bg-white/50 dark:bg-[#0B0F0E] border border-transparent dark:border-[#1E293B]/50">
+                          <div className="text-sm font-bold text-stone-800 dark:text-[#F8FAFC] tabular-nums">{Math.round(m.val)}g</div>
+                          <div className="text-[10px] text-stone-500 dark:text-[#8492A6]">{m.label}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-sm font-semibold text-stone-700 dark:text-[#d1d5db] mb-2">Which Meal Is This?</div>
+                    <div className="text-sm font-semibold text-stone-700 dark:text-[#CBD5E1] mb-2">Which Meal Is This?</div>
                     <div className="grid grid-cols-5 gap-1.5">
                       {mealTypes.map(({ value, icon: Icon }) => (
                         <button
                           key={value}
                           type="button"
                           onClick={() => setMealType(value)}
-                          className={`flex flex-col items-center gap-1 py-2 rounded-xl border text-[11px] font-semibold transition-all ${
+                          className={`flex flex-col items-center gap-1 py-2 rounded-xl border text-[11px] font-semibold transition-all cursor-pointer ${
                             mealType === value
-                              ? 'border-emerald-500 bg-emerald-500/15 text-emerald-700 dark:text-emerald-400'
-                              : 'border-stone-200 dark:border-[#2e323b] text-stone-500 dark:text-[#828795] hover:bg-stone-50 dark:hover:bg-[#202227]'
+                              ? 'border-[#22C55E] bg-[#22C55E]/15 text-emerald-700 dark:text-[#34D399]'
+                              : 'border-stone-200 dark:border-[#1E293B] text-stone-500 dark:text-[#8492A6] hover:bg-stone-50 dark:hover:bg-[#101D2D]'
                           }`}
                         >
                           <Icon className="w-4 h-4" />
@@ -232,7 +232,7 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                   </div>
 
                   <div>
-                    <div className="text-sm font-semibold text-stone-700 dark:text-[#d1d5db] mb-2">Meal Label (Optional)</div>
+                    <div className="text-sm font-semibold text-stone-700 dark:text-[#CBD5E1] mb-2">Meal Label (Optional)</div>
                     <input
                       type="text"
                       value={mealName}
@@ -241,18 +241,18 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
                         setMealNameTouched(true);
                       }}
                       placeholder="e.g. Post Workout Snack"
-                      className="input-field py-2 text-sm w-full rounded-xl bg-stone-50 dark:bg-[#202227] border border-stone-200 dark:border-[#2e323b] text-stone-900 dark:text-white px-3"
+                      className="input-field py-2 text-sm w-full rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-900 dark:text-[#F8FAFC] px-3 focus:ring-2 focus:ring-[#22C55E]"
                     />
                   </div>
 
-                  <p className="text-[11px] text-stone-400 dark:text-stone-500">
+                  <p className="text-[11px] text-stone-400 dark:text-[#8492A6]">
                     💡 Tip: Nutrition values are standard estimates and perfect for tracking daily progress.
                   </p>
 
                   <button
                     type="button"
                     onClick={handleAdd}
-                    className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all"
+                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                   >
                     <CheckCircle2 className="w-4 h-4" /> Save & Add to Today's Intake (+{Math.round(totals.calories)} kcal)
                   </button>
@@ -263,17 +263,17 @@ export function EnterFood({ onClose, onAddMeal }: EnterFoodProps) {
 
           {success && (
             <div className="flex flex-col items-center justify-center py-10 gap-3 text-center">
-              <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-14 h-14 rounded-full bg-[#22C55E]/20 text-[#22C55E] dark:text-[#34D399] flex items-center justify-center">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-white">Meal Logged Successfully!</h3>
-              <p className="text-sm text-stone-500 dark:text-[#a0a5b2]">
+              <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC]">Meal Logged Successfully!</h3>
+              <p className="text-sm text-stone-500 dark:text-[#CBD5E1]">
                 {mealName || 'Your meal'} — {Math.round(totals.calories)} kcal added to Today's Food.
               </p>
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition-all"
+                className="mt-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-sm transition-all hover:opacity-95 cursor-pointer"
               >
                 Back to Dashboard
               </button>

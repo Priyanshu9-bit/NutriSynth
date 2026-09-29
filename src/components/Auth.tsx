@@ -124,18 +124,18 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm animate-fade-in">
       <div
-        className="relative w-full max-w-md bg-white dark:bg-[#202227] rounded-2xl border border-stone-200 dark:border-[#32353e] shadow-2xl overflow-hidden animate-scale-up"
+        className="relative w-full max-w-md bg-white dark:bg-[#07111F] rounded-2xl border border-stone-200 dark:border-[#1E293B] shadow-2xl overflow-hidden animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Glow decoration */}
-        <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-brand-500 via-emerald-500 to-teal-400" />
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-brand-500/10 dark:bg-brand-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#22C55E] via-[#2DD4BF] to-[#60A5FA]" />
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#22C55E]/10 dark:bg-[#22C55E]/15 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+            className="absolute top-4 right-4 p-2 text-stone-400 hover:text-stone-600 dark:hover:text-[#F8FAFC] rounded-full hover:bg-stone-100 dark:hover:bg-[#101D2D] transition-colors cursor-pointer"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -145,13 +145,13 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
         <div className="p-6 sm:p-8">
           {/* Header */}
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-500 to-emerald-600 text-white shadow-lg shadow-brand-500/25 mb-3">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold shadow-md shadow-[#22C55E]/25 mb-3">
               <Sparkles className="w-6 h-6" />
             </div>
-            <h2 className="font-display font-bold text-2xl text-stone-900 dark:text-white">
+            <h2 className="font-display font-bold text-2xl text-stone-900 dark:text-[#F8FAFC]">
               {mode === 'signin' ? 'Welcome Back' : 'Create Your Account'}
             </h2>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
+            <p className="text-sm text-stone-500 dark:text-[#8492A6] mt-1">
               {mode === 'signin'
                 ? 'Sign in to access your saved nutrition plans and meals'
                 : 'Sign up to automatically sync your nutrition data'}
@@ -161,12 +161,12 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
           {/* Database status pill */}
           <div className="mb-6 flex items-center justify-center">
             {isFirebaseConfigured ? (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#22C55E]/15 text-emerald-700 dark:text-[#34D399] border border-[#22C55E]/30">
                 <Cloud className="w-3.5 h-3.5" />
                 <span>Firebase Cloud Sync Active</span>
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/30">
                 <Database className="w-3.5 h-3.5" />
                 <span>Local Storage Mode (Saved in Browser)</span>
               </div>
@@ -174,17 +174,17 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
           </div>
 
           {/* Tabs */}
-          <div className="grid grid-cols-2 p-1 mb-6 bg-stone-100 dark:bg-stone-800/80 rounded-xl">
+          <div className="grid grid-cols-2 p-1 mb-6 bg-stone-100 dark:bg-[#0B0F0E] border border-stone-200/80 dark:border-[#1E293B] rounded-xl">
             <button
               type="button"
               onClick={() => {
                 setMode('signin');
                 setError(null);
               }}
-              className={`py-2 text-sm font-semibold rounded-lg transition-all ${
+              className={`py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${
                 mode === 'signin'
-                  ? 'bg-white dark:bg-stone-900 text-stone-900 dark:text-white shadow-sm'
-                  : 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                  ? 'bg-white dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] shadow-sm'
+                  : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-800 dark:hover:text-[#F8FAFC]'
               }`}
             >
               Sign In
@@ -195,10 +195,10 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
                 setMode('signup');
                 setError(null);
               }}
-              className={`py-2 text-sm font-semibold rounded-lg transition-all ${
+              className={`py-2 text-sm font-semibold rounded-lg transition-all cursor-pointer ${
                 mode === 'signup'
-                  ? 'bg-white dark:bg-stone-900 text-stone-900 dark:text-white shadow-sm'
-                  : 'text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200'
+                  ? 'bg-white dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] shadow-sm'
+                  : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-800 dark:hover:text-[#F8FAFC]'
               }`}
             >
               Sign Up
@@ -214,8 +214,8 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
           )}
 
           {successMsg && (
-            <div className="mb-4 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800/60 flex items-center gap-2.5 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm animate-fade-in">
-              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+            <div className="mb-4 p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-[#22C55E]/30 flex items-center gap-2.5 text-emerald-700 dark:text-[#34D399] text-xs sm:text-sm animate-fade-in">
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-[#22C55E]" />
               <span>{successMsg}</span>
             </div>
           )}
@@ -224,58 +224,58 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'signup' && (
               <div>
-                <label className="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
+                <label className="block text-xs font-semibold text-stone-700 dark:text-[#CBD5E1] mb-1.5">
                   Full Name
                 </label>
                 <div className="relative">
-                  <UserIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                  <UserIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 dark:text-[#8492A6]" />
                   <input
                     type="text"
                     required
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="Alex Morgan"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all placeholder:text-stone-400"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-stone-50 dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] text-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition-all placeholder:text-stone-400 dark:placeholder:text-[#8492A6]"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
+              <label className="block text-xs font-semibold text-stone-700 dark:text-[#CBD5E1] mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 dark:text-[#8492A6]" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all placeholder:text-stone-400"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-stone-50 dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] text-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition-all placeholder:text-stone-400 dark:placeholder:text-[#8492A6]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
+              <label className="block text-xs font-semibold text-stone-700 dark:text-[#CBD5E1] mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 dark:text-[#8492A6]" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all placeholder:text-stone-400"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-stone-50 dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] text-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition-all placeholder:text-stone-400 dark:placeholder:text-[#8492A6]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 dark:hover:text-[#F8FAFC] cursor-pointer"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -284,18 +284,18 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
 
             {mode === 'signup' && (
               <div>
-                <label className="block text-xs font-semibold text-stone-700 dark:text-stone-300 mb-1.5">
+                <label className="block text-xs font-semibold text-stone-700 dark:text-[#CBD5E1] mb-1.5">
                   Confirm Password
                 </label>
                 <div className="relative">
-                  <ShieldCheck className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                  <ShieldCheck className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400 dark:text-[#8492A6]" />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-stone-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 transition-all placeholder:text-stone-400"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-stone-50 dark:bg-[#101D2D] text-stone-900 dark:text-[#F8FAFC] text-sm focus:outline-none focus:ring-2 focus:ring-[#22C55E] transition-all placeholder:text-stone-400 dark:placeholder:text-[#8492A6]"
                   />
                 </div>
               </div>
@@ -304,10 +304,10 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-3 px-4 rounded-xl font-semibold text-white bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 active:scale-[0.99] transition-all shadow-md shadow-brand-600/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full mt-2 py-3 px-4 rounded-xl font-bold text-[#07111F] bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] hover:opacity-95 active:scale-[0.99] transition-all shadow-md shadow-[#22C55E]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
             >
               {loading ? (
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-[#07111F]/30 border-t-[#07111F] rounded-full animate-spin" />
               ) : (
                 <>
                   <span>{mode === 'signin' ? 'Sign In to My Plan' : 'Create My Account'}</span>
@@ -320,10 +320,10 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
           {/* Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-stone-200 dark:border-stone-800" />
+              <div className="w-full border-t border-stone-200 dark:border-[#1E293B]" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white dark:bg-[#202227] px-2 text-stone-400">or quick options</span>
+              <span className="bg-white dark:bg-[#07111F] px-2 text-stone-400 dark:text-[#8492A6]">or quick options</span>
             </div>
           </div>
 
@@ -333,7 +333,7 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
               type="button"
               onClick={handleDemoLogin}
               disabled={loading}
-              className="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-brand-300 dark:hover:border-brand-700 bg-stone-50/80 dark:bg-stone-900 hover:bg-brand-50/50 dark:hover:bg-brand-950/30 text-xs font-semibold text-stone-700 dark:text-stone-200 transition-all flex items-center justify-center gap-1.5"
+              className="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-[#1E293B] hover:border-[#22C55E] bg-stone-50/80 dark:bg-[#101D2D] hover:bg-emerald-500/10 dark:hover:bg-[#22C55E]/10 text-xs font-semibold text-stone-700 dark:text-[#CBD5E1] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 text-amber-500" />
               <span>Demo Account</span>
@@ -343,9 +343,9 @@ export function AuthModal({ onSuccess, onClose, initialMode = 'signin' }: AuthPr
               type="button"
               onClick={handleGuestLogin}
               disabled={loading}
-              className="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-stone-700 hover:border-stone-300 dark:hover:border-stone-600 bg-stone-50/80 dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 text-xs font-semibold text-stone-600 dark:text-stone-300 transition-all flex items-center justify-center gap-1.5"
+              className="py-2.5 px-3 rounded-xl border border-stone-200 dark:border-[#1E293B] hover:border-stone-300 dark:hover:border-[#1E293B]/80 bg-stone-50/80 dark:bg-[#101D2D] hover:bg-stone-100 dark:hover:bg-[#101D2D]/80 text-xs font-semibold text-stone-600 dark:text-[#CBD5E1] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <UserIcon className="w-3.5 h-3.5 text-stone-400" />
+              <UserIcon className="w-3.5 h-3.5 text-stone-400 dark:text-[#8492A6]" />
               <span>Guest Mode</span>
             </button>
           </div>

@@ -34,7 +34,7 @@ export function MobileBottomNav({ currentView, onNavigate, hasProfile }: MobileB
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#121316]/95 backdrop-blur-xl border-t border-stone-200/80 dark:border-stone-800 px-3 py-2 shadow-2xl safe-area-bottom">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#07111F]/95 backdrop-blur-xl border-t border-stone-200/80 dark:border-[#1E293B] px-3 py-2 shadow-2xl safe-area-bottom">
       <div className="flex items-center justify-around">
         {navItems.map((item) => {
           const isActive = currentView === item.view;
@@ -48,10 +48,10 @@ export function MobileBottomNav({ currentView, onNavigate, hasProfile }: MobileB
                 onClick={() => handleNav(item.view)}
                 className="flex flex-col items-center -mt-6 group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30 border-2 border-white dark:border-[#121316] transition-transform active:scale-95 group-hover:scale-105">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold flex items-center justify-center shadow-lg shadow-emerald-500/20 border-2 border-white dark:border-[#07111F] transition-transform active:scale-95 group-hover:scale-105">
                   <Icon className="w-6 h-6 stroke-[2.5]" />
                 </div>
-                <span className="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 mt-1">
+                <span className="text-[10px] font-extrabold text-emerald-600 dark:text-[#34D399] mt-1">
                   Log Food
                 </span>
               </button>
@@ -65,8 +65,8 @@ export function MobileBottomNav({ currentView, onNavigate, hasProfile }: MobileB
               onClick={() => handleNav(item.view)}
               className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition-all ${
                 isActive
-                  ? 'text-emerald-600 dark:text-emerald-400 font-extrabold'
-                  : 'text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 font-medium'
+                  ? 'text-[#22C55E] dark:text-[#34D399] font-extrabold'
+                  : 'text-stone-400 dark:text-[#8492A6] hover:text-stone-700 dark:hover:text-[#F8FAFC] font-medium'
               }`}
             >
               <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5]' : 'stroke-2'}`} />

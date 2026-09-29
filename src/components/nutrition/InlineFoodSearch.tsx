@@ -65,14 +65,14 @@ export function InlineFoodSearch({
           <button
             key={hit.id}
             onClick={() => onSelect(hit)}
-            className="text-left text-xs rounded-lg border border-stone-200 hover:border-brand-400 hover:bg-brand-50/40 px-2.5 py-2 text-stone-700 transition-colors"
+            className="text-left text-xs rounded-lg border border-stone-200 dark:border-[#1E293B] bg-white dark:bg-[#101D2D] hover:border-[#22C55E] hover:bg-[#22C55E]/10 px-2.5 py-2 text-stone-700 dark:text-[#CBD5E1] transition-colors cursor-pointer"
           >
-            <div className="font-medium truncate">{hit.name}</div>
-            {hit.description && <div className="text-stone-400 truncate">{hit.description}</div>}
+            <div className="font-medium truncate text-stone-900 dark:text-[#F8FAFC]">{hit.name}</div>
+            {hit.description && <div className="text-stone-400 dark:text-[#8492A6] truncate">{hit.description}</div>}
           </button>
         ))}
         {!loading && query.trim() && hits.length === 0 && (
-          <div className="col-span-full text-xs text-stone-400 py-2 text-center">No matches found.</div>
+          <div className="col-span-full text-xs text-stone-400 dark:text-[#8492A6] py-2 text-center">No matches found.</div>
         )}
       </div>
     </div>

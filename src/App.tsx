@@ -329,12 +329,12 @@ function App() {
   const activeChallengeDay = computeActiveChallengeDay(challenge);
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 dark:bg-[#18191c] text-stone-900 dark:text-stone-100 transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-[#07111F] text-[#F8FAFC] transition-colors duration-200">
       {/* Sync / Notification Toast */}
       {syncNotice && (
         <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">
-          <div className="px-4 py-2.5 rounded-xl bg-stone-900/90 dark:bg-stone-100/95 text-white dark:text-stone-900 text-xs sm:text-sm font-medium shadow-xl border border-stone-800 dark:border-stone-200 flex items-center gap-2">
-            <span>✨</span>
+          <div className="px-4 py-2.5 rounded-xl bg-stone-900/90 dark:bg-[#101D2D]/95 text-white dark:text-[#F8FAFC] text-xs sm:text-sm font-medium shadow-xl border border-stone-800 dark:border-[#1E293B] flex items-center gap-2">
+            <span className="text-[#34D399]">✨</span>
             <span>{syncNotice}</span>
           </div>
         </div>
@@ -518,6 +518,8 @@ function App() {
                   }
                 }}
                 onOpenAuth={handleOpenAuth}
+                onSignOut={handleSignOut}
+                streakCount={streak.count}
               />
             </div>
           </SectionErrorBoundary>
