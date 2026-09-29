@@ -12,9 +12,10 @@ import {
   Timer,
   Sparkles,
   Award,
+  Flame,
 } from 'lucide-react';
 import type { NutritionResult, UserProfile } from '@/lib/calculations';
-import { playEngineRevSound, playDynoPullSound, playChecklistSound } from '@/lib/soundEffects';
+import { playEngineRevSound, playDynoPullSound, playChecklistSound, playSupercarExhaustSound } from '@/lib/soundEffects';
 
 interface CalorieSpeedometerClusterProps {
   result: NutritionResult;
@@ -53,6 +54,7 @@ export function CalorieSpeedometerCluster({
   const [driveMode, setDriveMode] = useState<DriveMode>('sport');
   const [tuneStage, setTuneStage] = useState<TuneStage>('stock');
   const [isRevving, setIsRevving] = useState<boolean>(false);
+  const [isSupercarRevving, setIsSupercarRevving] = useState<boolean>(false);
   const [revBonus, setRevBonus] = useState<number>(0);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [testPreset, setTestPreset] = useState<number | null>(null);
@@ -258,6 +260,17 @@ export function CalorieSpeedometerCluster({
         setRevBonus(step);
       }
     }, 90);
+  };
+
+  // Authentic Supercar Exhaust Roar & Overrun Crackles
+  const handlePlaySupercarSound = () => {
+    if (isSupercarRevving || isDynoRunning) return;
+    setIsSupercarRevving(true);
+    if (soundEnabled) playSupercarExhaustSound();
+
+    setTimeout(() => {
+      setIsSupercarRevving(false);
+    }, 1400);
   };
 
   // Chassis Dyno Run Simulation with Sound and History Logging
@@ -816,8 +829,19 @@ export function CalorieSpeedometerCluster({
                 </h3>
               </div>
 
-              {/* Start Dyno Pull Action Button */}
-              <div className="flex items-center gap-2">
+              {/* Dyno Action & Sound Buttons */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={handlePlaySupercarSound}
+                  disabled={isDynoRunning || isSupercarRevving}
+                  className="py-2.5 px-3.5 rounded-2xl bg-[#101D2D] hover:bg-[#162536] text-[#F8FAFC] font-extrabold text-xs sm:text-sm border border-[#1E293B] hover:border-emerald-500/40 shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 disabled:opacity-50"
+                  title="Hear high-RPM V10/V12 supercar exhaust roar with overrun crackles & pops"
+                >
+                  <Flame className={`w-4 h-4 text-orange-400 ${isSupercarRevving ? 'animate-bounce text-amber-300' : ''}`} />
+                  <span>{isSupercarRevving ? '🔥 8,500 RPM Roar…' : '🔊 Sportscar Exhaust'}</span>
+                </button>
+
                 <button
                   type="button"
                   onClick={handleStartDynoPull}
@@ -846,7 +870,13 @@ export function CalorieSpeedometerCluster({
                     key={stg.id}
                     type="button"
                     onClick={() => {
-                      playChecklistSound(true);
+                      if (soundEnabled) {
+                        if (stg.id === 'stage2' || stg.id === 'stage1') {
+                          playSupercarExhaustSound();
+                        } else {
+                          playChecklistSound(true);
+                        }
+                      }
                       setTuneStage(stg.id as TuneStage);
                     }}
                     className={`px-2.5 py-1 rounded-xl font-bold transition-all text-[11px] cursor-pointer ${

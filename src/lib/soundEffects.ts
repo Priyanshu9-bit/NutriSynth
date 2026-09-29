@@ -349,4 +349,103 @@ export function playDynoPullSound(): void {
   }
 }
 
+/**
+ * 7. Authentic Sports Car Exhaust Rev & Overrun Crackles
+ * High-revving V10/V12 supercar throttle roar with rapid acoustic sweep and exhaust overrun pops
+ */
+export function playSupercarExhaustSound(): void {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  try {
+    const now = ctx.currentTime;
+
+    // Dual detuned main engine cylinders (creates rich supercar mechanical chorusing)
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const subOsc = ctx.createOscillator();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+
+    osc1.type = 'sawtooth';
+    osc2.type = 'sawtooth';
+    subOsc.type = 'triangle';
+    filter.type = 'lowpass';
+
+    // High-RPM V10 screaming rev: 85Hz -> 520Hz -> 110Hz
+    osc1.frequency.setValueAtTime(85, now);
+    osc1.frequency.exponentialRampToValueAtTime(520, now + 0.45);
+    osc1.frequency.exponentialRampToValueAtTime(110, now + 1.25);
+
+    // Detune by +8 cents for aggressive mechanical scream
+    osc2.frequency.setValueAtTime(87, now);
+    osc2.detune.setValueAtTime(8, now);
+    osc2.frequency.exponentialRampToValueAtTime(530, now + 0.45);
+    osc2.frequency.exponentialRampToValueAtTime(113, now + 1.25);
+
+    // Sub rumble
+    subOsc.frequency.setValueAtTime(42, now);
+    subOsc.frequency.exponentialRampToValueAtTime(260, now + 0.45);
+    subOsc.frequency.exponentialRampToValueAtTime(55, now + 1.25);
+
+    // Resonant filter opens with throttle
+    filter.frequency.setValueAtTime(260, now);
+    filter.frequency.exponentialRampToValueAtTime(2200, now + 0.45);
+    filter.frequency.exponentialRampToValueAtTime(320, now + 1.25);
+    filter.Q.setValueAtTime(4, now + 0.45);
+
+    // Audio envelope
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.28, now + 0.12);
+    gain.gain.setValueAtTime(0.32, now + 0.45);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
+
+    osc1.connect(filter);
+    osc2.connect(filter);
+    subOsc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc1.start(now);
+    osc2.start(now);
+    subOsc.start(now);
+    osc1.stop(now + 1.35);
+    osc2.stop(now + 1.35);
+    subOsc.stop(now + 1.35);
+
+    // Exhaust overrun flame crackles / burble pops during throttle lift (0.65s to 1.1s)
+    const popTimes = [0.65, 0.78, 0.92, 1.05];
+    popTimes.forEach((t) => {
+      const popSize = Math.floor(ctx.sampleRate * 0.04);
+      const popBuf = ctx.createBuffer(1, popSize, ctx.sampleRate);
+      const out = popBuf.getChannelData(0);
+      for (let i = 0; i < popSize; i++) {
+        out[i] = (Math.random() * 2 - 1) * Math.exp(-i / (popSize * 0.25));
+      }
+      const popNode = ctx.createBufferSource();
+      popNode.buffer = popBuf;
+
+      const popFilter = ctx.createBiquadFilter();
+      popFilter.type = 'bandpass';
+      popFilter.frequency.setValueAtTime(1400 + Math.random() * 800, now + t);
+      popFilter.Q.setValueAtTime(2.5, now + t);
+
+      const popGain = ctx.createGain();
+      popGain.gain.setValueAtTime(0.001, now + t);
+      popGain.gain.linearRampToValueAtTime(0.18, now + t + 0.005);
+      popGain.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.038);
+
+      popNode.connect(popFilter);
+      popFilter.connect(popGain);
+      popGain.connect(ctx.destination);
+
+      popNode.start(now + t);
+      popNode.stop(now + t + 0.045);
+    });
+  } catch (err) {
+    console.debug('[NutriSynth Sound] Supercar sound suppressed:', err);
+  }
+}
+
+
 
