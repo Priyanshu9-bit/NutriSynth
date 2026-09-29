@@ -330,15 +330,15 @@ export function CalorieSpeedometerCluster({
   return (
     <div className="flex flex-col justify-between h-full space-y-5">
       {/* Cockpit Mode Switcher Bar */}
-      <div className="flex items-center justify-between gap-2 flex-wrap pb-2 border-b border-[#1E293B]">
+      <div className="flex items-center justify-between gap-2 flex-wrap pb-2 border-b border-stone-200 dark:border-[#1E293B]">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] text-[#07111F] flex items-center justify-center font-bold shadow-md shadow-emerald-500/20">
             <Gauge className="w-4 h-4 stroke-[2.5]" />
           </div>
           <div>
-            <span className="text-xs font-bold text-[#F8FAFC] flex items-center gap-1.5">
+            <span className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] flex items-center gap-1.5">
               <span>Metabolic Tachometer & Dyno Lab</span>
-              <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-[#101D2D] text-[#34D399] border border-[#1E293B]">
+              <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-emerald-50 dark:bg-[#101D2D] text-emerald-700 dark:text-[#34D399] border border-emerald-200 dark:border-[#1E293B]">
                 {targetCalories.toLocaleString()} KCAL REDLINE
               </span>
             </span>
@@ -348,7 +348,7 @@ export function CalorieSpeedometerCluster({
         {/* View Mode Pill Toggle & Sound Switch */}
         <div className="flex items-center gap-2 flex-wrap">
           {/* Drive Mode Selector: Strada / Sport / Corsa */}
-          <div className="hidden sm:flex items-center gap-1 bg-[#101D2D] p-1 rounded-xl border border-[#1E293B] text-[11px]">
+          <div className="hidden sm:flex items-center gap-1 bg-stone-100 dark:bg-[#101D2D] p-1 rounded-xl border border-stone-200 dark:border-[#1E293B] text-[11px]">
             {(['strada', 'sport', 'corsa'] as DriveMode[]).map((dm) => (
               <button
                 key={dm}
@@ -359,8 +359,8 @@ export function CalorieSpeedometerCluster({
                 }}
                 className={`px-2 py-0.5 rounded-lg font-bold capitalize transition-all cursor-pointer ${
                   driveMode === dm
-                    ? 'bg-[#07111F] text-[#34D399] border border-emerald-500/30'
-                    : 'text-[#8492A6] hover:text-[#F8FAFC]'
+                    ? 'bg-white dark:bg-[#07111F] text-emerald-700 dark:text-[#34D399] shadow-sm border border-emerald-500/30'
+                    : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
                 }`}
                 title={`Switch to ${dm.toUpperCase()} mode`}
               >
@@ -372,13 +372,13 @@ export function CalorieSpeedometerCluster({
           <button
             type="button"
             onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-1.5 rounded-xl bg-[#101D2D] text-[#8492A6] hover:text-[#34D399] border border-[#1E293B] transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl bg-stone-100 dark:bg-[#101D2D] text-stone-500 dark:text-[#8492A6] hover:text-emerald-600 dark:hover:text-[#34D399] border border-stone-200 dark:border-[#1E293B] transition-colors cursor-pointer"
             title={soundEnabled ? 'Engine Audio Enabled (Click to Mute)' : 'Engine Audio Muted (Click to Enable)'}
           >
             {soundEnabled ? <Volume2 className="w-3.5 h-3.5 text-[#34D399]" /> : <VolumeX className="w-3.5 h-3.5 text-[#8492A6]" />}
           </button>
 
-          <div className="flex items-center gap-1 bg-[#101D2D] p-1 rounded-xl border border-[#1E293B] text-xs">
+          <div className="flex items-center gap-1 bg-stone-100 dark:bg-[#101D2D] p-1 rounded-xl border border-stone-200 dark:border-[#1E293B] text-xs">
             <button
               type="button"
               onClick={() => {
@@ -387,8 +387,8 @@ export function CalorieSpeedometerCluster({
               }}
               className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 cursor-pointer ${
                 mode === 'speedometer'
-                  ? 'bg-[#07111F] text-[#34D399] shadow-sm border border-emerald-500/30'
-                  : 'text-[#8492A6] hover:text-[#F8FAFC]'
+                  ? 'bg-white dark:bg-[#07111F] text-emerald-700 dark:text-[#34D399] shadow-sm border border-emerald-500/30'
+                  : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
               }`}
             >
               🏎️ Speedometer
@@ -401,8 +401,8 @@ export function CalorieSpeedometerCluster({
               }}
               className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 cursor-pointer ${
                 mode === 'dyno'
-                  ? 'bg-[#07111F] text-[#34D399] shadow-sm border border-emerald-500/30'
-                  : 'text-[#8492A6] hover:text-[#F8FAFC]'
+                  ? 'bg-white dark:bg-[#07111F] text-emerald-700 dark:text-[#34D399] shadow-sm border border-emerald-500/30'
+                  : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
               }`}
             >
               ⚡ Horsepower Dyno
@@ -415,8 +415,8 @@ export function CalorieSpeedometerCluster({
               }}
               className={`px-2.5 py-1 rounded-lg font-bold transition-all flex items-center gap-1 cursor-pointer ${
                 mode === 'telemetry'
-                  ? 'bg-[#07111F] text-[#34D399] shadow-sm border border-emerald-500/30'
-                  : 'text-[#8492A6] hover:text-[#F8FAFC]'
+                  ? 'bg-white dark:bg-[#07111F] text-emerald-700 dark:text-[#34D399] shadow-sm border border-emerald-500/30'
+                  : 'text-stone-500 dark:text-[#8492A6] hover:text-stone-900 dark:hover:text-[#F8FAFC]'
               }`}
             >
               🚀 ECU Telemetry
@@ -435,7 +435,7 @@ export function CalorieSpeedometerCluster({
             {/* Center Speedometer Gauge Dial */}
             <div className="sm:col-span-7 flex flex-col items-center justify-center relative">
               {/* F1 Supercar LED Shift Indicator Light Strip */}
-              <div className="flex items-center justify-center gap-1.5 mb-2 px-3 py-1 rounded-full bg-[#07111F] border border-[#1E293B] shadow-inner select-none">
+              <div className="flex items-center justify-center gap-1.5 mb-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B] shadow-inner select-none">
                 <span className="text-[9px] font-black tracking-widest text-[#8492A6] mr-1">RPM</span>
                 {[
                   { id: 1, threshold: 25, color: 'bg-emerald-500 shadow-emerald-500/80' },
@@ -928,23 +928,23 @@ export function CalorieSpeedometerCluster({
             </div>
 
             {/* Acceleration & Drag Strip Telemetry Strip */}
-            <div className="grid grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-[#1E293B] text-center relative z-10">
-              <div className="p-2 rounded-xl bg-[#07111F] border border-[#1E293B]">
-                <div className="text-[9px] text-[#8492A6] uppercase font-bold">0-100 km/h (0-60mph)</div>
+            <div className="grid grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-stone-200 dark:border-[#1E293B] text-center relative z-10">
+              <div className="p-2 rounded-xl bg-stone-100 dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B]">
+                <div className="text-[9px] text-stone-500 dark:text-[#8492A6] uppercase font-bold">0-100 km/h (0-60mph)</div>
                 <div className="text-sm font-extrabold text-[#34D399] tabular-nums">{zeroToHundredSec} sec</div>
               </div>
-              <div className="p-2 rounded-xl bg-[#07111F] border border-[#1E293B]">
-                <div className="text-[9px] text-[#8492A6] uppercase font-bold">1/4-Mile Sprint ET</div>
+              <div className="p-2 rounded-xl bg-stone-100 dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B]">
+                <div className="text-[9px] text-stone-500 dark:text-[#8492A6] uppercase font-bold">1/4-Mile Sprint ET</div>
                 <div className="text-sm font-extrabold text-[#60A5FA] tabular-nums">{quarterMileET} sec</div>
               </div>
-              <div className="p-2 rounded-xl bg-[#07111F] border border-[#1E293B]">
-                <div className="text-[9px] text-[#8492A6] uppercase font-bold">Trap Velocity</div>
-                <div className="text-sm font-extrabold text-amber-400 tabular-nums">{trapSpeedMph} MPH</div>
+              <div className="p-2 rounded-xl bg-stone-100 dark:bg-[#07111F] border border-stone-200 dark:border-[#1E293B]">
+                <div className="text-[9px] text-stone-500 dark:text-[#8492A6] uppercase font-bold">Trap Velocity</div>
+                <div className="text-sm font-extrabold text-amber-500 dark:text-amber-400 tabular-nums">{trapSpeedMph} MPH</div>
               </div>
             </div>
 
             {/* Live Interactive Dyno Power Curve SVG */}
-            <div className="mt-5 pt-4 border-t border-[#1E293B] relative z-10">
+            <div className="mt-5 pt-4 border-t border-stone-200 dark:border-[#1E293B] relative z-10">
               <div className="flex items-center justify-between text-xs mb-2 flex-wrap gap-2">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1.5 font-bold text-[#34D399]">
@@ -955,18 +955,18 @@ export function CalorieSpeedometerCluster({
                     <span className="w-2.5 h-1 rounded-full bg-[#60A5FA]" />
                     <span>Torque (Nm)</span>
                   </span>
-                  <span className="text-[10px] text-[#8492A6] italic hidden sm:inline">
+                  <span className="text-[10px] text-stone-400 dark:text-[#8492A6] italic hidden sm:inline">
                     (Hover graph to inspect RPM)
                   </span>
                 </div>
-                <span className="text-[11px] font-bold text-[#8492A6] tabular-nums">
+                <span className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6] tabular-nums">
                   Dyno RPM Sweep: {dynoRpm.toLocaleString()} RPM
                 </span>
               </div>
 
               {/* Dyno Graph SVG Chart */}
               <div
-                className="w-full h-44 rounded-2xl bg-[#07111F] p-3 border border-[#1E293B] relative cursor-crosshair"
+                className="w-full h-44 rounded-2xl bg-stone-100 dark:bg-[#07111F] p-3 border border-stone-200 dark:border-[#1E293B] relative cursor-crosshair"
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const xRel = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
@@ -1148,41 +1148,41 @@ export function CalorieSpeedometerCluster({
 
             {/* Fuel Injection Diagnostics */}
             <div className="grid sm:grid-cols-3 gap-3">
-              <div className="p-3.5 rounded-2xl bg-[#101D2D] border border-[#1E293B] space-y-2">
-                <div className="text-xs font-bold text-[#F8FAFC] flex items-center justify-between">
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] shadow-sm space-y-2">
+                <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] flex items-center justify-between">
                   <span>Nitrous Fuel (Protein)</span>
                   <span className="text-[#34D399] font-extrabold">{eatenProteinPct}%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-[#07111F] overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div className="h-full rounded-full bg-[#22C55E]" style={{ width: `${eatenProteinPct}%` }} />
                 </div>
-                <p className="text-[11px] text-[#8492A6]">
+                <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                   Supports muscle fiber repair and sustained high-RPM structural recovery.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#101D2D] border border-[#1E293B] space-y-2">
-                <div className="text-xs font-bold text-[#F8FAFC] flex items-center justify-between">
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] shadow-sm space-y-2">
+                <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] flex items-center justify-between">
                   <span>Super Boost (Carbs)</span>
                   <span className="text-[#60A5FA] font-extrabold">{eatenCarbPct}%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-[#07111F] overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div className="h-full rounded-full bg-[#60A5FA]" style={{ width: `${eatenCarbPct}%` }} />
                 </div>
-                <p className="text-[11px] text-[#8492A6]">
+                <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                   Immediate glycogen throttle for brain focus and high-intensity workout bursts.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#101D2D] border border-[#1E293B] space-y-2">
-                <div className="text-xs font-bold text-[#F8FAFC] flex items-center justify-between">
+              <div className="p-3.5 rounded-2xl bg-white dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] shadow-sm space-y-2">
+                <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] flex items-center justify-between">
                   <span>Synthetic Oils (Fats)</span>
-                  <span className="text-amber-400 font-extrabold">{eatenFatPct}%</span>
+                  <span className="text-amber-500 dark:text-amber-400 font-extrabold">{eatenFatPct}%</span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-[#07111F] overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-stone-200 dark:bg-[#07111F] overflow-hidden">
                   <div className="h-full rounded-full bg-amber-400" style={{ width: `${eatenFatPct}%` }} />
                 </div>
-                <p className="text-[11px] text-[#8492A6]">
+                <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                   Maintains hormonal balance, cellular membrane fluidity, and joint lubrication.
                 </p>
               </div>

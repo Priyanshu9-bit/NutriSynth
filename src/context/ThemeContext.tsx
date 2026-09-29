@@ -14,24 +14,31 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('nutrisynth_theme') as Theme | null;
-      if (saved === 'dark') {
-        return 'dark';
+      if (saved === 'light' || saved === 'dark') {
+        return saved;
       }
-      // Guarantee the NutriSynth Deep Navy & Graphite palette is active
-      localStorage.setItem('nutrisynth_theme', 'dark');
-      return 'dark';
     }
-    return 'dark';
+    return 'dark'; // Default to modern dark mode if no preference set
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add('dark');
-    root.setAttribute('data-theme', 'dark');
-    root.style.colorScheme = 'dark';
+    if (theme === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+      root.setAttribute('data-theme', 'dark');
+      root.style.colorScheme = 'dark';
+    } else {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      root.setAttribute('data-theme', 'light');
+      root.style.colorScheme = 'light';
+    }
     try {
       localStorage.setItem('nutrisynth_theme', theme);
-    } catch (e) {}
+    } catch (e) {
+      console.warn('[NutriSynth] Failed to save theme preference:', e);
+    }
   }, [theme]);
 
   const toggleTheme = () => {

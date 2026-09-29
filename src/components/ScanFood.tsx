@@ -323,16 +323,16 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
 
   return (
     <div className="fixed inset-0 z-[70] bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
-      <div className="bg-[#0B0F0E] text-[#F8FAFC] border border-[#1E293B] w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
+      <div className="bg-white dark:bg-[#0B0F0E] text-stone-900 dark:text-[#F8FAFC] border border-stone-200 dark:border-[#1E293B] w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#1E293B] flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-[#1E293B] flex-shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] font-bold">
               <Camera className="w-4 h-4" />
             </div>
-            <h2 className="font-display font-semibold text-lg text-[#F8FAFC]">Scan Food</h2>
+            <h2 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC]">Scan Food</h2>
           </div>
-          <button onClick={handleClose} className="p-2 rounded-lg hover:bg-[#101D2D] text-[#8492A6] hover:text-[#F8FAFC] transition-colors" aria-label="Close scanner">
+          <button onClick={handleClose} className="p-2 rounded-lg hover:bg-stone-100 dark:hover:bg-[#101D2D] text-stone-400 dark:text-[#8492A6] hover:text-stone-700 dark:hover:text-[#F8FAFC] transition-colors" aria-label="Close scanner">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -429,8 +429,8 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
           {phase === 'results' && (
             <div className="space-y-5">
               <div>
-                <h3 className="font-display font-semibold text-stone-900 mb-1">What's in this meal?</h3>
-                <p className="text-xs text-stone-500">
+                <h3 className="font-display font-semibold text-stone-900 dark:text-[#F8FAFC] mb-1">What's in this meal?</h3>
+                <p className="text-xs text-stone-500 dark:text-[#8492A6]">
                   {usedFallback
                     ? "We couldn't run AI image recognition (no vision provider connected), so here's a starting list — add, remove, or search to match what's on your plate."
                     : 'Please confirm the detected food and portion before adding it to your intake.'}
@@ -438,7 +438,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
               </div>
 
               {items.length === 0 && unresolved.length === 0 && (
-                <div className="text-sm text-stone-500 p-3 rounded-xl bg-stone-50 border border-stone-200">
+                <div className="text-sm text-stone-500 dark:text-[#8492A6] p-3 rounded-xl bg-stone-50 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B]">
                   No foods added yet. Use "+ Add Food" below to build your meal.
                 </div>
               )}
@@ -453,7 +453,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
                       onChangeFood={() => setChangingUid(changingUid === item.uid ? null : item.uid)}
                     />
                     {changingUid === item.uid && (
-                      <div className="mt-2 p-3 rounded-xl border border-stone-200 bg-stone-50">
+                      <div className="mt-2 p-3 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-stone-50 dark:bg-[#101D2D]">
                         <InlineFoodSearch
                           placeholder={`What is it actually? (not ${item.food.name})`}
                           autoFocus
@@ -467,8 +467,8 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
 
               {/* Unknown / unresolved detections — never silently invented */}
               {unresolved.length > 0 && (
-                <div className="rounded-xl bg-amber-50 border border-amber-200 p-3 space-y-2">
-                  <div className="flex items-start gap-2 text-sm text-amber-800">
+                <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/30 p-3 space-y-2">
+                  <div className="flex items-start gap-2 text-sm text-amber-800 dark:text-amber-300">
                     <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                     <span>
                       ⚠️ Food not found — detected "<strong>{unresolved[0].name}</strong>" but couldn't match it to nutrition
@@ -481,7 +481,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
                   />
                   <button
                     onClick={() => setUnresolved((prev) => prev.slice(1))}
-                    className="text-xs text-stone-500 hover:text-stone-800 underline"
+                    className="text-xs text-stone-500 hover:text-stone-800 dark:text-[#8492A6] dark:hover:text-[#F8FAFC] underline"
                   >
                     Skip this item
                   </button>
@@ -489,10 +489,10 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
               )}
 
               {/* Add food */}
-              <div className="rounded-xl border border-stone-200 overflow-hidden">
+              <div className="rounded-xl border border-stone-200 dark:border-[#1E293B] overflow-hidden">
                 <button
                   onClick={() => setAddFoodOpen((v) => !v)}
-                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-stone-700 hover:bg-stone-50"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-semibold text-stone-700 dark:text-[#CBD5E1] hover:bg-stone-50 dark:hover:bg-[#101D2D]"
                 >
                   <span className="flex items-center gap-1.5">
                     <Plus className="w-4 h-4" /> Add Food
@@ -508,13 +508,13 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
               {items.length > 0 && (
                 <>
                   {/* Total breakdown */}
-                  <div className="rounded-xl bg-[#101D2D] border border-[#1E293B] p-4">
+                  <div className="rounded-xl bg-stone-100 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-display font-semibold text-[#F8FAFC] flex items-center gap-1.5">
-                        <Flame className="w-4 h-4 text-orange-400" /> Total
+                      <span className="font-display font-semibold text-stone-900 dark:text-[#F8FAFC] flex items-center gap-1.5">
+                        <Flame className="w-4 h-4 text-orange-500 dark:text-orange-400" /> Total
                       </span>
-                      <span className="metric-value text-xl text-[#F8FAFC]">
-                        {Math.round(totals.calories)} <span className="text-sm font-medium text-[#8492A6]">kcal</span>
+                      <span className="metric-value text-xl text-stone-900 dark:text-[#F8FAFC]">
+                        {Math.round(totals.calories)} <span className="text-sm font-medium text-stone-500 dark:text-[#8492A6]">kcal</span>
                       </span>
                     </div>
                     <div className="grid grid-cols-4 gap-2 text-center">
@@ -525,8 +525,8 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
                         { label: 'Fiber', val: totals.fiber },
                       ].map((m) => (
                         <div key={m.label}>
-                          <div className="text-sm font-semibold text-[#F8FAFC] tabular-nums">{Math.round(m.val)}g</div>
-                          <div className="text-[10px] text-[#8492A6]">{m.label}</div>
+                          <div className="text-sm font-semibold text-stone-900 dark:text-[#F8FAFC] tabular-nums">{Math.round(m.val)}g</div>
+                          <div className="text-[10px] text-stone-500 dark:text-[#8492A6]">{m.label}</div>
                         </div>
                       ))}
                     </div>
@@ -534,7 +534,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
 
                   {/* Meal type */}
                   <div>
-                    <div className="text-sm font-semibold text-[#CBD5E1] mb-2">Meal Type</div>
+                    <div className="text-sm font-semibold text-stone-700 dark:text-[#CBD5E1] mb-2">Meal Type</div>
                     <div className="grid grid-cols-5 gap-1.5">
                       {mealTypes.map(({ value, icon: Icon }) => (
                         <button
@@ -542,8 +542,8 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
                           onClick={() => setMealType(value)}
                           className={`flex flex-col items-center gap-1 py-2 rounded-lg border text-[11px] font-medium transition-colors ${
                             mealType === value
-                              ? 'border-[#22C55E] bg-[#22C55E]/15 text-[#34D399]'
-                              : 'border-[#1E293B] text-[#8492A6] hover:bg-[#101D2D]'
+                              ? 'border-[#22C55E] bg-[#22C55E]/15 text-[#22C55E] dark:text-[#34D399]'
+                              : 'border-stone-200 dark:border-[#1E293B] text-stone-600 dark:text-[#8492A6] hover:bg-stone-100 dark:hover:bg-[#101D2D]'
                           }`}
                         >
                           <Icon className="w-4 h-4" />
@@ -555,7 +555,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
 
                   {/* Meal name */}
                   <div>
-                    <div className="text-sm font-semibold text-[#CBD5E1] mb-2">Meal Name</div>
+                    <div className="text-sm font-semibold text-stone-700 dark:text-[#CBD5E1] mb-2">Meal Name</div>
                     <input
                       type="text"
                       value={mealName}
@@ -568,7 +568,7 @@ export function ScanFood({ onClose, onAddMeal }: ScanFoodProps) {
                     />
                   </div>
 
-                  <p className="text-[11px] text-[#8492A6]">
+                  <p className="text-[11px] text-stone-500 dark:text-[#8492A6]">
                     Nutrition values are estimates and may vary based on ingredients, preparation method, and portion size.
                   </p>
 

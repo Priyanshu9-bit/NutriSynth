@@ -358,7 +358,7 @@ function App() {
   const activeChallengeDay = computeActiveChallengeDay(challenge);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#07111F] text-[#F8FAFC] transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 dark:bg-[#07111F] dark:text-[#F8FAFC] transition-colors duration-200">
       {/* Sync / Notification Toast */}
       {syncNotice && (
         <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">

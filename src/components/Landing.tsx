@@ -32,30 +32,30 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
   return (
     <div className="animate-fade-in">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#07111F] via-[#07111F] to-[#0B0F0E] grid-bg">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07111F] via-transparent to-transparent pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50/40 via-stone-50 to-stone-100 dark:from-[#07111F] dark:via-[#07111F] dark:to-[#0B0F0E] grid-bg">
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-50 dark:from-[#07111F] via-transparent to-transparent pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-20 sm:pb-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#22C55E]/15 text-[#34D399] text-xs sm:text-sm font-semibold mb-6 animate-fade-in shadow-sm border border-[#22C55E]/30">
-                <img src="/logo.jpg" alt="NutriSynth" className="w-5 h-5 rounded-md object-cover shadow-sm" />
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#22C55E]/15 text-[#22C55E] dark:text-[#34D399] text-xs sm:text-sm font-semibold mb-6 animate-fade-in shadow-xs border border-[#22C55E]/30">
+                <img src="/logo.jpg" alt="NutriSynth" className="w-5 h-5 rounded-md object-cover shadow-xs" />
                 <span>Precision Nutrition & Meal Tracking Made Simple</span>
               </div>
-              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[#F8FAFC] leading-[1.1] text-balance">
+              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-stone-900 dark:text-[#F8FAFC] leading-[1.1] text-balance">
                 Healthy Eating.
                 <br />
                 <span className="bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] bg-clip-text text-transparent">
                   Made Ridiculously Simple.
                 </span>
               </h1>
-              <p className="mt-6 text-base sm:text-lg text-[#CBD5E1] leading-relaxed max-w-xl text-balance">
+              <p className="mt-6 text-base sm:text-lg text-stone-600 dark:text-[#CBD5E1] leading-relaxed max-w-xl text-balance">
                 Never used a fitness or nutrition app before? You're in the right place. No complicated math, no confusing charts, and no starvation diets. Just clear answers, easy meal ideas, and gentle daily habits.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 {hasProfile ? (
                   <button
                     onClick={() => onNavigate('dashboard')}
-                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] hover:opacity-95 shadow-xl shadow-emerald-500/25 font-bold"
+                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-white dark:text-[#07111F] hover:opacity-95 shadow-xl shadow-emerald-500/25 font-bold"
                     title="What happens: Opens your personalized daily dashboard with your food and water logs"
                   >
                     <LayoutDashboard className="w-5 h-5" />
@@ -64,7 +64,7 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
                 ) : (
                   <button
                     onClick={onStart}
-                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] hover:opacity-95 shadow-xl shadow-emerald-500/25 font-bold"
+                    className="btn-primary text-base px-8 py-4 flex items-center justify-center gap-2 bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-white dark:text-[#07111F] hover:opacity-95 shadow-xl shadow-emerald-500/25 font-bold"
                     title="What happens: Takes 60 seconds to answer 4 quick questions and get your personalized daily meal plan"
                   >
                     <span>✨ Build My Simple Plan (60s)</span>
@@ -101,12 +101,12 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
             {/* Hero Visual — Friendly Dashboard Preview */}
             <div className="relative hidden lg:block">
               <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-3xl blur-2xl pointer-events-none" />
-              <div className="relative card-lg p-6 space-y-4 bg-[#0B0F0E]/95 border border-[#1E293B] shadow-xl">
+              <div className="relative card-lg p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-xs text-[#8492A6] font-medium">Daily Energy Target (Calories)</div>
-                    <div className="metric-value text-2xl text-[#F8FAFC] font-black">2,100 kcal</div>
-                    <span className="text-[11px] text-[#34D399] font-semibold">Healthy, sustainable daily food fuel</span>
+                    <div className="text-xs text-stone-500 dark:text-[#8492A6] font-medium">Daily Energy Target (Calories)</div>
+                    <div className="metric-value text-2xl text-stone-900 dark:text-[#F8FAFC] font-black">2,100 kcal</div>
+                    <span className="text-[11px] text-emerald-600 dark:text-[#34D399] font-semibold">Healthy, sustainable daily food fuel</span>
                   </div>
                   <img
                     src="/logo.jpg"
@@ -123,28 +123,28 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
                   ].map(m => (
                     <div key={m.label}>
                       <div className="flex justify-between text-xs mb-0.5">
-                        <span className="text-[#CBD5E1] font-bold">{m.label}</span>
-                        <span className="text-[#F8FAFC] font-extrabold tabular-nums">{m.val}g</span>
+                        <span className="text-stone-700 dark:text-[#CBD5E1] font-bold">{m.label}</span>
+                        <span className="text-stone-900 dark:text-[#F8FAFC] font-extrabold tabular-nums">{m.val}g</span>
                       </div>
-                      <div className="h-2 rounded-full bg-[#101D2D] overflow-hidden">
+                      <div className="h-2 rounded-full bg-stone-100 dark:bg-[#101D2D] overflow-hidden">
                         <div className={`h-full rounded-full ${m.color} transition-all duration-1000 ease-out`} style={{ width: `${(m.val/m.max)*100}%` }} />
                       </div>
-                      <span className="text-[10px] text-[#8492A6]">{m.note}</span>
+                      <span className="text-[10px] text-stone-500 dark:text-[#8492A6]">{m.note}</span>
                     </div>
                   ))}
                 </div>
                 <div className="grid grid-cols-3 gap-2.5 pt-2">
-                  <div className="rounded-xl bg-emerald-950/40 p-2.5 text-center border border-emerald-500/20">
-                    <ChefHat className="w-4 h-4 text-[#34D399] mx-auto mb-1" />
-                    <div className="text-[11px] text-[#CBD5E1] font-bold">3 Meals + Snack</div>
+                  <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/40 p-2.5 text-center border border-emerald-200 dark:border-emerald-500/20">
+                    <ChefHat className="w-4 h-4 text-emerald-600 dark:text-[#34D399] mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-[#CBD5E1] font-bold">3 Meals + Snack</div>
                   </div>
-                  <div className="rounded-xl bg-[#60A5FA]/10 p-2.5 text-center border border-[#60A5FA]/20">
-                    <Dna className="w-4 h-4 text-[#60A5FA] mx-auto mb-1" />
-                    <div className="text-[11px] text-[#CBD5E1] font-bold">16 Vitamins</div>
+                  <div className="rounded-xl bg-blue-50 dark:bg-[#60A5FA]/10 p-2.5 text-center border border-blue-200 dark:border-[#60A5FA]/20">
+                    <Dna className="w-4 h-4 text-blue-600 dark:text-[#60A5FA] mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-[#CBD5E1] font-bold">16 Vitamins</div>
                   </div>
-                  <div className="rounded-xl bg-amber-950/40 p-2.5 text-center border border-amber-500/20">
-                    <Flame className="w-4 h-4 text-amber-400 mx-auto mb-1" />
-                    <div className="text-[11px] text-[#CBD5E1] font-bold">Daily Streak</div>
+                  <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-2.5 text-center border border-amber-200 dark:border-amber-500/20">
+                    <Flame className="w-4 h-4 text-amber-600 dark:text-amber-400 mx-auto mb-1" />
+                    <div className="text-[11px] text-stone-700 dark:text-[#CBD5E1] font-bold">Daily Streak</div>
                   </div>
                 </div>
               </div>
@@ -190,39 +190,39 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
       {/* Friendly Two-Mode Section: Know What You Are Doing */}
       <section className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-16">
         <div className="text-center mb-6">
-          <span className="px-3.5 py-1.5 rounded-full bg-[#101D2D] text-[#CBD5E1] text-xs font-bold border border-[#1E293B]">
+          <span className="px-3.5 py-1.5 rounded-full bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] text-xs font-bold border border-stone-200 dark:border-[#1E293B]">
             🧭 Choose Where to Start
           </span>
-          <h2 className="text-xl sm:text-2xl font-display font-extrabold text-[#F8FAFC] mt-2">
+          <h2 className="text-xl sm:text-2xl font-display font-extrabold text-stone-900 dark:text-[#F8FAFC] mt-2">
             Two Easy Ways to Use NutriSynth
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Track 1: My Nutrition Plan */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#0B0F0E] border-2 border-emerald-500/30 shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#0B0F0E] border-2 border-emerald-500/30 shadow-md dark:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
             <div className="space-y-3.5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-[#34D399] text-xs font-bold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-[#34D399] text-xs font-bold">
                 <ChefHat className="w-3.5 h-3.5" />
                 Track 1: Personalized Food & Meal Plan
               </div>
-              <h3 className="font-display font-extrabold text-2xl text-[#F8FAFC]">
+              <h3 className="font-display font-extrabold text-2xl text-stone-900 dark:text-[#F8FAFC]">
                 My Food Plan & Daily Targets
               </h3>
-              <p className="text-sm text-[#CBD5E1] leading-relaxed">
+              <p className="text-sm text-stone-600 dark:text-[#CBD5E1] leading-relaxed">
                 Find out exactly how much daily food energy you need, get delicious home-cooked meal ideas, and log your meals with one tap.
               </p>
-              <div className="flex flex-wrap gap-2 text-xs font-semibold text-[#8492A6] pt-1">
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">🥗 Simple Meal Ideas</span>
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">📸 1-Tap Food Logger</span>
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">🛒 Grocery Shopping List</span>
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-stone-500 dark:text-[#8492A6] pt-1">
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">🥗 Simple Meal Ideas</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">📸 1-Tap Food Logger</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">🛒 Grocery Shopping List</span>
               </div>
             </div>
             <div className="pt-6">
               {hasProfile ? (
                 <button
                   onClick={() => onNavigate('dashboard')}
-                  className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all"
+                  className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-white dark:text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all cursor-pointer"
                   title="Opens your daily food tracking dashboard"
                 >
                   <LayoutDashboard className="w-4 h-4" />
@@ -231,7 +231,7 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
               ) : (
                 <button
                   onClick={onStart}
-                  className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all"
+                  className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-white dark:text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all cursor-pointer"
                   title="Start the 60-second setup to get your meal plan"
                 >
                   <span>Build My Simple Food Plan</span>
@@ -242,28 +242,28 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
           </div>
 
           {/* Track 2: 30-Day Nutrition Challenge */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#0B0F0E] to-[#101D2D] border-2 border-amber-500/30 shadow-xl shadow-amber-500/5 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-gradient-to-br dark:from-[#0B0F0E] dark:to-[#101D2D] border-2 border-amber-500/30 shadow-md dark:shadow-xl shadow-amber-500/5 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
             <div className="space-y-3.5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-300 text-xs font-bold">
                 <Trophy className="w-3.5 h-3.5" />
                 Track 2: 30-Day Habit Journey
               </div>
-              <h3 className="font-display font-extrabold text-2xl text-[#F8FAFC]">
+              <h3 className="font-display font-extrabold text-2xl text-stone-900 dark:text-[#F8FAFC]">
                 30-Day Road-map & Daily Streak
               </h3>
-              <p className="text-sm text-[#CBD5E1] leading-relaxed">
+              <p className="text-sm text-stone-600 dark:text-[#CBD5E1] leading-relaxed">
                 Take on 30 bite-sized daily missions! Log your water glasses, complete daily habit to-dos, unlock milestone trophies, and build consistency.
               </p>
-              <div className="flex flex-wrap gap-2 text-xs font-semibold text-[#8492A6] pt-1">
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">💧 Water Logging</span>
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">🔥 Daily Streaks</span>
-                <span className="px-2.5 py-1 rounded-lg bg-[#101D2D] text-[#CBD5E1]">🏆 30 Habit Missions</span>
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-stone-500 dark:text-[#8492A6] pt-1">
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">💧 Water Logging</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">🔥 Daily Streaks</span>
+                <span className="px-2.5 py-1 rounded-lg bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1]">🏆 30 Habit Missions</span>
               </div>
             </div>
             <div className="pt-6 flex flex-col sm:flex-row gap-2.5">
               <button
                 onClick={() => onNavigate('challenge')}
-                className="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all"
+                className="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-white dark:text-[#07111F] font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-500/20 hover:opacity-95 active:scale-98 transition-all cursor-pointer"
                 title="View the complete 30-day journey and milestones"
               >
                 <Trophy className="w-4 h-4" />
@@ -271,10 +271,10 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
               </button>
               <button
                 onClick={() => onNavigate('today-streak')}
-                className="py-3.5 px-4 rounded-2xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 font-bold text-sm flex items-center justify-center gap-1.5 active:scale-98 transition-all"
+                className="py-3.5 px-4 rounded-2xl bg-amber-100 dark:bg-amber-500/20 hover:bg-amber-200 dark:hover:bg-amber-500/30 text-amber-900 dark:text-amber-200 border border-amber-300 dark:border-amber-500/40 font-bold text-sm flex items-center justify-center gap-1.5 active:scale-98 transition-all cursor-pointer"
                 title="Focus on today's single mission and checklist"
               >
-                <Flame className="w-4 h-4 text-amber-400" />
+                <Flame className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                 <span>Today's Habits</span>
               </button>
             </div>
@@ -286,8 +286,8 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="text-sm font-semibold text-[#2DD4BF] uppercase tracking-wider mb-2">How It Works</div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#F8FAFC]">Your path to better nutrition</h2>
+            <div className="text-sm font-semibold text-teal-600 dark:text-[#2DD4BF] uppercase tracking-wider mb-2">How It Works</div>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-stone-900 dark:text-[#F8FAFC]">Your path to better nutrition</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {howItWorksSteps.map((step, i) => {
@@ -299,13 +299,13 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] font-black flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-white dark:text-[#07111F] font-black flex-shrink-0 group-hover:scale-105 transition-transform">
                       <Icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-[#2DD4BF] mb-1">{step.num}</div>
-                      <h3 className="font-display font-semibold text-lg text-[#F8FAFC] mb-1">{step.title}</h3>
-                      <p className="text-sm text-[#CBD5E1] leading-relaxed">{step.desc}</p>
+                      <div className="text-xs font-bold text-teal-600 dark:text-[#2DD4BF] mb-1">{step.num}</div>
+                      <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC] mb-1">{step.title}</h3>
+                      <p className="text-sm text-stone-600 dark:text-[#CBD5E1] leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -316,11 +316,11 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
       </section>
 
       {/* Why NutriSynth */}
-      <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-[#07111F] to-[#0B0F0E]">
+      <section className="py-20 px-4 sm:px-6 bg-stone-100/70 dark:bg-gradient-to-b dark:from-[#07111F] dark:to-[#0B0F0E] transition-colors">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <div className="text-sm font-semibold text-[#2DD4BF] uppercase tracking-wider mb-2">Why NutriSynth?</div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#F8FAFC]">Everything you need to eat smarter</h2>
+            <div className="text-sm font-semibold text-teal-600 dark:text-[#2DD4BF] uppercase tracking-wider mb-2">Why NutriSynth?</div>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-stone-900 dark:text-[#F8FAFC]">Everything you need to eat smarter</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((f, i) => {
@@ -330,8 +330,8 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${f.color} flex items-center justify-center text-white mb-4`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-display font-semibold text-lg text-[#F8FAFC] mb-2">{f.title}</h3>
-                  <p className="text-sm text-[#CBD5E1] leading-relaxed">{f.desc}</p>
+                  <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC] mb-2">{f.title}</h3>
+                  <p className="text-sm text-stone-600 dark:text-[#CBD5E1] leading-relaxed">{f.desc}</p>
                 </div>
               );
             })}
@@ -342,13 +342,13 @@ export function Landing({ onStart, onNavigate, onOpenAuth, authUser, hasProfile 
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#F8FAFC] mb-4 text-balance">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-stone-900 dark:text-[#F8FAFC] mb-4 text-balance">
             Ready to understand your nutrition?
           </h2>
-          <p className="text-lg text-[#CBD5E1] mb-8 text-balance">
+          <p className="text-lg text-stone-600 dark:text-[#CBD5E1] mb-8 text-balance">
             Build your personalized nutrition plan in minutes. No login, no payment — just evidence-based guidance.
           </p>
-          <button onClick={onStart} className="btn-primary text-base px-8 py-4 mx-auto">
+          <button onClick={onStart} className="btn-primary text-base px-8 py-4 mx-auto cursor-pointer">
             Start Your Nutrition Journey
             <ArrowRight className="w-5 h-5" />
           </button>

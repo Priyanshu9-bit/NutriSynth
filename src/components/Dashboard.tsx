@@ -564,17 +564,17 @@ export function Dashboard({
           {/* Scan Food CTA */}
           <button
             onClick={() => setScannerOpen(true)}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/30 bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/30 bg-white dark:bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/60"
             title="What happens: Opens food search to log breakfast, lunch, dinner, or snacks"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-emerald-500/25">
               <Camera className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-[#F8FAFC] truncate">
                 🍽️ + Log Food
               </h3>
-              <p className="text-[11px] text-[#8492A6] truncate">
+              <p className="text-[11px] text-stone-500 dark:text-[#8492A6] truncate">
                 Search meal or snack
               </p>
             </div>
@@ -583,14 +583,14 @@ export function Dashboard({
           {/* Quick Water Button with droplet sound */}
           <button
             onClick={handleQuickWater}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-[#60A5FA]/30 bg-[#0B0F0E] dark:from-blue-950/40 dark:via-[#101D2D] dark:to-cyan-950/30 hover:border-[#60A5FA]/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-[#60A5FA]/30 bg-white dark:bg-[#0B0F0E] dark:from-blue-950/40 dark:via-[#101D2D] dark:to-cyan-950/30 hover:border-[#60A5FA]/60"
             title="What happens: Logs a 250ml glass of water to your daily hydration"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#60A5FA] to-cyan-500 flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-blue-500/25">
               <Droplet className="w-5 h-5 fill-cyan-100" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-[#F8FAFC] truncate">
                 💧 +1 Glass Water
               </h3>
               <p className="text-[11px] text-[#60A5FA] font-bold truncate">
@@ -602,7 +602,7 @@ export function Dashboard({
           {/* Today's Streak CTA */}
           <button
             onClick={onGoToTodayStreak}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-amber-500/30 bg-[#0B0F0E] dark:from-amber-950/40 dark:via-[#101D2D] dark:to-orange-950/30 hover:border-amber-500/60"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-amber-500/30 bg-white dark:bg-[#0B0F0E] dark:from-amber-950/40 dark:via-[#101D2D] dark:to-orange-950/30 hover:border-amber-500/60"
             title="What happens: Opens your daily habit checklist and water log"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-amber-500/25">
@@ -610,14 +610,14 @@ export function Dashboard({
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1">
-                <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
+                <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-[#F8FAFC] truncate">
                   Daily Habits
                 </h3>
-                <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-400">
+                <span className="text-[10px] font-black px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-500 dark:text-amber-400">
                   {streakCount || 1}d
                 </span>
               </div>
-              <p className="text-[11px] text-[#8492A6] truncate">
+              <p className="text-[11px] text-stone-500 dark:text-[#8492A6] truncate">
                 Daily check-in & water
               </p>
             </div>
@@ -626,17 +626,17 @@ export function Dashboard({
           {/* 30-Day Road-map CTA */}
           <button
             onClick={onGoToChallenge}
-            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/25 bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/50"
+            className="card-lg p-4 flex items-center gap-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg animate-fade-in border-emerald-500/25 bg-white dark:bg-[#0B0F0E] dark:from-emerald-950/40 dark:via-[#101D2D] dark:to-teal-950/30 hover:border-emerald-500/50"
             title="What happens: Shows your 30-day step-by-step habit road-map"
           >
             <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#22C55E] to-[#2DD4BF] flex items-center justify-center text-[#07111F] flex-shrink-0 shadow-md shadow-emerald-500/20">
               <Trophy className="w-5 h-5 text-[#07111F]" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-display font-extrabold text-xs sm:text-sm text-[#F8FAFC] truncate">
+              <h3 className="font-display font-extrabold text-xs sm:text-sm text-stone-900 dark:text-[#F8FAFC] truncate">
                 30-Day Road-map
               </h3>
-              <p className="text-[11px] text-[#8492A6] truncate">
+              <p className="text-[11px] text-stone-500 dark:text-[#8492A6] truncate">
                 Day {activeChallengeDay || 1} • {completedDaysCount ?? 0}/30 completed
               </p>
             </div>
@@ -769,7 +769,7 @@ export function Dashboard({
                     <span>{Math.round((eaten.calories / result.tdee) * 100)}% of target</span>
                   </span>
                 ) : (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#101D2D] text-[#8492A6] border border-[#1E293B]">
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-stone-100 dark:bg-[#101D2D] text-stone-500 dark:text-[#8492A6] border border-stone-200 dark:border-[#1E293B]">
                     0% • Standby
                   </span>
                 )}
@@ -777,29 +777,29 @@ export function Dashboard({
             </div>
 
             {/* Caloric Energy Fulfillment Hero Bar */}
-            <div className="p-4 rounded-2xl bg-[#07111F]/90 border border-[#1E293B] space-y-3 relative z-10">
+            <div className="p-4 rounded-2xl bg-stone-50 dark:bg-[#07111F]/90 border border-stone-200 dark:border-[#1E293B] space-y-3 relative z-10">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[11px] font-bold text-[#8492A6] uppercase tracking-wider flex items-center gap-1.5">
-                    <Flame className="w-3.5 h-3.5 text-amber-400" />
+                  <div className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6] uppercase tracking-wider flex items-center gap-1.5">
+                    <Flame className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
                     <span>Total Energy Intake</span>
                   </div>
                   <div className="flex items-baseline gap-1.5 mt-0.5">
-                    <span className="font-display font-black text-2xl sm:text-3xl text-[#F8FAFC] tabular-nums">
+                    <span className="font-display font-black text-2xl sm:text-3xl text-stone-900 dark:text-[#F8FAFC] tabular-nums">
                       {Math.round(eaten.calories).toLocaleString()}
                     </span>
-                    <span className="text-xs text-[#8492A6] font-semibold">
+                    <span className="text-xs text-stone-500 dark:text-[#8492A6] font-semibold">
                       / {result.tdee.toLocaleString()} kcal
                     </span>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-[11px] font-bold text-[#8492A6] uppercase tracking-wider">
+                  <div className="text-[11px] font-bold text-stone-500 dark:text-[#8492A6] uppercase tracking-wider">
                     {eaten.calories > result.tdee ? 'Intake Exceeded' : 'Remaining Budget'}
                   </div>
                   <div className={`text-base font-extrabold tabular-nums mt-0.5 ${
-                    eaten.calories > result.tdee ? 'text-amber-400' : 'text-[#34D399]'
+                    eaten.calories > result.tdee ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-[#34D399]'
                   }`}>
                     {eaten.calories > result.tdee
                       ? `+${Math.round(eaten.calories - result.tdee)} kcal`
@@ -809,17 +809,17 @@ export function Dashboard({
               </div>
 
               {/* Glowing Calorie Fulfillment Progress Bar */}
-              <div className="w-full h-3 rounded-full bg-[#101D2D] overflow-hidden p-0.5 border border-[#1E293B]">
+              <div className="w-full h-3 rounded-full bg-stone-200 dark:bg-[#101D2D] overflow-hidden p-0.5 border border-stone-300 dark:border-[#1E293B]">
                 <div
                   className="h-full rounded-full bg-gradient-to-r from-[#22C55E] via-[#2DD4BF] to-[#60A5FA] transition-all duration-700 relative shadow-[0_0_12px_rgba(45,212,191,0.4)]"
                   style={{ width: `${Math.min(100, Math.round((eaten.calories / result.tdee) * 100))}%` }}
                 />
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-[#8492A6] pt-0.5">
+              <div className="flex items-center justify-between text-[11px] text-stone-500 dark:text-[#8492A6] pt-0.5">
                 <span>{loggedMeals.length} logged meal{loggedMeals.length === 1 ? '' : 's'}</span>
                 <span>{Object.keys(tickedFoods).length} ticked food{Object.keys(tickedFoods).length === 1 ? '' : 's'}</span>
-                <span className="font-semibold text-[#CBD5E1]">
+                <span className="font-semibold text-stone-700 dark:text-[#CBD5E1]">
                   Pace: {Math.round((eaten.calories / result.tdee) * 100)}%
                 </span>
               </div>
@@ -827,12 +827,12 @@ export function Dashboard({
 
             {/* Empty State for Zero Logged Meals */}
             {loggedMeals.length === 0 && Object.keys(tickedFoods).length === 0 ? (
-              <div className="p-4 rounded-2xl bg-[#101D2D]/70 border border-emerald-500/30 text-[#CBD5E1] animate-fade-in relative z-10">
+              <div className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-[#101D2D]/70 border border-emerald-500/30 text-stone-700 dark:text-[#CBD5E1] animate-fade-in relative z-10">
                 <div className="flex items-start gap-3">
-                  <Sparkles className="w-5 h-5 text-[#34D399] mt-0.5 flex-shrink-0" />
+                  <Sparkles className="w-5 h-5 text-emerald-600 dark:text-[#34D399] mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-bold text-sm text-[#F8FAFC]">Nothing logged yet today! That is completely normal.</div>
-                    <p className="text-xs text-[#CBD5E1] mt-1 leading-relaxed">
+                    <div className="font-bold text-sm text-stone-900 dark:text-[#F8FAFC]">Nothing logged yet today! That is completely normal.</div>
+                    <p className="text-xs text-stone-600 dark:text-[#CBD5E1] mt-1 leading-relaxed">
                       Logging food takes only 5 seconds. Tap <strong>'+ Log Food'</strong> to record what you had for breakfast, lunch, or a snack (like 2 eggs, an apple, or a cup of tea). Or check off items from your suggested meals below.
                     </p>
                     <button

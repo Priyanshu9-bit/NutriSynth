@@ -69,15 +69,15 @@ export function ProgressBar({
           )}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-xs sm:text-sm font-bold text-[#F8FAFC] tabular-nums">
-            {Math.round(value)}<span className="text-[#8492A6] font-normal text-xs"> / {Math.round(max)} {unit}</span>
+          <span className="text-xs sm:text-sm font-bold text-stone-900 dark:text-[#F8FAFC] tabular-nums">
+            {Math.round(value)}<span className="text-stone-500 dark:text-[#8492A6] font-normal text-xs"> / {Math.round(max)} {unit}</span>
           </span>
-          <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-[#101D2D] text-[#34D399] border border-[#1E293B]">
+          <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-md bg-stone-100 dark:bg-[#101D2D] text-emerald-700 dark:text-[#34D399] border border-stone-200 dark:border-[#1E293B]">
             {Math.round(pct)}%
           </span>
         </div>
       </div>
-      <div className={`h-2.5 sm:h-3 rounded-full bg-[#07111F] p-0.5 border border-[#1E293B] overflow-hidden relative shadow-inner ${
+      <div className={`h-2.5 sm:h-3 rounded-full bg-stone-100 dark:bg-[#07111F] p-0.5 border border-stone-200 dark:border-[#1E293B] overflow-hidden relative shadow-inner ${
         isGoalAchieved ? 'ring-2 ring-emerald-500/40 shadow-[0_0_12px_rgba(45,212,191,0.35)]' : ''
       }`}>
         <div

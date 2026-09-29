@@ -184,22 +184,22 @@ export function Onboarding({
   const currentStepInfo = steps[step];
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] bg-[#07111F] py-6 sm:py-10 px-4 sm:px-6 transition-colors">
+    <div className="min-h-[calc(100vh-4rem)] bg-stone-50 dark:bg-[#07111F] py-6 sm:py-10 px-4 sm:px-6 transition-colors">
       <div className="max-w-2xl mx-auto">
         {/* Top Reassurance Banner */}
-        <div className="mb-6 p-4 rounded-2xl bg-[#0B0F0E] border border-[#1E293B] shadow-xs flex items-center justify-between gap-3 flex-wrap">
+        <div className="mb-6 p-4 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B] shadow-sm flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-2.5">
             <span className="text-xl">🌟</span>
             <div>
-              <div className="text-xs font-black uppercase tracking-wider text-[#34D399]">
+              <div className="text-xs font-black uppercase tracking-wider text-emerald-600 dark:text-[#34D399]">
                 Quick 60-Second Setup
               </div>
-              <div className="text-xs text-[#CBD5E1] font-medium">
+              <div className="text-xs text-stone-600 dark:text-[#CBD5E1] font-medium">
                 Step {step + 1} of {steps.length} — Customized to your body & daily routine
               </div>
             </div>
           </div>
-          <div className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#101D2D] text-[#34D399] border border-[#1E293B]">
+          <div className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-[#101D2D] text-emerald-700 dark:text-[#34D399] border border-emerald-200 dark:border-[#1E293B]">
             Step-by-Step • Fast & Simple
           </div>
         </div>
@@ -225,7 +225,7 @@ export function Onboarding({
                             ? 'bg-[#22C55E] text-[#07111F] shadow-sm cursor-pointer hover:scale-105'
                             : isCurrent
                             ? 'bg-gradient-to-r from-[#22C55E] to-[#2DD4BF] text-[#07111F] ring-4 ring-[#22C55E]/20 shadow-md scale-105'
-                            : 'bg-[#101D2D] border border-[#1E293B] text-[#8492A6] cursor-not-allowed'
+                            : 'bg-stone-100 dark:bg-[#101D2D] border border-stone-200 dark:border-[#1E293B] text-stone-400 dark:text-[#8492A6] cursor-not-allowed'
                         }`}
                     >
                       {isComplete ? <Check className="w-5 h-5 stroke-[2.5]" /> : <Icon className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -233,17 +233,17 @@ export function Onboarding({
                     <span
                       className={`text-[10px] sm:text-xs font-bold hidden sm:block ${
                         isCurrent
-                          ? 'text-[#34D399]'
+                          ? 'text-emerald-600 dark:text-[#34D399]'
                           : isComplete
-                          ? 'text-[#CBD5E1]'
-                          : 'text-[#8492A6]'
+                          ? 'text-stone-700 dark:text-[#CBD5E1]'
+                          : 'text-stone-400 dark:text-[#8492A6]'
                       }`}
                     >
                       {s.short}
                     </span>
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="flex-1 h-1 mx-1.5 sm:mx-2 rounded-full bg-[#1E293B] relative overflow-hidden">
+                    <div className="flex-1 h-1 mx-1.5 sm:mx-2 rounded-full bg-stone-200 dark:bg-[#1E293B] relative overflow-hidden">
                       <div
                         className={`absolute inset-y-0 left-0 bg-[#22C55E] transition-all duration-500 ${
                           isComplete ? 'w-full' : 'w-0'
@@ -258,23 +258,23 @@ export function Onboarding({
         </div>
 
         {/* 3 Core Questions Clarifier Card */}
-        <div className="mb-4 p-4 rounded-2xl bg-[#0B0F0E] border border-[#1E293B] grid sm:grid-cols-3 gap-3 text-xs">
+        <div className="mb-4 p-4 rounded-2xl bg-white dark:bg-[#0B0F0E] border border-stone-200 dark:border-[#1E293B] grid sm:grid-cols-3 gap-3 text-xs shadow-sm">
           <div>
-            <div className="font-bold text-[#34D399] mb-0.5">👁️ 1. What is this?</div>
-            <div className="text-[#CBD5E1] font-medium">{currentStepInfo.label}: {currentStepInfo.question}</div>
+            <div className="font-bold text-emerald-600 dark:text-[#34D399] mb-0.5">👁️ 1. What is this?</div>
+            <div className="text-stone-600 dark:text-[#CBD5E1] font-medium">{currentStepInfo.label}: {currentStepInfo.question}</div>
           </div>
           <div>
-            <div className="font-bold text-[#34D399] mb-0.5">👉 2. What should I do?</div>
-            <div className="text-[#CBD5E1] font-medium">Pick the option that best matches your everyday reality. There are no wrong answers!</div>
+            <div className="font-bold text-emerald-600 dark:text-[#34D399] mb-0.5">👉 2. What should I do?</div>
+            <div className="text-stone-600 dark:text-[#CBD5E1] font-medium">Pick the option that best matches your everyday reality. There are no wrong answers!</div>
           </div>
           <div>
-            <div className="font-bold text-[#34D399] mb-0.5">⚡ 3. What happens next?</div>
-            <div className="text-[#CBD5E1] font-medium">NutriSynth calculates your daily energy targets automatically.</div>
+            <div className="font-bold text-emerald-600 dark:text-[#34D399] mb-0.5">⚡ 3. What happens next?</div>
+            <div className="text-stone-600 dark:text-[#CBD5E1] font-medium">NutriSynth calculates your daily energy targets automatically.</div>
           </div>
         </div>
 
         {/* Step Container Card */}
-        <div key={step} className="card-lg p-6 sm:p-8 animate-slide-in-right bg-[#0B0F0E] border border-[#1E293B]">
+        <div key={step} className="card-lg p-6 sm:p-8 animate-slide-in-right">
           {/* STEP 0: Personal Basics */}
           {step === 0 && (
             <StepContainer

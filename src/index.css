@@ -14,19 +14,33 @@
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  html.dark {
     color-scheme: dark;
     background: #07111F;
     color: #F8FAFC;
   }
+  html.light, html:not(.dark) {
+    color-scheme: light;
+    background: #F8FAFC;
+    color: #0F172A;
+  }
   body {
     font-family: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
-    background: #07111F !important;
-    color: #F8FAFC !important;
     line-height: 1.6;
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  html.dark body {
+    background-color: #07111F;
+    color: #F8FAFC;
+  }
+  html.light body, html:not(.dark) body {
+    background-color: #F8FAFC;
+    color: #0F172A;
   }
   #root {
     overflow-x: hidden;
@@ -35,8 +49,15 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #07111F;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  html.dark #root {
+    background-color: #07111F;
     color: #F8FAFC;
+  }
+  html.light #root, html:not(.dark) #root {
+    background-color: #F8FAFC;
+    color: #0F172A;
   }
   h1, h2, h3, h4, .font-display {
     font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
@@ -49,13 +70,13 @@
 }
 
 @layer components {
-  /* Graphite #0B0F0E surface / card with subtle border #1E293B */
+  /* Graphite #0B0F0E surface in dark mode / Clean White in light mode */
   .card {
-    @apply bg-[#0B0F0E]/95 backdrop-blur-md rounded-3xl border border-[#1E293B] shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-md transition-all duration-300;
+    @apply bg-white dark:bg-[#0B0F0E]/95 backdrop-blur-md rounded-3xl border border-stone-200 dark:border-[#1E293B] shadow-sm dark:shadow-[0_8px_30px_rgba(0,0,0,0.45)] hover:shadow-md transition-all duration-300;
   }
-  /* Elevated Navy/Graphite #101D2D card with subtle border #1E293B */
+  /* Elevated Navy/Graphite #101D2D card in dark mode / Elevated white in light mode */
   .card-lg {
-    @apply bg-[#101D2D]/95 backdrop-blur-md rounded-3xl border border-[#1E293B] shadow-[0_12px_36px_rgba(7,17,31,0.65)] transition-all duration-300;
+    @apply bg-white dark:bg-[#101D2D]/95 backdrop-blur-md rounded-3xl border border-stone-200 dark:border-[#1E293B] shadow-md dark:shadow-[0_12px_36px_rgba(7,17,31,0.65)] transition-all duration-300;
   }
   /* Primary CTA Button: Emerald #22C55E to Mint #2DD4BF gradient */
   .btn-primary {
@@ -63,30 +84,30 @@
            transition-all duration-200 hover:opacity-95 hover:shadow-[0_0_22px_rgba(45,212,191,0.28)] active:scale-[0.98]
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
-  /* Secondary Button: Elevated #101D2D surface with subtle border */
+  /* Secondary Button: Elevated surface with subtle border */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#101D2D] text-[#F8FAFC] font-semibold
-           border border-[#1E293B] transition-all duration-200 hover:bg-[#152538] hover:border-[#60A5FA]/35 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-stone-100 hover:bg-stone-200 dark:bg-[#101D2D] dark:hover:bg-[#152538] text-stone-800 dark:text-[#F8FAFC] font-semibold
+           border border-stone-200 dark:border-[#1E293B] transition-all duration-200 hover:border-emerald-500/40 dark:hover:border-[#60A5FA]/35 active:scale-[0.98] shadow-sm;
   }
   /* Ghost Button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-[#CBD5E1] font-medium
-           transition-all duration-200 hover:bg-[#101D2D] hover:text-[#F8FAFC];
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-stone-600 hover:text-stone-900 hover:bg-stone-100 dark:text-[#CBD5E1] dark:hover:text-[#F8FAFC] dark:hover:bg-[#101D2D] font-medium
+           transition-all duration-200;
   }
-  /* Input Fields: Deep Navy / Graphite surface with Mint #2DD4BF focus ring */
+  /* Input Fields: Clean surface with Mint #2DD4BF focus ring */
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-[#1E293B] bg-[#07111F] text-[#F8FAFC]
+    @apply w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-[#1E293B] bg-white dark:bg-[#07111F] text-stone-900 dark:text-[#F8FAFC]
            transition-all duration-200 focus:border-[#2DD4BF] focus:ring-2 focus:ring-[#2DD4BF]/20 focus:outline-none
-           placeholder:text-[#8492A6];
+           placeholder:text-stone-400 dark:placeholder:text-[#8492A6];
   }
-  /* Option Card: Graphite #0B0F0E with subtle border */
+  /* Option Card */
   .option-card {
-    @apply relative w-full text-left px-4 py-4 rounded-xl border-2 border-[#1E293B] bg-[#0B0F0E]
-           transition-all duration-200 cursor-pointer hover:border-[#2DD4BF]/60 hover:bg-[#101D2D];
+    @apply relative w-full text-left px-4 py-4 rounded-xl border-2 border-stone-200 dark:border-[#1E293B] bg-white dark:bg-[#0B0F0E]
+           transition-all duration-200 cursor-pointer hover:border-[#2DD4BF]/60 hover:bg-stone-50 dark:hover:bg-[#101D2D];
   }
   /* Option Card Selected: Emerald/Mint highlight with subtle glow */
   .option-card-selected {
-    @apply border-[#22C55E] bg-[#101D2D] ring-2 ring-[#2DD4BF]/20;
+    @apply border-[#22C55E] bg-emerald-50/60 dark:bg-[#101D2D] ring-2 ring-[#2DD4BF]/20;
   }
   .metric-value {
     @apply font-display font-bold tabular-nums;
@@ -95,11 +116,11 @@
   .badge {
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
   }
-  .badge-success { @apply bg-emerald-950/40 text-[#34D399] border border-emerald-500/30; }
-  .badge-warning { @apply bg-amber-950/40 text-amber-300 border border-amber-600/30; }
-  .badge-error { @apply bg-rose-950/40 text-rose-300 border border-rose-600/30; }
-  .badge-info { @apply bg-[#60A5FA]/10 text-[#60A5FA] border border-[#60A5FA]/25; }
-  .badge-neutral { @apply bg-[#101D2D] text-[#CBD5E1] border border-[#1E293B]; }
+  .badge-success { @apply bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-[#34D399] border border-emerald-300 dark:border-emerald-500/30; }
+  .badge-warning { @apply bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-600/30; }
+  .badge-error { @apply bg-rose-100 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-300 dark:border-rose-600/30; }
+  .badge-info { @apply bg-blue-100 dark:bg-[#60A5FA]/10 text-blue-800 dark:text-[#60A5FA] border border-blue-300 dark:border-[#60A5FA]/25; }
+  .badge-neutral { @apply bg-stone-100 dark:bg-[#101D2D] text-stone-700 dark:text-[#CBD5E1] border border-stone-200 dark:border-[#1E293B]; }
 }
 
 @layer utilities {

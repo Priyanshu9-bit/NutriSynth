@@ -93,7 +93,7 @@ export function Header({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#07111F]/95 backdrop-blur-xl border-b border-[#1E293B] transition-all duration-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-[#07111F]/95 backdrop-blur-xl border-b border-stone-200 dark:border-[#1E293B] transition-all duration-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo & Brand Badge */}
@@ -112,7 +112,7 @@ export function Header({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-xl sm:text-2xl text-[#F8FAFC] tracking-tight leading-none group-hover:text-[#34D399] transition-colors">
+                <span className="font-display font-extrabold text-xl sm:text-2xl text-stone-900 dark:text-[#F8FAFC] tracking-tight leading-none group-hover:text-[#34D399] transition-colors">
                   NutriSynth
                 </span>
               </div>
@@ -125,7 +125,7 @@ export function Header({
 
           {/* Desktop Navigation Dock */}
           <div className="hidden lg:flex items-center gap-2 xl:gap-3">
-            <nav className="flex items-center gap-1 bg-[#0B0F0E]/90 p-1.5 rounded-2xl border border-[#1E293B] shadow-inner">
+            <nav className="flex items-center gap-1 bg-stone-100/90 dark:bg-[#0B0F0E]/90 p-1.5 rounded-2xl border border-stone-200 dark:border-[#1E293B] shadow-inner">
               {primaryNavItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = currentView === item.view || (item.view === 'dashboard' && currentView === 'meals');
@@ -185,7 +185,7 @@ export function Header({
                       className="fixed inset-0 z-40"
                       onClick={() => setMoreDropdownOpen(false)}
                     />
-                    <div className="absolute right-0 mt-2 w-52 py-2 bg-[#0B0F0E] rounded-2xl shadow-2xl border border-[#1E293B] z-50 animate-fade-in">
+                    <div className="absolute right-0 mt-2 w-52 py-2 bg-white dark:bg-[#0B0F0E] rounded-2xl shadow-2xl border border-stone-200 dark:border-[#1E293B] z-50 animate-fade-in">
                       {moreNavItems.map((item) => {
                         const Icon = item.icon;
                         const isActive = currentView === item.view;
@@ -272,7 +272,7 @@ export function Header({
                 <button
                   type="button"
                   onClick={() => setAccountDropdownOpen(!accountDropdownOpen)}
-                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-2xl bg-[#101D2D] hover:bg-[#1E293B] border border-[#1E293B] shadow-sm transition-all cursor-pointer text-left group"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-2xl bg-stone-100 hover:bg-stone-200 dark:bg-[#101D2D] dark:hover:bg-[#1E293B] border border-stone-200 dark:border-[#1E293B] shadow-sm transition-all cursor-pointer text-left group"
                   title="Click to view your account details or switch accounts"
                   aria-expanded={accountDropdownOpen}
                 >
@@ -280,7 +280,7 @@ export function Header({
                     {(authUser.displayName || authUser.email || 'U').charAt(0).toUpperCase()}
                   </div>
                   <div className="hidden xl:block">
-                    <div className="text-xs font-bold text-[#F8FAFC] max-w-[110px] truncate leading-tight group-hover:text-[#34D399] transition-colors">
+                    <div className="text-xs font-bold text-stone-900 dark:text-[#F8FAFC] max-w-[110px] truncate leading-tight group-hover:text-[#34D399] transition-colors">
                       {authUser.displayName || authUser.email?.split('@')[0]}
                     </div>
                     {profile?.diet && (
@@ -310,13 +310,13 @@ export function Header({
                       className="fixed inset-0 z-40"
                       onClick={() => setAccountDropdownOpen(false)}
                     />
-                    <div className="absolute right-0 top-full mt-2 w-72 p-4 bg-[#0B0F0E] rounded-3xl shadow-2xl border border-[#1E293B] z-50 animate-scale-up space-y-3">
-                      <div className="flex items-center gap-3 pb-3 border-b border-[#1E293B]">
+                    <div className="absolute right-0 top-full mt-2 w-72 p-4 bg-white dark:bg-[#0B0F0E] rounded-3xl shadow-2xl border border-stone-200 dark:border-[#1E293B] z-50 animate-scale-up space-y-3">
+                      <div className="flex items-center gap-3 pb-3 border-b border-stone-200 dark:border-[#1E293B]">
                         <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#22C55E] to-[#2DD4BF] text-[#07111F] font-black text-sm flex items-center justify-center shadow-md shadow-emerald-500/20">
                           {(authUser.displayName || authUser.email || 'U').charAt(0).toUpperCase()}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <div className="text-sm font-extrabold text-[#F8FAFC] truncate">
+                          <div className="text-sm font-extrabold text-stone-900 dark:text-[#F8FAFC] truncate">
                             {authUser.displayName || 'NutriSynth Member'}
                           </div>
                           <div className="text-xs text-[#8492A6] truncate">
@@ -590,7 +590,7 @@ export function Header({
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#1E293B] bg-[#07111F] transition-colors duration-200">
+    <footer className="border-t border-stone-200 dark:border-[#1E293B] bg-white dark:bg-[#07111F] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-500 dark:text-[#8492A6]">
           <div className="flex items-center gap-3">
