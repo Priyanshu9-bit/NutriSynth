@@ -289,3 +289,64 @@ export function playEngineRevSound(): void {
   }
 }
 
+/**
+ * 6. High-Performance Dyno Pull Acceleration Sound
+ * Simulates a full-throttle 3.5-second chassis dyno power run with escalating RPM harmonics & gear shifts
+ */
+export function playDynoPullSound(): void {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  try {
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const subOsc = ctx.createOscillator();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+
+    osc.type = 'sawtooth';
+    subOsc.type = 'triangle';
+    filter.type = 'lowpass';
+
+    // 1500 RPM (70Hz) climbing to 8200 RPM (380Hz) through dyno power pull
+    osc.frequency.setValueAtTime(70, now);
+    osc.frequency.exponentialRampToValueAtTime(170, now + 1.0);
+    osc.frequency.setValueAtTime(135, now + 1.05); // Gear shift 1
+    osc.frequency.exponentialRampToValueAtTime(310, now + 2.2);
+    osc.frequency.setValueAtTime(250, now + 2.25); // Gear shift 2
+    osc.frequency.exponentialRampToValueAtTime(420, now + 3.1); // Peak Dyno HP
+    osc.frequency.exponentialRampToValueAtTime(80, now + 3.5); // Throttle lift
+
+    subOsc.frequency.setValueAtTime(35, now);
+    subOsc.frequency.exponentialRampToValueAtTime(85, now + 1.0);
+    subOsc.frequency.setValueAtTime(67, now + 1.05);
+    subOsc.frequency.exponentialRampToValueAtTime(155, now + 2.2);
+    subOsc.frequency.setValueAtTime(125, now + 2.25);
+    subOsc.frequency.exponentialRampToValueAtTime(210, now + 3.1);
+    subOsc.frequency.exponentialRampToValueAtTime(40, now + 3.5);
+
+    filter.frequency.setValueAtTime(220, now);
+    filter.frequency.exponentialRampToValueAtTime(1350, now + 3.1);
+    filter.frequency.exponentialRampToValueAtTime(250, now + 3.5);
+
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.22, now + 0.2);
+    gain.gain.setValueAtTime(0.25, now + 3.0);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.6);
+
+    osc.connect(filter);
+    subOsc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    subOsc.start(now);
+    osc.stop(now + 3.6);
+    subOsc.stop(now + 3.6);
+  } catch (err) {
+    console.debug('[NutriSynth Sound] Dyno sound suppressed:', err);
+  }
+}
+
+

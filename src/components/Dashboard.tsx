@@ -715,14 +715,14 @@ export function Dashboard({
           <div className="card-lg p-6 sm:p-7 flex flex-col justify-between" ref={donutRef}>
             <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
               <div>
-                <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-white flex items-center gap-2">
-                  <span>🏎️ Calorie Speedometer & Fuel Mix</span>
+                <h3 className="font-display font-semibold text-lg text-stone-900 dark:text-[#F8FAFC] flex items-center gap-2">
+                  <span>🏎️ Calorie Speedometer & Horsepower Dyno Lab</span>
                 </h3>
-                <p className="text-xs text-stone-500 dark:text-stone-400">
-                  Automotive dashboard displaying live energy burn rate, RPM redline, and macro fuel ratios.
+                <p className="text-xs text-stone-500 dark:text-[#8492A6]">
+                  Advanced automotive cockpit: Real-time speedometer dial, chassis horsepower dyno pulls, and ECU fuel telemetry.
                 </p>
               </div>
-              <DownloadMenu targetRef={donutRef} filename="calorie-speedometer" title="Calorie Speedometer & Telemetry" />
+              <DownloadMenu targetRef={donutRef} filename="calorie-speedometer-dyno" title="Speedometer & Horsepower Dyno" />
             </div>
 
             <CalorieSpeedometerCluster
