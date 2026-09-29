@@ -10,7 +10,7 @@ import { analyzeFood, analyzeDailyDiet, getMealReasoning, type FoodAnalysis } fr
 import { ProgressBar, DonutChart, ExpandableSection, Badge, StatCard, MacroComparisonChart, RadarChart, NutrientRDIChart, MacroMiniBar } from '@/components/ui';
 import { DownloadMenu } from '@/components/DownloadMenu';
 import { NutritionHub } from '@/components/nutrition/NutritionHub';
-import { loadTodaysMeals } from '@/lib/cloudStore';
+import { loadTodaysMeals, loadTodaysTickedFoods, saveTodaysTickedFoods } from '@/lib/cloudStore';
 import { evidenceSources } from '@/data/foods';
 import { substitutions } from '@/data/foods';
 import { nutrientInfo, getDeficiencyStatus } from '@/data/nutrients';
@@ -38,6 +38,7 @@ interface DashboardProps {
   onGoToTodayStreak?: () => void;
   streakCount?: number;
   completedDaysCount?: number;
+  activeChallengeDay?: number;
   streak?: StreakData;
   challenge?: ChallengeData;
   onUpdateStreak?: (newStreak: StreakData) => void;
@@ -58,6 +59,7 @@ export function Dashboard({
   onGoToTodayStreak,
   streakCount,
   completedDaysCount,
+  activeChallengeDay,
   streak,
   challenge,
   onUpdateStreak,
@@ -66,7 +68,7 @@ export function Dashboard({
   const [scannerOpen, setScannerOpen] = useState(false);
   const [waterToast, setWaterToast] = useState<string | null>(null);
   // State for ticked suggested foods: key is `${mealIndex}-${foodName}`
-  const [tickedFoods, setTickedFoods] = useState<Record<string, FoodDetail>>({});
+  const [tickedFoods, setTickedFoods] = useState<Record<string, FoodDetail>>(() => loadTodaysTickedFoods<FoodDetail>());
   const [confettiActive, setConfettiActive] = useState(false);
   const prevAchievedRef = useRef(false);
   const restoredRef = useRef(false);
@@ -114,6 +116,7 @@ export function Dashboard({
       } else {
         copy[uniqueId] = food;
       }
+      saveTodaysTickedFoods(copy);
       return copy;
     });
   };
@@ -129,6 +132,7 @@ export function Dashboard({
           delete copy[item.uniqueId];
         }
       }
+      saveTodaysTickedFoods(copy);
       return copy;
     });
   };
@@ -633,7 +637,7 @@ export function Dashboard({
                 30-Day Road-map
               </h3>
               <p className="text-[11px] text-[#8492A6] truncate">
-                Day {completedDaysCount ?? 1} of 30
+                Day {activeChallengeDay || 1} • {completedDaysCount ?? 0}/30 completed
               </p>
             </div>
           </button>

@@ -13,7 +13,13 @@ import { computeNutrition, type NutritionResult, type UserProfile, type MealItem
 import { Chatbot } from '@/components/Chatbot';
 import { AuthModal } from '@/components/Auth';
 import { subscribeToAuth, logout, type AuthUser } from '@/lib/firebase';
-import { loadUserData, saveUserData, saveMeal } from '@/lib/cloudStore';
+import {
+  loadUserData,
+  saveUserData,
+  saveMeal,
+  saveLocalProfileAndResult,
+  loadLocalProfileAndResult,
+} from '@/lib/cloudStore';
 import {
   type StreakData,
   type ChallengeData,
@@ -39,8 +45,14 @@ const CHROME_HIDDEN: Phase[] = ['onboarding', 'loading', 'result-intro'];
 
 function App() {
   const [phase, setPhase] = useState<Phase>('landing');
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [result, setResult] = useState<NutritionResult | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(() => {
+    const local = loadLocalProfileAndResult();
+    return local?.profile ?? null;
+  });
+  const [result, setResult] = useState<NutritionResult | null>(() => {
+    const local = loadLocalProfileAndResult();
+    return local?.result ?? null;
+  });
   const [editingProfile, setEditingProfile] = useState(false);
   const [calcError, setCalcError] = useState(false);
 
@@ -201,6 +213,7 @@ function App() {
     setAuthUser(null);
     setProfile(null);
     setResult(null);
+    saveLocalProfileAndResult(null, null);
     goTo('landing');
     setSyncNotice('You have signed out.');
     setTimeout(() => setSyncNotice(null), 3000);
@@ -208,6 +221,12 @@ function App() {
 
   const ensureProfile = (): { p: UserProfile; r: NutritionResult } => {
     if (profile && result) return { p: profile, r: result };
+    const saved = loadLocalProfileAndResult();
+    if (saved?.profile && saved?.result) {
+      setProfile(saved.profile);
+      setResult(saved.result);
+      return { p: saved.profile, r: saved.result };
+    }
     const defaultProfile: UserProfile = {
       age: 26,
       gender: 'male',
@@ -222,6 +241,7 @@ function App() {
     const defaultResult = computeNutrition(defaultProfile);
     setProfile(defaultProfile);
     setResult(defaultResult);
+    saveLocalProfileAndResult(defaultProfile, defaultResult);
     return { p: defaultProfile, r: defaultResult };
   };
 
@@ -258,6 +278,9 @@ function App() {
       setResult(computed);
       setCalcError(false);
 
+      // Always save locally so plan persists across reload
+      saveLocalProfileAndResult(profile, computed);
+
       // Auto-save to Firebase / store if user is logged in
       if (authUser) {
         saveUserData(authUser.uid, {
@@ -286,6 +309,8 @@ function App() {
         const logged = prev ? prev.meals.filter((m) => m.icon === 'Camera') : [];
         const next = { ...computed, meals: [...computed.meals, ...logged] };
 
+        saveLocalProfileAndResult(profile, next);
+
         if (authUser) {
           saveUserData(authUser.uid, {
             email: authUser.email,
@@ -310,6 +335,10 @@ function App() {
     setResult((prev) => {
       if (!prev) return prev;
       const next = { ...prev, meals: [...prev.meals, meal] };
+
+      if (profile) {
+        saveLocalProfileAndResult(profile, next);
+      }
 
       if (authUser && profile) {
         saveUserData(authUser.uid, {
@@ -415,7 +444,8 @@ function App() {
             onGoToChallenge={() => goTo('challenge')}
             onGoToTodayStreak={() => goTo('today-streak')}
             streakCount={streak?.currentStreak ?? 1}
-            completedDaysCount={challenge?.completedDays?.length ?? 1}
+            completedDaysCount={challenge?.completedDays?.length ?? 0}
+            activeChallengeDay={activeChallengeDay}
             streak={streak}
             challenge={challenge}
             onUpdateStreak={handleUpdateStreak}
@@ -513,6 +543,17 @@ function App() {
                   try {
                     const next = computeNutrition(p);
                     setResult(next);
+                    saveLocalProfileAndResult(p, next);
+                    if (authUser) {
+                      saveUserData(authUser.uid, {
+                        email: authUser.email,
+                        displayName: authUser.displayName,
+                        profile: p,
+                        result: next,
+                        streak,
+                        challenge,
+                      });
+                    }
                   } catch (e) {
                     console.warn(e);
                   }

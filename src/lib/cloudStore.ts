@@ -53,6 +53,108 @@ async function ready() {
 // -------------------------------------------------------------
 
 const USER_DATA_STORAGE_PREFIX = 'nutrisynth_user_doc_';
+const LOCAL_PROFILE_KEY = 'nutrisynth_active_profile';
+const LOCAL_RESULT_KEY = 'nutrisynth_active_result';
+const LOCAL_MEALS_KEY = 'nutrisynth_local_meals';
+const LOCAL_TICKED_PREFIX = 'nutrisynth_ticked_foods_';
+
+/** Saves the currently active user profile and computed nutrition result to local browser storage */
+export function saveLocalProfileAndResult(
+  profile: UserProfile | null,
+  result: NutritionResult | null
+): void {
+  try {
+    if (profile) {
+      localStorage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(profile));
+    } else {
+      localStorage.removeItem(LOCAL_PROFILE_KEY);
+    }
+    if (result) {
+      localStorage.setItem(LOCAL_RESULT_KEY, JSON.stringify(result));
+    } else {
+      localStorage.removeItem(LOCAL_RESULT_KEY);
+    }
+  } catch (err) {
+    console.warn('[NutriSynth] Error writing profile/result to local storage:', err);
+  }
+}
+
+/** Loads the saved user profile and computed nutrition result from local browser storage */
+export function loadLocalProfileAndResult(): {
+  profile: UserProfile | null;
+  result: NutritionResult | null;
+} | null {
+  try {
+    const rawProfile = localStorage.getItem(LOCAL_PROFILE_KEY);
+    const rawResult = localStorage.getItem(LOCAL_RESULT_KEY);
+
+    if (rawProfile && rawResult) {
+      return {
+        profile: JSON.parse(rawProfile),
+        result: JSON.parse(rawResult),
+      };
+    }
+
+    // Secondary fallback: search any cached user docs in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(USER_DATA_STORAGE_PREFIX)) {
+        const rawDoc = localStorage.getItem(key);
+        if (rawDoc) {
+          const parsed = JSON.parse(rawDoc) as UserSavedData;
+          if (parsed?.profile && parsed?.result) {
+            return { profile: parsed.profile, result: parsed.result };
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('[NutriSynth] Error loading local profile/result:', err);
+  }
+  return null;
+}
+
+/** Loads ticked suggested food items for today */
+export function loadTodaysTickedFoods<T = any>(): Record<string, T> {
+  try {
+    const raw = localStorage.getItem(`${LOCAL_TICKED_PREFIX}${todayKey()}`);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+/** Saves ticked suggested food items for today */
+export function saveTodaysTickedFoods<T = any>(ticked: Record<string, T>): void {
+  try {
+    localStorage.setItem(`${LOCAL_TICKED_PREFIX}${todayKey()}`, JSON.stringify(ticked));
+  } catch (err) {
+    console.warn('[NutriSynth] Error saving ticked foods to local storage:', err);
+  }
+}
+
+interface StoredMealRecord {
+  dateKey: string;
+  createdAt: number;
+  meal: MealItem;
+}
+
+function loadLocalMealsRaw(): StoredMealRecord[] {
+  try {
+    const raw = localStorage.getItem(LOCAL_MEALS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalMealsRaw(records: StoredMealRecord[]): void {
+  try {
+    localStorage.setItem(LOCAL_MEALS_KEY, JSON.stringify(records));
+  } catch (err) {
+    console.warn('[NutriSynth] Failed to save meals to localStorage:', err);
+  }
+}
 
 /** Saves the user's complete profile, generated nutrition plan, streak, and challenge progress */
 export async function saveUserData(
@@ -82,6 +184,9 @@ export async function saveUserData(
   // Always save locally in case of offline or rapid retrieval
   try {
     localStorage.setItem(`${USER_DATA_STORAGE_PREFIX}${uid}`, JSON.stringify(cleanPayload));
+    if (cleanPayload.profile && cleanPayload.result) {
+      saveLocalProfileAndResult(cleanPayload.profile, cleanPayload.result);
+    }
   } catch (err) {
     console.warn('[NutriSynth] Local storage write error:', err);
   }
@@ -93,7 +198,7 @@ export async function saveUserData(
       await setDoc(userRef, cleanPayload, { merge: true });
       console.log(`[NutriSynth] Saved profile & plan to Firestore for user: ${uid}`);
     } catch (err) {
-      console.warn('[NutriSynth] Could not save user data to Firestore:', err);
+      console.warn('[NutriSynth] Could not save user data to Firestore (saved locally):', err);
     }
   }
 }
@@ -109,6 +214,9 @@ export async function loadUserData(uid: string): Promise<UserSavedData | null> {
         const cloudData = snap.data() as UserSavedData;
         // Keep local cache synced
         localStorage.setItem(`${USER_DATA_STORAGE_PREFIX}${uid}`, JSON.stringify(cloudData));
+        if (cloudData.profile && cloudData.result) {
+          saveLocalProfileAndResult(cloudData.profile, cloudData.result);
+        }
         return cloudData;
       }
     } catch (err) {
@@ -167,37 +275,68 @@ export async function loadFoodEntries(kind: FoodListKind, max = 12): Promise<Foo
   }
 }
 
-/** Saves a logged meal so it can be restored into that day's intake later. */
+/** Saves a logged meal so it can be restored into that day's intake later. Always persists locally first. */
 export async function saveMeal(meal: MealItem): Promise<void> {
+  const cleanMeal: MealItem = JSON.parse(JSON.stringify(meal));
+  const record: StoredMealRecord = {
+    dateKey: todayKey(),
+    createdAt: Date.now(),
+    meal: cleanMeal,
+  };
+
+  // 1. Always save locally first so user never loses their logged intake
+  const existing = loadLocalMealsRaw();
+  existing.push(record);
+  saveLocalMealsRaw(existing);
+
+  // 2. Sync to Firestore if configured and ready
   try {
     const ctx = await ready();
-    if (!ctx) return;
-    await addDoc(collection(ctx.db, 'users', ctx.uid, 'meals'), {
-      dateKey: todayKey(),
-      createdAt: Date.now(),
-      // JSON round-trip strips any undefined fields, which Firestore rejects.
-      meal: JSON.parse(JSON.stringify(meal)),
-    });
+    if (ctx) {
+      await addDoc(collection(ctx.db, 'users', ctx.uid, 'meals'), record);
+    }
   } catch (err) {
-    console.warn('[NutriSynth] Could not save meal to Firestore.', err);
+    console.warn('[NutriSynth] Could not save meal to Firestore (stored locally):', err);
   }
 }
 
 export async function loadTodaysMeals(): Promise<MealItem[]> {
+  const currentToday = todayKey();
+  // 1. Load from localStorage
+  const localRecords = loadLocalMealsRaw().filter((r) => r.dateKey === currentToday);
+  const localMeals = localRecords
+    .sort((a, b) => a.createdAt - b.createdAt)
+    .map((r) => r.meal);
+
+  // 2. Try Firestore if available and merge
   try {
     const ctx = await ready();
-    if (!ctx) return [];
-    const snap = await getDocs(
-      query(collection(ctx.db, 'users', ctx.uid, 'meals'), where('dateKey', '==', todayKey()))
-    );
-    return snap.docs
-      .map((d) => d.data() as { createdAt: number; meal: MealItem })
-      .sort((a, b) => a.createdAt - b.createdAt)
-      .map((d) => d.meal);
+    if (ctx) {
+      const snap = await getDocs(
+        query(collection(ctx.db, 'users', ctx.uid, 'meals'), where('dateKey', '==', currentToday))
+      );
+      if (!snap.empty) {
+        const cloudRecords = snap.docs.map((d) => d.data() as StoredMealRecord);
+        const sig = (m: MealItem) => `${m?.name || ''}|${m?.food || ''}|${m?.details?.calories ?? 0}`;
+        const seen = new Set(localMeals.map(sig));
+        const merged = [...localMeals];
+
+        cloudRecords
+          .sort((a, b) => a.createdAt - b.createdAt)
+          .forEach((rec) => {
+            if (rec?.meal && !seen.has(sig(rec.meal))) {
+              seen.add(sig(rec.meal));
+              merged.push(rec.meal);
+            }
+          });
+        return merged;
+      }
+    }
   } catch (err) {
-    console.warn('[NutriSynth] Could not load meals from Firestore.', err);
-    return [];
+    console.warn('[NutriSynth] Could not load meals from Firestore, using local records:', err);
   }
+
+  return localMeals;
 }
 
 // -------------------------------------------------------------

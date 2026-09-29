@@ -51,8 +51,8 @@ export const DEFAULT_STREAK: StreakData = {
 
 export const DEFAULT_CHALLENGE: ChallengeData = {
   startedAt: new Date().toISOString().split('T')[0],
-  completedDays: [1], // day 1 checked by default as welcome
-  tickedTodos: { 1: [0, 1, 2] },
+  completedDays: [],
+  tickedTodos: {},
 };
 
 /** Formats date into local "YYYY-MM-DD" */
@@ -217,20 +217,44 @@ export function toggleChallengeTodo(
   };
 }
 
-/** Computes the suggested "Current Active Day" (from 1 to 30) based on days elapsed */
+/** Computes the suggested "Current Active Day" (from 1 to 30) based on calendar progression and completed days */
 export function computeActiveChallengeDay(
   challenge: ChallengeData | undefined
 ): number {
-  if (!challenge?.startedAt) return 1;
+  if (!challenge) return 1;
 
-  try {
-    const start = new Date(challenge.startedAt).getTime();
-    const now = new Date(getLocalDateKey()).getTime();
-    const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
-    return Math.min(Math.max(diffDays, 1), 30);
-  } catch {
-    return 1;
+  const completed = new Set(Array.isArray(challenge.completedDays) ? challenge.completedDays : []);
+
+  // 1. Calculate calendar progression if startedAt is set
+  let calendarDay = 1;
+  if (challenge.startedAt) {
+    try {
+      const start = new Date(challenge.startedAt).getTime();
+      const now = new Date(getLocalDateKey()).getTime();
+      const diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
+      calendarDay = Math.min(Math.max(diffDays, 1), 30);
+    } catch {
+      calendarDay = 1;
+    }
   }
+
+  // 2. If the current calendar day is not yet completed, that is the active focus day
+  if (!completed.has(calendarDay)) {
+    return calendarDay;
+  }
+
+  // 3. If calendar day is completed, find the next uncompleted day (starting from calendarDay + 1 up to 30)
+  for (let day = calendarDay + 1; day <= 30; day++) {
+    if (!completed.has(day)) return day;
+  }
+
+  // 4. If all subsequent days are completed, check earlier incomplete days (catch-up)
+  for (let day = 1; day <= 30; day++) {
+    if (!completed.has(day)) return day;
+  }
+
+  // All 30 days completed!
+  return 30;
 }
 
 const LOCAL_STREAK_KEY = 'nutrisynth_guest_streak';

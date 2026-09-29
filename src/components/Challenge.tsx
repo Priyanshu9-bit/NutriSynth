@@ -135,6 +135,11 @@ export function Challenge({
     }
   }, [streak, todayKey]);
 
+  // Sync selected day when active challenge day changes (e.g. after completing a day)
+  useEffect(() => {
+    setSelectedDay(activeDay);
+  }, [activeDay]);
+
   // Trigger grand celebration if user reached 30 completed days
   const checkGrandCompletion = (completedDays: number[]) => {
     if (completedDays.length === 30) {
